@@ -1,9 +1,18 @@
 <resources>
-    <string name="app_name">MEK</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Misr ElKheir</string>
     <string name="facebook_app_id">1540467815995295</string>
     <string name="fb_login_protocol_scheme">fb1540467815995295</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_products">Products</string>
+    <string name="title_causes">Causes</string>
+    <string name="title_more">More</string>
+    <string name="login_with">Login with</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="welcome_statement">Welcome to \n Misr ElKheir Foundation</string>
+    <string name="continueAsGuest">Continue as a guest</string>
+    <string name="something_wrong">Something wrong happened</string>
 </resources>

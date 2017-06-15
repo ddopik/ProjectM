@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "440754624311",
+    "project_id": "misr-el-kher"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440754624311:android:01657b53ac8d88d1",
+        "android_client_info": {
+          "package_name": "com.spade.mek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440754624311-i0nd13f9gtdgaibld8a1q2fihv286u6e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spade.mek",
+            "certificate_hash": "c057c845e2810f2d8d5e20a3412f22e4f1300743"
+          }
+        },
+        {
+          "client_id": "440754624311-t23vib8oj4ieqoa4j6gvvvkrja1ndhjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7zOvkvo9Vrybz7tjO6sg_GA3kr7TZ9Zg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
