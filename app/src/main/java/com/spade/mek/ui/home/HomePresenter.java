@@ -13,4 +13,7 @@ public interface HomePresenter extends BasePresenter<HomeView> {
     void getLatestCauses(String appLang);
 
     void getUrgentCases(String appLang);
+
+    boolean isReverse(String appLang);
+
 }

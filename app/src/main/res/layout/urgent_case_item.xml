@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/view_pager_height"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.androidnetworking.widget.ANImageView
+            android:id="@+id/case_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_shape" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/urgent_case_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical|end"
+        android:background="@drawable/ic_label"
+        android:gravity="center_vertical|end"
+        android:paddingEnd="@dimen/dp8"
+        android:paddingRight="@dimen/dp8"
+        android:text="@string/urgent_case"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/case_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_toLeftOf="@+id/share_image_view"
+        android:layout_toStartOf="@+id/share_image_view"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/share_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:srcCompat="@drawable/ic_share" />
+
+    <ImageView
+        android:id="@+id/action_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

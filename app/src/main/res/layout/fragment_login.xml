@@ -36,7 +36,7 @@
             android:layout_marginStart="@dimen/dp32"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:background="@drawable/transparent_button"
-            android:text="@string/continueAsGuest"
+            android:text="@string/continue_as_guest"
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_subhead" />
 

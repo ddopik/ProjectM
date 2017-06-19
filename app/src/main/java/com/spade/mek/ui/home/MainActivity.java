@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
+import com.spade.mek.ui.products.ProductsFragment;
+import com.spade.mek.utils.NavigationManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
         ahBottomNavigation.setInactiveColor(Color.parseColor("#01513e"));
         ahBottomNavigation.setForceTint(true);
         ahBottomNavigation.addItems(getNavigationItems());
+        ahBottomNavigation.setCurrentItem(0);
+        openHomeFragment();
         ahBottomNavigation.setOnTabSelectedListener(this);
     }
 
@@ -49,13 +52,38 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
         return ahBottomNavigationItems;
     }
 
-    public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, MainActivity.class);
-    }
 
     @Override
     public boolean onTabSelected(int position, boolean wasSelected) {
-
+        switch (position) {
+            case 0:
+                openHomeFragment();
+                return true;
+            case 2:
+                openProductsFragment();
+                return true;
+        }
         return true;
+    }
+
+    private void openHomeFragment() {
+        HomeFragment homeFragment = new HomeFragment();
+        NavigationManager.openFragmentAsRoot(R.id.fragment_container, homeFragment, this, HomeFragment.class.getSimpleName());
+    }
+
+    private void openProductsFragment() {
+        ProductsFragment productsFragment = new ProductsFragment();
+        NavigationManager.openFragmentAsRoot(R.id.fragment_container, productsFragment, this, ProductsFragment.class.getSimpleName());
+    }
+
+
+    private void openMoreFragment() {
+    }
+
+    private void openCausesFragment() {
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, MainActivity.class);
     }
 }

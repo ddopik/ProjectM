@@ -47,36 +47,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
     }
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showMessage(int resId) {
-
-    }
-
-    @Override
-    public void hideMessage() {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public void showAlertDialog(String title, String message) {
-
-    }
-
-    @Override
     public void onError(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }

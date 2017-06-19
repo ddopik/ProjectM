@@ -2,7 +2,7 @@ package com.spade.mek.ui.home;
 
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.home.causes.LatestCauses;
-import com.spade.mek.ui.home.products.LatestProducts;
+import com.spade.mek.ui.home.products.Products;
 
 import java.util.List;
 
@@ -12,7 +12,21 @@ import java.util.List;
 
 public interface HomeView extends BaseView {
 
-    void showLatestProducts(List<LatestProducts> latestProductsList);
+    void showLatestProducts(List<Products> latestProductsList);
 
     void showLatestCauses(List<LatestCauses> latestCausesList);
+
+    void showUrgentCases(List<com.spade.mek.ui.home.urgent_cases.UrgentCase> urgentCaseList);
+
+    void showUrgentCasesLoading();
+
+    void showLatestProductsLoading();
+
+    void showLatestCausesLoading();
+
+    void hideUrgentCasesLoading();
+
+    void hideLatestProductsLoading();
+
+    void hideLatestCausesLoading();
 }

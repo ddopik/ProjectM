@@ -17,7 +17,7 @@ public class LatestProductsResponse {
 
     @Expose
     @SerializedName("data")
-    private List<LatestProducts> latestProductsList;
+    private List<Products> latestProductsList;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -27,11 +27,11 @@ public class LatestProductsResponse {
         isSuccess = success;
     }
 
-    public List<LatestProducts> getLatestProductsList() {
+    public List<Products> getLatestProductsList() {
         return latestProductsList;
     }
 
-    public void setLatestProductsList(List<LatestProducts> latestProductsList) {
+    public void setLatestProductsList(List<Products> latestProductsList) {
         this.latestProductsList = latestProductsList;
     }
 }

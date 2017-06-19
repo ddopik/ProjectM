@@ -14,8 +14,8 @@ public class PrefUtils {
     private static final String USER_TOKEN = "USER_TOKEN";
     private static final String IS_FIRST_LAUNCH = "IS_FIRST_LAUNCH";
     private static final String APP_LANG = "APP_LANG";
-    private static final String ARABIC_LANG = "ar";
-    private static final String ENGLISH_LANG = "en";
+    public static final String ARABIC_LANG = "ar";
+    public static final String ENGLISH_LANG = "en";
 
     private static SharedPreferences getSharedPref(Context context) {
         return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);

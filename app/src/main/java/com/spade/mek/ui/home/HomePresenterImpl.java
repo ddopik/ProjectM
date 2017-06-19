@@ -2,7 +2,8 @@ package com.spade.mek.ui.home;
 
 import android.content.Context;
 
-import com.spade.mek.ApiHelper;
+import com.spade.mek.network.ApiHelper;
+import com.spade.mek.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -21,7 +22,7 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void getLatestProducts(String appLang) {
-        mHomeView.showLoading();
+        mHomeView.showLatestProductsLoading();
         ApiHelper.getLatestProducts(appLang)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -29,16 +30,18 @@ public class HomePresenterImpl implements HomePresenter {
                     if (latestProductsResponse != null && latestProductsResponse.getLatestProductsList() != null) {
                         mHomeView.showLatestProducts(latestProductsResponse.getLatestProductsList());
                     }
-                    mHomeView.hideLoading();
+                    mHomeView.hideLatestProductsLoading();
                 }, throwable -> {
-                    mHomeView.hideLoading();
-                    mHomeView.onError(throwable.getMessage());
+                    if (throwable != null) {
+                        mHomeView.onError(throwable.getMessage());
+                    }
+                    mHomeView.hideLatestProductsLoading();
                 });
     }
 
     @Override
     public void getLatestCauses(String appLang) {
-        mHomeView.showLoading();
+        mHomeView.showLatestCausesLoading();
         ApiHelper.getLatestCauses(appLang)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -46,16 +49,37 @@ public class HomePresenterImpl implements HomePresenter {
                     if (latestCausesResponse != null && latestCausesResponse.getLatestCausesList() != null) {
                         mHomeView.showLatestCauses(latestCausesResponse.getLatestCausesList());
                     }
-                    mHomeView.hideLoading();
+                    mHomeView.hideLatestCausesLoading();
                 }, throwable -> {
-                    mHomeView.hideLoading();
-                    mHomeView.onError(throwable.getMessage());
+                    if (throwable != null) {
+                        mHomeView.onError(throwable.getMessage());
+                    }
+                    mHomeView.hideLatestCausesLoading();
                 });
     }
 
     @Override
     public void getUrgentCases(String appLang) {
+        mHomeView.showUrgentCasesLoading();
+        ApiHelper.getUrgentCases(appLang)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(urgentCasesResponse -> {
+                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCaseList() != null) {
+                        mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCaseList());
+                    }
+                    mHomeView.hideUrgentCasesLoading();
+                }, throwable -> {
+                    mHomeView.hideUrgentCasesLoading();
+                    if (throwable != null) {
+                        mHomeView.onError(throwable.getMessage());
+                    }
+                });
+    }
 
+    @Override
+    public boolean isReverse(String appLang) {
+        return !appLang.equals(PrefUtils.ENGLISH_LANG);
     }
 
     @Override
