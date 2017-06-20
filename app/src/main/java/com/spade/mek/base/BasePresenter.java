@@ -7,4 +7,6 @@ package com.spade.mek.base;
 
 public interface BasePresenter<V extends BaseView> {
     void setView(V view);
+
+    void  shareItem(String url);
 }

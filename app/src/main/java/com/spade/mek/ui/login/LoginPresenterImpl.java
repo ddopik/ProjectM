@@ -72,6 +72,11 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         mLoginView = view;
     }
 
+    @Override
+    public void shareItem(String url) {
+
+    }
+
 
     @Override
     public void onGoogleLoginSuccess(SocialUser socialUser) {

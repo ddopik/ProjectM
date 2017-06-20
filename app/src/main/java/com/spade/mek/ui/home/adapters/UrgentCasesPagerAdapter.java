@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.home.urgent_cases.UrgentCase;
 
 import java.util.List;
@@ -19,14 +20,14 @@ import java.util.List;
  */
 
 public class UrgentCasesPagerAdapter extends PagerAdapter {
-    private List<UrgentCase> urgentCaseList;
+    private List<Products> urgentCaseList;
     private Context mContext;
     private int defaultImageResId;
-    private static final String CAUSE_TYPE = "cause";
-    private static final String PRODUCT_TYPE = "product";
+    public static final String CAUSE_TYPE = "cause";
+    public static final String PRODUCT_TYPE = "product";
 
 
-    public UrgentCasesPagerAdapter(Context context, List<UrgentCase> urgentCaseList, int defaultImageResId) {
+    public UrgentCasesPagerAdapter(Context context, List<Products> urgentCaseList, int defaultImageResId) {
         mContext = context;
         this.defaultImageResId = defaultImageResId;
         this.urgentCaseList = urgentCaseList;
@@ -34,7 +35,7 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        UrgentCase urgentCase = urgentCaseList.get(position);
+        Products urgentCase = urgentCaseList.get(position);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.urgent_case_item, container,
                 false);
@@ -45,11 +46,11 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
 
         caseImage.setDefaultImageResId(defaultImageResId);
         caseImage.setErrorImageResId(defaultImageResId);
-        caseImage.setImageUrl(urgentCase.getCaseImage());
+        caseImage.setImageUrl(urgentCase.getProductImage());
 
-        caseTitle.setText(urgentCase.getCaseTitle());
+        caseTitle.setText(urgentCase.getProductTitle());
 
-        if (urgentCase.getIsUrgent() > 0) {
+        if (urgentCase.isUrgent()) {
             urgentCaseLabel.setVisibility(View.VISIBLE);
         } else {
             urgentCaseLabel.setVisibility(View.GONE);

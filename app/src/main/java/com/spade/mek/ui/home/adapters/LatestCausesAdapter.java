@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
-import com.spade.mek.ui.home.causes.LatestCauses;
+import com.spade.mek.ui.home.products.Products;
 
 import java.util.List;
 
@@ -23,11 +23,11 @@ import java.util.List;
 public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapter.LatestCausesViewHolder> {
 
     private Context mContext;
-    private List<LatestCauses> latestCausesList;
+    private List<Products> latestCausesList;
     private int defaultDrawableResId;
     private int p;
 
-    public LatestCausesAdapter(Context context, List<LatestCauses> latestCausesList, int defaultDrawableResId) {
+    public LatestCausesAdapter(Context context, List<Products> latestCausesList, int defaultDrawableResId) {
         this.mContext = context;
         this.latestCausesList = latestCausesList;
         this.defaultDrawableResId = defaultDrawableResId;
@@ -41,18 +41,18 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
 
     @Override
     public void onBindViewHolder(LatestCausesViewHolder holder, int position) {
-        LatestCauses latestCause = latestCausesList.get(position);
-        holder.causeSeekBar.setMax(Integer.parseInt(latestCause.getCauseTarget()));
+        Products latestCause = latestCausesList.get(position);
+        holder.causeSeekBar.setMax((int) latestCause.getCauseTarget());
 //        holder.causeSeekBar.setMax(10);
-        holder.causeSeekBar.setProgress(latestCause.getCauseDone());
+        holder.causeSeekBar.setProgress((int) latestCause.getCauseDone());
 //        animate(holder.causeSeekBar, 5, 10);
         holder.causeSeekBar.setEnabled(false);
-        holder.causeTitle.setText(latestCause.getCauseTitle());
-        holder.causeTargetTextView.setText(String.format(mContext.getString(R.string.egp), latestCause.getCauseTarget()));
+        holder.causeTitle.setText(latestCause.getProductTitle());
+        holder.causeTargetTextView.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseTarget())));
         holder.causeCurrentAmount.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseDone())));
         holder.causeImage.setDefaultImageResId(defaultDrawableResId);
         holder.causeImage.setErrorImageResId(defaultDrawableResId);
-        holder.causeImage.setImageUrl(latestCause.getCauseImage());
+        holder.causeImage.setImageUrl(latestCause.getProductImage());
     }
 
     private void animate(SeekBar seekBar, int progress, int max) {

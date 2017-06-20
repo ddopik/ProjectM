@@ -20,6 +20,6 @@ public class NavigationManager {
         instance.getSupportFragmentManager().popBackStack();
         instance.getSupportFragmentManager().beginTransaction().
                 replace(containerResId, fragment, tag).
-                addToBackStack(tag).commit();
+                commit();
     }
 }

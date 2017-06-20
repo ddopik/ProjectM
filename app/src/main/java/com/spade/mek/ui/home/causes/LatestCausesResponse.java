@@ -2,6 +2,7 @@ package com.spade.mek.ui.home.causes;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.spade.mek.ui.home.products.Products;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class LatestCausesResponse {
 
     @Expose
     @SerializedName("data")
-    private List<LatestCauses> latestCausesList;
+    private List<Products> productsList;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -27,11 +28,11 @@ public class LatestCausesResponse {
         isSuccess = success;
     }
 
-    public List<LatestCauses> getLatestCausesList() {
-        return latestCausesList;
+    public List<Products> getProductsList() {
+        return productsList;
     }
 
-    public void setLatestCausesList(List<LatestCauses> latestCausesList) {
-        this.latestCausesList = latestCausesList;
+    public void setProductsList(List<Products> productsList) {
+        this.productsList = productsList;
     }
 }

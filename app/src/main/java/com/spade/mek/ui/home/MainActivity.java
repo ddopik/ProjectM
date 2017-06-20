@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
-import com.spade.mek.ui.products.ProductsFragment;
+import com.spade.mek.ui.causes.CausesFragment;
+import com.spade.mek.ui.products.view.ProductsFragment;
 import com.spade.mek.utils.NavigationManager;
 
 import java.util.ArrayList;
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
             case 0:
                 openHomeFragment();
                 return true;
+            case 1:
+                openCausesFragment();
+                return true;
             case 2:
                 openProductsFragment();
                 return true;
@@ -67,20 +71,27 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
     }
 
     private void openHomeFragment() {
+        setTitle(R.string.title_home);
         HomeFragment homeFragment = new HomeFragment();
         NavigationManager.openFragmentAsRoot(R.id.fragment_container, homeFragment, this, HomeFragment.class.getSimpleName());
     }
 
     private void openProductsFragment() {
+        setTitle(R.string.title_products);
         ProductsFragment productsFragment = new ProductsFragment();
         NavigationManager.openFragmentAsRoot(R.id.fragment_container, productsFragment, this, ProductsFragment.class.getSimpleName());
     }
 
 
     private void openMoreFragment() {
+        setTitle(R.string.title_more);
+
     }
 
     private void openCausesFragment() {
+        setTitle(R.string.title_causes);
+        CausesFragment causesFragment = new CausesFragment();
+        NavigationManager.openFragmentAsRoot(R.id.fragment_container, causesFragment, this, CausesFragment.class.getSimpleName());
     }
 
     public static Intent getLaunchIntent(Context context) {

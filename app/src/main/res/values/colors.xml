@@ -12,4 +12,6 @@
     <color name="causeGrey">#F3F3F3</color>
     <color name="buttonGrey">#ECECEC</color>
     <color name="popupsBackground">#231F20</color>
+    <color name="textGrey">#7e7e7e</color>
+    <color name="textDarkGrey">#3f3f3f</color>
 </resources>

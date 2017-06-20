@@ -1,7 +1,6 @@
 package com.spade.mek.ui.home;
 
 import com.spade.mek.base.BaseView;
-import com.spade.mek.ui.home.causes.LatestCauses;
 import com.spade.mek.ui.home.products.Products;
 
 import java.util.List;
@@ -14,9 +13,9 @@ public interface HomeView extends BaseView {
 
     void showLatestProducts(List<Products> latestProductsList);
 
-    void showLatestCauses(List<LatestCauses> latestCausesList);
+    void showLatestCauses(List<Products> latestCausesList);
 
-    void showUrgentCases(List<com.spade.mek.ui.home.urgent_cases.UrgentCase> urgentCaseList);
+    void showUrgentCases(List<Products> urgentCaseList);
 
     void showUrgentCasesLoading();
 

@@ -2,6 +2,7 @@ package com.spade.mek.ui.home.urgent_cases;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.spade.mek.ui.home.products.Products;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class UrgentCasesResponse {
 
     @Expose
     @SerializedName("data")
-    private List<UrgentCase> urgentCaseList;
+    private List<Products> productsList;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -27,11 +28,11 @@ public class UrgentCasesResponse {
         isSuccess = success;
     }
 
-    public List<UrgentCase> getUrgentCaseList() {
-        return urgentCaseList;
+    public List<Products> getProductsList() {
+        return productsList;
     }
 
-    public void setUrgentCaseList(List<UrgentCase> urgentCaseList) {
-        this.urgentCaseList = urgentCaseList;
+    public void setProductsList(List<Products> productsList) {
+        this.productsList = productsList;
     }
 }

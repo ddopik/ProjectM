@@ -46,8 +46,8 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(latestCausesResponse -> {
-                    if (latestCausesResponse != null && latestCausesResponse.getLatestCausesList() != null) {
-                        mHomeView.showLatestCauses(latestCausesResponse.getLatestCausesList());
+                    if (latestCausesResponse != null && latestCausesResponse.getProductsList() != null) {
+                        mHomeView.showLatestCauses(latestCausesResponse.getProductsList());
                     }
                     mHomeView.hideLatestCausesLoading();
                 }, throwable -> {
@@ -65,8 +65,8 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urgentCasesResponse -> {
-                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCaseList() != null) {
-                        mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCaseList());
+                    if (urgentCasesResponse != null && urgentCasesResponse.getProductsList() != null) {
+                        mHomeView.showUrgentCases(urgentCasesResponse.getProductsList());
                     }
                     mHomeView.hideUrgentCasesLoading();
                 }, throwable -> {
@@ -85,5 +85,10 @@ public class HomePresenterImpl implements HomePresenter {
     @Override
     public void setView(HomeView view) {
         this.mHomeView = view;
+    }
+
+    @Override
+    public void shareItem(String url) {
+
     }
 }

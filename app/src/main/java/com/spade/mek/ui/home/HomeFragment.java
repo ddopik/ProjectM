@@ -15,11 +15,8 @@ import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.adapters.LatestCausesAdapter;
 import com.spade.mek.ui.home.adapters.LatestProductsAdapter;
-import com.spade.mek.ui.home.adapters.UrgentCasesAdapter;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
-import com.spade.mek.ui.home.causes.LatestCauses;
 import com.spade.mek.ui.home.products.Products;
-import com.spade.mek.ui.home.urgent_cases.UrgentCase;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -35,11 +32,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
     private View homeView;
     private LatestCausesAdapter latestCausesAdapter;
     private LatestProductsAdapter latestProductsAdapter;
-    private UrgentCasesAdapter urgentCasesAdapter;
+    //    private UrgentCasesAdapter urgentCasesAdapter;
     private UrgentCasesPagerAdapter urgentCasesPagerAdapter;
-    private List<LatestCauses> latestCausesList;
+    private List<Products> latestCausesList;
     private List<Products> latestProductsList;
-    private List<UrgentCase> urgentCaseList;
+    private List<Products> urgentCaseList;
     private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress;
 
     @Nullable
@@ -116,14 +113,14 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
-    public void showLatestCauses(List<LatestCauses> latestCausesList) {
+    public void showLatestCauses(List<Products> latestCausesList) {
         this.latestCausesList.clear();
         this.latestCausesList.addAll(latestCausesList);
         latestCausesAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showUrgentCases(List<UrgentCase> urgentCaseList) {
+    public void showUrgentCases(List<Products> urgentCaseList) {
         this.urgentCaseList.clear();
         this.urgentCaseList.addAll(urgentCaseList);
 //        urgentCasesAdapter.notifyDataSetChanged();

@@ -14,13 +14,13 @@ public class Products {
     private int productId;
 
     @SerializedName("product_target")
-    private String productTarget;
+    private int productTarget;
 
     @SerializedName("cause_target")
-    private String causeTarget;
+    private double causeTarget;
 
     @SerializedName("cause_done")
-    private int causeDone;
+    private double causeDone;
 
     @SerializedName("product_done")
     private int productDone;
@@ -32,10 +32,10 @@ public class Products {
     private String productImage;
 
     @SerializedName("is_featured")
-    private int isFeatured;
+    private boolean isFeatured;
 
     @SerializedName("is_urgent")
-    private int isUrgent;
+    private boolean isUrgent;
 
     @SerializedName("product_type")
     private String productType;
@@ -49,6 +49,9 @@ public class Products {
     @SerializedName("hashtag")
     private String productHashTag;
 
+    @SerializedName("created_at")
+    private String createdAt;
+
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
 
@@ -60,13 +63,6 @@ public class Products {
         this.productId = productId;
     }
 
-    public String getProductTarget() {
-        return productTarget;
-    }
-
-    public void setProductTarget(String productTarget) {
-        this.productTarget = productTarget;
-    }
 
     public int getProductDone() {
         return productDone;
@@ -76,13 +72,6 @@ public class Products {
         this.productDone = productDone;
     }
 
-    public int getCauseDone() {
-        return causeDone;
-    }
-
-    public void setCauseDone(int causeDone) {
-        this.causeDone = causeDone;
-    }
 
     public String getProductUrl() {
         return productUrl;
@@ -92,21 +81,6 @@ public class Products {
         this.productUrl = productUrl;
     }
 
-    public int getIsFeatured() {
-        return isFeatured;
-    }
-
-    public void setIsFeatured(int isFeatured) {
-        this.isFeatured = isFeatured;
-    }
-
-    public int getIsUrgent() {
-        return isUrgent;
-    }
-
-    public void setIsUrgent(int isUrgent) {
-        this.isUrgent = isUrgent;
-    }
 
     public String getProductType() {
         return productType;
@@ -148,19 +122,59 @@ public class Products {
         this.productCategoryList = productCategoryList;
     }
 
-    public String getCauseTarget() {
-        return causeTarget;
-    }
-
-    public void setCauseTarget(String causeTarget) {
-        this.causeTarget = causeTarget;
-    }
-
     public String getProductImage() {
         return productImage;
     }
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public int getProductTarget() {
+        return productTarget;
+    }
+
+    public void setProductTarget(int productTarget) {
+        this.productTarget = productTarget;
+    }
+
+    public double getCauseTarget() {
+        return causeTarget;
+    }
+
+    public void setCauseTarget(double causeTarget) {
+        this.causeTarget = causeTarget;
+    }
+
+    public double getCauseDone() {
+        return causeDone;
+    }
+
+    public void setCauseDone(double causeDone) {
+        this.causeDone = causeDone;
+    }
+
+    public boolean isFeatured() {
+        return isFeatured;
+    }
+
+    public void setFeatured(boolean featured) {
+        isFeatured = featured;
+    }
+
+    public boolean isUrgent() {
+        return isUrgent;
+    }
+
+    public void setUrgent(boolean urgent) {
+        isUrgent = urgent;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }

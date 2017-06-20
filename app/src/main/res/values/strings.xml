@@ -20,4 +20,10 @@
     <string name="check_all">Check all</string>
     <string name="egp">%sEGP</string>
     <string name="urgent_case">Urgent case</string>
+    <string name="donate_now">Donate Now</string>
+    <string name="all_products">All Products</string>
+    <string name="item_to_go">%s Item to go</string>
+    <string name="egp_to_go">%sEGP to go</string>
+    <string name="published_at">Published At %s</string>
+
 </resources>
