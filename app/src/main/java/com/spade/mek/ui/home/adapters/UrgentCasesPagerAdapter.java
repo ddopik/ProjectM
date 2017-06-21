@@ -5,13 +5,13 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
-import com.spade.mek.ui.home.urgent_cases.UrgentCase;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
     private int defaultImageResId;
     public static final String CAUSE_TYPE = "cause";
     public static final String PRODUCT_TYPE = "product";
+    private OnCaseClicked onCaseClicked;
 
 
     public UrgentCasesPagerAdapter(Context context, List<Products> urgentCaseList, int defaultImageResId) {
@@ -42,12 +43,20 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         TextView caseTitle = (TextView) itemView.findViewById(R.id.case_title);
         TextView urgentCaseLabel = (TextView) itemView.findViewById(R.id.urgent_case_label);
         ImageView actionImage = (ImageView) itemView.findViewById(R.id.action_image_view);
+        ImageView shareImage = (ImageView) itemView.findViewById(R.id.share_image_view);
         ANImageView caseImage = (ANImageView) itemView.findViewById(R.id.case_image_view);
+        FrameLayout caseLayout = (FrameLayout) itemView.findViewById(R.id.case_layout);
 
         caseImage.setDefaultImageResId(defaultImageResId);
         caseImage.setErrorImageResId(defaultImageResId);
         caseImage.setImageUrl(urgentCase.getProductImage());
-
+        caseLayout.setOnClickListener(v -> onCaseClicked.onCaseClicked(urgentCase.getProductId(), urgentCase.getProductType()));
+        shareImage.setOnClickListener(v -> onCaseClicked.onShareClicked(urgentCase.getProductUrl()));
+        if (urgentCase.getProductUrl() == null || urgentCase.getProductUrl().isEmpty()) {
+            shareImage.setVisibility(View.GONE);
+        } else {
+            shareImage.setVisibility(View.VISIBLE);
+        }
         caseTitle.setText(urgentCase.getProductTitle());
 
         if (urgentCase.isUrgent()) {
@@ -79,5 +88,15 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+
+    public void setOnCaseClicked(OnCaseClicked onCaseClicked) {
+        this.onCaseClicked = onCaseClicked;
+    }
+
+    public interface OnCaseClicked {
+        void onCaseClicked(int id, String productType);
+
+        void onShareClicked(String url);
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 6/18/17.
  */
 
-public class CausesAdapter extends RecyclerView.Adapter {
+public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPagerAdapter.OnCaseClicked {
 
     public static final int HEADER_TYPE = 0;
     public static final int ITEM_TYPE = 1;
@@ -31,13 +31,15 @@ public class CausesAdapter extends RecyclerView.Adapter {
     private int defaultDrawableResId;
     private int p;
     private CausesAction productActions;
+    private String title;
 
 
-    public CausesAdapter(Context context, List<Products> latestCausesList, List<Products> urgentCaseList, int defaultDrawableResId) {
+    public CausesAdapter(Context context, List<Products> latestCausesList, List<Products> urgentCaseList, String title, int defaultDrawableResId) {
         this.mContext = context;
         this.latestCausesList = latestCausesList;
         this.urgentCaseList = urgentCaseList;
         this.defaultDrawableResId = defaultDrawableResId;
+        this.title = title;
     }
 
     @Override
@@ -66,10 +68,19 @@ public class CausesAdapter extends RecyclerView.Adapter {
             ((ItemViewHolder) holder).causeImage.setErrorImageResId(defaultDrawableResId);
             ((ItemViewHolder) holder).causeImage.setImageUrl(latestCause.getProductImage());
             ((ItemViewHolder) holder).itemView.setOnClickListener(v -> productActions.onCauseClicked(latestCause.getProductId()));
+            ((ItemViewHolder) holder).shareImageView.setOnClickListener(v -> productActions.onShareClicked(latestCause.getProductUrl()));
+            if (latestCause.getProductUrl() == null || latestCause.getProductUrl().isEmpty()) {
+                ((ItemViewHolder) holder).shareImageView.setVisibility(View.GONE);
+            } else {
+                ((ItemViewHolder) holder).shareImageView.setVisibility(View.VISIBLE);
+            }
 
         } else if (holder instanceof HeaderViewHolder) {
             UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
+            urgentCasesPagerAdapter.setOnCaseClicked(this);
             ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
+            ((HeaderViewHolder) holder).title.setText(title);
+
         }
     }
 
@@ -110,8 +121,20 @@ public class CausesAdapter extends RecyclerView.Adapter {
         this.productActions = productActions;
     }
 
+    @Override
+    public void onCaseClicked(int id, String productType) {
+        productActions.onCauseClicked(id);
+    }
+
+    @Override
+    public void onShareClicked(String url) {
+        productActions.onShareClicked(url);
+    }
+
     public interface CausesAction {
         void onCauseClicked(int productId);
+
+        void onShareClicked(String url);
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -129,14 +152,18 @@ public class CausesAdapter extends RecyclerView.Adapter {
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
         }
+
     }
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        TextView title;
         ViewPager casesViewPager;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
             casesViewPager = (ViewPager) itemView.findViewById(R.id.urgent_cases_view_pager);
+            title = (TextView) itemView.findViewById(R.id.title);
         }
     }
 }

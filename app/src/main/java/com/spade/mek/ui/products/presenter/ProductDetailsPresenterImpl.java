@@ -1,7 +1,10 @@
 package com.spade.mek.ui.products.presenter;
 
+import android.content.Context;
+
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.products.view.ProductDetailsView;
+import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -13,6 +16,11 @@ import io.reactivex.schedulers.Schedulers;
 public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
 
     private ProductDetailsView productDetailsView;
+    private Context mContext;
+
+    public ProductDetailsPresenterImpl(Context context) {
+        mContext = context;
+    }
 
     @Override
     public void setView(ProductDetailsView view) {
@@ -22,7 +30,7 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
 
     @Override
     public void shareItem(String url) {
-
+        ShareManager.share(url, mContext);
     }
 
     @Override

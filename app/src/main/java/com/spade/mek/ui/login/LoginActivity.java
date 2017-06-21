@@ -4,24 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import com.spade.mek.R;
-import com.spade.mek.base.BaseActivity;
 
 /**
  * Created by Ayman Abouzeidd on 6/12/17.
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        init();
+        addFragment();
     }
 
-    private void init() {
+    private void addFragment() {
         LoginFragment loginFragment = new LoginFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, loginFragment).commit();
     }

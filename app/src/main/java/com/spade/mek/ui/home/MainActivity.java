@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
+import com.spade.mek.base.BaseActivity;
 import com.spade.mek.ui.causes.CausesFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
 import com.spade.mek.utils.NavigationManager;
@@ -16,25 +17,44 @@ import com.spade.mek.utils.NavigationManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AHBottomNavigation.OnTabSelectedListener {
+public class MainActivity extends BaseActivity implements AHBottomNavigation.OnTabSelectedListener, HomeFragment.HomeActions {
+
+    private AHBottomNavigation ahBottomNavigation;
+    private static final int HOME_POSITION = 0;
+    private static final int CAUSES_POSITION = 1;
+    private static final int PRODUCTS_POSITION = 2;
+    private static final int MORE_POSITION = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         init();
     }
 
+    @Override
+    protected void addFragment() {
+
+    }
+
+    @Override
+    protected void addFragment(String title, Fragment fragment) {
+        setTitle(title);
+        NavigationManager.openFragmentAsRoot(R.id.fragment_container, fragment, this, fragment.getClass().getSimpleName());
+    }
+
     private void init() {
-        AHBottomNavigation ahBottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomNavigation);
+        ahBottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomNavigation);
         ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         ahBottomNavigation.setAccentColor(Color.parseColor("#E7891E"));
         ahBottomNavigation.setInactiveColor(Color.parseColor("#01513e"));
         ahBottomNavigation.setForceTint(true);
         ahBottomNavigation.addItems(getNavigationItems());
-        ahBottomNavigation.setCurrentItem(0);
-        openHomeFragment();
         ahBottomNavigation.setOnTabSelectedListener(this);
+        ahBottomNavigation.setCurrentItem(HOME_POSITION, true);
+//        openHomeFragment();
     }
 
 
@@ -57,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
     @Override
     public boolean onTabSelected(int position, boolean wasSelected) {
         switch (position) {
-            case 0:
+            case HOME_POSITION:
                 openHomeFragment();
                 return true;
-            case 1:
+            case CAUSES_POSITION:
                 openCausesFragment();
                 return true;
-            case 2:
+            case PRODUCTS_POSITION:
                 openProductsFragment();
                 return true;
         }
@@ -71,15 +91,14 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
     }
 
     private void openHomeFragment() {
-        setTitle(R.string.title_home);
         HomeFragment homeFragment = new HomeFragment();
-        NavigationManager.openFragmentAsRoot(R.id.fragment_container, homeFragment, this, HomeFragment.class.getSimpleName());
+        homeFragment.setHomeActions(this);
+        addFragment(getString(R.string.title_home), homeFragment);
     }
 
     private void openProductsFragment() {
-        setTitle(R.string.title_products);
         ProductsFragment productsFragment = new ProductsFragment();
-        NavigationManager.openFragmentAsRoot(R.id.fragment_container, productsFragment, this, ProductsFragment.class.getSimpleName());
+        addFragment(getString(R.string.title_products), productsFragment);
     }
 
 
@@ -89,12 +108,21 @@ public class MainActivity extends AppCompatActivity implements AHBottomNavigatio
     }
 
     private void openCausesFragment() {
-        setTitle(R.string.title_causes);
         CausesFragment causesFragment = new CausesFragment();
-        NavigationManager.openFragmentAsRoot(R.id.fragment_container, causesFragment, this, CausesFragment.class.getSimpleName());
+        addFragment(getString(R.string.title_causes), causesFragment);
     }
 
     public static Intent getLaunchIntent(Context context) {
         return new Intent(context, MainActivity.class);
+    }
+
+    @Override
+    public void onCheckAllProductsClicked() {
+        ahBottomNavigation.setCurrentItem(PRODUCTS_POSITION, true);
+    }
+
+    @Override
+    public void onCheckAllCausesClicked() {
+        ahBottomNavigation.setCurrentItem(CAUSES_POSITION, true);
     }
 }

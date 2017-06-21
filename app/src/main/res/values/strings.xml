@@ -22,8 +22,10 @@
     <string name="urgent_case">Urgent case</string>
     <string name="donate_now">Donate Now</string>
     <string name="all_products">All Products</string>
+    <string name="all_causes">All Causes</string>
     <string name="item_to_go">%s Item to go</string>
     <string name="egp_to_go">%sEGP to go</string>
     <string name="published_at">Published At %s</string>
+    <string name="cart">Cart</string>
 
 </resources>

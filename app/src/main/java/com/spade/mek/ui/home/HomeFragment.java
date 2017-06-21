@@ -1,5 +1,6 @@
 package com.spade.mek.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.spade.mek.R;
@@ -17,6 +19,7 @@ import com.spade.mek.ui.home.adapters.LatestCausesAdapter;
 import com.spade.mek.ui.home.adapters.LatestProductsAdapter;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -27,17 +30,18 @@ import java.util.List;
  * Created by Ayman Abouzeid on 6/15/17.
  */
 
-public class HomeFragment extends BaseFragment implements HomeView {
+public class HomeFragment extends BaseFragment implements HomeView, LatestProductsAdapter.OnProductClicked, LatestCausesAdapter.OnCauseClicked,
+        UrgentCasesPagerAdapter.OnCaseClicked {
     private HomePresenter homePresenter;
     private View homeView;
     private LatestCausesAdapter latestCausesAdapter;
     private LatestProductsAdapter latestProductsAdapter;
-    //    private UrgentCasesAdapter urgentCasesAdapter;
     private UrgentCasesPagerAdapter urgentCasesPagerAdapter;
     private List<Products> latestCausesList;
     private List<Products> latestProductsList;
     private List<Products> urgentCaseList;
     private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress;
+    private HomeActions homeActions;
 
     @Nullable
     @Override
@@ -62,32 +66,36 @@ public class HomeFragment extends BaseFragment implements HomeView {
         latestProductsProgress = (ProgressBar) homeView.findViewById(R.id.latest_products_progress_bar);
         latestCausesProgress = (ProgressBar) homeView.findViewById(R.id.latest_causes_progress_bar);
 
-//        RecyclerView urgentCasesRecycler = (RecyclerView) homeView.findViewById(R.id.urgent_cases_recycler_view);
+        RelativeLayout checkAllProducts = (RelativeLayout) homeView.findViewById(R.id.check_all_products);
+        RelativeLayout checkAllCauses = (RelativeLayout) homeView.findViewById(R.id.check_all_causes);
+
+        checkAllProducts.setOnClickListener(v -> homeActions.onCheckAllProductsClicked());
+        checkAllCauses.setOnClickListener(v -> homeActions.onCheckAllCausesClicked());
+
         ViewPager urgentCasesViewPager = (ViewPager) homeView.findViewById(R.id.urgent_cases_view_pager);
         RecyclerView latestProductsRecycler = (RecyclerView) homeView.findViewById(R.id.latest_products_recycler_view);
         RecyclerView latestCausesRecycler = (RecyclerView) homeView.findViewById(R.id.latest_causes_recycler_view);
 
-        RecyclerView.LayoutManager urgentCasesLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, isReverse);
         RecyclerView.LayoutManager latestProductsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, isReverse);
         RecyclerView.LayoutManager latestCausesLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, isReverse);
 
-//        urgentCasesRecycler.setLayoutManager(urgentCasesLayoutManager);
         latestProductsRecycler.setLayoutManager(latestProductsLayoutManager);
         latestCausesRecycler.setLayoutManager(latestCausesLayoutManager);
 
         latestCausesList = new ArrayList<>();
         latestCausesAdapter = new LatestCausesAdapter(getContext(), latestCausesList, defaultImageResId);
+        latestCausesAdapter.setOnCauseClicked(this);
         latestCausesRecycler.setAdapter(latestCausesAdapter);
 
         latestProductsList = new ArrayList<>();
         latestProductsAdapter = new LatestProductsAdapter(getContext(), latestProductsList, defaultImageResId);
+        latestProductsAdapter.setOnProductClicked(this);
         latestProductsRecycler.setAdapter(latestProductsAdapter);
 
         urgentCaseList = new ArrayList<>();
-//        urgentCasesAdapter = new UrgentCasesAdapter(getContext(), urgentCaseList, defaultImageResId);
         urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(getContext(), urgentCaseList, defaultImageResId);
+        urgentCasesPagerAdapter.setOnCaseClicked(this);
         urgentCasesViewPager.setAdapter(urgentCasesPagerAdapter);
-//        urgentCasesRecycler.setAdapter(urgentCasesAdapter);
 
         homePresenter.getLatestProducts(appLang);
         homePresenter.getUrgentCases(appLang);
@@ -123,7 +131,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void showUrgentCases(List<Products> urgentCaseList) {
         this.urgentCaseList.clear();
         this.urgentCaseList.addAll(urgentCaseList);
-//        urgentCasesAdapter.notifyDataSetChanged();
         urgentCasesPagerAdapter.notifyDataSetChanged();
 
     }
@@ -156,5 +163,52 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void hideLatestCausesLoading() {
         latestCausesProgress.setVisibility(View.GONE);
+    }
+
+    public void setHomeActions(HomeActions homeActions) {
+        this.homeActions = homeActions;
+    }
+
+    @Override
+    public void onProductClicked(int id) {
+        Intent intent = DetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_products));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onShareClicked(String url) {
+        homePresenter.shareItem(url);
+    }
+
+    @Override
+    public void onCauseClicked(int causeId) {
+        Intent intent = DetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, causeId);
+        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_causes));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onCaseClicked(int id, String productType) {
+        String title;
+        if (productType.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
+            title = getString(R.string.title_causes);
+        } else {
+            title = getString(R.string.title_products);
+        }
+
+        Intent intent = DetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+        intent.putExtra(DetailsActivity.SCREEN_TITLE, title);
+        startActivity(intent);
+    }
+
+    public interface HomeActions {
+        void onCheckAllProductsClicked();
+
+        void onCheckAllCausesClicked();
+
     }
 }

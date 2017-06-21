@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.products.view.ProductsView;
+import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -28,7 +29,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
 
     @Override
     public void shareItem(String url) {
-
+        ShareManager.share(url, mContext);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(allProductsResponse -> {
                     if (allProductsResponse != null) {
-                        mProductsView.showAllProducts(allProductsResponse);
+                        mProductsView.showAllProducts(allProductsResponse.getProductsData());
                     }
                     mProductsView.hideProductsLoading();
                 }, throwable -> {

@@ -49,8 +49,10 @@ public class Products {
     @SerializedName("hashtag")
     private String productHashTag;
 
-    @SerializedName("created_at")
-    private String createdAt;
+    @SerializedName("product_price")
+    private double productPrice;
+//    @SerializedName("created_at")
+//    private String createdAt;
 
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
@@ -170,11 +172,19 @@ public class Products {
         isUrgent = urgent;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
+
+    //    public String getCreatedAt() {
+//        return createdAt;
+//    }
+//
+//    public void setCreatedAt(String createdAt) {
+//        this.createdAt = createdAt;
+//    }
 }

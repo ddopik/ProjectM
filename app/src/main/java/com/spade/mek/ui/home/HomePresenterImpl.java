@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.utils.PrefUtils;
+import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -15,9 +16,11 @@ import io.reactivex.schedulers.Schedulers;
 public class HomePresenterImpl implements HomePresenter {
 
     private HomeView mHomeView;
+    private Context mContext;
 
     public HomePresenterImpl(HomeView homeView, Context context) {
         setView(homeView);
+        mContext = context;
     }
 
     @Override
@@ -89,6 +92,6 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void shareItem(String url) {
-
+        ShareManager.share(url, mContext);
     }
 }

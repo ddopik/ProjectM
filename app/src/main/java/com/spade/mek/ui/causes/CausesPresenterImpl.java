@@ -3,6 +3,7 @@ package com.spade.mek.ui.causes;
 import android.content.Context;
 
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -27,7 +28,7 @@ public class CausesPresenterImpl implements CausesPresenter {
 
     @Override
     public void shareItem(String url) {
-
+        ShareManager.share(url, mContext);
     }
 
     @Override

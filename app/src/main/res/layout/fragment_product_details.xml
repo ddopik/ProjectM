@@ -33,7 +33,8 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/product_images_view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_pager_height" />
+                    android:layout_height="@dimen/view_pager_height"
+                    android:background="@color/black" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -57,24 +58,34 @@
                     android:textColor="@color/white"
                     android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/share_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
-                    app:srcCompat="@drawable/ic_share" />
-
-                <TextView
-                    android:id="@+id/item_hash_tag"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/dp48"
-                    android:layout_marginRight="@dimen/dp48"
-                    android:maxLines="1"
-                    android:textColor="@color/white" />
+                    android:layout_margin="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:id="@+id/share_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_share" />
+
+                    <TextView
+                        android:id="@+id/item_hash_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_toLeftOf="@id/share_image_view"
+                        android:layout_toStartOf="@id/share_image_view"
+                        android:maxLines="1"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
             </FrameLayout>
 
             <TextView
@@ -119,6 +130,7 @@
                 android:maxLines="1"
                 android:textColor="@color/textGrey"
                 android:textSize="@dimen/material_text_body1"
+                android:visibility="gone"
                 tools:text="Zakat" />
 
             <TextView
@@ -134,7 +146,6 @@
                 android:maxLines="1"
                 android:textColor="@color/textGrey"
                 android:textSize="@dimen/material_text_body1"
-                android:visibility="gone"
                 tools:text="Zakat" />
 
             <TextView
@@ -148,46 +159,6 @@
                 android:textSize="@dimen/material_text_subhead"
                 tools:text="Zakat" />
 
-            <RelativeLayout
-                android:id="@+id/cause_progress_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_details"
-                android:paddingBottom="@dimen/dp8">
-
-                <SeekBar
-                    android:id="@+id/cause_target_progress_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:progressDrawable="@drawable/seekbar_colors"
-                    android:thumb="@drawable/progress_thumb" />
-
-                <TextView
-                    android:id="@+id/cause_target"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/cause_target_progress_bar"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/orange"
-                    android:textSize="@dimen/material_text_caption" />
-
-                <TextView
-                    android:id="@+id/cause_current_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@id/cause_target_progress_bar"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/material_text_caption" />
-
-            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 
@@ -198,13 +169,53 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/cause_progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp8">
+
+            <SeekBar
+                android:id="@+id/cause_target_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:progressDrawable="@drawable/seekbar_colors"
+                android:thumb="@drawable/progress_thumb" />
+
+            <TextView
+                android:id="@+id/cause_target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/cause_target_progress_bar"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/material_text_caption" />
+
+            <TextView
+                android:id="@+id/cause_current_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/cause_target_progress_bar"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/material_text_caption" />
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/remaining_amount_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/buttonGrey"
             android:gravity="center"
-            android:padding="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/dp8"
             android:text="5oo to go"
             android:textColor="@color/orange"
             android:textSize="@dimen/material_text_title"
@@ -216,6 +227,7 @@
             android:layout_height="wrap_content"
             android:background="@color/blue"
             android:gravity="center"
+            android:padding="@dimen/activity_horizontal_margin"
             android:text="@string/donate_now"
             android:textAllCaps="false"
             android:textColor="@color/white"

@@ -26,6 +26,7 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
     private List<Products> latestCausesList;
     private int defaultDrawableResId;
     private int p;
+    private OnCauseClicked onCauseClicked;
 
     public LatestCausesAdapter(Context context, List<Products> latestCausesList, int defaultDrawableResId) {
         this.mContext = context;
@@ -43,9 +44,7 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
     public void onBindViewHolder(LatestCausesViewHolder holder, int position) {
         Products latestCause = latestCausesList.get(position);
         holder.causeSeekBar.setMax((int) latestCause.getCauseTarget());
-//        holder.causeSeekBar.setMax(10);
         holder.causeSeekBar.setProgress((int) latestCause.getCauseDone());
-//        animate(holder.causeSeekBar, 5, 10);
         holder.causeSeekBar.setEnabled(false);
         holder.causeTitle.setText(latestCause.getProductTitle());
         holder.causeTargetTextView.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseTarget())));
@@ -53,6 +52,13 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
         holder.causeImage.setDefaultImageResId(defaultDrawableResId);
         holder.causeImage.setErrorImageResId(defaultDrawableResId);
         holder.causeImage.setImageUrl(latestCause.getProductImage());
+        holder.itemView.setOnClickListener(v -> onCauseClicked.onCauseClicked(latestCause.getProductId()));
+        holder.shareImageView.setOnClickListener(v -> onCauseClicked.onShareClicked(latestCause.getProductUrl()));
+        if (latestCause.getProductUrl() == null || latestCause.getProductUrl().isEmpty()) {
+            holder.shareImageView.setVisibility(View.GONE);
+        } else {
+            holder.shareImageView.setVisibility(View.VISIBLE);
+        }
     }
 
     private void animate(SeekBar seekBar, int progress, int max) {
@@ -75,6 +81,17 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
     @Override
     public int getItemCount() {
         return latestCausesList.size();
+    }
+
+    public void setOnCauseClicked(OnCauseClicked onCauseClicked) {
+        this.onCauseClicked = onCauseClicked;
+    }
+
+    public interface OnCauseClicked {
+        void onCauseClicked(int causeId);
+
+        void onShareClicked(String url);
+
     }
 
     public class LatestCausesViewHolder extends RecyclerView.ViewHolder {

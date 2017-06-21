@@ -1,8 +1,8 @@
 package com.spade.mek.ui.causes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +13,10 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
-import com.spade.mek.utils.NavigationManager;
 import com.spade.mek.utils.PrefUtils;
 
 import java.util.ArrayList;
@@ -34,6 +34,10 @@ public class CausesFragment extends BaseFragment implements CausesView, CausesAd
     private List<Products> productsList;
     private View mProductsView;
     private ProgressBar productsProgressBar;
+    private boolean isLoading = false;
+    private int currentPage = 0;
+    private int lastPage;
+    private String appLang;
 
     @Nullable
     @Override
@@ -55,30 +59,43 @@ public class CausesFragment extends BaseFragment implements CausesView, CausesAd
         productsProgressBar = (ProgressBar) mProductsView.findViewById(R.id.products_progress_bar);
         productsList = new ArrayList<>();
         urgentCaseList = new ArrayList<>();
-        String appLang = PrefUtils.getAppLang(getContext());
+        appLang = PrefUtils.getAppLang(getContext());
 
-        causesAdapter = new CausesAdapter(getContext(), productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang));
+        causesAdapter = new CausesAdapter(getContext(), productsList, urgentCaseList, getString(R.string.all_causes), ImageUtils.getDefaultImage(appLang));
         causesAdapter.setProductActions(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-//        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                switch (productsAdapter.getItemViewType(position)) {
-//                    case ProductsAdapter.HEADER_TYPE:
-//                        return 2;
-//                    case ProductsAdapter.ITEM_TYPE:
-//                        return 1;
-//                }
-//                return 1;
-//            }
-//        });
         recyclerView.setAdapter(causesAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
-        causesPresenter.getAllCauses(appLang, 1);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int visibleItemCount = linearLayoutManager.getChildCount();
+                int totalItemCount = linearLayoutManager.getItemCount();
+                int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+
+                if (!isLoading && (currentPage < lastPage)) {
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                            && firstVisibleItemPosition >= 0) {
+                        getAllCauses();
+                    }
+                }
+            }
+        });
+        getAllCauses();
         causesPresenter.getUrgentCases(appLang);
     }
 
+    private void getAllCauses() {
+        int pageNumber = currentPage + 1;
+        isLoading = true;
+        causesPresenter.getAllCauses(appLang, pageNumber);
+    }
 
     @Override
     public void onError(String message) {
@@ -100,7 +117,9 @@ public class CausesFragment extends BaseFragment implements CausesView, CausesAd
 
     @Override
     public void showAllCauses(AllCausesResponse allCausesResponse) {
-        this.productsList.clear();
+        isLoading = false;
+        currentPage = allCausesResponse.getProductsData().getCurrentPage();
+        lastPage = allCausesResponse.getProductsData().getLastPage();
         if (allCausesResponse.getProductsData() != null && allCausesResponse.getProductsData().getProductsList() != null) {
             this.productsList.addAll(allCausesResponse.getProductsData().getProductsList());
             causesAdapter.notifyDataSetChanged();
@@ -131,10 +150,14 @@ public class CausesFragment extends BaseFragment implements CausesView, CausesAd
 
     @Override
     public void onCauseClicked(int productId) {
-        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ProductDetailsFragment.ITEM_ID, productId);
-        productDetailsFragment.setArguments(bundle);
-        NavigationManager.openFragment(R.id.fragment_container, productDetailsFragment, (AppCompatActivity) getActivity(), ProductDetailsFragment.class.getSimpleName());
+        Intent intent = DetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
+        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_causes));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onShareClicked(String url) {
+        causesPresenter.shareItem(url);
     }
 }

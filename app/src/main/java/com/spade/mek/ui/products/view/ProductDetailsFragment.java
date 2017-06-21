@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+import com.spade.mek.ui.home.products.ProductCategory;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.presenter.ProductDetailsPresenter;
 import com.spade.mek.ui.products.presenter.ProductDetailsPresenterImpl;
@@ -36,14 +37,13 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     private TextView productTitle, productCategory, productDetails,
             productCreatedAt, productPrice, productHashTag, urgentLabel, remainingAmount,
             causeTargetTextView, causeCurrentAmount;
-
-    private RelativeLayout causeProgressLayout;
-    private ViewPager imagesViewPager;
     private ImageView shareImage;
+    private RelativeLayout causeProgressLayout;
     private Button donateNowBtn;
     private ProductDetailsPresenter productDetailsPresenter;
     private int itemId;
-    private String itemType;
+    private String itemUrl = "";
+
     private List<String> imagesList;
     private ProgressBar progressBar;
     private ImagesPagerAdapter imagesPagerAdapter;
@@ -66,7 +66,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
 
     @Override
     protected void initPresenter() {
-        productDetailsPresenter = new ProductDetailsPresenterImpl();
+        productDetailsPresenter = new ProductDetailsPresenterImpl(getContext());
         productDetailsPresenter.setView(this);
     }
 
@@ -85,7 +85,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         causeTargetTextView = (TextView) productDetailsView.findViewById(R.id.cause_target);
         causeCurrentAmount = (TextView) productDetailsView.findViewById(R.id.cause_current_state);
         remainingAmount = (TextView) productDetailsView.findViewById(R.id.remaining_amount_text_view);
-        imagesViewPager = (ViewPager) productDetailsView.findViewById(R.id.product_images_view_pager);
+        ViewPager imagesViewPager = (ViewPager) productDetailsView.findViewById(R.id.product_images_view_pager);
         shareImage = (ImageView) productDetailsView.findViewById(R.id.share_image_view);
         donateNowBtn = (Button) productDetailsView.findViewById(R.id.donate_now_btn);
         causeProgressLayout = (RelativeLayout) productDetailsView.findViewById(R.id.cause_progress_layout);
@@ -95,7 +95,9 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
         imagesViewPager.setAdapter(imagesPagerAdapter);
 
+        shareImage.setOnClickListener(v -> productDetailsPresenter.shareItem(itemUrl));
         productDetailsPresenter.getProductDetails(appLang, itemId);
+
     }
 
     @Override
@@ -120,7 +122,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
 
     @Override
     public void updateUI(Products products) {
-        itemType = products.getProductType();
+        String itemType = products.getProductType();
         if (products.isUrgent()) {
             urgentLabel.setVisibility(View.VISIBLE);
         } else {
@@ -128,11 +130,11 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         }
 
         if (itemType.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
-            if (products.getCreatedAt() == null || products.getCreatedAt().equals("null")) {
-                productCreatedAt.setVisibility(View.GONE);
-            } else {
-                productCreatedAt.setText(String.format(getString(R.string.published_at), products.getCreatedAt()));
-            }
+//            if (products.getCreatedAt() == null || products.getCreatedAt().equals("null")) {
+//                productCreatedAt.setVisibility(View.GONE);
+//            } else {
+//                productCreatedAt.setText(String.format(getString(R.string.published_at), products.getCreatedAt()));
+//            }
             productPrice.setVisibility(View.GONE);
             remainingAmount.setText(String.format(getString(R.string.egp_to_go), String.valueOf(products.getCauseTarget() - products.getCauseDone())));
             causeSeekBar.setMax((int) products.getCauseTarget());
@@ -144,7 +146,29 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         } else {
             productCreatedAt.setVisibility(View.GONE);
             causeProgressLayout.setVisibility(View.GONE);
+            productPrice.setText(String.format(getString(R.string.egp), String.valueOf(products.getProductPrice())));
             remainingAmount.setText(String.format(getString(R.string.item_to_go), String.valueOf(products.getProductTarget() - products.getProductDone())));
+        }
+
+        List<ProductCategory> productCategories = products.getProductCategoryList();
+        if (productCategories != null && !productCategories.isEmpty()) {
+            String category = "";
+            for (int i = 0; i < productCategories.size(); i++) {
+                if (i == productCategories.size() - 1) {
+                    category += productCategories.get(i).getCategoryName();
+                } else {
+                    category += productCategories.get(i).getCategoryName() + " / ";
+                }
+            }
+            productCategory.setText(category);
+        } else {
+            productCategory.setVisibility(View.GONE);
+        }
+        itemUrl = products.getProductUrl();
+        if (itemUrl == null || itemUrl.isEmpty()) {
+            shareImage.setVisibility(View.GONE);
+        }else{
+            shareImage.setVisibility(View.VISIBLE);
         }
         productTitle.setText(products.getProductTitle());
         productDetails.setText(products.getProductDescription());

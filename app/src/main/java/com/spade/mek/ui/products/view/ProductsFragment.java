@@ -1,8 +1,8 @@
 package com.spade.mek.ui.products.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,12 +13,12 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.products.Products;
-import com.spade.mek.ui.products.model.AllProductsResponse;
+import com.spade.mek.ui.products.model.ProductsData;
 import com.spade.mek.ui.products.presenter.ProductsPresenter;
 import com.spade.mek.ui.products.presenter.ProductsPresenterImpl;
 import com.spade.mek.utils.ImageUtils;
-import com.spade.mek.utils.NavigationManager;
 import com.spade.mek.utils.PrefUtils;
 
 import java.util.ArrayList;
@@ -36,6 +36,10 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
     private List<Products> productsList;
     private View mProductsView;
     private ProgressBar productsProgressBar;
+    private boolean isLoading = false;
+    private int currentPage = 0;
+    private int lastPage;
+    private String appLang;
 
     @Nullable
     @Override
@@ -57,9 +61,9 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
         productsProgressBar = (ProgressBar) mProductsView.findViewById(R.id.products_progress_bar);
         productsList = new ArrayList<>();
         urgentCaseList = new ArrayList<>();
-        String appLang = PrefUtils.getAppLang(getContext());
+        appLang = PrefUtils.getAppLang(getContext());
 
-        productsAdapter = new ProductsAdapter(productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang), getContext());
+        productsAdapter = new ProductsAdapter(productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang), getString(R.string.all_products), getContext());
         productsAdapter.setProductActions(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -76,8 +80,38 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
         });
         recyclerView.setAdapter(productsAdapter);
         recyclerView.setLayoutManager(gridLayoutManager);
-        productsPresenter.getAllProducts(appLang, 1);
+
+        getProducts();
         productsPresenter.getUrgentCases(appLang);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int visibleItemCount = gridLayoutManager.getChildCount();
+                int totalItemCount = gridLayoutManager.getItemCount();
+                int firstVisibleItemPosition = gridLayoutManager.findFirstVisibleItemPosition();
+
+                if (!isLoading && (currentPage < lastPage)) {
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                            && firstVisibleItemPosition >= 0) {
+                        getProducts();
+                    }
+                }
+            }
+        });
+    }
+
+    private void getProducts() {
+        int pageNumber = currentPage + 1;
+        isLoading = true;
+        productsPresenter.getAllProducts(appLang, pageNumber);
+
     }
 
 
@@ -100,14 +134,15 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
     }
 
     @Override
-    public void showAllProducts(AllProductsResponse allProductsResponse) {
-        this.productsList.clear();
-        if (allProductsResponse.getProductsData() != null && allProductsResponse.getProductsData().getProductsList() != null) {
-            this.productsList.addAll(allProductsResponse.getProductsData().getProductsList());
+    public void showAllProducts(ProductsData productsData) {
+        currentPage = productsData.getCurrentPage();
+        lastPage = productsData.getLastPage();
+        isLoading = false;
+        if (productsData.getProductsList() != null) {
+            this.productsList.addAll(productsData.getProductsList());
             productsAdapter.notifyDataSetChanged();
         }
     }
-
 
     @Override
     public void showUrgentCasesLoading() {
@@ -131,10 +166,14 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
 
     @Override
     public void onProductClicked(int productId) {
-        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ProductDetailsFragment.ITEM_ID, productId);
-        productDetailsFragment.setArguments(bundle);
-        NavigationManager.openFragment(R.id.fragment_container, productDetailsFragment, (AppCompatActivity) getActivity(), ProductDetailsFragment.class.getSimpleName());
+        Intent intent = DetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
+        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_products));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onShareClicked(String url) {
+        productsPresenter.shareItem(url);
     }
 }

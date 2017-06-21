@@ -23,6 +23,7 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
     private Context mContext;
     private List<Products> latestProductsList;
     private int defaultDrawableResId;
+    private OnProductClicked onProductClicked;
 
     public LatestProductsAdapter(Context context, List<Products> latestProductsList, int defaultDrawableResId) {
         this.mContext = context;
@@ -40,15 +41,31 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
     public void onBindViewHolder(LatestCausesViewHolder holder, int position) {
         Products latestProducts = latestProductsList.get(position);
         holder.productTitle.setText(latestProducts.getProductTitle());
-        holder.productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductDone())));
+        holder.productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductPrice())));
         holder.productImage.setDefaultImageResId(defaultDrawableResId);
         holder.productImage.setErrorImageResId(defaultDrawableResId);
         holder.productImage.setImageUrl(latestProducts.getProductImage());
+        holder.itemView.setOnClickListener(v -> onProductClicked.onProductClicked(latestProducts.getProductId()));
+        holder.shareImageView.setOnClickListener(v -> onProductClicked.onShareClicked(latestProducts.getProductUrl()));
+        if (latestProducts.getProductUrl() == null || latestProducts.getProductUrl().isEmpty()) {
+            holder.shareImageView.setVisibility(View.GONE);
+        } else {
+            holder.shareImageView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
         return latestProductsList.size();
+    }
+
+    public void setOnProductClicked(OnProductClicked onProductClicked) {
+        this.onProductClicked = onProductClicked;
+    }
+
+    public interface OnProductClicked {
+        void onProductClicked(int id);
+        void onShareClicked(String url);
     }
 
     public class LatestCausesViewHolder extends RecyclerView.ViewHolder {

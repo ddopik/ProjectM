@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 6/19/17.
  */
 
-public class ProductsAdapter extends RecyclerView.Adapter {
+public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCasesPagerAdapter.OnCaseClicked {
     public static final int HEADER_TYPE = 0;
     public static final int ITEM_TYPE = 1;
     private Context mContext;
@@ -28,12 +28,14 @@ public class ProductsAdapter extends RecyclerView.Adapter {
     private List<Products> urgentCaseList;
     private int defaultDrawableResId;
     private ProductActions productActions;
+    private String title;
 
-    public ProductsAdapter(List<Products> productsList, List<Products> urgentCaseList, int defaultResId, Context context) {
+    public ProductsAdapter(List<Products> productsList, List<Products> urgentCaseList, int defaultResId, String title, Context context) {
         this.mContext = context;
         this.productsList = productsList;
         this.urgentCaseList = urgentCaseList;
         this.defaultDrawableResId = defaultResId;
+        this.title = title;
     }
 
     @Override
@@ -56,14 +58,23 @@ public class ProductsAdapter extends RecyclerView.Adapter {
             ((ItemViewHolder) holder).productImage.setErrorImageResId(defaultDrawableResId);
             ((ItemViewHolder) holder).productImage.setImageUrl(latestProducts.getProductImage());
             ((ItemViewHolder) holder).itemView.setOnClickListener(v -> productActions.onProductClicked(latestProducts.getProductId()));
+            ((ItemViewHolder) holder).shareImageView.setOnClickListener(v -> productActions.onShareClicked(latestProducts.getProductUrl()));
+
             if (latestProducts.isUrgent()) {
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
             } else {
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.GONE);
             }
+            if (latestProducts.getProductUrl() == null || latestProducts.getProductUrl().isEmpty()) {
+                ((ItemViewHolder) holder).shareImageView.setVisibility(View.GONE);
+            } else {
+                ((ItemViewHolder) holder).shareImageView.setVisibility(View.VISIBLE);
+            }
         } else if (holder instanceof HeaderViewHolder) {
             UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
+            urgentCasesPagerAdapter.setOnCaseClicked(this);
             ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
+            ((HeaderViewHolder) holder).title.setText(title);
         }
     }
 
@@ -85,8 +96,20 @@ public class ProductsAdapter extends RecyclerView.Adapter {
         this.productActions = productActions;
     }
 
+    @Override
+    public void onCaseClicked(int id, String productType) {
+        productActions.onProductClicked(id);
+    }
+
+    @Override
+    public void onShareClicked(String url) {
+        productActions.onShareClicked(url);
+    }
+
     public interface ProductActions {
         void onProductClicked(int productId);
+
+        void onShareClicked(String url);
     }
 
     private boolean isPositionHeader(int position) {
@@ -110,10 +133,12 @@ public class ProductsAdapter extends RecyclerView.Adapter {
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
         ViewPager casesViewPager;
+        TextView title;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
             casesViewPager = (ViewPager) itemView.findViewById(R.id.urgent_cases_view_pager);
+            title = (TextView) itemView.findViewById(R.id.title);
         }
     }
 }
