@@ -1,13 +1,15 @@
 package com.spade.mek.ui.products.view;
 
 import android.content.Context;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
+import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
 
@@ -32,11 +34,13 @@ public class ImagesPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.image_item, container,
                 false);
-        ANImageView itemImage = (ANImageView) itemView.findViewById(R.id.item_image_view);
-
-        itemImage.setDefaultImageResId(defaultImageResId);
-        itemImage.setErrorImageResId(defaultImageResId);
-        itemImage.setImageUrl(imageUrl);
+        ImageView itemImage = (ImageView) itemView.findViewById(R.id.item_image_view);
+        VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
+        GlideApp.with(mContext).load(imageUrl).centerCrop().
+                placeholder(defaultDrawable).error(defaultDrawable).into(itemImage);
+//        itemImage.setDefaultImageResId(defaultImageResId);
+//        itemImage.setErrorImageResId(defaultImageResId);
+//        itemImage.setImageUrl(imageUrl);
 
         container.addView(itemView);
         return itemView;

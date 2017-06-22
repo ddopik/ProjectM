@@ -1,6 +1,7 @@
 package com.spade.mek.ui.home.adapters;
 
 import android.content.Context;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +10,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
 
@@ -41,15 +42,16 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         View itemView = inflater.inflate(R.layout.urgent_case_item, container,
                 false);
         TextView caseTitle = (TextView) itemView.findViewById(R.id.case_title);
-        TextView urgentCaseLabel = (TextView) itemView.findViewById(R.id.urgent_case_label);
+        FrameLayout urgentCaseLabel = (FrameLayout) itemView.findViewById(R.id.urgent_case_label);
         ImageView actionImage = (ImageView) itemView.findViewById(R.id.action_image_view);
         ImageView shareImage = (ImageView) itemView.findViewById(R.id.share_image_view);
-        ANImageView caseImage = (ANImageView) itemView.findViewById(R.id.case_image_view);
+        ImageView caseImage = (ImageView) itemView.findViewById(R.id.case_image_view);
         FrameLayout caseLayout = (FrameLayout) itemView.findViewById(R.id.case_layout);
 
-        caseImage.setDefaultImageResId(defaultImageResId);
-        caseImage.setErrorImageResId(defaultImageResId);
-        caseImage.setImageUrl(urgentCase.getProductImage());
+        VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
+        GlideApp.with(mContext).load(urgentCase.getProductImage()).centerCrop().
+                placeholder(defaultDrawable).error(defaultDrawable).into(caseImage);
+
         caseLayout.setOnClickListener(v -> onCaseClicked.onCaseClicked(urgentCase.getProductId(), urgentCase.getProductType()));
         shareImage.setOnClickListener(v -> onCaseClicked.onShareClicked(urgentCase.getProductUrl()));
         if (urgentCase.getProductUrl() == null || urgentCase.getProductUrl().isEmpty()) {

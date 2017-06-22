@@ -2,6 +2,7 @@ package com.spade.mek.ui.home.adapters;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
 
@@ -49,9 +50,15 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
         holder.causeTitle.setText(latestCause.getProductTitle());
         holder.causeTargetTextView.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseTarget())));
         holder.causeCurrentAmount.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseDone())));
-        holder.causeImage.setDefaultImageResId(defaultDrawableResId);
-        holder.causeImage.setErrorImageResId(defaultDrawableResId);
-        holder.causeImage.setImageUrl(latestCause.getProductImage());
+
+//        holder.causeImage.setDefaultImageResId(defaultDrawableResId);
+//        holder.causeImage.setErrorImageResId(defaultDrawableResId);
+//        holder.causeImage.setImageUrl(latestCause.getProductImage());
+
+        VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
+        GlideApp.with(mContext).load(latestCause.getProductImage()).centerCrop().
+                placeholder(defaultDrawable).error(defaultDrawable).into(holder.causeImage);
+
         holder.itemView.setOnClickListener(v -> onCauseClicked.onCauseClicked(latestCause.getProductId()));
         holder.shareImageView.setOnClickListener(v -> onCauseClicked.onShareClicked(latestCause.getProductUrl()));
         if (latestCause.getProductUrl() == null || latestCause.getProductUrl().isEmpty()) {
@@ -97,7 +104,7 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
     public class LatestCausesViewHolder extends RecyclerView.ViewHolder {
         private TextView causeTargetTextView, causeCurrentAmount, causeTitle;
         private ImageView shareImageView;
-        private ANImageView causeImage;
+        private ImageView causeImage;
         private SeekBar causeSeekBar;
 
         public LatestCausesViewHolder(View itemView) {
@@ -105,7 +112,7 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
             causeTargetTextView = (TextView) itemView.findViewById(R.id.cause_target);
             causeCurrentAmount = (TextView) itemView.findViewById(R.id.cause_current_state);
             causeTitle = (TextView) itemView.findViewById(R.id.cause_title);
-            causeImage = (ANImageView) itemView.findViewById(R.id.cause_image);
+            causeImage = (ImageView) itemView.findViewById(R.id.cause_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
         }

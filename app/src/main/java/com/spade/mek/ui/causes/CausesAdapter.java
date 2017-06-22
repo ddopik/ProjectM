@@ -1,6 +1,7 @@
 package com.spade.mek.ui.causes;
 
 import android.content.Context;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
 
@@ -64,9 +65,13 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             ((ItemViewHolder) holder).causeTitle.setText(latestCause.getProductTitle());
             ((ItemViewHolder) holder).causeTargetTextView.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseTarget())));
             ((ItemViewHolder) holder).causeCurrentAmount.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseDone())));
-            ((ItemViewHolder) holder).causeImage.setDefaultImageResId(defaultDrawableResId);
-            ((ItemViewHolder) holder).causeImage.setErrorImageResId(defaultDrawableResId);
-            ((ItemViewHolder) holder).causeImage.setImageUrl(latestCause.getProductImage());
+
+//            ((ItemViewHolder) holder).causeImage.setDefaultImageResId(defaultDrawableResId);
+//            ((ItemViewHolder) holder).causeImage.setErrorImageResId(defaultDrawableResId);
+//            ((ItemViewHolder) holder).causeImage.setImageUrl(latestCause.getProductImage());
+            VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
+            GlideApp.with(mContext).load(latestCause.getProductImage()).centerCrop().
+                    placeholder(defaultDrawable).error(defaultDrawable).into(((ItemViewHolder) holder).causeImage);
             ((ItemViewHolder) holder).itemView.setOnClickListener(v -> productActions.onCauseClicked(latestCause.getProductId()));
             ((ItemViewHolder) holder).shareImageView.setOnClickListener(v -> productActions.onShareClicked(latestCause.getProductUrl()));
             if (latestCause.getProductUrl() == null || latestCause.getProductUrl().isEmpty()) {
@@ -140,7 +145,7 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView causeTargetTextView, causeCurrentAmount, causeTitle;
         private ImageView shareImageView;
-        private ANImageView causeImage;
+        private ImageView causeImage;
         private SeekBar causeSeekBar;
 
         public ItemViewHolder(View itemView) {
@@ -148,7 +153,7 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             causeTargetTextView = (TextView) itemView.findViewById(R.id.cause_target);
             causeCurrentAmount = (TextView) itemView.findViewById(R.id.cause_current_state);
             causeTitle = (TextView) itemView.findViewById(R.id.cause_title);
-            causeImage = (ANImageView) itemView.findViewById(R.id.cause_image);
+            causeImage = (ImageView) itemView.findViewById(R.id.cause_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
         }
