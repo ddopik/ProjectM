@@ -1,6 +1,7 @@
 package com.spade.mek.ui.home.adapters;
 
 import android.content.Context;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
 
@@ -42,9 +43,14 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         Products latestProducts = latestProductsList.get(position);
         holder.productTitle.setText(latestProducts.getProductTitle());
         holder.productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductPrice())));
-        holder.productImage.setDefaultImageResId(defaultDrawableResId);
-        holder.productImage.setErrorImageResId(defaultDrawableResId);
-        holder.productImage.setImageUrl(latestProducts.getProductImage());
+        VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
+        GlideApp.with(mContext).load(latestProducts.getProductImage()).centerCrop().
+                placeholder(defaultDrawable).error(defaultDrawable).into(holder.productImage);
+
+//        holder.productImage.setDefaultImageResId(defaultDrawableResId);
+//        holder.productImage.setErrorImageResId(defaultDrawableResId);
+//        holder.productImage.setImageUrl(latestProducts.getProductImage());
+
         holder.itemView.setOnClickListener(v -> onProductClicked.onProductClicked(latestProducts.getProductId()));
         holder.shareImageView.setOnClickListener(v -> onProductClicked.onShareClicked(latestProducts.getProductUrl()));
         if (latestProducts.getProductUrl() == null || latestProducts.getProductUrl().isEmpty()) {
@@ -65,20 +71,21 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
 
     public interface OnProductClicked {
         void onProductClicked(int id);
+
         void onShareClicked(String url);
     }
 
     public class LatestCausesViewHolder extends RecyclerView.ViewHolder {
         private TextView productTitle, productPrice;
         private ImageView shareImageView;
-        private ANImageView productImage;
+        private ImageView productImage;
 
 
         public LatestCausesViewHolder(View itemView) {
             super(itemView);
             productTitle = (TextView) itemView.findViewById(R.id.product_title);
             productPrice = (TextView) itemView.findViewById(R.id.product_price);
-            productImage = (ANImageView) itemView.findViewById(R.id.product_image);
+            productImage = (ImageView) itemView.findViewById(R.id.product_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
 
         }

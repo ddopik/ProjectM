@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -35,8 +36,9 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     public static final String ITEM_ID = "ITEM_ID";
     private View productDetailsView;
     private TextView productTitle, productCategory, productDetails,
-            productCreatedAt, productPrice, productHashTag, urgentLabel, remainingAmount,
+            productCreatedAt, productPrice, productHashTag, remainingAmount,
             causeTargetTextView, causeCurrentAmount;
+    private FrameLayout urgentLabel;
     private ImageView shareImage;
     private RelativeLayout causeProgressLayout;
     private Button donateNowBtn;
@@ -81,7 +83,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         productPrice = (TextView) productDetailsView.findViewById(R.id.item_price);
         productCreatedAt = (TextView) productDetailsView.findViewById(R.id.item_publish_date);
         productHashTag = (TextView) productDetailsView.findViewById(R.id.item_hash_tag);
-        urgentLabel = (TextView) productDetailsView.findViewById(R.id.urgent_case_label);
+        urgentLabel = (FrameLayout) productDetailsView.findViewById(R.id.urgent_case_label);
         causeTargetTextView = (TextView) productDetailsView.findViewById(R.id.cause_target);
         causeCurrentAmount = (TextView) productDetailsView.findViewById(R.id.cause_current_state);
         remainingAmount = (TextView) productDetailsView.findViewById(R.id.remaining_amount_text_view);
@@ -167,7 +169,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         itemUrl = products.getProductUrl();
         if (itemUrl == null || itemUrl.isEmpty()) {
             shareImage.setVisibility(View.GONE);
-        }else{
+        } else {
             shareImage.setVisibility(View.VISIBLE);
         }
         productTitle.setText(products.getProductTitle());

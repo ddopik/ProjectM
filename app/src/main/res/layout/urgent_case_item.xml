@@ -10,11 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.androidnetworking.widget.ANImageView
+        <ImageView
             android:id="@+id/case_image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
+        <!--<com.androidnetworking.widget.ANImageView-->
+        <!--android:id="@+id/case_image_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scaleType="centerCrop" />-->
 
         <ImageView
             android:layout_width="match_parent"
@@ -22,21 +27,29 @@
             android:background="@drawable/gradient_shape" />
     </FrameLayout>
 
-
-    <TextView
+    <FrameLayout
         android:id="@+id/urgent_case_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center_vertical|end"
-        android:background="@drawable/ic_label"
-        android:gravity="center_vertical|end"
-        android:paddingEnd="@dimen/dp8"
-        android:paddingRight="@dimen/dp8"
-        android:text="@string/urgent_case"
-        android:textColor="@color/white"
-        android:visibility="gone" />
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_label" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:text="@string/urgent_case"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
 
 
     <TextView

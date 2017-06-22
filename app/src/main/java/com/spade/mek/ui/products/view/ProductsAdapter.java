@@ -1,6 +1,7 @@
 package com.spade.mek.ui.products.view;
 
 import android.content.Context;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
 
@@ -54,9 +55,14 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
             Products latestProducts = productsList.get(position - 1);
             ((ItemViewHolder) holder).productTitle.setText(latestProducts.getProductTitle());
             ((ItemViewHolder) holder).productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductDone())));
-            ((ItemViewHolder) holder).productImage.setDefaultImageResId(defaultDrawableResId);
-            ((ItemViewHolder) holder).productImage.setErrorImageResId(defaultDrawableResId);
-            ((ItemViewHolder) holder).productImage.setImageUrl(latestProducts.getProductImage());
+//            ((ItemViewHolder) holder).productImage.setDefaultImageResId(defaultDrawableResId);
+//            ((ItemViewHolder) holder).productImage.setErrorImageResId(defaultDrawableResId);
+//            ((ItemViewHolder) holder).productImage.setImageUrl(latestProducts.getProductImage());
+
+            VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
+            GlideApp.with(mContext).load(latestProducts.getProductImage()).centerCrop().
+                    placeholder(defaultDrawable).error(defaultDrawable).into(((ItemViewHolder) holder).productImage);
+
             ((ItemViewHolder) holder).itemView.setOnClickListener(v -> productActions.onProductClicked(latestProducts.getProductId()));
             ((ItemViewHolder) holder).shareImageView.setOnClickListener(v -> productActions.onShareClicked(latestProducts.getProductUrl()));
 
@@ -119,13 +125,13 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
     private class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView productTitle, productPrice;
         private ImageView shareImageView, isUrgentImageView;
-        private ANImageView productImage;
+        private ImageView productImage;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             productTitle = (TextView) itemView.findViewById(R.id.product_title);
             productPrice = (TextView) itemView.findViewById(R.id.product_price);
-            productImage = (ANImageView) itemView.findViewById(R.id.product_image);
+            productImage = (ImageView) itemView.findViewById(R.id.product_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
         }
