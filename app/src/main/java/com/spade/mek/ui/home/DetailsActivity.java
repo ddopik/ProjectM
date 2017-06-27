@@ -15,7 +15,7 @@ import com.spade.mek.utils.NavigationManager;
  * Created by Ayman Abouzeid on 6/21/17.
  */
 
-public class DetailsActivity extends BaseActivity {
+public class DetailsActivity extends BaseActivity implements ProductDetailsFragment.CartAction {
 
     public static final String SCREEN_TITLE = "SCREEN_TITLE";
 
@@ -29,10 +29,12 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     protected void addFragment() {
-        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ProductDetailsFragment.ITEM_ID, getIntent().getIntExtra(ProductDetailsFragment.ITEM_ID, 1));
+
+        ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
         productDetailsFragment.setArguments(bundle);
+        productDetailsFragment.setCartAction(this);
         NavigationManager.openFragmentAsRoot(R.id.fragment_container, productDetailsFragment, this, DetailsActivity.class.getSimpleName());
     }
 
@@ -43,5 +45,10 @@ public class DetailsActivity extends BaseActivity {
 
     public static Intent getLaunchIntent(Context context) {
         return new Intent(context, DetailsActivity.class);
+    }
+
+    @Override
+    public void onItemInserted() {
+        updateCounter();
     }
 }

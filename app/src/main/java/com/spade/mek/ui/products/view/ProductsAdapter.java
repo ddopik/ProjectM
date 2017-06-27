@@ -54,7 +54,7 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
         if (holder instanceof ItemViewHolder) {
             Products latestProducts = productsList.get(position - 1);
             ((ItemViewHolder) holder).productTitle.setText(latestProducts.getProductTitle());
-            ((ItemViewHolder) holder).productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductDone())));
+            ((ItemViewHolder) holder).productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductPrice())));
 //            ((ItemViewHolder) holder).productImage.setDefaultImageResId(defaultDrawableResId);
 //            ((ItemViewHolder) holder).productImage.setErrorImageResId(defaultDrawableResId);
 //            ((ItemViewHolder) holder).productImage.setImageUrl(latestProducts.getProductImage());

@@ -50,7 +50,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -197,7 +198,8 @@
             android:id="@+id/cause_progress_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dp8">
+            android:paddingBottom="@dimen/dp8"
+            android:visibility="gone">
 
             <SeekBar
                 android:id="@+id/cause_target_progress_bar"
@@ -240,7 +242,6 @@
             android:background="@color/buttonGrey"
             android:gravity="center"
             android:padding="@dimen/dp8"
-            android:text="5oo to go"
             android:textColor="@color/orange"
             android:textSize="@dimen/material_text_title"
             android:textStyle="bold" />

@@ -9,4 +9,5 @@
     <dimen name="dp8">8dp</dimen>
     <dimen name="dp4">4dp</dimen>
     <dimen name="cart_padding">10dp</dimen>
+    <dimen name="dp64">64dp</dimen>
 </resources>

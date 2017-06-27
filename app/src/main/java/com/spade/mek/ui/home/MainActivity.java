@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     }
 
+
     @Override
     protected void addFragment(String title, Fragment fragment) {
         setTitle(title);
@@ -53,10 +55,15 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         ahBottomNavigation.setForceTint(true);
         ahBottomNavigation.addItems(getNavigationItems());
         ahBottomNavigation.setOnTabSelectedListener(this);
-        ahBottomNavigation.setCurrentItem(HOME_POSITION, true);
-//        openHomeFragment();
+        ahBottomNavigation.setCurrentItem(HOME_POSITION);
+        openHomeFragment();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCounter();
+    }
 
     private List<AHBottomNavigationItem> getNavigationItems() {
         AHBottomNavigationItem homeItem = new AHBottomNavigationItem(getString(R.string.title_home), R.drawable.ic_home);
@@ -73,9 +80,17 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         return ahBottomNavigationItems;
     }
 
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+//        updateCounter();
+    }
 
     @Override
     public boolean onTabSelected(int position, boolean wasSelected) {
+        if (wasSelected) {
+            return false;
+        }
         switch (position) {
             case HOME_POSITION:
                 openHomeFragment();

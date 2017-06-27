@@ -51,8 +51,9 @@ public class Products {
 
     @SerializedName("product_price")
     private double productPrice;
-//    @SerializedName("created_at")
-//    private String createdAt;
+
+    @SerializedName("created_at")
+    private long createdAt;
 
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
@@ -180,11 +181,11 @@ public class Products {
         this.productPrice = productPrice;
     }
 
-    //    public String getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(String createdAt) {
-//        this.createdAt = createdAt;
-//    }
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
 }

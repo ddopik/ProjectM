@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cart_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/receipt_layout"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/receipt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/check_out_btn"
+        android:background="@color/buttonGrey"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/total_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/material_text_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/total_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/material_text_title"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/check_out_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:text="@string/check_out"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</RelativeLayout>

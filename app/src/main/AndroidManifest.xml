@@ -53,7 +53,12 @@
         <activity
             android:name=".ui.home.DetailsActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".ui.cart.view.CartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.cart.view.UserDataActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

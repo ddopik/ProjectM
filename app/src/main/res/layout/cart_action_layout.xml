@@ -4,7 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/dp8">
+    android:padding="@dimen/dp8"
+    android:visibility="gone">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -13,14 +14,15 @@
         app:srcCompat="@drawable/ic_cart" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/items_count"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_gravity="end"
         android:background="@drawable/cart_count_background"
         android:gravity="center"
         android:maxLength="2"
-        android:padding="3dp"
+        android:text="2"
         android:textColor="@color/white"
         android:textSize="@dimen/material_text_caption"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </FrameLayout>
