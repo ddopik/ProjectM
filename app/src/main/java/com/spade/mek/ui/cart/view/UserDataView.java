@@ -13,4 +13,6 @@ public interface UserDataView extends BaseView {
     void hideLoading();
 
     void finish();
+
+    void navigateToConfirmationScreen();
 }

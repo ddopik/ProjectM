@@ -15,4 +15,8 @@ public interface CartView extends BaseView {
     void hideEmptyScreen();
 
     void finish();
+
+    void loginSuccess();
+
+    void navigateToUserDataActivity();
 }

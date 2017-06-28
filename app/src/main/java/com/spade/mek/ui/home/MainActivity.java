@@ -11,6 +11,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseActivity;
+import com.spade.mek.ui.more.MoreFragment;
 import com.spade.mek.ui.causes.CausesFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
 import com.spade.mek.utils.NavigationManager;
@@ -18,7 +19,9 @@ import com.spade.mek.utils.NavigationManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements AHBottomNavigation.OnTabSelectedListener, HomeFragment.HomeActions {
+public class MainActivity extends BaseActivity implements AHBottomNavigation.OnTabSelectedListener,
+        HomeFragment.HomeActions, HomeFragment.CartAction,
+        ProductsFragment.CartAction, CausesFragment.CartAction {
 
     private AHBottomNavigation ahBottomNavigation;
     private static final int HOME_POSITION = 0;
@@ -101,6 +104,9 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
             case PRODUCTS_POSITION:
                 openProductsFragment();
                 return true;
+            case MORE_POSITION:
+                openMoreFragment();
+                return true;
         }
         return true;
     }
@@ -108,22 +114,25 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     private void openHomeFragment() {
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setHomeActions(this);
+        homeFragment.setCartAction(this);
         addFragment(getString(R.string.title_home), homeFragment);
     }
 
     private void openProductsFragment() {
         ProductsFragment productsFragment = new ProductsFragment();
+        productsFragment.setCartAction(this);
         addFragment(getString(R.string.title_products), productsFragment);
     }
 
 
     private void openMoreFragment() {
-        setTitle(R.string.title_more);
-
+        MoreFragment moreFragment = new MoreFragment();
+        addFragment(getString(R.string.title_more), moreFragment);
     }
 
     private void openCausesFragment() {
         CausesFragment causesFragment = new CausesFragment();
+        causesFragment.setCartAction(this);
         addFragment(getString(R.string.title_causes), causesFragment);
     }
 
@@ -139,5 +148,10 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     @Override
     public void onCheckAllCausesClicked() {
         ahBottomNavigation.setCurrentItem(CAUSES_POSITION, true);
+    }
+
+    @Override
+    public void onItemInserted() {
+        updateCounter();
     }
 }

@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
+import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 
 /**
@@ -27,12 +30,21 @@ public class AddCauseToCartDialog extends DialogFragment {
     private TextView totalCost;
     public AddToCart addToCart;
     private String decimalPattern = "([0-9]*)\\.([0-9]*)";
-
+    private AddToCartPresenter addToCartPresenter;
+    private Products product;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title = getArguments().getString(ProductDetailsFragment.ITEM_TITLE);
+        product = getArguments().getParcelable(ProductDetailsFragment.EXTRA_ITEM);
+        if (product != null) {
+            title = product.getProductTitle();
+        }
+        initPresenter();
+    }
+
+    private void initPresenter() {
+        addToCartPresenter = new AddToCartPresenterImpl(getContext());
     }
 
     @Nullable
@@ -97,7 +109,12 @@ public class AddCauseToCartDialog extends DialogFragment {
             }
         });
 
-        addToCartButton.setOnClickListener(v -> addToCart.onAddToCartClicked(quantityAmount));
+        addToCartButton.setOnClickListener(v -> {
+            addToCartPresenter.addItemToCart(product, quantityAmount);
+            addToCart.onItemInserted();
+            dismiss();
+        });
+//            addToCart.onAddToCartClicked(quantityAmount)});
 //        setMoneyAmount();
     }
 
@@ -110,7 +127,7 @@ public class AddCauseToCartDialog extends DialogFragment {
     }
 
     public interface AddToCart {
-        void onAddToCartClicked(double quantity);
+        void onItemInserted();
     }
 
 }

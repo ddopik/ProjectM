@@ -48,6 +48,12 @@ public class DetailsActivity extends BaseActivity implements ProductDetailsFragm
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        updateCounter();
+    }
+
+    @Override
     public void onItemInserted() {
         updateCounter();
     }

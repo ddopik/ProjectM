@@ -11,6 +11,8 @@ import com.spade.mek.ui.login.User;
 public interface UserOrderPresenter extends BasePresenter<UserDataView> {
     void makeOrder(String typeOfDonation);
 
+    double getOrderTotalCost(String userId);
+
     User getUser(String userId);
 
     void updateUserData(String firstName, String lastName, String phoneNumber, String emailAddress, String address, String userId);

@@ -25,6 +25,7 @@ import com.spade.mek.utils.PrefUtils;
 
 public class UserDataFragment extends BaseFragment implements UserDataView {
 
+    public static final String EXTRA_TOTAL_COST = "EXTRA_TOTAL_COST";
     private EditText firstNameEditText, lastNameEditText,
             phoneNumberEditText, emailAddressEditText, addressEditText, donationEditText;
     private String firstNameString, lastNameString, phoneNumberString,
@@ -33,6 +34,8 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
     private View fragmentView;
     private UserOrderPresenter userOrderPresenter;
+
+    private double totalCost;
 
 
     @Nullable
@@ -128,6 +131,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     private void proceed() {
         userOrderPresenter.updateUserData(firstNameString, lastNameString, phoneNumberString,
                 emailAddressString, addressString, PrefUtils.getUserId(getContext()));
+        totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
         userOrderPresenter.makeOrder(donationTypeString);
     }
 
@@ -166,5 +170,12 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     @Override
     public void finish() {
         getActivity().finish();
+    }
+
+    @Override
+    public void navigateToConfirmationScreen() {
+        Intent intent = OrderConfirmationActivity.getLaunchIntent(getContext());
+        intent.putExtra(EXTRA_TOTAL_COST, String.valueOf(totalCost));
+        startActivity(intent);
     }
 }

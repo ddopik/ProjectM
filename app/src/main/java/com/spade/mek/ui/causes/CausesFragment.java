@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
+import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.DetailsActivity;
+import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
@@ -26,7 +29,8 @@ import java.util.List;
  * Created by Ayman Abouzeid on 6/19/17.
  */
 
-public class CausesFragment extends BaseFragment implements CausesView, CausesAdapter.CausesAction {
+public class CausesFragment extends BaseFragment implements CausesView,
+        CausesAdapter.CausesAction, AddProductToCartDialog.AddToCart, AddCauseToCartDialog.AddToCart {
 
     private CausesPresenter causesPresenter;
     private CausesAdapter causesAdapter;
@@ -38,6 +42,7 @@ public class CausesFragment extends BaseFragment implements CausesView, CausesAd
     private int currentPage = 0;
     private int lastPage;
     private String appLang;
+    private CartAction cartAction;
 
     @Nullable
     @Override
@@ -159,5 +164,39 @@ public class CausesFragment extends BaseFragment implements CausesView, CausesAd
     @Override
     public void onShareClicked(String url) {
         causesPresenter.shareItem(url);
+    }
+
+    @Override
+    public void onDonateCauseClicked(Products cause) {
+        showDialogFragment(cause);
+    }
+
+    private void showDialogFragment(Products item) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ProductDetailsFragment.EXTRA_ITEM, item);
+        if (item.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+            AddProductToCartDialog addProductToCartDialog = new AddProductToCartDialog();
+            addProductToCartDialog.setArguments(bundle);
+            addProductToCartDialog.setAddToCart(this);
+            addProductToCartDialog.show(getFragmentManager(), AddProductToCartDialog.class.getSimpleName());
+        } else {
+            AddCauseToCartDialog addCauseToCartDialog = new AddCauseToCartDialog();
+            addCauseToCartDialog.setArguments(bundle);
+            addCauseToCartDialog.setAddToCart(this);
+            addCauseToCartDialog.show(getFragmentManager(), AddCauseToCartDialog.class.getSimpleName());
+        }
+    }
+
+    public void setCartAction(CartAction cartAction) {
+        this.cartAction = cartAction;
+    }
+
+    @Override
+    public void onItemInserted() {
+        cartAction.onItemInserted();
+    }
+
+    public interface CartAction {
+        void onItemInserted();
     }
 }

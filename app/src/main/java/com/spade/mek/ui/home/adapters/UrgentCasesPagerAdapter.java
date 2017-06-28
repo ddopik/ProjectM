@@ -54,6 +54,7 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
 
         caseLayout.setOnClickListener(v -> onCaseClicked.onCaseClicked(urgentCase.getProductId(), urgentCase.getProductType()));
         shareImage.setOnClickListener(v -> onCaseClicked.onShareClicked(urgentCase.getProductUrl()));
+        actionImage.setOnClickListener(v -> onCaseClicked.onActionClicked(urgentCase));
         if (urgentCase.getProductUrl() == null || urgentCase.getProductUrl().isEmpty()) {
             shareImage.setVisibility(View.GONE);
         } else {
@@ -100,5 +101,7 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         void onCaseClicked(int id, String productType);
 
         void onShareClicked(String url);
+
+        void onActionClicked(Products product);
     }
 }

@@ -20,4 +20,5 @@ public interface CartPresenter extends BasePresenter<CartView> {
 
     long getItemsCount();
 
+    void updateUserCartItems(String userId);
 }

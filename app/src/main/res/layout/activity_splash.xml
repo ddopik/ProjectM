@@ -11,13 +11,15 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/splash_bg" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.6"
-        android:src="@drawable/splash_gradient_shape"/>
+        android:src="@drawable/splash_gradient_shape" />
 
     <ImageView
+        android:id="@+id/logo_image_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

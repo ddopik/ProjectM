@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
+import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 
 /**
@@ -25,13 +28,24 @@ public class AddProductToCartDialog extends DialogFragment {
     private EditText quantityEditText;
     private TextView totalCost;
     public AddToCart addToCart;
+    private AddToCartPresenter addToCartPresenter;
+    private Products product;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title = getArguments().getString(ProductDetailsFragment.ITEM_TITLE);
-        price = getArguments().getDouble(ProductDetailsFragment.ITEM_PRICE);
+        product = getArguments().getParcelable(ProductDetailsFragment.EXTRA_ITEM);
+        if (product != null) {
+            title = product.getProductTitle();
+            price = product.getProductPrice();
+        }
+        initPresenter();
     }
+
+    private void initPresenter() {
+        addToCartPresenter = new AddToCartPresenterImpl(getContext());
+    }
+
 
     @Nullable
     @Override
@@ -68,7 +82,12 @@ public class AddProductToCartDialog extends DialogFragment {
             }
         });
 
-        addToCartButton.setOnClickListener(v -> addToCart.onAddToCartClicked(quantityAmount));
+        addToCartButton.setOnClickListener(v -> {
+//                addToCart.onAddToCartClicked(quantityAmount))
+            addToCartPresenter.addItemToCart(product, quantityAmount);
+            addToCart.onItemInserted();
+            dismiss();
+        });
         setCostTest();
     }
 
@@ -82,7 +101,7 @@ public class AddProductToCartDialog extends DialogFragment {
     }
 
     public interface AddToCart {
-        void onAddToCartClicked(int quantity);
+        void onItemInserted();
     }
 
 }

@@ -51,11 +51,21 @@
     <string name="enter_phone_number">Please Enter Your Phone Number</string>
     <string name="enter_address">Please Enter Your Address</string>
     <string name="enter_type_of_donation">Please Enter Type Of Donation</string>
-    <string name="our_collector">Our collector will pass by you within 24h</string>
+    <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
     <string name="thank_you">Thank You</string>
     <string name="for_help">For helping us to help others </string>
     <string name="your_cart">Your Cart</string>
     <string name="loading">Loading&#8230;</string>
-
-
+    <string name="confirmation">Confirmation</string>
+    <string name="dialog_login_description">If you continued as a guest your data and \n history will not be saved</string>
+    <string name="profile">Profile</string>
+    <string name="donation_channels">Donation Channels</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="news">News</string>
+    <string name="language">Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="login">Log in</string>
+    <string name="logout">Log out</string>
+    <string name="coming_soon">Coming soon</string>
 </resources>

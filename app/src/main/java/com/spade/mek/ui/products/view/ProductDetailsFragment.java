@@ -38,10 +38,13 @@ import java.util.TimeZone;
  */
 
 public class ProductDetailsFragment extends BaseFragment implements ProductDetailsView,
-        AddProductToCartDialog.AddToCart, AddCauseToCartDialog.AddToCart {
+        AddProductToCartDialog.AddToCart,
+        AddCauseToCartDialog.AddToCart {
     public static final String ITEM_ID = "ITEM_ID";
     public static final String ITEM_TITLE = "ITEM_TITLE";
     public static final String ITEM_PRICE = "ITEM_PRICE";
+    public static final String EXTRA_ITEM = "EXTRA_ITEM";
+
 
     private View productDetailsView;
     private TextView productTitle, productCategory, productDetails,
@@ -52,8 +55,6 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     private ImageView shareImage;
     private SeekBar causeSeekBar;
     private ProgressBar progressBar;
-    private AddProductToCartDialog addProductToCartDialog;
-    private AddCauseToCartDialog addCauseToCartDialog;
 
     private ProductDetailsPresenter productDetailsPresenter;
     private ImagesPagerAdapter imagesPagerAdapter;
@@ -118,16 +119,15 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
 
     private void showDialogFragment() {
         Bundle bundle = new Bundle();
-        bundle.putString(ITEM_TITLE, item.getProductTitle());
+        bundle.putParcelable(EXTRA_ITEM, item);
 
         if (item.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
-            bundle.putDouble(ITEM_PRICE, item.getProductPrice());
-            addProductToCartDialog = new AddProductToCartDialog();
+            AddProductToCartDialog addProductToCartDialog = new AddProductToCartDialog();
             addProductToCartDialog.setArguments(bundle);
             addProductToCartDialog.setAddToCart(this);
             addProductToCartDialog.show(getFragmentManager(), AddProductToCartDialog.class.getSimpleName());
         } else {
-            addCauseToCartDialog = new AddCauseToCartDialog();
+            AddCauseToCartDialog addCauseToCartDialog = new AddCauseToCartDialog();
             addCauseToCartDialog.setArguments(bundle);
             addCauseToCartDialog.setAddToCart(this);
             addCauseToCartDialog.show(getFragmentManager(), AddCauseToCartDialog.class.getSimpleName());
@@ -236,21 +236,25 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         imagesPagerAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onAddToCartClicked(int quantity) {
-        productDetailsPresenter.addItemToCart(item, quantity);
-        addProductToCartDialog.dismiss();
-        cartAction.onItemInserted();
-    }
+//    @Override
+//    public void onAddToCartClicked(int quantity) {
+//        productDetailsPresenter.addItemToCart(item, quantity);
+//        addProductToCartDialog.dismiss();
+//        cartAction.onItemInserted();
+//    }
 
     public void setCartAction(CartAction cartAction) {
         this.cartAction = cartAction;
     }
 
+//    @Override
+//    public void onAddToCartClicked(double quantity) {
+//        productDetailsPresenter.addItemToCart(item, quantity);
+//        addCauseToCartDialog.dismiss();
+//    }
+
     @Override
-    public void onAddToCartClicked(double quantity) {
-        productDetailsPresenter.addItemToCart(item, quantity);
-        addCauseToCartDialog.dismiss();
+    public void onItemInserted() {
         cartAction.onItemInserted();
     }
 

@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.MainActivity;
+import com.spade.mek.utils.ImageUtils;
+import com.spade.mek.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeidd on 6/12/17.
@@ -41,6 +44,11 @@ public class LoginFragment extends BaseFragment implements LoginView {
         Button continueAsGuest = (Button) mView.findViewById(R.id.loginAsGuestBtn);
         Button loginWithFacebook = (Button) mView.findViewById(R.id.loginWithFacebookBtn);
         Button loginWithGoogle = (Button) mView.findViewById(R.id.loginWithGoogleBtn);
+
+        ImageView imageView = (ImageView) mView.findViewById(R.id.logo_image_view);
+        String appLang = PrefUtils.getAppLang(getContext());
+        imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
+
         continueAsGuest.setOnClickListener(v -> mLoginPresenter.loginAsGuest());
         loginWithFacebook.setOnClickListener(v -> mLoginPresenter.loginWithFacebook(this));
         loginWithGoogle.setOnClickListener(v -> mLoginPresenter.loginWithGoogle(this));

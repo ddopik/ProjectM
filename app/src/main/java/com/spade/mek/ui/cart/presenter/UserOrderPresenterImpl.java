@@ -57,6 +57,11 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     @Override
+    public double getOrderTotalCost(String userId) {
+        return realmDbHelper.getTotalCost(userId);
+    }
+
+    @Override
     public User getUser(String userId) {
         return realmDbHelper.getUser(userId);
     }
@@ -75,6 +80,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 userDataView.hideLoading();
                 if (isSuccess) {
                     realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
+                    userDataView.navigateToConfirmationScreen( );
                     userDataView.finish();
                 } else {
                     userDataView.onError(mContext.getString(R.string.something_wrong));
@@ -96,7 +102,6 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
             List<OrderItems> orderItemsList = new ArrayList<>();
             List<CartItem> cartItemList =
                     realmDbHelper.getCartItems(PrefUtils.getUserId(mContext));
-//            Realm realm = Realm.getDefaultInstance();
             for (CartItem cartItem : cartItemList) {
                 OrderItems orderItems = new OrderItems();
                 orderItems.setProduct_id(String.valueOf(cartItem.getItemId()));
@@ -107,7 +112,6 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 }
                 orderItemsList.add(orderItems);
             }
-//            realm.close();
             return orderItemsList;
         }
 
@@ -122,7 +126,6 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     private class GetUserAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            order = new Order();
             User user =
                     getUser(PrefUtils.getUserId(mContext));
             order.setFirstName(user.getFirstName());

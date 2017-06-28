@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.LoginActivity;
+import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 
@@ -23,6 +25,11 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
+        String appLang = PrefUtils.getAppLang(getApplicationContext());
+        imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
+
         counterToNavigate();
     }
 

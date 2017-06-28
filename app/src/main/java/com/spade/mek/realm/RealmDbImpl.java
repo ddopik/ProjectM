@@ -9,6 +9,7 @@ import com.spade.mek.ui.login.User;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.SocialUser;
 
+import io.reactivex.Observable;
 import io.realm.Realm;
 import io.realm.RealmList;
 
@@ -23,13 +24,20 @@ public class RealmDbImpl implements RealmDbHelper {
     @Override
     public void saveUser(SocialUser socialUser) {
         Realm realmInstance = Realm.getDefaultInstance();
-        realmInstance.executeTransaction(realm -> {
-            User user = realm.createObject(User.class);
-            user.setUserEmail(socialUser.getEmailAddress());
-            user.setFirstName(socialUser.getName());
-            user.setUserId(socialUser.getUserId());
-            user.setUserPhoto(socialUser.getUserPhoto());
-        });
+        realmInstance.beginTransaction();
+        User user = new User();
+        user.setUserEmail(socialUser.getEmailAddress());
+        user.setFirstName(socialUser.getName());
+        user.setUserPhoto(socialUser.getUserPhoto());
+        user.setUserId(socialUser.getUserId());
+        realmInstance.copyToRealmOrUpdate(user);
+//        realmInstance.executeTransaction(realm -> {
+//            User user = realm.createObject(User.class, socialUser.getUserId());
+//            user.setUserEmail(socialUser.getEmailAddress());
+//            user.setFirstName(socialUser.getName());
+//            user.setUserPhoto(socialUser.getUserPhoto());
+//        });
+        realmInstance.commitTransaction();
         realmInstance.close();
     }
 
@@ -127,6 +135,24 @@ public class RealmDbImpl implements RealmDbHelper {
         realm.copyToRealmOrUpdate(user);
         realm.commitTransaction();
         realm.close();
+    }
+
+    @Override
+    public Observable<Boolean> updateCartItemsWithLoggedInUser(String userId) {
+        return Observable.create(e -> {
+            Realm realm = Realm.getDefaultInstance();
+            RealmList<CartItem> cartItemList = new RealmList<>();
+            cartItemList.addAll(realm.where(CartItem.class).equalTo("userId", PrefUtils.GUEST_USER_ID).findAll());
+            realm.beginTransaction();
+            for (CartItem cartItem : cartItemList) {
+                cartItem.setUserId(userId);
+            }
+            realm.commitTransaction();
+            realm.close();
+
+            e.onNext(true);
+            e.onComplete();
+        });
     }
 
     @Override

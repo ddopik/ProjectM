@@ -2,11 +2,14 @@ package com.spade.mek.ui.cart.presenter;
 
 import android.content.Context;
 
+import com.spade.mek.R;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.view.CartView;
 import com.spade.mek.utils.PrefUtils;
+
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Ayman Abouzeid on 6/27/17.
@@ -56,5 +59,20 @@ public class CartPresenterImpl implements CartPresenter {
     @Override
     public long getItemsCount() {
         return realmDbHelper.getItemsCount(PrefUtils.getUserId(mContext));
+    }
+
+    @Override
+    public void updateUserCartItems(String userId) {
+        realmDbHelper.updateCartItemsWithLoggedInUser(userId).
+                subscribeOn(Schedulers.io()).
+                subscribe(aBoolean -> {
+                    if (aBoolean)
+                        mCartView.navigateToUserDataActivity();
+                    else
+                        mCartView.onError(R.string.something_wrong);
+                }, throwable -> {
+                    if (throwable != null)
+                        mCartView.onError(throwable.getMessage());
+                });
     }
 }

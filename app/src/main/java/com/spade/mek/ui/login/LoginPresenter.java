@@ -21,5 +21,9 @@ public interface LoginPresenter extends BasePresenter<LoginView> {
 
     void loginAsGuest();
 
+    void googleLogout();
+
+    void facebookLogout();
+
     void onActivityResult(int requestCode, int resultCode, Intent data);
 }

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import com.spade.mek.R;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
+import com.spade.mek.ui.cart.view.CartView;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginCallBack;
@@ -23,6 +24,7 @@ import com.spade.sociallogin.SocialUser;
 public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, FacebookLoginCallBack {
 
     private LoginView mLoginView;
+    private CartView cartView;
     private GoogleLoginManager mGoogleLoginManager;
     private FacebookLoginManager mFacebookLoginManager;
     private Context mContext;
@@ -32,6 +34,12 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         setView(loginView);
         mContext = context;
         realmDbHelper = new RealmDbImpl();
+    }
+
+    public LoginPresenterImpl(CartView cartView, Context context) {
+        mContext = context;
+        realmDbHelper = new RealmDbImpl();
+        this.cartView = cartView;
     }
 
 
@@ -62,6 +70,16 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     }
 
     @Override
+    public void googleLogout() {
+        mGoogleLoginManager.logout();
+    }
+
+    @Override
+    public void facebookLogout() {
+        mFacebookLoginManager.logout();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mGoogleLoginManager.onActivityResult(requestCode, data);
         mFacebookLoginManager.onActivityResult(requestCode, resultCode, data);
@@ -81,20 +99,32 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     @Override
     public void onGoogleLoginSuccess(SocialUser socialUser) {
         PrefUtils.setLoginProvider(mContext, LoginProviders.GOOGLE.getLoginProviderCode());
+        PrefUtils.setUserID(mContext, socialUser.getUserId());
         realmDbHelper.saveUser(socialUser);
-        mLoginView.navigateToMainScreen();
+        if (mLoginView != null) {
+            mLoginView.navigateToMainScreen();
+        } else if (cartView != null) {
+            cartView.loginSuccess();
+        }
     }
 
     @Override
     public void onGoogleLoginFail() {
-        mLoginView.onError(R.string.something_wrong);
+        if (mLoginView != null)
+            mLoginView.onError(R.string.something_wrong);
+        else if (cartView != null) cartView.onError(R.string.something_wrong);
     }
 
     @Override
     public void onFacebookLoginSuccess(SocialUser socialUser) {
         PrefUtils.setLoginProvider(mContext, LoginProviders.FACEBOOK.getLoginProviderCode());
+        PrefUtils.setUserID(mContext, socialUser.getUserId());
         realmDbHelper.saveUser(socialUser);
-        mLoginView.navigateToMainScreen();
+        if (mLoginView != null) {
+            mLoginView.navigateToMainScreen();
+        } else if (cartView != null) {
+            cartView.loginSuccess();
+        }
     }
 
     @Override
@@ -104,6 +134,8 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
 
     @Override
     public void onFacebookLoginFail(Exception e) {
-        mLoginView.onError(e.getMessage());
+        if (mLoginView != null)
+            mLoginView.onError(R.string.something_wrong);
+        else if (cartView != null) cartView.onError(R.string.something_wrong);
     }
 }
