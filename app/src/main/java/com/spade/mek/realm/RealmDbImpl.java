@@ -45,24 +45,34 @@ public class RealmDbImpl implements RealmDbHelper {
     public void addCartItem(CartItemModel cartItemModel, Context context) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        Number maxCartItemId = realm.where(CartItem.class).max("cartItemId");
-        int nextItemId;
-        if (maxCartItemId == null) {
-            nextItemId = 1;
+        CartItem cartItem = realm.where(CartItem.class).equalTo("itemId", cartItemModel.getItemId()).findFirst();
+        if (cartItem != null) {
+            if (cartItem.getItemType().equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
+                cartItem.setMoneyAmount(cartItem.getMoneyAmount() + cartItemModel.getMoneyAmount());
+                cartItem.setTotalCost(cartItem.getMoneyAmount());
+            } else {
+                cartItem.setAmount(cartItem.getAmount() + cartItemModel.getAmount());
+                cartItem.setTotalCost(cartItem.getAmount() * cartItem.getItemPrice());
+            }
         } else {
-            nextItemId = maxCartItemId.intValue() + 1;
+            Number maxCartItemId = realm.where(CartItem.class).max("cartItemId");
+            int nextItemId;
+            if (maxCartItemId == null) {
+                nextItemId = 1;
+            } else {
+                nextItemId = maxCartItemId.intValue() + 1;
+            }
+            CartItem newCartItem = realm.createObject(CartItem.class, nextItemId);
+            newCartItem.setUserId(PrefUtils.getUserId(context));
+            newCartItem.setAmount(cartItemModel.getAmount());
+            newCartItem.setItemImage(cartItemModel.getItemImage());
+            newCartItem.setItemPrice(cartItemModel.getItemPrice());
+            newCartItem.setItemType(cartItemModel.getItemType());
+            newCartItem.setItemTitle(cartItemModel.getItemTitle());
+            newCartItem.setItemId(cartItemModel.getItemId());
+            newCartItem.setMoneyAmount(cartItemModel.getMoneyAmount());
+            newCartItem.setTotalCost(cartItemModel.getTotalCost());
         }
-        CartItem cartItem = realm.createObject(CartItem.class, nextItemId);
-        cartItem.setUserId(PrefUtils.getUserId(context));
-        cartItem.setAmount(cartItemModel.getAmount());
-        cartItem.setItemImage(cartItemModel.getItemImage());
-        cartItem.setItemPrice(cartItemModel.getItemPrice());
-        cartItem.setItemType(cartItemModel.getItemType());
-        cartItem.setItemTitle(cartItemModel.getItemTitle());
-        cartItem.setItemId(cartItemModel.getItemId());
-        cartItem.setMoneyAmount(cartItemModel.getMoneyAmount());
-        cartItem.setTotalCost(cartItemModel.getTotalCost());
-
         realm.commitTransaction();
         realm.close();
     }
@@ -138,6 +148,16 @@ public class RealmDbImpl implements RealmDbHelper {
     }
 
     @Override
+    public void deleteUser(String userId) {
+        Realm realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class).equalTo("userId", userId).findFirst();
+        realm.beginTransaction();
+        user.deleteFromRealm();
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    @Override
     public Observable<Boolean> updateCartItemsWithLoggedInUser(String userId) {
         return Observable.create(e -> {
             Realm realm = Realm.getDefaultInstance();
@@ -182,6 +202,7 @@ public class RealmDbImpl implements RealmDbHelper {
     @Override
     public User getUser(String userId) {
         Realm realm = Realm.getDefaultInstance();
+        realm.refresh();
         return realm.where(User.class).equalTo("userId", userId).findFirst();
     }
 

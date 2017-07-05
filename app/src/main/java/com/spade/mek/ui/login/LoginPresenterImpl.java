@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentActivity;
 import com.spade.mek.R;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
-import com.spade.mek.ui.cart.view.CartView;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginCallBack;
@@ -24,7 +23,8 @@ import com.spade.sociallogin.SocialUser;
 public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, FacebookLoginCallBack {
 
     private LoginView mLoginView;
-    private CartView cartView;
+    //    private CartView cartView;
+    private LoginDialogView loginDialogView;
     private GoogleLoginManager mGoogleLoginManager;
     private FacebookLoginManager mFacebookLoginManager;
     private Context mContext;
@@ -36,10 +36,16 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         realmDbHelper = new RealmDbImpl();
     }
 
-    public LoginPresenterImpl(CartView cartView, Context context) {
+//    public LoginPresenterImpl(CartView cartView, Context context) {
+//        mContext = context;
+//        realmDbHelper = new RealmDbImpl();
+//        this.cartView = cartView;
+//    }
+
+    public LoginPresenterImpl(LoginDialogView loginDialogView, Context context) {
         mContext = context;
         realmDbHelper = new RealmDbImpl();
-        this.cartView = cartView;
+        this.loginDialogView = loginDialogView;
     }
 
 
@@ -86,6 +92,11 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     }
 
     @Override
+    public void disconnectGoogleApiClient() {
+        mGoogleLoginManager.disconnectGoogleApi();
+    }
+
+    @Override
     public void setView(LoginView view) {
         mLoginView = view;
     }
@@ -103,8 +114,12 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         realmDbHelper.saveUser(socialUser);
         if (mLoginView != null) {
             mLoginView.navigateToMainScreen();
-        } else if (cartView != null) {
-            cartView.loginSuccess();
+        }
+//        else if (cartView != null) {
+//            cartView.loginSuccess();
+//        }
+        else if (loginDialogView != null) {
+            loginDialogView.loginSuccess();
         }
     }
 
@@ -112,7 +127,9 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     public void onGoogleLoginFail() {
         if (mLoginView != null)
             mLoginView.onError(R.string.something_wrong);
-        else if (cartView != null) cartView.onError(R.string.something_wrong);
+//        else if (cartView != null) cartView.onError(R.string.something_wrong);
+        else if (loginDialogView != null) loginDialogView.onError(R.string.something_wrong);
+
     }
 
     @Override
@@ -122,8 +139,12 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         realmDbHelper.saveUser(socialUser);
         if (mLoginView != null) {
             mLoginView.navigateToMainScreen();
-        } else if (cartView != null) {
-            cartView.loginSuccess();
+        }
+//        else if (cartView != null) {
+//            cartView.loginSuccess();
+//        }
+        else if (loginDialogView != null) {
+            loginDialogView.loginSuccess();
         }
     }
 
@@ -136,6 +157,8 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     public void onFacebookLoginFail(Exception e) {
         if (mLoginView != null)
             mLoginView.onError(R.string.something_wrong);
-        else if (cartView != null) cartView.onError(R.string.something_wrong);
+//        else if (cartView != null) cartView.onError(R.string.something_wrong);
+        else if (loginDialogView != null) loginDialogView.onError(R.string.something_wrong);
+
     }
 }

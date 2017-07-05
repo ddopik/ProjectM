@@ -75,6 +75,11 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             } else {
                 ((ItemViewHolder) holder).shareImageView.setVisibility(View.VISIBLE);
             }
+            if (latestCause.isUrgent()) {
+                ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
+            } else {
+                ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.GONE);
+            }
 
         } else if (holder instanceof HeaderViewHolder) {
             UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
@@ -150,6 +155,7 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
         private ImageView shareImageView;
         private ImageView causeImage;
         private ImageView donateImage;
+        private ImageView isUrgentImageView;
         private SeekBar causeSeekBar;
 
         public ItemViewHolder(View itemView) {
@@ -161,6 +167,7 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
             donateImage = (ImageView) itemView.findViewById(R.id.donate_image_view);
+            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
         }
 
     }

@@ -68,6 +68,12 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
         } else {
             holder.shareImageView.setVisibility(View.VISIBLE);
         }
+
+        if (latestCause.isUrgent()) {
+            holder.isUrgentImageView.setVisibility(View.VISIBLE);
+        } else {
+            holder.isUrgentImageView.setVisibility(View.GONE);
+        }
     }
 
     private void animate(SeekBar seekBar, int progress, int max) {
@@ -110,6 +116,8 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
         private ImageView causeImage;
         private ImageView donateImage;
         private SeekBar causeSeekBar;
+        private ImageView isUrgentImageView;
+
 
         public LatestCausesViewHolder(View itemView) {
             super(itemView);
@@ -120,6 +128,8 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             donateImage = (ImageView) itemView.findViewById(R.id.donate_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
+            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
+
         }
     }
 }

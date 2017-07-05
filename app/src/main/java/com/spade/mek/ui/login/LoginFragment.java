@@ -75,4 +75,16 @@ public class LoginFragment extends BaseFragment implements LoginView {
         super.onActivityResult(requestCode, resultCode, data);
         mLoginPresenter.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mLoginPresenter.disconnectGoogleApiClient();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLoginPresenter.disconnectGoogleApiClient();
+    }
 }

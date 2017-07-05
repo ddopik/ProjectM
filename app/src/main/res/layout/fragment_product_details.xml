@@ -125,7 +125,7 @@
                 android:layout_toStartOf="@+id/item_price"
                 android:ellipsize="end"
                 android:gravity="start"
-                android:maxLines="1"
+                android:maxLines="3"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/material_text_title"
                 android:textStyle="bold"

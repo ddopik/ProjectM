@@ -5,11 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.spade.mek.R;
@@ -18,6 +22,7 @@ import com.spade.mek.ui.cart.presenter.UserOrderPresenter;
 import com.spade.mek.ui.cart.presenter.UserOrderPresenterImpl;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.utils.PrefUtils;
+import com.spade.mek.utils.Validator;
 
 /**
  * Created by Ayman Abouzeid on 6/23/17.
@@ -27,16 +32,17 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
     public static final String EXTRA_TOTAL_COST = "EXTRA_TOTAL_COST";
     private EditText firstNameEditText, lastNameEditText,
-            phoneNumberEditText, emailAddressEditText, addressEditText, donationEditText;
+            phoneNumberEditText, emailAddressEditText, addressEditText;
+    //    , donationEditText;
     private String firstNameString, lastNameString, phoneNumberString,
-            emailAddressString, addressString, donationTypeString;
+            emailAddressString, addressString, donationTypeString = "";
     private ProgressDialog progressDialog;
 
     private View fragmentView;
     private UserOrderPresenter userOrderPresenter;
 
     private double totalCost;
-
+    private int donationTypePosition = 0;
 
     @Nullable
     @Override
@@ -59,11 +65,26 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         phoneNumberEditText = (EditText) fragmentView.findViewById(R.id.phone_number_edit_text);
         emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
         addressEditText = (EditText) fragmentView.findViewById(R.id.address_edit_text);
-        donationEditText = (EditText) fragmentView.findViewById(R.id.type_of_donation_edit_text);
+//        donationEditText = (EditText) fragmentView.findViewById(R.id.type_of_donation_edit_text);
         Button proceedBtn = (Button) fragmentView.findViewById(R.id.proceed_btn);
+        AppCompatSpinner donationTypesSpinner = (AppCompatSpinner) fragmentView.findViewById(R.id.donation_types_spinner);
+        SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(getContext(), R.layout.type_of_donation_item, getResources().getStringArray(R.array.type_of_donations));
+        donationTypesSpinner.setAdapter(spinnerAdapter);
         proceedBtn.setOnClickListener(v -> {
             if (checkIfDataIsValid()) {
                 proceed();
+            }
+        });
+        donationTypesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                donationTypePosition = position;
+                donationTypeString = getResources().getStringArray(R.array.type_of_donations)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         setUserData();
@@ -99,7 +120,6 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         emailAddressString = emailAddressEditText.getText().toString();
         phoneNumberString = phoneNumberEditText.getText().toString();
         addressString = addressEditText.getText().toString();
-        donationTypeString = donationEditText.getText().toString();
 
         if (firstNameString.isEmpty()) {
             firstNameEditText.setError(getString(R.string.enter_first_name));
@@ -113,6 +133,12 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
             emailAddressEditText.setError(getString(R.string.enter_email_address));
             return false;
         }
+
+        if (!Validator.isEmailAddressValid(emailAddressString)) {
+            emailAddressEditText.setError(getString(R.string.enter_valid_email_address));
+            return false;
+        }
+
         if (phoneNumberString.isEmpty()) {
             phoneNumberEditText.setError(getString(R.string.enter_phone_number));
             return false;
@@ -121,8 +147,9 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
             addressEditText.setError(getString(R.string.enter_address));
             return false;
         }
-        if (donationTypeString.isEmpty()) {
-            donationEditText.setError(getString(R.string.enter_type_of_donation));
+        if (donationTypeString.isEmpty() || donationTypePosition == 0) {
+            Toast.makeText(getContext(), getString(R.string.select_type_of_donation), Toast.LENGTH_LONG).show();
+//            donationEditText.setError(getString(R.string.enter_type_of_donation));
             return false;
         }
         return true;

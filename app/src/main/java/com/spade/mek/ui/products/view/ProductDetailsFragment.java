@@ -1,5 +1,6 @@
 package com.spade.mek.ui.products.view;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -202,7 +203,8 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
             causeProgressLayout.setVisibility(View.GONE);
             productPrice.setText(String.format(getString(R.string.egp), String.valueOf(products.getProductPrice())));
             if (products.getProductTarget() >= products.getProductDone())
-                remainingAmount.setText(String.format(getString(R.string.item_to_go), String.valueOf(products.getProductTarget() - products.getProductDone())));
+                remainingAmount.setText(getResources().getQuantityString(R.plurals.items_plural,
+                        (products.getProductTarget() - products.getProductDone()),(products.getProductTarget() - products.getProductDone())));
             else
                 remainingAmount.setVisibility(View.GONE);
 

@@ -26,4 +26,6 @@ public interface LoginPresenter extends BasePresenter<LoginView> {
     void facebookLogout();
 
     void onActivityResult(int requestCode, int resultCode, Intent data);
+
+    void disconnectGoogleApiClient();
 }

@@ -1,6 +1,5 @@
 package com.spade.mek.ui.cart.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,8 +16,7 @@ import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.presenter.CartPresenter;
 import com.spade.mek.ui.cart.presenter.CartPresenterImpl;
-import com.spade.mek.ui.login.LoginPresenter;
-import com.spade.mek.ui.login.LoginPresenterImpl;
+import com.spade.mek.ui.login.LoginDialogFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
@@ -37,7 +35,7 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     private TextView totalItems, totalCost;
     private Button checkOutButton;
     private CartPresenter cartPresenter;
-    private LoginPresenter loginPresenter;
+//    private LoginPresenter loginPresenter;
 
     @Nullable
     @Override
@@ -51,8 +49,8 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     protected void initPresenter() {
         cartPresenter = new CartPresenterImpl(getContext());
         cartPresenter.setView(this);
-        loginPresenter = new LoginPresenterImpl(this, getContext());
-        loginPresenter.initLoginManagers(getActivity());
+//        loginPresenter = new LoginPresenterImpl(this, getContext());
+//        loginPresenter.initLoginManagers(getActivity());
     }
 
     @Override
@@ -81,12 +79,16 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     private void checkIfLoggedIn() {
         int loginProvider = PrefUtils.getLoginProvider(getContext());
         if (loginProvider == LoginProviders.NONE.getLoginProviderCode()) {
-            LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
-            loginDialogFragment.setLoginDialogActions(this);
-            loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
+            showLoginDialog();
         } else {
             navigateToUserDataActivity();
         }
+    }
+
+    private void showLoginDialog() {
+        LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
+        loginDialogFragment.setLoginDialogActions(this);
+        loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 
     @Override
@@ -137,8 +139,13 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
 
     @Override
     public void loginSuccess() {
-        cartPresenter.updateUserCartItems(PrefUtils.getUserId(getContext()));
+
     }
+
+//    @Override
+//    public void loginSuccess() {
+//        cartPresenter.updateUserCartItems(PrefUtils.getUserId(getContext()));
+//    }
 
     @Override
     public void onIncreaseClicked(CartItem cartItem, int position) {
@@ -164,18 +171,23 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     }
 
     @Override
-    public void loginWithFaceBook() {
-        loginPresenter.loginWithFacebook(this);
+    public void onLoginSuccess() {
+        cartPresenter.updateUserCartItems(PrefUtils.getUserId(getContext()));
     }
 
-    @Override
-    public void loginWithGoogle() {
-        loginPresenter.loginWithGoogle(this);
-    }
+//    @Override
+//    public void loginWithFaceBook() {
+//        loginPresenter.loginWithFacebook(this);
+//    }
+//
+//    @Override
+//    public void loginWithGoogle() {
+//        loginPresenter.loginWithGoogle(this);
+//    }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        loginPresenter.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        loginPresenter.onActivityResult(requestCode, resultCode, data);
+//    }
 }

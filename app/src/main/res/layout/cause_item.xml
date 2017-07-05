@@ -45,10 +45,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_margin="@dimen/activity_horizontal_margin"
+            android:maxLines="2"
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_title"
             tools:text="Ramadan Meals" />
 
+        <ImageView
+            android:id="@+id/is_urgent_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_small_label" />
     </FrameLayout>
 
     <RelativeLayout

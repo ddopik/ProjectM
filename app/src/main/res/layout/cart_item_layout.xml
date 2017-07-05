@@ -84,6 +84,7 @@
                     android:inputType="numberDecimal"
                     android:maxLines="1"
                     android:padding="@dimen/activity_horizontal_margin"
+                    android:scrollHorizontally="true"
                     android:textColor="@color/orange"
                     android:textColorHint="@color/orange"
                     android:textStyle="bold" />

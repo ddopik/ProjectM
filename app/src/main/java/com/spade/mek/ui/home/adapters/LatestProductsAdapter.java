@@ -60,6 +60,11 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         } else {
             holder.shareImageView.setVisibility(View.VISIBLE);
         }
+        if (latestProducts.isUrgent()) {
+            holder.isUrgentImageView.setVisibility(View.VISIBLE);
+        }else{
+            holder.isUrgentImageView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -84,6 +89,7 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         private ImageView shareImageView;
         private ImageView productImage;
         private ImageView addToCartImageView;
+        private ImageView isUrgentImageView;
 
 
         public LatestCausesViewHolder(View itemView) {
@@ -93,6 +99,7 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
             productImage = (ImageView) itemView.findViewById(R.id.product_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             addToCartImageView = (ImageView) itemView.findViewById(R.id.add_to_cart_image_view);
+            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
         }
     }
 }

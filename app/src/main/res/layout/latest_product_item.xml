@@ -23,6 +23,15 @@
             android:background="@drawable/gradient_shape" />
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/is_urgent_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_small_label" />
 
     <ImageView
         android:id="@+id/add_to_cart_image_view"

@@ -29,6 +29,8 @@ public interface RealmDbHelper {
 
     void updateUserData(String firstName, String lastName, String phoneNumber, String emailAddress, String address, String userId);
 
+    void deleteUser(String userId);
+
     Observable<Boolean> updateCartItemsWithLoggedInUser(String userId);
 
     RealmList<CartItem> getCartItems(String userId);
@@ -38,6 +40,4 @@ public interface RealmDbHelper {
     long getItemsCount(String userId);
 
     User getUser(String userId);
-
-
 }

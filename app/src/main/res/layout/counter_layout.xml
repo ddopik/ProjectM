@@ -23,8 +23,8 @@
         android:hint="@string/custom_amount"
         android:inputType="numberDecimal"
         android:maxLines="1"
+        android:background="@android:color/transparent"
         android:padding="@dimen/activity_horizontal_margin"
-        android:background="@color/white"
         android:textColor="@color/orange"
         android:textColorHint="@color/orange"
         android:textStyle="bold" />

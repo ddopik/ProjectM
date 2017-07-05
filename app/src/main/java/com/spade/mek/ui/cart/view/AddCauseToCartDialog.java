@@ -25,11 +25,10 @@ import com.spade.mek.ui.products.view.ProductDetailsFragment;
 
 public class AddCauseToCartDialog extends DialogFragment {
     private String title;
-    private double quantityAmount = 1;
+    private double quantityAmount = 0;
     private EditText quantityEditText;
-    private TextView totalCost;
+    //    private TextView totalCost;
     public AddToCart addToCart;
-    private String decimalPattern = "([0-9]*)\\.([0-9]*)";
     private AddToCartPresenter addToCartPresenter;
     private Products product;
 
@@ -57,7 +56,7 @@ public class AddCauseToCartDialog extends DialogFragment {
 
     private void init(View view) {
         quantityEditText = (EditText) view.findViewById(R.id.quantityEditText);
-        totalCost = (TextView) view.findViewById(R.id.total_price);
+//        totalCost = (TextView) view.findViewById(R.id.total_price);
 
         ImageView increaseImage = (ImageView) view.findViewById(R.id.arrow_up);
         ImageView decreaseImage = (ImageView) view.findViewById(R.id.arrow_down);
@@ -82,7 +81,6 @@ public class AddCauseToCartDialog extends DialogFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 if (!s.toString().isEmpty()) {
                     try {
                         quantityAmount = Double.parseDouble(s.toString());
@@ -91,8 +89,8 @@ public class AddCauseToCartDialog extends DialogFragment {
                         setMoneyAmount();
                     }
                 } else {
-                    quantityAmount = 1;
-                    setMoneyAmount();
+                    quantityAmount = 0;
+//                    setMoneyAmount();
                 }
             }
         });
@@ -110,9 +108,13 @@ public class AddCauseToCartDialog extends DialogFragment {
         });
 
         addToCartButton.setOnClickListener(v -> {
-            addToCartPresenter.addItemToCart(product, quantityAmount);
-            addToCart.onItemInserted();
-            dismiss();
+            if (quantityAmount < 1) {
+                quantityEditText.setError(getString(R.string.add_money_description));
+            } else {
+                addToCartPresenter.addItemToCart(product, quantityAmount);
+                addToCart.onItemInserted();
+                dismiss();
+            }
         });
 //            addToCart.onAddToCartClicked(quantityAmount)});
 //        setMoneyAmount();
