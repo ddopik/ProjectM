@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/images_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/product_images_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_pager_height" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="@dimen/dp32"
+                    android:layout_marginStart="@dimen/dp32"
+                    app:srcCompat="@drawable/ic_triangle" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:id="@+id/share_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_share" />
+
+                </RelativeLayout>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/images_layout"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/material_text_title"
+                android:textStyle="bold"
+                tools:text="Ramdan Boxes fdkjlrfvjne sfrfwvrverrf" />
+
+            <TextView
+                android:id="@+id/item_publish_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_title"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:gravity="start"
+                android:maxLines="1"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/material_text_body1"
+                android:visibility="gone"
+                tools:text="Zakat" />
+
+            <TextView
+                android:id="@+id/item_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_publish_date"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:gravity="start"
+                android:maxLines="1"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/material_text_body1"
+                tools:text="Zakat" />
+
+            <TextView
+                android:id="@+id/item_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_category"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:gravity="start"
+                android:textColor="@color/textDarkGrey"
+                android:textSize="@dimen/material_text_subhead"
+                tools:text="Zakat" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

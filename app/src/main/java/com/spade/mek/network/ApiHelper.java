@@ -5,6 +5,8 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
+import com.spade.mek.news.model.AllNewsResponse;
+import com.spade.mek.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.causes.AllCausesResponse;
 import com.spade.mek.ui.home.causes.LatestCausesResponse;
 import com.spade.mek.ui.home.products.LatestProductsResponse;
@@ -30,7 +32,10 @@ public class ApiHelper {
     private static final String URGENT_CASES_URL = BASE_URL + "/products/urgent";
     private static final String ALL_PRODUCTS_URL = BASE_URL + "/products";
     private static final String ALL_CAUSES_URL = BASE_URL + "/causes";
+    private static final String ALL_NEWS_URL = BASE_URL + "/news";
     private static final String PRODUCT_DETAILS_URL = BASE_URL + "/product/{id}";
+    private static final String NEWS_DETAILS_URL = BASE_URL + "/news/{id}";
+
     private static final String CREATE_ORDER_URL = BASE_POST_URL + "/order/create";
 
     private static final String LANG_PATH_PARAMETER = "lang";
@@ -59,6 +64,7 @@ public class ApiHelper {
                 .getObjectObservable(UrgentCasesResponse.class);
     }
 
+
     public static Observable<AllProductsResponse> getAllProducts(String lang, int pageNumber) {
         return Rx2AndroidNetworking.get(ALL_PRODUCTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
@@ -81,6 +87,22 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .build()
                 .getObjectObservable(ProductDetailsResponse.class);
+    }
+
+    public static Observable<NewsDetailsResponse> getNewsDetails(String appLang, int itemId) {
+        return Rx2AndroidNetworking.get(NEWS_DETAILS_URL)
+                .addPathParameter(ID_PATH_PARAMETER, String.valueOf(itemId))
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(NewsDetailsResponse.class);
+    }
+
+    public static Observable<AllNewsResponse> getAllNews(String appLang, int pageNumber) {
+        return Rx2AndroidNetworking.get(ALL_NEWS_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .addPathParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .build()
+                .getObjectObservable(AllNewsResponse.class);
     }
 
     public static boolean createOrder(JSONObject requestJson, OnOrderCreated onOrderCreated) {

@@ -46,10 +46,11 @@ public class CartRealmAdapter extends RealmRecyclerViewAdapter<CartItem, CartRea
         holder.titleTextView.setText(cartItem.getItemTitle());
         if (cartItem.getItemType().equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
             holder.categoryTextView.setText(mContext.getString(R.string.title_cause));
-            holder.totalPriceTextView.setText(mContext.getString(R.string.egp_text));
-            holder.moneyAmountEditText.setText(String.valueOf(cartItem.getMoneyAmount()));
+            holder.totalPriceTextView.setVisibility(View.GONE);
+            holder.moneyAmountEditText.setText(String.format(mContext.getString(R.string.egp), String.valueOf(cartItem.getMoneyAmount())));
         } else {
             holder.categoryTextView.setText(mContext.getString(R.string.title_product));
+            holder.totalPriceTextView.setVisibility(View.VISIBLE);
             holder.totalPriceTextView.setText(
                     String.format(mContext.getString(R.string.egp), String.valueOf(cartItem.getAmount() * cartItem.getItemPrice())));
             holder.moneyAmountEditText.setText(String.valueOf(cartItem.getAmount()));

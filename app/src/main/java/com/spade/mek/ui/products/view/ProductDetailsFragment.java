@@ -207,7 +207,6 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
                         (products.getProductTarget() - products.getProductDone()),(products.getProductTarget() - products.getProductDone())));
             else
                 remainingAmount.setVisibility(View.GONE);
-
         }
 
         List<ProductCategory> productCategories = products.getProductCategoryList();

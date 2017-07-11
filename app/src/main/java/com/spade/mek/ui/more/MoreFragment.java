@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.news.view.NewsActivity;
 import com.spade.mek.ui.login.LoginActivity;
 import com.spade.mek.ui.login.LoginDialogFragment;
 import com.spade.mek.utils.LoginProviders;
@@ -42,6 +44,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
 
     @Override
     protected void initViews() {
+        RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
         logBtn = (Button) moreView.findViewById(R.id.log_button);
         logBtn.setOnClickListener(v -> {
             if (!isLoggedIn) {
@@ -50,6 +53,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
                 morePresenter.logout();
             }
         });
+
+        newsLayout.setOnClickListener(v -> startActivity(NewsActivity.getLaunchIntent(getContext())));
         updateUI();
     }
 

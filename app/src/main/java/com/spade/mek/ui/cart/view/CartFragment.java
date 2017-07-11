@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -33,8 +34,11 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     private LinearLayout receiptLayout;
     private RecyclerView cartRecyclerView;
     private TextView totalItems, totalCost;
+    private TextView totalEmptyItems, totalEmptyCost;
     private Button checkOutButton;
     private CartPresenter cartPresenter;
+    private RelativeLayout cartLayout, cartEmptyLayout;
+    private static final String NO_MONEY = "00";
 //    private LoginPresenter loginPresenter;
 
     @Nullable
@@ -62,9 +66,13 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
 
         cartRecyclerView = (RecyclerView) cartView.findViewById(R.id.cart_recycler_view);
         checkOutButton = (Button) cartView.findViewById(R.id.check_out_btn);
+        cartLayout = (RelativeLayout) cartView.findViewById(R.id.cart_layout);
+        cartEmptyLayout = (RelativeLayout) cartView.findViewById(R.id.empty_cart_layout);
+        totalItems = (TextView) cartView.findViewById(R.id.total_items);
         receiptLayout = (LinearLayout) cartView.findViewById(R.id.receipt_layout);
         totalCost = (TextView) cartView.findViewById(R.id.total_cost);
-        totalItems = (TextView) cartView.findViewById(R.id.total_items);
+        totalEmptyItems = (TextView) cartView.findViewById(R.id.total_empty_items);
+        totalEmptyCost = (TextView) cartView.findViewById(R.id.total_empty_cost);
 
         cartAdapter.setUpAdapter(getContext(), ImageUtils.getDefaultImage(appLang));
         cartAdapter.setCartActions(this);
@@ -114,22 +122,30 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
             hideEmptyScreen();
             totalCost.setText(String.format(getString(R.string.egp),
                     String.valueOf(cartPresenter.getTotalCost())));
-            totalItems.setText(String.format(getString(R.string.total_items), String.valueOf(cartPresenter.getItemsCount())));
+            totalItems.setText(getResources().getQuantityString(R.plurals.items_plural, (int) cartPresenter.getItemsCount(), (int) cartPresenter.getItemsCount()));
+//            totalItems.setText(String.format(getString(R.string.total_items), String.valueOf(cartPresenter.getItemsCount())));
         } else showEmptyScreen();
     }
 
     @Override
     public void showEmptyScreen() {
-        cartRecyclerView.setVisibility(View.GONE);
-        receiptLayout.setVisibility(View.GONE);
-        checkOutButton.setVisibility(View.GONE);
+//        cartRecyclerView.setVisibility(View.GONE);
+//        receiptLayout.setVisibility(View.GONE);
+//        checkOutButton.setVisibility(View.GONE);
+        cartEmptyLayout.setVisibility(View.VISIBLE);
+        cartLayout.setVisibility(View.GONE);
+        totalEmptyCost.setText(String.format(getString(R.string.egp),
+                NO_MONEY));
+        totalEmptyItems.setText(getResources().getQuantityString(R.plurals.items_plural, 0, 0));
     }
 
     @Override
     public void hideEmptyScreen() {
-        cartRecyclerView.setVisibility(View.VISIBLE);
-        receiptLayout.setVisibility(View.VISIBLE);
-        checkOutButton.setVisibility(View.VISIBLE);
+//        cartRecyclerView.setVisibility(View.VISIBLE);
+//        receiptLayout.setVisibility(View.VISIBLE);
+//        checkOutButton.setVisibility(View.VISIBLE);
+        cartEmptyLayout.setVisibility(View.GONE);
+        cartLayout.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -122,13 +122,14 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
 
     @Override
     public void onError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        if (getContext() != null)
+            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(int resID) {
-        Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
-
+        if (getContext() != null)
+            Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
     }
 
     @Override
