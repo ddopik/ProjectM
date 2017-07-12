@@ -53,10 +53,17 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
 
         holder.itemView.setOnClickListener(v -> onProductClicked.onProductClicked(latestProducts.getProductId()));
         holder.shareImageView.setOnClickListener(v -> onProductClicked.onShareClicked(latestProducts.getProductUrl()));
+        holder.addToCartImageView.setOnClickListener(v -> onProductClicked.onAddToCartClicked(latestProducts));
+
         if (latestProducts.getProductUrl() == null || latestProducts.getProductUrl().isEmpty()) {
             holder.shareImageView.setVisibility(View.GONE);
         } else {
             holder.shareImageView.setVisibility(View.VISIBLE);
+        }
+        if (latestProducts.isUrgent()) {
+            holder.isUrgentImageView.setVisibility(View.VISIBLE);
+        }else{
+            holder.isUrgentImageView.setVisibility(View.GONE);
         }
     }
 
@@ -73,12 +80,16 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         void onProductClicked(int id);
 
         void onShareClicked(String url);
+
+        void onAddToCartClicked(Products product);
     }
 
     public class LatestCausesViewHolder extends RecyclerView.ViewHolder {
         private TextView productTitle, productPrice;
         private ImageView shareImageView;
         private ImageView productImage;
+        private ImageView addToCartImageView;
+        private ImageView isUrgentImageView;
 
 
         public LatestCausesViewHolder(View itemView) {
@@ -87,7 +98,8 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
             productPrice = (TextView) itemView.findViewById(R.id.product_price);
             productImage = (ImageView) itemView.findViewById(R.id.product_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
-
+            addToCartImageView = (ImageView) itemView.findViewById(R.id.add_to_cart_image_view);
+            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
         }
     }
 }

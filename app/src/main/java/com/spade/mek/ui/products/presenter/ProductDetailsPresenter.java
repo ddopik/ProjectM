@@ -1,6 +1,7 @@
 package com.spade.mek.ui.products.presenter;
 
 import com.spade.mek.base.BasePresenter;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsView;
 
 /**
@@ -9,4 +10,9 @@ import com.spade.mek.ui.products.view.ProductDetailsView;
 
 public interface ProductDetailsPresenter extends BasePresenter<ProductDetailsView> {
     void getProductDetails(String appLang, int productId);
+
+    void addItemToCart(Products product, int quantity);
+
+    void addItemToCart(Products product, double quantity);
+
 }

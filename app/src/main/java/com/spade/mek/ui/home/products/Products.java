@@ -1,14 +1,18 @@
 package com.spade.mek.ui.home.products;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Ayman Abouzeid on 6/15/17.
  */
 
-public class Products {
+public class Products implements Parcelable {
 
     @SerializedName("id")
     private int productId;
@@ -51,8 +55,9 @@ public class Products {
 
     @SerializedName("product_price")
     private double productPrice;
-//    @SerializedName("created_at")
-//    private String createdAt;
+
+    @SerializedName("created_at")
+    private long createdAt;
 
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
@@ -180,11 +185,78 @@ public class Products {
         this.productPrice = productPrice;
     }
 
-    //    public String getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(String createdAt) {
-//        this.createdAt = createdAt;
-//    }
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    protected Products(Parcel in) {
+        productId = in.readInt();
+        productTarget = in.readInt();
+        causeTarget = in.readDouble();
+        causeDone = in.readDouble();
+        productDone = in.readInt();
+        productUrl = in.readString();
+        productImage = in.readString();
+        isFeatured = in.readByte() != 0x00;
+        isUrgent = in.readByte() != 0x00;
+        productType = in.readString();
+        productTitle = in.readString();
+        productDescription = in.readString();
+        productHashTag = in.readString();
+        productPrice = in.readDouble();
+        createdAt = in.readLong();
+        if (in.readByte() == 0x01) {
+            productCategoryList = new ArrayList<ProductCategory>();
+            in.readList(productCategoryList, ProductCategory.class.getClassLoader());
+        } else {
+            productCategoryList = null;
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(productId);
+        dest.writeInt(productTarget);
+        dest.writeDouble(causeTarget);
+        dest.writeDouble(causeDone);
+        dest.writeInt(productDone);
+        dest.writeString(productUrl);
+        dest.writeString(productImage);
+        dest.writeByte((byte) (isFeatured ? 0x01 : 0x00));
+        dest.writeByte((byte) (isUrgent ? 0x01 : 0x00));
+        dest.writeString(productType);
+        dest.writeString(productTitle);
+        dest.writeString(productDescription);
+        dest.writeString(productHashTag);
+        dest.writeDouble(productPrice);
+        dest.writeLong(createdAt);
+        if (productCategoryList == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(productCategoryList);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Products> CREATOR = new Parcelable.Creator<Products>() {
+        @Override
+        public Products createFromParcel(Parcel in) {
+            return new Products(in);
+        }
+
+        @Override
+        public Products[] newArray(int size) {
+            return new Products[size];
+        }
+    };
 }

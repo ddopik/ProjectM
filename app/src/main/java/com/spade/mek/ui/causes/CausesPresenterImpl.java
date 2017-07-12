@@ -57,8 +57,8 @@ public class CausesPresenterImpl implements CausesPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urgentCasesResponse -> {
-                    if (urgentCasesResponse != null && urgentCasesResponse.getProductsList() != null) {
-                        mCausesView.showUrgentCases(urgentCasesResponse.getProductsList());
+                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCasesData().getProductsList() != null) {
+                        mCausesView.showUrgentCases(urgentCasesResponse.getUrgentCasesData().getProductsList());
                     }
                     mCausesView.hideUrgentCasesLoading();
                 }, throwable -> {

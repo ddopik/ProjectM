@@ -15,8 +15,8 @@
     <string name="welcome_statement">Welcome to \n Misr ElKheir Foundation</string>
     <string name="continue_as_guest">Continue as a guest</string>
     <string name="something_wrong">Something wrong happened</string>
-    <string name="latest_products">Latest products</string>
-    <string name="latest_causes">Latest causes</string>
+    <string name="latest_products">Latest Products</string>
+    <string name="latest_causes">Latest Causes</string>
     <string name="check_all">Check all</string>
     <string name="egp">%sEGP</string>
     <string name="urgent_case">Urgent case</string>
@@ -27,5 +27,63 @@
     <string name="egp_to_go">%sEGP to go</string>
     <string name="published_at">Published At %s</string>
     <string name="cart">Cart</string>
+    <string name="custom_amount">Custom Amount</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="add_money_description">Add the amount of money you \n will donate with</string>
+    <string name="egp_text">EGP</string>
+    <string name="title_product">Product</string>
+    <string name="title_cause">Cause</string>
+    <string name="proceed">Proceed</string>
+    <string name="check_out">Check Out</string>
+    <string name="total_items">Total %s Items</string>
+    <string name="user_name">User name</string>
+    <string name="email">E-mail Address</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="type_of_donation">Type of Donation</string>
+    <string name="cash_on_deleivery">Cash on Delivery</string>
+    <string name="misr_collector">Misr ElKheir collector will pass by you</string>
+    <string name="enter_first_name">Please Enter Your First Name</string>
+    <string name="enter_last_name">Please Enter Your Last Name</string>
+    <string name="enter_email_address">Please Enter Your E-Mail Address</string>
+    <string name="enter_phone_number">Please Enter Your Phone Number</string>
+    <string name="enter_address">Please Enter Your Address</string>
+    <string name="enter_valid_email_address">Please Enter Valid E-Mail Address</string>
+    <string name="select_type_of_donation">Please Select Type Of Donation</string>
+    <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
+    <string name="thank_you">Thank You</string>
+    <string name="for_help">For helping us to help others </string>
+    <string name="your_cart">Your Cart</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="dialog_login_description">If you continued as a guest your data and \n history will not be saved</string>
+    <string name="profile">Profile</string>
+    <string name="donation_channels">Donation Channels</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="news">News</string>
+    <string name="language">Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="login">Log in</string>
+    <string name="logout">Log out</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="cart_empty">Your Cart is Empty</string>
+    <string name="nothing_added">Nothing is added to your cart yet</string>
+    <string name="related_news">Related News</string>
+    <string-array name="type_of_donations">
+        <item>Type Of Donation</item>
+        <item>Zakat</item>
+        <item>Charity</item>
+        <item>Donation</item>
+    </string-array>
 
+    <plurals name="items_plural">
+        <item quantity="one">%d Item to go</item>
+        <item quantity="other">%d Items to go</item>
+        <item quantity="many">%d Items to go</item>
+        <item quantity="few">%d Items to go</item>
+        <item quantity="zero">%d Items to go</item>
+    </plurals>
 </resources>

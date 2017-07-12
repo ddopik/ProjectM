@@ -58,26 +58,27 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
         if (holder instanceof ItemViewHolder) {
             Products latestCause = latestCausesList.get(position - 1);
             ((ItemViewHolder) holder).causeSeekBar.setMax((int) latestCause.getCauseTarget());
-//        holder.causeSeekBar.setMax(10);
             ((ItemViewHolder) holder).causeSeekBar.setProgress((int) latestCause.getCauseDone());
-//        animate(holder.causeSeekBar, 5, 10);
             ((ItemViewHolder) holder).causeSeekBar.setEnabled(false);
             ((ItemViewHolder) holder).causeTitle.setText(latestCause.getProductTitle());
             ((ItemViewHolder) holder).causeTargetTextView.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseTarget())));
             ((ItemViewHolder) holder).causeCurrentAmount.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestCause.getCauseDone())));
 
-//            ((ItemViewHolder) holder).causeImage.setDefaultImageResId(defaultDrawableResId);
-//            ((ItemViewHolder) holder).causeImage.setErrorImageResId(defaultDrawableResId);
-//            ((ItemViewHolder) holder).causeImage.setImageUrl(latestCause.getProductImage());
             VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
             GlideApp.with(mContext).load(latestCause.getProductImage()).centerCrop().
                     placeholder(defaultDrawable).error(defaultDrawable).into(((ItemViewHolder) holder).causeImage);
             ((ItemViewHolder) holder).itemView.setOnClickListener(v -> productActions.onCauseClicked(latestCause.getProductId()));
             ((ItemViewHolder) holder).shareImageView.setOnClickListener(v -> productActions.onShareClicked(latestCause.getProductUrl()));
+            ((ItemViewHolder) holder).donateImage.setOnClickListener(v -> productActions.onDonateCauseClicked(latestCause));
             if (latestCause.getProductUrl() == null || latestCause.getProductUrl().isEmpty()) {
                 ((ItemViewHolder) holder).shareImageView.setVisibility(View.GONE);
             } else {
                 ((ItemViewHolder) holder).shareImageView.setVisibility(View.VISIBLE);
+            }
+            if (latestCause.isUrgent()) {
+                ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
+            } else {
+                ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.GONE);
             }
 
         } else if (holder instanceof HeaderViewHolder) {
@@ -136,16 +137,25 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
         productActions.onShareClicked(url);
     }
 
+    @Override
+    public void onActionClicked(Products product) {
+        productActions.onDonateCauseClicked(product);
+    }
+
     public interface CausesAction {
         void onCauseClicked(int productId);
 
         void onShareClicked(String url);
+
+        void onDonateCauseClicked(Products cause);
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView causeTargetTextView, causeCurrentAmount, causeTitle;
         private ImageView shareImageView;
         private ImageView causeImage;
+        private ImageView donateImage;
+        private ImageView isUrgentImageView;
         private SeekBar causeSeekBar;
 
         public ItemViewHolder(View itemView) {
@@ -156,6 +166,8 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             causeImage = (ImageView) itemView.findViewById(R.id.cause_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
+            donateImage = (ImageView) itemView.findViewById(R.id.donate_image_view);
+            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
         }
 
     }

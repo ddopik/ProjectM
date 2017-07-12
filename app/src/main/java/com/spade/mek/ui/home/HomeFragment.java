@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
+import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.adapters.LatestCausesAdapter;
 import com.spade.mek.ui.home.adapters.LatestProductsAdapter;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
@@ -30,8 +32,10 @@ import java.util.List;
  * Created by Ayman Abouzeid on 6/15/17.
  */
 
-public class HomeFragment extends BaseFragment implements HomeView, LatestProductsAdapter.OnProductClicked, LatestCausesAdapter.OnCauseClicked,
-        UrgentCasesPagerAdapter.OnCaseClicked {
+public class HomeFragment extends BaseFragment implements HomeView, LatestProductsAdapter.OnProductClicked,
+        LatestCausesAdapter.OnCauseClicked, UrgentCasesPagerAdapter.OnCaseClicked,
+        AddProductToCartDialog.AddToCart,
+        AddCauseToCartDialog.AddToCart {
     private HomePresenter homePresenter;
     private View homeView;
     private LatestCausesAdapter latestCausesAdapter;
@@ -42,6 +46,8 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     private List<Products> urgentCaseList;
     private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress;
     private HomeActions homeActions;
+    private CartAction cartAction;
+
 
     @Nullable
     @Override
@@ -104,13 +110,14 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
 
     @Override
     public void onError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        if (getContext() != null)
+            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(int resID) {
-        Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
-
+        if (getContext() != null)
+            Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -183,6 +190,39 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     }
 
     @Override
+    public void onDonateLatestCauseClicked(Products latestCause) {
+        showDialogFragment(latestCause);
+    }
+
+    @Override
+    public void onActionClicked(Products product) {
+        showDialogFragment(product);
+    }
+
+    @Override
+    public void onAddToCartClicked(Products product) {
+        showDialogFragment(product);
+    }
+
+    private void showDialogFragment(Products item) {
+        Bundle bundle = new Bundle();
+//        bundle.putString(ProductDetailsFragment.ITEM_TITLE, item.getProductTitle());
+        bundle.putParcelable(ProductDetailsFragment.EXTRA_ITEM, item);
+        if (item.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+//            bundle.putDouble(ProductDetailsFragment.ITEM_PRICE, item.getProductPrice());
+            AddProductToCartDialog addProductToCartDialog = new AddProductToCartDialog();
+            addProductToCartDialog.setArguments(bundle);
+            addProductToCartDialog.setAddToCart(this);
+            addProductToCartDialog.show(getFragmentManager(), AddProductToCartDialog.class.getSimpleName());
+        } else {
+            AddCauseToCartDialog addCauseToCartDialog = new AddCauseToCartDialog();
+            addCauseToCartDialog.setArguments(bundle);
+            addCauseToCartDialog.setAddToCart(this);
+            addCauseToCartDialog.show(getFragmentManager(), AddCauseToCartDialog.class.getSimpleName());
+        }
+    }
+
+    @Override
     public void onCauseClicked(int causeId) {
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, causeId);
@@ -203,6 +243,29 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, title);
         startActivity(intent);
+    }
+
+    public void setCartAction(CartAction cartAction) {
+        this.cartAction = cartAction;
+    }
+
+    //    @Override
+//    public void onAddToCartClicked(int quantity) {
+//
+//    }
+
+//    @Override
+//    public void onAddToCartClicked(double quantity) {
+//
+//    }
+
+    @Override
+    public void onItemInserted() {
+        cartAction.onItemInserted();
+    }
+
+    public interface CartAction {
+        void onItemInserted();
     }
 
     public interface HomeActions {

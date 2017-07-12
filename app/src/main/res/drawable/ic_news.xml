@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32.77dp"
+    android:height="31.73dp"
+    android:viewportHeight="31.73"
+    android:viewportWidth="32.77">
+
+    <path
+        android:pathData="M6.52,10.36V28.22a3,3,0,0,1-6,0V10.36Z"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 3.81 31.23 L 32.27 31.23 L 32.27 0.5 L 6.52 0.5 L 6.52 10.88 "
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 28.95 6.21 L 22.47 6.21"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 28.95 10.36 L 22.47 10.36"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 28.95 15.09 L 9.88 15.09"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 28.95 19.81 L 9.88 19.81"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 28.95 24.38 L 9.88 24.38"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+    <path
+        android:pathData="M 9.88 4.51 H 19.81 V 11.99 H 9.88 V 4.51 Z"
+        android:strokeColor="#fff"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="1" />
+</vector>

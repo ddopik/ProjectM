@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseActivity;
+import com.spade.mek.ui.more.MoreFragment;
 import com.spade.mek.ui.causes.CausesFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
 import com.spade.mek.utils.NavigationManager;
@@ -17,7 +19,9 @@ import com.spade.mek.utils.NavigationManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements AHBottomNavigation.OnTabSelectedListener, HomeFragment.HomeActions {
+public class MainActivity extends BaseActivity implements AHBottomNavigation.OnTabSelectedListener,
+        HomeFragment.HomeActions, HomeFragment.CartAction,
+        ProductsFragment.CartAction, CausesFragment.CartAction {
 
     private AHBottomNavigation ahBottomNavigation;
     private static final int HOME_POSITION = 0;
@@ -39,6 +43,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     }
 
+
     @Override
     protected void addFragment(String title, Fragment fragment) {
         setTitle(title);
@@ -53,10 +58,15 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         ahBottomNavigation.setForceTint(true);
         ahBottomNavigation.addItems(getNavigationItems());
         ahBottomNavigation.setOnTabSelectedListener(this);
-        ahBottomNavigation.setCurrentItem(HOME_POSITION, true);
-//        openHomeFragment();
+        ahBottomNavigation.setCurrentItem(HOME_POSITION);
+        openHomeFragment();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCounter();
+    }
 
     private List<AHBottomNavigationItem> getNavigationItems() {
         AHBottomNavigationItem homeItem = new AHBottomNavigationItem(getString(R.string.title_home), R.drawable.ic_home);
@@ -73,9 +83,17 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         return ahBottomNavigationItems;
     }
 
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+//        updateCounter();
+    }
 
     @Override
     public boolean onTabSelected(int position, boolean wasSelected) {
+        if (wasSelected) {
+            return false;
+        }
         switch (position) {
             case HOME_POSITION:
                 openHomeFragment();
@@ -86,6 +104,9 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
             case PRODUCTS_POSITION:
                 openProductsFragment();
                 return true;
+            case MORE_POSITION:
+                openMoreFragment();
+                return true;
         }
         return true;
     }
@@ -93,22 +114,25 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     private void openHomeFragment() {
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setHomeActions(this);
+        homeFragment.setCartAction(this);
         addFragment(getString(R.string.title_home), homeFragment);
     }
 
     private void openProductsFragment() {
         ProductsFragment productsFragment = new ProductsFragment();
+        productsFragment.setCartAction(this);
         addFragment(getString(R.string.title_products), productsFragment);
     }
 
 
     private void openMoreFragment() {
-        setTitle(R.string.title_more);
-
+        MoreFragment moreFragment = new MoreFragment();
+        addFragment(getString(R.string.title_more), moreFragment);
     }
 
     private void openCausesFragment() {
         CausesFragment causesFragment = new CausesFragment();
+        causesFragment.setCartAction(this);
         addFragment(getString(R.string.title_causes), causesFragment);
     }
 
@@ -124,5 +148,10 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     @Override
     public void onCheckAllCausesClicked() {
         ahBottomNavigation.setCurrentItem(CAUSES_POSITION, true);
+    }
+
+    @Override
+    public void onItemInserted() {
+        updateCounter();
     }
 }

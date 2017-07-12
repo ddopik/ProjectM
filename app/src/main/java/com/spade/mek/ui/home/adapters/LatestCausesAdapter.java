@@ -61,10 +61,18 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
 
         holder.itemView.setOnClickListener(v -> onCauseClicked.onCauseClicked(latestCause.getProductId()));
         holder.shareImageView.setOnClickListener(v -> onCauseClicked.onShareClicked(latestCause.getProductUrl()));
+        holder.donateImage.setOnClickListener(v -> onCauseClicked.onDonateLatestCauseClicked(latestCause));
+
         if (latestCause.getProductUrl() == null || latestCause.getProductUrl().isEmpty()) {
             holder.shareImageView.setVisibility(View.GONE);
         } else {
             holder.shareImageView.setVisibility(View.VISIBLE);
+        }
+
+        if (latestCause.isUrgent()) {
+            holder.isUrgentImageView.setVisibility(View.VISIBLE);
+        } else {
+            holder.isUrgentImageView.setVisibility(View.GONE);
         }
     }
 
@@ -99,13 +107,17 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
 
         void onShareClicked(String url);
 
+        void onDonateLatestCauseClicked(Products latestCause);
     }
 
     public class LatestCausesViewHolder extends RecyclerView.ViewHolder {
         private TextView causeTargetTextView, causeCurrentAmount, causeTitle;
         private ImageView shareImageView;
         private ImageView causeImage;
+        private ImageView donateImage;
         private SeekBar causeSeekBar;
+        private ImageView isUrgentImageView;
+
 
         public LatestCausesViewHolder(View itemView) {
             super(itemView);
@@ -114,7 +126,10 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
             causeTitle = (TextView) itemView.findViewById(R.id.cause_title);
             causeImage = (ImageView) itemView.findViewById(R.id.cause_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
+            donateImage = (ImageView) itemView.findViewById(R.id.donate_image_view);
             causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
+            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
+
         }
     }
 }

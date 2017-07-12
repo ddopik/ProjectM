@@ -54,7 +54,7 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
         if (holder instanceof ItemViewHolder) {
             Products latestProducts = productsList.get(position - 1);
             ((ItemViewHolder) holder).productTitle.setText(latestProducts.getProductTitle());
-            ((ItemViewHolder) holder).productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductDone())));
+            ((ItemViewHolder) holder).productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductPrice())));
 //            ((ItemViewHolder) holder).productImage.setDefaultImageResId(defaultDrawableResId);
 //            ((ItemViewHolder) holder).productImage.setErrorImageResId(defaultDrawableResId);
 //            ((ItemViewHolder) holder).productImage.setImageUrl(latestProducts.getProductImage());
@@ -65,6 +65,7 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
 
             ((ItemViewHolder) holder).itemView.setOnClickListener(v -> productActions.onProductClicked(latestProducts.getProductId()));
             ((ItemViewHolder) holder).shareImageView.setOnClickListener(v -> productActions.onShareClicked(latestProducts.getProductUrl()));
+            ((ItemViewHolder) holder).addToCartImageView.setOnClickListener(v -> productActions.onAddToCartClicked(latestProducts));
 
             if (latestProducts.isUrgent()) {
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
@@ -112,10 +113,18 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
         productActions.onShareClicked(url);
     }
 
+    @Override
+    public void onActionClicked(Products product) {
+        productActions.onAddToCartClicked(product);
+    }
+
     public interface ProductActions {
         void onProductClicked(int productId);
 
         void onShareClicked(String url);
+
+        void onAddToCartClicked(Products product);
+
     }
 
     private boolean isPositionHeader(int position) {
@@ -126,6 +135,7 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
         private TextView productTitle, productPrice;
         private ImageView shareImageView, isUrgentImageView;
         private ImageView productImage;
+        private ImageView addToCartImageView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -134,6 +144,8 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
             productImage = (ImageView) itemView.findViewById(R.id.product_image);
             shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
             isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
+            addToCartImageView = (ImageView) itemView.findViewById(R.id.add_to_cart_image_view);
+
         }
     }
 

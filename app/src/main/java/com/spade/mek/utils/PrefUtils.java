@@ -16,6 +16,7 @@ public class PrefUtils {
     private static final String APP_LANG = "APP_LANG";
     public static final String ARABIC_LANG = "ar";
     public static final String ENGLISH_LANG = "en";
+    public static final String GUEST_USER_ID = "-1";
 
     private static SharedPreferences getSharedPref(Context context) {
         return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
@@ -39,6 +40,10 @@ public class PrefUtils {
 
     public static void setIsFirstLaunch(Context context, boolean isFirstLaunch) {
         getSharedPref(context).edit().putBoolean(IS_FIRST_LAUNCH, isFirstLaunch).apply();
+    }
+
+    public static String getUserId(Context mContext) {
+        return getSharedPref(mContext).getString(USER_ID, GUEST_USER_ID);
     }
 
     public static boolean isFirstLaunch(Context context) {

@@ -58,8 +58,8 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urgentCasesResponse -> {
-                    if (urgentCasesResponse != null && urgentCasesResponse.getProductsList() != null) {
-                        mProductsView.showUrgentCases(urgentCasesResponse.getProductsList());
+                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCasesData().getProductsList() != null) {
+                        mProductsView.showUrgentCases(urgentCasesResponse.getUrgentCasesData().getProductsList());
                     }
                     mProductsView.hideUrgentCasesLoading();
                 }, throwable -> {

@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
+import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.DetailsActivity;
+import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.model.ProductsData;
 import com.spade.mek.ui.products.presenter.ProductsPresenter;
@@ -28,7 +31,8 @@ import java.util.List;
  * Created by Ayman Abouzeid on 6/19/17.
  */
 
-public class ProductsFragment extends BaseFragment implements ProductsView, ProductsAdapter.ProductActions {
+public class ProductsFragment extends BaseFragment implements ProductsView,
+        ProductsAdapter.ProductActions, AddCauseToCartDialog.AddToCart, AddProductToCartDialog.AddToCart {
 
     private ProductsPresenter productsPresenter;
     private ProductsAdapter productsAdapter;
@@ -40,6 +44,7 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
     private int currentPage = 0;
     private int lastPage;
     private String appLang;
+    private CartAction cartAction;
 
     @Nullable
     @Override
@@ -117,13 +122,14 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
 
     @Override
     public void onError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        if (getContext() != null)
+            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(int resID) {
-        Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
-
+        if (getContext() != null)
+            Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -176,4 +182,39 @@ public class ProductsFragment extends BaseFragment implements ProductsView, Prod
     public void onShareClicked(String url) {
         productsPresenter.shareItem(url);
     }
+
+    @Override
+    public void onAddToCartClicked(Products product) {
+        showDialogFragment(product);
+    }
+
+    private void showDialogFragment(Products item) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ProductDetailsFragment.EXTRA_ITEM, item);
+        if (item.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+            AddProductToCartDialog addProductToCartDialog = new AddProductToCartDialog();
+            addProductToCartDialog.setArguments(bundle);
+            addProductToCartDialog.setAddToCart(this);
+            addProductToCartDialog.show(getFragmentManager(), AddProductToCartDialog.class.getSimpleName());
+        } else {
+            AddCauseToCartDialog addCauseToCartDialog = new AddCauseToCartDialog();
+            addCauseToCartDialog.setArguments(bundle);
+            addCauseToCartDialog.setAddToCart(this);
+            addCauseToCartDialog.show(getFragmentManager(), AddCauseToCartDialog.class.getSimpleName());
+        }
+    }
+
+    public void setCartAction(CartAction cartAction) {
+        this.cartAction = cartAction;
+    }
+
+    @Override
+    public void onItemInserted() {
+        cartAction.onItemInserted();
+    }
+
+    public interface CartAction {
+        void onItemInserted();
+    }
+
 }
