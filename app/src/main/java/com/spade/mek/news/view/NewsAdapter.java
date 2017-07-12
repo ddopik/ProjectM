@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -25,17 +26,24 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private Context mContext;
     private int defaultDrawableResId;
     private OnNewsClicked onNewsClicked;
+    private int type;
 
-    public NewsAdapter(List<News> newsList, Context mContext, int defaultDrawableResId) {
+    public NewsAdapter(List<News> newsList, Context mContext, int defaultDrawableResId, int type) {
         this.newsList = newsList;
         this.mContext = mContext;
         this.defaultDrawableResId = defaultDrawableResId;
+        this.type = type;
     }
 
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View view = layoutInflater.inflate(R.layout.news_item, parent, false);
+        View view;
+        if (type == LinearLayout.VERTICAL) {
+            view = layoutInflater.inflate(R.layout.news_item, parent, false);
+        } else {
+            view = layoutInflater.inflate(R.layout.horizontal_news_item, parent, false);
+        }
         return new NewsViewHolder(view);
     }
 

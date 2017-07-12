@@ -1,12 +1,16 @@
 package com.spade.mek.news.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +22,7 @@ import com.spade.mek.news.model.NewsCategory;
 import com.spade.mek.news.presenter.NewsDetailsPresenter;
 import com.spade.mek.news.presenter.NewsDetailsPresenterImpl;
 import com.spade.mek.ui.products.view.ImagesPagerAdapter;
+import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -31,20 +36,22 @@ import java.util.TimeZone;
  * Created by Ayman Abouzeid on 6/20/17.
  */
 
-public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView {
+public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView, NewsAdapter.OnNewsClicked {
     public static final String ITEM_ID = "ITEM_ID";
 
 
     private View newsDetailsView;
     private TextView newsTitle, newsCategory, newsDetails,
-            newsCreatedAt;
+            newsCreatedAt, relatedNewsTextView;
     private ImageView shareImage;
     private ProgressBar progressBar;
 
     private NewsDetailsPresenter newsDetailsPresenter;
     private ImagesPagerAdapter imagesPagerAdapter;
-
+    private NewsAdapter newsAdapter;
+    private RecyclerView relatedNewsRecycler;
     private List<String> imagesList;
+    private List<News> newsList;
 
     private int itemId;
     private String itemUrl = "";
@@ -72,6 +79,9 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     @Override
     protected void initViews() {
         imagesList = new ArrayList<>();
+        newsList = new ArrayList<>();
+
+        relatedNewsRecycler = (RecyclerView) newsDetailsView.findViewById(R.id.related_news_recycler);
         ViewPager imagesViewPager = (ViewPager) newsDetailsView.findViewById(R.id.product_images_view_pager);
         String appLang = PrefUtils.getAppLang(getContext());
 
@@ -79,15 +89,27 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         newsCategory = (TextView) newsDetailsView.findViewById(R.id.item_category);
         newsDetails = (TextView) newsDetailsView.findViewById(R.id.item_details);
         newsCreatedAt = (TextView) newsDetailsView.findViewById(R.id.item_publish_date);
+        relatedNewsTextView = (TextView) newsDetailsView.findViewById(R.id.related_news);
         shareImage = (ImageView) newsDetailsView.findViewById(R.id.share_image_view);
         progressBar = (ProgressBar) newsDetailsView.findViewById(R.id.progress_bar);
 
         imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
         imagesViewPager.setAdapter(imagesPagerAdapter);
 
+        newsAdapter = new NewsAdapter(newsList, getContext(), ImageUtils.getDefaultImage(appLang), LinearLayout.HORIZONTAL);
+        newsAdapter.setOnNewsClicked(this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, newsDetailsPresenter.isReverse(appLang));
+        relatedNewsRecycler.setLayoutManager(linearLayoutManager);
+        relatedNewsRecycler.setAdapter(newsAdapter);
+
         shareImage.setOnClickListener(v -> newsDetailsPresenter.shareItem(itemUrl));
         newsDetailsPresenter.getNewsDetails(appLang, itemId);
+        getRelatedNews(appLang);
+    }
 
+    private void getRelatedNews(String appLang) {
+        newsDetailsPresenter.getRelatedNews(appLang, itemId);
     }
 
     @Override
@@ -147,6 +169,16 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         imagesPagerAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showRelatedNews(List<News> relatedNews) {
+        newsList.addAll(relatedNews);
+        if (!relatedNews.isEmpty()) {
+            relatedNewsTextView.setVisibility(View.VISIBLE);
+            relatedNewsRecycler.setVisibility(View.VISIBLE);
+            newsAdapter.notifyDataSetChanged();
+        }
+    }
+
     private String getDate(long timeStamp) {
         Calendar cal = Calendar.getInstance();
         TimeZone timeZone = cal.getTimeZone();
@@ -162,4 +194,16 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         return result;
     }
 
+    @Override
+    public void onNewsClicked(int newsId) {
+        Intent intent = NewsDetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, newsId);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    @Override
+    public void onShareClicked(String url) {
+        newsDetailsPresenter.shareItem(url);
+    }
 }

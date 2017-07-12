@@ -71,6 +71,7 @@
     <string name="coming_soon">Coming soon</string>
     <string name="cart_empty">Your Cart is Empty</string>
     <string name="nothing_added">Nothing is added to your cart yet</string>
+    <string name="related_news">Related News</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

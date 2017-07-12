@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.news.view.NewsDetailsView;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -50,5 +51,26 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
                         newsDetailsView.onError(throwable.getLocalizedMessage());
                     }
                 });
+    }
+
+    @Override
+    public void getRelatedNews(String appLang, int newsId) {
+        ApiHelper.getRelatedNews(appLang, newsId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(relatedNewsResponse -> {
+                    if (relatedNewsResponse != null && relatedNewsResponse.getRelatedNewsList() != null) {
+                        newsDetailsView.showRelatedNews(relatedNewsResponse.getRelatedNewsList());
+                    }
+                }, throwable -> {
+                    if (throwable != null) {
+                        newsDetailsView.onError(throwable.getLocalizedMessage());
+                    }
+                });
+    }
+
+    @Override
+    public boolean isReverse(String appLang) {
+        return !appLang.equals(PrefUtils.ENGLISH_LANG);
     }
 }

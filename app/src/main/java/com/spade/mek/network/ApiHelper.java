@@ -7,6 +7,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.spade.mek.news.model.AllNewsResponse;
 import com.spade.mek.news.model.NewsDetailsResponse;
+import com.spade.mek.news.model.RelatedNewsResponse;
 import com.spade.mek.ui.causes.AllCausesResponse;
 import com.spade.mek.ui.home.causes.LatestCausesResponse;
 import com.spade.mek.ui.home.products.LatestProductsResponse;
@@ -33,6 +34,7 @@ public class ApiHelper {
     private static final String ALL_PRODUCTS_URL = BASE_URL + "/products";
     private static final String ALL_CAUSES_URL = BASE_URL + "/causes";
     private static final String ALL_NEWS_URL = BASE_URL + "/news";
+    private static final String RELATED_NEWS_URL = BASE_URL + "/news/{id}/related";
     private static final String PRODUCT_DETAILS_URL = BASE_URL + "/product/{id}";
     private static final String NEWS_DETAILS_URL = BASE_URL + "/news/{id}";
 
@@ -103,6 +105,14 @@ public class ApiHelper {
                 .addPathParameter(PAGE_NUMBER, String.valueOf(pageNumber))
                 .build()
                 .getObjectObservable(AllNewsResponse.class);
+    }
+
+    public static Observable<RelatedNewsResponse> getRelatedNews(String appLang, int newsId) {
+        return Rx2AndroidNetworking.get(RELATED_NEWS_URL)
+                .addPathParameter(ID_PATH_PARAMETER, String.valueOf(newsId))
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(RelatedNewsResponse.class);
     }
 
     public static boolean createOrder(JSONObject requestJson, OnOrderCreated onOrderCreated) {

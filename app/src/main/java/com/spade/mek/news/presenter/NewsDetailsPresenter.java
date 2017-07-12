@@ -10,4 +10,8 @@ import com.spade.mek.news.view.NewsDetailsView;
 public interface NewsDetailsPresenter extends BasePresenter<NewsDetailsView> {
     void getNewsDetails(String appLang, int newsId);
 
+    void getRelatedNews(String appLang, int newsId);
+
+    boolean isReverse(String appLang);
+
 }

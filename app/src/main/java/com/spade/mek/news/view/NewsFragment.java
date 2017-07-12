@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsAdapter.
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         newsList = new ArrayList<>();
-        newsAdapter = new NewsAdapter(newsList, getContext(), ImageUtils.getDefaultImage(appLang));
+        newsAdapter = new NewsAdapter(newsList, getContext(), ImageUtils.getDefaultImage(appLang), LinearLayout.VERTICAL);
         newsAdapter.setOnNewsClicked(this);
         newsRecyclerView.setLayoutManager(layoutManager);
         newsRecyclerView.setAdapter(newsAdapter);
