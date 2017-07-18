@@ -72,6 +72,16 @@
     <string name="cart_empty">Your Cart is Empty</string>
     <string name="nothing_added">Nothing is added to your cart yet</string>
     <string name="related_news">Related News</string>
+    <string name="donate_through_channel">You can donate through any of the below channels</string>
+    <string name="store_address">Address</string>
+    <string name="phone_no">Phone no.\t </string>
+    <string name="phone_code">(02)</string>
+    <string name="fax">Fax</string>
+    <string name="contract_sector_fax">Contract Sector Fax</string>
+    <string name="working_hours">Working hours</string>
+    <string name="check_direction">Check direction</string>
+    <string name="stores">Stores</string>
+    <string name="visit_stores">You can visit any of Misr ElKheir stores \n for cash donation</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
@@ -79,6 +89,14 @@
         <item>Donation</item>
     </string-array>
 
+    <string-array name="donation_channels">
+        <item>Banks</item>
+        <item>Stores</item>
+        <item>Fawry</item>
+        <item>Cash on delivery</item>
+        <item>Online payment</item>
+
+    </string-array>
     <plurals name="items_plural">
         <item quantity="one">%d Item to go</item>
         <item quantity="other">%d Items to go</item>

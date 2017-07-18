@@ -65,11 +65,17 @@
             android:name=".ui.cart.view.OrderConfirmationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".news.view.NewsActivity"
+            android:name=".ui.more.news.view.NewsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".news.view.NewsDetailsActivity"
+            android:name=".ui.more.news.view.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.more.donation_channels.DonationChannelsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.more.donation_channels.DonationStoresActivity"
             android:screenOrientation="portrait" />
     </application>
 

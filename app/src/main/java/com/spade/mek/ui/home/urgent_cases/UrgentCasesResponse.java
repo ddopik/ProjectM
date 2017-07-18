@@ -18,7 +18,8 @@ public class UrgentCasesResponse {
 
     @Expose
     @SerializedName("data")
-    private UrgentCasesData urgentCasesData;
+    private List<Products> urgentCases;
+//    private UrgentCasesData urgentCasesData;
 
     public boolean isSuccess() {
         return isSuccess;
@@ -28,11 +29,19 @@ public class UrgentCasesResponse {
         isSuccess = success;
     }
 
-    public UrgentCasesData getUrgentCasesData() {
-        return urgentCasesData;
+    public List<Products> getUrgentCases() {
+        return urgentCases;
     }
 
-    public void setUrgentCasesData(UrgentCasesData urgentCasesData) {
-        this.urgentCasesData = urgentCasesData;
+    public void setUrgentCases(List<Products> urgentCases) {
+        this.urgentCases = urgentCases;
     }
+
+    //    public UrgentCasesData getUrgentCasesData() {
+//        return urgentCasesData;
+//    }
+//
+//    public void setUrgentCasesData(UrgentCasesData urgentCasesData) {
+//        this.urgentCasesData = urgentCasesData;
+//    }
 }

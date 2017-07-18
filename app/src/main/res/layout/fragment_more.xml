@@ -59,6 +59,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/donation_channels_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"

@@ -68,8 +68,8 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urgentCasesResponse -> {
-                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCasesData().getProductsList() != null) {
-                        mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCasesData().getProductsList());
+                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCases()!= null) {
+                        mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCases());
                     }
                     mHomeView.hideUrgentCasesLoading();
                 }, throwable -> {

@@ -36,7 +36,7 @@ public class CartRealmAdapter extends RealmRecyclerViewAdapter<CartItem, CartRea
     @Override
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View view = layoutInflater.inflate(R.layout.cart_item_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.cart_item_layout, null);
         return new CartViewHolder(view);
     }
 
