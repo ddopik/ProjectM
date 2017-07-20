@@ -82,6 +82,15 @@
     <string name="check_direction">Check direction</string>
     <string name="stores">Stores</string>
     <string name="visit_stores">You can visit any of Misr ElKheir stores \n for cash donation</string>
+    <string name="available_stores">Available Stores</string>
+    <string name="available_banks">Available Banks</string>
+    <string name="city">City</string>
+    <string name="area">Area</string>
+    <string name="swift" formatted="false">Swift: %s \n%s</string>
+    <string name="currency">\t(%s)</string>
+    <string name="donate_outside_egypt">To donate from outside Egypt,\n Please use this information to deliver your donation</string>
+    <string name="banks">Banks</string>
+    <string name="view_all_banks">View all banks</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

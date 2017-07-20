@@ -9,7 +9,8 @@ import com.spade.mek.ui.causes.AllCausesResponse;
 import com.spade.mek.ui.home.causes.LatestCausesResponse;
 import com.spade.mek.ui.home.products.LatestProductsResponse;
 import com.spade.mek.ui.home.urgent_cases.UrgentCasesResponse;
-import com.spade.mek.ui.more.donation_channels.StoresResponse;
+import com.spade.mek.ui.more.donation_channels.model.BanksResponse;
+import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
 import com.spade.mek.ui.more.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
@@ -39,6 +40,7 @@ public class ApiHelper {
     private static final String PRODUCT_DETAILS_URL = BASE_URL + "/product/{id}";
     private static final String NEWS_DETAILS_URL = BASE_URL + "/news/{id}";
     private static final String STORES_URL = BASE_URL + "/stores";
+    private static final String BANKS_URL = BASE_URL + "/banks";
     private static final String CREATE_ORDER_URL = BASE_POST_URL + "/order/create";
 
     private static final String LANG_PATH_PARAMETER = "lang";
@@ -73,6 +75,14 @@ public class ApiHelper {
                 .build()
                 .getObjectObservable(StoresResponse.class);
     }
+
+    public static Observable<BanksResponse> getBanks(String appLang) {
+        return Rx2AndroidNetworking.get(BANKS_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(BanksResponse.class);
+    }
+
 
     public static Observable<AllProductsResponse> getAllProducts(String lang, int pageNumber) {
         return Rx2AndroidNetworking.get(ALL_PRODUCTS_URL)

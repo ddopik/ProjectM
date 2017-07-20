@@ -72,10 +72,13 @@
             android:name=".ui.more.news.view.NewsDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.more.donation_channels.DonationChannelsActivity"
+            android:name=".ui.more.donation_channels.view.DonationChannelsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.more.donation_channels.DonationStoresActivity"
+            android:name=".ui.more.donation_channels.view.DonationStoresActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.more.donation_channels.view.DonationBanksActivity"
             android:screenOrientation="portrait" />
     </application>
 

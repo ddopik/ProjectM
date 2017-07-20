@@ -12,7 +12,7 @@ import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.login.LoginActivity;
 import com.spade.mek.ui.login.LoginDialogFragment;
-import com.spade.mek.ui.more.donation_channels.DonationChannelsActivity;
+import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
