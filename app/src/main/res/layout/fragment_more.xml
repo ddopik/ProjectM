@@ -99,10 +99,10 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/contact_us_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:alpha="0.7"
         android:background="@color/buttonGrey">
 
         <ImageView
@@ -131,21 +131,10 @@
             android:layout_toEndOf="@id/arrow_image_2"
             android:layout_toRightOf="@id/arrow_image_2"
             android:text="@string/contact_us"
-            android:textColor="@color/textGrey"
+            android:textColor="@color/blue"
             android:textSize="@dimen/material_text_subhead"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="@string/coming_soon"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/material_text_caption" />
     </RelativeLayout>
 
     <RelativeLayout

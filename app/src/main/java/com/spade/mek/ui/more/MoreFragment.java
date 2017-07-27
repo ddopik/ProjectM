@@ -12,6 +12,7 @@ import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.login.LoginActivity;
 import com.spade.mek.ui.login.LoginDialogFragment;
+import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.utils.LoginProviders;
@@ -47,6 +48,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     protected void initViews() {
         RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
         RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
+        RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
+
         logBtn = (Button) moreView.findViewById(R.id.log_button);
         logBtn.setOnClickListener(v -> {
             if (!isLoggedIn) {
@@ -56,6 +59,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
             }
         });
 
+        contactUsLayout.setOnClickListener(v ->
+                startActivity(ContactUsActivity.getLaunchIntent(getContext())));
         newsLayout.setOnClickListener(v -> startActivity(NewsActivity.getLaunchIntent(getContext())));
         donationsLayout.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         updateUI();

@@ -9,6 +9,7 @@ import com.spade.mek.ui.causes.AllCausesResponse;
 import com.spade.mek.ui.home.causes.LatestCausesResponse;
 import com.spade.mek.ui.home.products.LatestProductsResponse;
 import com.spade.mek.ui.home.urgent_cases.UrgentCasesResponse;
+import com.spade.mek.ui.more.contact_us.model.ContactUsDataResponse;
 import com.spade.mek.ui.more.donation_channels.model.BanksResponse;
 import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
@@ -42,6 +43,8 @@ public class ApiHelper {
     private static final String STORES_URL = BASE_URL + "/stores";
     private static final String BANKS_URL = BASE_URL + "/banks";
     private static final String CREATE_ORDER_URL = BASE_POST_URL + "/order/create";
+    private static final String SEND_MESSAGE_URL = BASE_POST_URL + "/contact/store";
+    private static final String CONTACT_US_INFO_URL = BASE_URL + "/contact/info";
 
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
@@ -132,7 +135,37 @@ public class ApiHelper {
                 .getObjectObservable(RelatedNewsResponse.class);
     }
 
-    public static boolean createOrder(JSONObject requestJson, OnOrderCreated onOrderCreated) {
+    public static Observable<ContactUsDataResponse> getContactInfo(String appLang) {
+        return Rx2AndroidNetworking.get(CONTACT_US_INFO_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(ContactUsDataResponse.class);
+    }
+
+    public static void sendMessage(JSONObject requestJson, sendMessageCallBacks sendMessageCallBacks) {
+        AndroidNetworking.post(SEND_MESSAGE_URL)
+                .addJSONObjectBody(requestJson)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            sendMessageCallBacks.onMessageSent(response.getBoolean("success"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        sendMessageCallBacks.onMessageSentFailed(anError.getMessage());
+
+                    }
+                });
+    }
+
+    public static boolean createOrder(JSONObject requestJson, CreateOrderCallbacks createOrderCallbacks) {
         success = false;
         AndroidNetworking.post(CREATE_ORDER_URL)
                 .addJSONObjectBody(requestJson)
@@ -143,7 +176,7 @@ public class ApiHelper {
                     public void onResponse(JSONObject response) {
                         try {
                             success = response.getBoolean("success");
-                            onOrderCreated.onOrderCreatedSuccess(success);
+                            createOrderCallbacks.onOrderCreatedSuccess(success);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -151,18 +184,24 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        onOrderCreated.onOrderCreatedFailed(anError.getMessage());
+                        createOrderCallbacks.onOrderCreatedFailed(anError.getMessage());
 
                     }
                 });
         return success;
-
     }
 
-    public interface OnOrderCreated {
+    public interface CreateOrderCallbacks {
         void onOrderCreatedSuccess(boolean isSuccess);
 
         void onOrderCreatedFailed(String error);
+
     }
 
+    public interface sendMessageCallBacks {
+        void onMessageSent(boolean isSuccess);
+
+        void onMessageSentFailed(String error);
+
+    }
 }

@@ -22,7 +22,7 @@ android {
 
         def code = versionProps['VERSION_CODE'].toInteger() + 1
 
-        versionProps['VERSION_CODE']=code.toString()
+        versionProps['VERSION_CODE'] = code.toString()
         versionProps.store(versionPropsFile.newWriter(), null)
     }
 
@@ -52,15 +52,16 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'com.google.android.gms:play-services-auth:11.0.1'
+    compile 'com.google.android.gms:play-services-auth:11.0.2'
+    compile 'com.google.android.gms:play-services-maps:11.0.2'
     compile 'com.github.AymanAbouzeid:SocialLogin:1.0.6'
     compile 'com.amitshekhar.android:rx2-android-networking:1.0.0'
     compile 'com.aurelhubert:ahbottomnavigation:2.0.6'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
     compile 'io.realm:android-adapters:2.0.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
     compile 'com.alexvasilkov:gesture-views:2.3.1'
     testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
 }
 
 apply plugin: 'realm-android'

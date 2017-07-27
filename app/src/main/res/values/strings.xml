@@ -2,6 +2,7 @@
     <string name="app_name">Misr ElKheir</string>
     <string name="facebook_app_id">1540467815995295</string>
     <string name="fb_login_protocol_scheme">fb1540467815995295</string>
+    <string name="maps_api_key">AIzaSyBYy96pA-a846ZUFrE6WPCBberWUZ2MGh0</string>
 
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -47,10 +48,14 @@
     <string name="misr_collector">Misr ElKheir collector will pass by you</string>
     <string name="enter_first_name">Please Enter Your First Name</string>
     <string name="enter_last_name">Please Enter Your Last Name</string>
+    <string name="enter_user_name">Please Enter Your User Name</string>
     <string name="enter_email_address">Please Enter Your E-Mail Address</string>
     <string name="enter_phone_number">Please Enter Your Phone Number</string>
     <string name="enter_address">Please Enter Your Address</string>
     <string name="enter_valid_email_address">Please Enter Valid E-Mail Address</string>
+    <string name="enter_city">Please Enter Your City</string>
+    <string name="enter_subject">Please Enter Subject</string>
+    <string name="enter_message">Please Enter Message</string>
     <string name="select_type_of_donation">Please Select Type Of Donation</string>
     <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
     <string name="thank_you">Thank You</string>
@@ -91,6 +96,12 @@
     <string name="donate_outside_egypt">To donate from outside Egypt,\n Please use this information to deliver your donation</string>
     <string name="banks">Banks</string>
     <string name="view_all_banks">View all banks</string>
+    <string name="call">Call Now</string>
+    <string name="message_us">Message Us</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send_message">Send Message</string>
+    <string name="message_sent">Your message has been successfully sent</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
@@ -113,4 +124,5 @@
         <item quantity="few">%d Items to go</item>
         <item quantity="zero">%d Items to go</item>
     </plurals>
+    <string name="title_activity_maps">Map</string>
 </resources>

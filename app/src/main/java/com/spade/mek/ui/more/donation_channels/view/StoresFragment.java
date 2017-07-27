@@ -1,5 +1,7 @@
 package com.spade.mek.ui.more.donation_channels.view;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,7 +32,7 @@ import java.util.List;
  * Created by Ayman Abouzeid on 7/18/17.
  */
 
-public class StoresFragment extends BaseFragment implements DonationStoresView {
+public class StoresFragment extends BaseFragment implements DonationStoresView, StoresAdapter.StoreActions {
     private DonationStoresPresenter donationStoresPresenter;
     private View storesView;
     private StoresAdapter storesAdapter;
@@ -113,6 +115,7 @@ public class StoresFragment extends BaseFragment implements DonationStoresView {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         storesRecycler.setLayoutManager(linearLayoutManager);
         storesAdapter = new StoresAdapter(storeList, getContext());
+        storesAdapter.setStoreActions(this);
         storesRecycler.setAdapter(storesAdapter);
         donationStoresPresenter.getDonationStores(appLang);
         updateAreas(areaList);
@@ -172,6 +175,14 @@ public class StoresFragment extends BaseFragment implements DonationStoresView {
         if (areaList != null && !areaList.isEmpty())
             this.areaList.addAll(areaList);
         areasSpinnerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCheckDirectionClicked(String lat, String lng) {
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + lat + "," + lng + "(" + getString(R.string.app_name) + ")");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 
     private class GetFilteredStoresByCity extends AsyncTask<Integer, List<Store>, List<Store>> {

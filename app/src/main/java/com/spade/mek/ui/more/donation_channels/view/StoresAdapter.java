@@ -21,6 +21,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
 
     private List<Store> storeList;
     private Context mContext;
+    private StoreActions storeActions;
 
     public StoresAdapter(List<Store> storeList, Context mContext) {
         this.storeList = storeList;
@@ -100,13 +101,23 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
         } else {
             holder.faxLayout.setVisibility(View.GONE);
         }
-
+        holder.checkDirection.setOnClickListener(v -> storeActions.onCheckDirectionClicked(
+                store.getLat(),
+                store.getLng()));
 
     }
 
     @Override
     public int getItemCount() {
         return storeList.size();
+    }
+
+    public void setStoreActions(StoreActions storeActions) {
+        this.storeActions = storeActions;
+    }
+
+    public interface StoreActions {
+        void onCheckDirectionClicked(String lat, String lng);
     }
 
     class StoreViewHolder extends RecyclerView.ViewHolder {

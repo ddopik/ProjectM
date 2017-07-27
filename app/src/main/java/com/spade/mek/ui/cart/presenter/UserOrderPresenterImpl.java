@@ -74,7 +74,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     private void checkoutOrder(JSONObject requestJson) {
-        ApiHelper.createOrder(requestJson, new ApiHelper.OnOrderCreated() {
+        ApiHelper.createOrder(requestJson, new ApiHelper.CreateOrderCallbacks() {
             @Override
             public void onOrderCreatedSuccess(boolean isSuccess) {
                 userDataView.hideLoading();
