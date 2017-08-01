@@ -1,15 +1,19 @@
 package com.spade.mek.ui.more.contact_us.view;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +33,10 @@ import com.spade.mek.ui.more.contact_us.presenter.ContactUsPresenterImpl;
 import com.spade.mek.utils.PrefUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Ayman Abouzeid on 6/28/17.
@@ -45,8 +52,9 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
     private AppCompatSpinner areaListSpinner;
     private List<Area> areaList;
     private GoogleMap mMap;
-    private ImageView facebook, twitter, instagram;
+    private ImageView facebook, twitter, instagram, transparentImage;
     private String facebookUrl, instagramUrl, twitterUrl;
+    private ScrollView mainScroll;
 
 
     @Nullable
@@ -81,6 +89,9 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
         facebook = (ImageView) contactUsView.findViewById(R.id.facebook_image);
         instagram = (ImageView) contactUsView.findViewById(R.id.instagram_image);
         twitter = (ImageView) contactUsView.findViewById(R.id.twitter_image);
+        transparentImage = (ImageView) contactUsView.findViewById(R.id.transparent_image);
+
+        mainScroll = (ScrollView) contactUsView.findViewById(R.id.main_scroll);
 
         progressBar = (ProgressBar) contactUsView.findViewById(R.id.progress_bar);
 
@@ -111,6 +122,25 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
         instagram.setOnClickListener(v -> contactUsPresenter.openUrl(instagramUrl));
         twitter.setOnClickListener(v -> contactUsPresenter.openUrl(twitterUrl));
 
+        transparentImage.setOnTouchListener((v, event) -> {
+            int action = event.getAction();
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    mainScroll.requestDisallowInterceptTouchEvent(true);
+                    return false;
+
+                case MotionEvent.ACTION_UP:
+                    mainScroll.requestDisallowInterceptTouchEvent(false);
+                    return true;
+
+                case MotionEvent.ACTION_MOVE:
+                    mainScroll.requestDisallowInterceptTouchEvent(true);
+                    return false;
+                default:
+                    return true;
+            }
+        });
+
     }
 
     @Override
@@ -119,16 +149,16 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
     }
 
     private void showStoreLocation(Area area) {
+        Log.d("Map", area.getArea() + " .. " + area.getLat() + " .. " + area.getLng());
         double lat = Double.parseDouble(area.getLat());
         double lng = Double.parseDouble(area.getLng());
         LatLng storeLocation = new LatLng(lat, lng);
 //        mMap.clear();
         mMap.addMarker(new MarkerOptions().position(storeLocation).title(area.getArea()));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(storeLocation));
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(storeLocation)      // Sets the center of the map to Mountain View
-                .zoom(13)                   // Sets the zoom
-                .build();                   // Creates a CameraPosition from the builder
+                .target(storeLocation)
+                .zoom(13)
+                .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
@@ -174,14 +204,26 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
         emailAddress.setText(contactUsInfo.getMail());
         website.setText(contactUsInfo.getWebsite());
         phoneNumber.setText(contactUsInfo.getPhone());
+
         Area area = new Area();
         area.setArea(getString(R.string.area));
         areaList.add(area);
         areaList.addAll(contactUsInfo.getAreas());
         areasSpinnerAdapter.notifyDataSetChanged();
-//        if (areaList.size() > 1) {
-//            showStoreLocation(areaList.get(1));
-//        }
+
+        contactUsPresenter.requestLocationPermission(getActivity());
+    }
+
+    @Override
+    public void setUserLocation(Location userLocation) {
+        Map<Float, Area> locationsDistance = new HashMap<>();
+        for (int i = 1; i < areaList.size(); i++) {
+            Area area = areaList.get(i);
+            float distance = contactUsPresenter.calculateDistance(Double.parseDouble(area.getLat()), Double.parseDouble(area.getLng()), userLocation.getLatitude(), userLocation.getLongitude());
+            locationsDistance.put(distance, area);
+        }
+        Area area = locationsDistance.get(Collections.min(locationsDistance.keySet()));
+        showStoreLocation(area);
     }
 
 }

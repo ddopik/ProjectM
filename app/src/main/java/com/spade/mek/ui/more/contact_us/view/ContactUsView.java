@@ -1,5 +1,7 @@
 package com.spade.mek.ui.more.contact_us.view;
 
+import android.location.Location;
+
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.more.contact_us.model.ContactUsInfo;
 
@@ -13,4 +15,6 @@ public interface ContactUsView extends BaseView {
     void hideLoading();
 
     void showData(ContactUsInfo contactUsInfo);
+
+    void setUserLocation(Location userLocation);
 }

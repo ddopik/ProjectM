@@ -16,4 +16,8 @@ public interface ContactUsPresenter extends BasePresenter<ContactUsView> {
     void callNumber(Activity activity, String phoneNumber);
 
     void openUrl(String url);
+
+    void requestLocationPermission(Activity activity);
+
+    float calculateDistance(double lat1, double lng1, double lat2, double lng2);
 }

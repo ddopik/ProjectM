@@ -15,6 +15,7 @@ import com.spade.mek.ui.login.LoginDialogFragment;
 import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
+import com.spade.mek.ui.more.zakat_calculator.ZakatCalculatorActivity;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 
@@ -49,6 +50,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
         RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
         RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
+        RelativeLayout zakatCalculatorLayout = (RelativeLayout) moreView.findViewById(R.id.zakat_calculator_layout);
 
         logBtn = (Button) moreView.findViewById(R.id.log_button);
         logBtn.setOnClickListener(v -> {
@@ -63,6 +65,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
                 startActivity(ContactUsActivity.getLaunchIntent(getContext())));
         newsLayout.setOnClickListener(v -> startActivity(NewsActivity.getLaunchIntent(getContext())));
         donationsLayout.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
+        zakatCalculatorLayout.setOnClickListener(v -> startActivity(ZakatCalculatorActivity.getLaunchIntent(getContext())));
+
         updateUI();
     }
 

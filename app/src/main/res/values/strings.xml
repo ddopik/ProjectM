@@ -102,6 +102,19 @@
     <string name="message">Message</string>
     <string name="send_message">Send Message</string>
     <string name="message_sent">Your message has been successfully sent</string>
+    <string name="money_zakat">Zakat for money</string>
+    <string name="money_amount">How much money do you have?</string>
+    <string name="asset_zakat">Zakat for Assets &amp; Property</string>
+    <string name="shares_value">What is the value of shares you own in the market?</string>
+    <string name="gained_profit">What is the value of gained profits?</string>
+    <string name="bonds_value">What is the value of bonds you have?</string>
+    <string name="gold_zakat">Zakat for gold</string>
+    <string name="gold_gram_price">Enter the value of a gram of gold</string>
+    <string name="gold_weight">How much gold weight do you have?</string>
+    <string name="real_estate_zakat">Zakat for Owned Real Estate</string>
+    <string name="rent_value">How much is the rent value for the property you own?</string>
+    <string name="zakat_value">Zakat value</string>
+    <string name="calculator">Zakat Calculator</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
