@@ -1,5 +1,6 @@
 package com.spade.mek.ui.products.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,10 @@ import com.spade.mek.ui.products.presenter.ProductsPresenterImpl;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +39,7 @@ import java.util.List;
 public class ProductsFragment extends BaseFragment implements ProductsView,
         ProductsAdapter.ProductActions, AddCauseToCartDialog.AddToCart, AddProductToCartDialog.AddToCart {
 
-    private ProductsPresenter productsPresenter;
+    private static ProductsPresenter productsPresenter;
     private ProductsAdapter productsAdapter;
     private List<Products> urgentCaseList;
     private List<Products> productsList;
@@ -151,6 +156,18 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     }
 
     @Override
+    public void showFilteredProducts(ProductsData productsData) {
+        currentPage = productsData.getCurrentPage();
+        lastPage = productsData.getLastPage();
+        isLoading = false;
+        if (productsData.getProductsList() != null) {
+            this.productsList.clear();
+            this.productsList.addAll(productsData.getProductsList());
+            productsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public void showUrgentCasesLoading() {
 
     }
@@ -211,6 +228,18 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     @Override
     public void onItemInserted() {
         cartAction.onItemInserted();
+    }
+
+    public static void filterProducts(Context context, ArrayList<String> filterId) {
+        JSONArray jsonElements = new JSONArray(filterId);
+        JSONObject requestJsonObject = null;
+        try {
+            requestJsonObject = new JSONObject();
+            requestJsonObject.put("categories", jsonElements);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        productsPresenter.filterProducts(PrefUtils.getAppLang(context), requestJsonObject);
     }
 
     public interface CartAction {

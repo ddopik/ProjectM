@@ -1,33 +1,64 @@
 package com.spade.mek.ui.home;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.view.Display;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseActivity;
-import com.spade.mek.ui.more.MoreFragment;
+import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.causes.CausesFragment;
+import com.spade.mek.ui.home.urgent_cases.FilterCategoriesAdapter;
+import com.spade.mek.ui.more.MoreFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
 import com.spade.mek.utils.NavigationManager;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity implements AHBottomNavigation.OnTabSelectedListener,
         HomeFragment.HomeActions, HomeFragment.CartAction,
-        ProductsFragment.CartAction, CausesFragment.CartAction {
+        ProductsFragment.CartAction, CausesFragment.CartAction, FilterCategoriesAdapter.OnFilterCategoryClicked {
 
     private AHBottomNavigation ahBottomNavigation;
     private static final int HOME_POSITION = 0;
     private static final int CAUSES_POSITION = 1;
     private static final int PRODUCTS_POSITION = 2;
     private static final int MORE_POSITION = 3;
+    private LinearLayout filterViewLayout;
+    private TextView selectedFiltersText;
+    private List<FilterCategory> filterCategories;
+    private FilterCategoriesAdapter filterCategoriesAdapter;
+    private int height;
+    private Map<Integer, String> selectedFilters;
+    private ImageView overlayImage;
+    private ArrayList<String> selectedFiltersIds;
+    private FloatingActionButton filterButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +82,17 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     }
 
     private void init() {
+        ImageView submitFilter = (ImageView) findViewById(R.id.submit_filter);
+        TextView clearFilters = (TextView) findViewById(R.id.clear_filters);
+
+        RecyclerView filterCategoriesRecycler = (RecyclerView) findViewById(R.id.filter_categories);
+
+        filterButton = (FloatingActionButton) findViewById(R.id.filter_btn);
+        selectedFiltersText = (TextView) findViewById(R.id.selected_filter_text);
+        filterViewLayout = (LinearLayout) findViewById(R.id.filter_view_layout);
+        overlayImage = (ImageView) findViewById(R.id.overlay_image);
+
+        clearFilters.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ahBottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomNavigation);
         ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         ahBottomNavigation.setAccentColor(Color.parseColor("#E7891E"));
@@ -59,7 +101,43 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         ahBottomNavigation.addItems(getNavigationItems());
         ahBottomNavigation.setOnTabSelectedListener(this);
         ahBottomNavigation.setCurrentItem(HOME_POSITION);
+
+        ViewCompat.setElevation(filterViewLayout, getResources().getDimension(R.dimen.bottom_navigation_elevation));
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        filterCategories = new ArrayList<>();
+        selectedFiltersIds = new ArrayList<>();
+        selectedFilters = new HashMap<>();
+        filterCategoriesAdapter = new FilterCategoriesAdapter(filterCategories, this);
+        filterCategoriesAdapter.setOnFilterCategoryClicked(this);
+
+        filterCategoriesRecycler.setLayoutManager(layoutManager);
+        filterCategoriesRecycler.setAdapter(filterCategoriesAdapter);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        height = size.y;
+
+
+        filterButton.setOnClickListener(v -> showFilters());
+        overlayImage.setOnClickListener(v -> hideFilters());
+        submitFilter.setOnClickListener(v -> {
+            hideFilters();
+            if (!selectedFiltersIds.isEmpty()) {
+                filter(selectedFiltersIds);
+            }
+        });
+        clearFilters.setOnClickListener(v -> clearFilters());
         openHomeFragment();
+        getFilterCategories();
+    }
+
+    private void clearFilters() {
+        selectedFiltersIds.clear();
+        selectedFilters.clear();
+        filterCategoriesAdapter.clearFilters();
+        setFiltersText();
     }
 
     @Override
@@ -81,12 +159,6 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         ahBottomNavigationItems.add(moreItem);
 
         return ahBottomNavigationItems;
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-//        updateCounter();
     }
 
     @Override
@@ -112,6 +184,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     }
 
     private void openHomeFragment() {
+        filterButton.setVisibility(View.GONE);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setHomeActions(this);
         homeFragment.setCartAction(this);
@@ -119,6 +192,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     }
 
     private void openProductsFragment() {
+        filterButton.setVisibility(View.VISIBLE);
         ProductsFragment productsFragment = new ProductsFragment();
         productsFragment.setCartAction(this);
         addFragment(getString(R.string.title_products), productsFragment);
@@ -126,11 +200,13 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
 
     private void openMoreFragment() {
+        filterButton.setVisibility(View.GONE);
         MoreFragment moreFragment = new MoreFragment();
         addFragment(getString(R.string.title_more), moreFragment);
     }
 
     private void openCausesFragment() {
+        filterButton.setVisibility(View.VISIBLE);
         CausesFragment causesFragment = new CausesFragment();
         causesFragment.setCartAction(this);
         addFragment(getString(R.string.title_causes), causesFragment);
@@ -138,6 +214,84 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     public static Intent getLaunchIntent(Context context) {
         return new Intent(context, MainActivity.class);
+    }
+
+    private void filter(ArrayList<String> filterIds) {
+        if (NavigationManager.getCurrentFragment() instanceof ProductsFragment) {
+            ProductsFragment.filterProducts(this, filterIds);
+        } else if (NavigationManager.getCurrentFragment() instanceof CausesFragment) {
+            CausesFragment.filterCauses(this, filterIds);
+        }
+    }
+
+    private void getFilterCategories() {
+        ApiHelper.getFilterCategories(PrefUtils.getAppLang(this))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(filterCategoriesResponse -> {
+                    if (filterCategoriesResponse != null && filterCategoriesResponse.getFilterCategories() != null) {
+                        filterCategories.addAll(filterCategoriesResponse.getFilterCategories());
+                        filterCategoriesAdapter.notifyDataSetChanged();
+                    }
+                }, throwable -> {
+                });
+    }
+
+    private void showFilters() {
+        ObjectAnimator animTranslate = ObjectAnimator.ofFloat(filterViewLayout, "translationY", height, 0);
+        animTranslate.setDuration(700);
+        animTranslate.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                filterViewLayout.setVisibility(View.VISIBLE);
+                overlayImage.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animTranslate.start();
+    }
+
+    private void hideFilters() {
+        ObjectAnimator animTranslate = ObjectAnimator.ofFloat(filterViewLayout, "translationY", 0, height);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(animTranslate);
+        animatorSet.setDuration(700);
+        animatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                overlayImage.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                filterViewLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animatorSet.start();
     }
 
     @Override
@@ -154,4 +308,34 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     public void onItemInserted() {
         updateCounter();
     }
+
+    @Override
+    public void onFilterClicked(FilterCategory filterCategory) {
+        if (selectedFilters.get(filterCategory.getCategoryId()) != null) {
+            selectedFilters.remove(filterCategory.getCategoryId());
+            selectedFiltersIds.remove(String.valueOf(filterCategory.getCategoryId()));
+        } else {
+            selectedFiltersIds.add(String.valueOf(filterCategory.getCategoryId()));
+            selectedFilters.put(filterCategory.getCategoryId(), filterCategory.getCategoryName());
+        }
+        setFiltersText();
+    }
+
+    private void setFiltersText() {
+        if (selectedFilters != null && !selectedFilters.isEmpty()) {
+            List<Integer> idsList = new ArrayList<>();
+            idsList.addAll(selectedFilters.keySet());
+            String filterName = "";
+            for (int i = 0; i < idsList.size(); i++) {
+                if (i != 0 && idsList.size() > 1)
+                    filterName += "<font color=#3f3f3f>  |  </font> <font color=#E7891E>" + selectedFilters.get(idsList.get(i)) + "</font>";
+                else
+                    filterName += "<font color=#E7891E>" + selectedFilters.get(idsList.get(i)) + "</font>";
+            }
+            selectedFiltersText.setText(Html.fromHtml(filterName));
+        } else {
+            selectedFiltersText.setText("");
+        }
+    }
+
 }

@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Ayman Abouzeid on 8/1/17.
  */
@@ -163,7 +165,7 @@ public class ZakatCalculatorFragment extends Fragment {
         if (!rentValueEditText.getText().toString().isEmpty()) {
             try {
                 rentZakat = Double.parseDouble(rentValueEditText.getText().toString()) * 0.3;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException ignored) {
             }
         }
         calculateTotalZakat();
@@ -173,7 +175,7 @@ public class ZakatCalculatorFragment extends Fragment {
         if (!moneyAmountEditText.getText().toString().isEmpty()) {
             try {
                 moneyZakat = Double.parseDouble(moneyAmountEditText.getText().toString()) / DIVIDED_BY_NUMBER;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException ignored) {
             }
         }
         calculateTotalZakat();
@@ -183,13 +185,33 @@ public class ZakatCalculatorFragment extends Fragment {
         double sharesValue = 0;
         double bondsValue = 0;
         double gainedProfit = 0;
-        try {
-            sharesValue = Double.parseDouble(sharesValueEditText.getText().toString());
-            bondsValue = Double.parseDouble(bondsValueEditText.getText().toString());
-            gainedProfit = Double.parseDouble(gainedProfitEditText.getText().toString());
-        } catch (NumberFormatException e) {
+        if (!sharesValueEditText.getText().toString().isEmpty()) {
+            try {
+                sharesValue = Double.parseDouble(sharesValueEditText.getText().toString());
+            } catch (NumberFormatException ignored) {
+            }
         }
-        assetsZakat = ((sharesValue + gainedProfit) / DIVIDED_BY_NUMBER) + (bondsValue / DIVIDED_BY_NUMBER);
+        if (!gainedProfitEditText.getText().toString().isEmpty()) {
+            try {
+                gainedProfit = Double.parseDouble(gainedProfitEditText.getText().toString());
+            } catch (NumberFormatException ignored) {
+            }
+
+        }
+
+        if (!bondsValueEditText.getText().toString().isEmpty()) {
+            try {
+                bondsValue = Double.parseDouble(bondsValueEditText.getText().toString());
+            } catch (NumberFormatException ignored) {
+            }
+
+        }
+
+        if (!sharesValueEditText.getText().toString().isEmpty() && !gainedProfitEditText.getText().toString().isEmpty()) {
+            assetsZakat = ((sharesValue + gainedProfit) / DIVIDED_BY_NUMBER) + (bondsValue / DIVIDED_BY_NUMBER);
+        } else
+            assetsZakat = (bondsValue / DIVIDED_BY_NUMBER);
+
         calculateTotalZakat();
     }
 
@@ -198,8 +220,7 @@ public class ZakatCalculatorFragment extends Fragment {
             try {
                 goldZakat = (Double.parseDouble(gramPriceEditText.getText().toString()) *
                         Double.parseDouble(goldWeightEditText.getText().toString())) / DIVIDED_BY_NUMBER;
-            } catch (NumberFormatException e) {
-
+            } catch (NumberFormatException ignored) {
             }
             calculateTotalZakat();
         }
@@ -207,7 +228,7 @@ public class ZakatCalculatorFragment extends Fragment {
 
     private void calculateTotalZakat() {
         double totalZakat = goldZakat + moneyZakat + rentZakat + assetsZakat;
-        zakatValue.setText(String.valueOf(totalZakat));
+        zakatValue.setText(String.format(getString(R.string.egp), String.valueOf(new DecimalFormat("##.##").format(totalZakat))));
     }
 
 }

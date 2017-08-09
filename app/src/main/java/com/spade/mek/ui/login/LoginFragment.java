@@ -1,6 +1,7 @@
 package com.spade.mek.ui.login;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.MainActivity;
+import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -41,9 +44,11 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     protected void initViews() {
-        Button continueAsGuest = (Button) mView.findViewById(R.id.loginAsGuestBtn);
+        TextView continueAsGuest = (TextView) mView.findViewById(R.id.loginAsGuestBtn);
         Button loginWithFacebook = (Button) mView.findViewById(R.id.loginWithFacebookBtn);
         Button loginWithGoogle = (Button) mView.findViewById(R.id.loginWithGoogleBtn);
+        Button signInButton = (Button) mView.findViewById(R.id.loginBtn);
+        Button registerButton = (Button) mView.findViewById(R.id.registerBtn);
 
         ImageView imageView = (ImageView) mView.findViewById(R.id.logo_image_view);
         String appLang = PrefUtils.getAppLang(getContext());
@@ -52,6 +57,8 @@ public class LoginFragment extends BaseFragment implements LoginView {
         continueAsGuest.setOnClickListener(v -> mLoginPresenter.loginAsGuest());
         loginWithFacebook.setOnClickListener(v -> mLoginPresenter.loginWithFacebook(this));
         loginWithGoogle.setOnClickListener(v -> mLoginPresenter.loginWithGoogle(this));
+        registerButton.setOnClickListener(v -> startActivity(RegisterActivity.getLaunchIntent(getContext())));
+        continueAsGuest.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     @Override

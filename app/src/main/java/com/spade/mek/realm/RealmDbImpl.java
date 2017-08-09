@@ -6,6 +6,7 @@ import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.CartItemModel;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.login.User;
+import com.spade.mek.ui.login.UserModel;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.SocialUser;
 
@@ -37,6 +38,22 @@ public class RealmDbImpl implements RealmDbHelper {
 //            user.setFirstName(socialUser.getName());
 //            user.setUserPhoto(socialUser.getUserPhoto());
 //        });
+        realmInstance.commitTransaction();
+        realmInstance.close();
+    }
+
+    @Override
+    public void saveUser(UserModel userModel, String userToken) {
+        Realm realmInstance = Realm.getDefaultInstance();
+        realmInstance.beginTransaction();
+        User user = new User();
+        user.setUserEmail(userModel.getUserEmail());
+        user.setFirstName(userModel.getFirstName());
+        user.setUserId(userModel.getUserId());
+        user.setLastName(userModel.getLastName());
+        user.setUserPhone(userModel.getUserPhone());
+        user.setUserToken(userToken);
+        realmInstance.copyToRealmOrUpdate(user);
         realmInstance.commitTransaction();
         realmInstance.close();
     }

@@ -3,8 +3,10 @@ package com.spade.mek.ui.cart.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spade.mek.R;
@@ -21,6 +24,7 @@ import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.presenter.UserOrderPresenter;
 import com.spade.mek.ui.cart.presenter.UserOrderPresenterImpl;
 import com.spade.mek.ui.login.User;
+import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.Validator;
 
@@ -31,9 +35,11 @@ import com.spade.mek.utils.Validator;
 public class UserDataFragment extends BaseFragment implements UserDataView {
 
     public static final String EXTRA_TOTAL_COST = "EXTRA_TOTAL_COST";
+    public static final int ONLINE_PAYMENT_TYPE = 0;
+    public static final int CASH_ON_DELIVERY = 1;
+
     private EditText firstNameEditText, lastNameEditText,
             phoneNumberEditText, emailAddressEditText, addressEditText;
-    //    , donationEditText;
     private String firstNameString, lastNameString, phoneNumberString,
             emailAddressString, addressString, donationTypeString = "";
     private ProgressDialog progressDialog;
@@ -41,8 +47,10 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     private View fragmentView;
     private UserOrderPresenter userOrderPresenter;
 
+    private TextView onlinePayment, cashOnDelivery;
     private double totalCost;
     private int donationTypePosition = 0;
+    private int paymentType;
 
     @Nullable
     @Override
@@ -65,7 +73,12 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         phoneNumberEditText = (EditText) fragmentView.findViewById(R.id.phone_number_edit_text);
         emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
         addressEditText = (EditText) fragmentView.findViewById(R.id.address_edit_text);
+        onlinePayment = (TextView) fragmentView.findViewById(R.id.online_payment);
+        cashOnDelivery = (TextView) fragmentView.findViewById(R.id.cash_on_delivery);
 //        donationEditText = (EditText) fragmentView.findViewById(R.id.type_of_donation_edit_text);
+        TextView chooseAnotherChannel = (TextView) fragmentView.findViewById(R.id.choose_another_channel);
+        chooseAnotherChannel.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        chooseAnotherChannel.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         Button proceedBtn = (Button) fragmentView.findViewById(R.id.proceed_btn);
         AppCompatSpinner donationTypesSpinner = (AppCompatSpinner) fragmentView.findViewById(R.id.donation_types_spinner);
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(getContext(), R.layout.type_of_donation_item, getResources().getStringArray(R.array.type_of_donations));
@@ -87,7 +100,11 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
             }
         });
+        onlinePayment.setOnClickListener(v -> chooseOnlinePayment());
+        cashOnDelivery.setOnClickListener(v -> chooseCashOnDelivery());
+        chooseCashOnDelivery();
         setUserData();
+
     }
 
     private void setUserData() {
@@ -159,7 +176,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         userOrderPresenter.updateUserData(firstNameString, lastNameString, phoneNumberString,
                 emailAddressString, addressString, PrefUtils.getUserId(getContext()));
         totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
-        userOrderPresenter.makeOrder(donationTypeString);
+        userOrderPresenter.makeOrder(donationTypeString, paymentType);
     }
 
     @Override
@@ -204,5 +221,22 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         Intent intent = OrderConfirmationActivity.getLaunchIntent(getContext());
         intent.putExtra(EXTRA_TOTAL_COST, String.valueOf(totalCost));
         startActivity(intent);
+    }
+
+    private void chooseOnlinePayment() {
+        paymentType = ONLINE_PAYMENT_TYPE;
+        onlinePayment.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
+        cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.orange));
+        cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.buttonGrey));
+
+    }
+
+    private void chooseCashOnDelivery() {
+        paymentType = CASH_ON_DELIVERY;
+        onlinePayment.setTextColor(ContextCompat.getColor(getContext(), R.color.orange));
+        onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.buttonGrey));
+        cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
     }
 }

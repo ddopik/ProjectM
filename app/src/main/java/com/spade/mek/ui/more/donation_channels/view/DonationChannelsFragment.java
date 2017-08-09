@@ -11,12 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.spade.mek.R;
+import com.spade.mek.base.BaseFragment;
 
 /**
  * Created by Ayman Abouzeid on 7/13/17.
  */
 
-public class DonationChannelsFragment extends Fragment implements DonationChannelsAdapter.OnChannelClicked {
+public class DonationChannelsFragment extends BaseFragment implements DonationChannelsAdapter.OnChannelClicked {
 
     @Nullable
     @Override
@@ -53,5 +54,15 @@ public class DonationChannelsFragment extends Fragment implements DonationChanne
             case 4:
                 break;
         }
+    }
+
+    @Override
+    protected void initPresenter() {
+
+    }
+
+    @Override
+    protected void initViews() {
+
     }
 }

@@ -181,6 +181,12 @@ public class ContactUsPresenterImpl implements ContactUsPresenter,
     }
 
     @Override
+    public void sendMail(String mailTo) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + mailTo));
+        context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+    }
+
+    @Override
     public void onConnectionSuspended(int i) {
 
     }

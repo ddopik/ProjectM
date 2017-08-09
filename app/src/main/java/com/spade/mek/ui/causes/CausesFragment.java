@@ -1,5 +1,6 @@
 package com.spade.mek.ui.causes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,6 +23,10 @@ import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +37,7 @@ import java.util.List;
 public class CausesFragment extends BaseFragment implements CausesView,
         CausesAdapter.CausesAction, AddProductToCartDialog.AddToCart, AddCauseToCartDialog.AddToCart {
 
-    private CausesPresenter causesPresenter;
+    private static CausesPresenter causesPresenter;
     private CausesAdapter causesAdapter;
     private List<Products> urgentCaseList;
     private List<Products> productsList;
@@ -102,6 +107,17 @@ public class CausesFragment extends BaseFragment implements CausesView,
         causesPresenter.getAllCauses(appLang, pageNumber);
     }
 
+    public static void filterCauses(Context context, ArrayList<String> filterId) {
+        JSONArray jsonElements = new JSONArray(filterId);
+        JSONObject requestJsonObject = null;
+        try {
+            requestJsonObject = new JSONObject();
+            requestJsonObject.put("categories", jsonElements);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        causesPresenter.filterCauses(PrefUtils.getAppLang(context), requestJsonObject);
+    }
     @Override
     public void onError(String message) {
         if (getContext() != null)
@@ -127,6 +143,18 @@ public class CausesFragment extends BaseFragment implements CausesView,
         currentPage = allCausesResponse.getProductsData().getCurrentPage();
         lastPage = allCausesResponse.getProductsData().getLastPage();
         if (allCausesResponse.getProductsData() != null && allCausesResponse.getProductsData().getProductsList() != null) {
+            this.productsList.addAll(allCausesResponse.getProductsData().getProductsList());
+            causesAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void showAFilteredCauses(AllCausesResponse allCausesResponse) {
+        isLoading = false;
+        currentPage = allCausesResponse.getProductsData().getCurrentPage();
+        lastPage = allCausesResponse.getProductsData().getLastPage();
+        if (allCausesResponse.getProductsData() != null && allCausesResponse.getProductsData().getProductsList() != null) {
+            this.productsList.clear();
             this.productsList.addAll(allCausesResponse.getProductsData().getProductsList());
             causesAdapter.notifyDataSetChanged();
         }

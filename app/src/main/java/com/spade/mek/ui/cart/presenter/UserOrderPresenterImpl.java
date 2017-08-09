@@ -10,6 +10,7 @@ import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.Order;
 import com.spade.mek.ui.cart.model.OrderItems;
+import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.cart.view.UserDataView;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.login.User;
@@ -32,6 +33,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     private RealmDbHelper realmDbHelper;
     private UserDataView userDataView;
     private Order order;
+    private int paymentType;
 
     public UserOrderPresenterImpl(Context mContext) {
         this.mContext = mContext;
@@ -49,8 +51,9 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     @Override
-    public void makeOrder(String typeOfDonation) {
+    public void makeOrder(String typeOfDonation, int paymentType) {
         userDataView.showLoading();
+        this.paymentType = paymentType;
         order = new Order();
         order.setTypeOfDonation(typeOfDonation);
         new GetUserAsyncTask().execute();
@@ -74,25 +77,29 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     private void checkoutOrder(JSONObject requestJson) {
-        ApiHelper.createOrder(requestJson, new ApiHelper.CreateOrderCallbacks() {
-            @Override
-            public void onOrderCreatedSuccess(boolean isSuccess) {
-                userDataView.hideLoading();
-                if (isSuccess) {
-                    realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
-                    userDataView.navigateToConfirmationScreen( );
-                    userDataView.finish();
-                } else {
-                    userDataView.onError(mContext.getString(R.string.something_wrong));
+        if (paymentType == UserDataFragment.ONLINE_PAYMENT_TYPE) {
+//            ApiHelper.createOnlinePaymentOrder(requestJson)
+        } else if (paymentType == UserDataFragment.CASH_ON_DELIVERY) {
+            ApiHelper.createOrder(requestJson, new ApiHelper.CreateOrderCallbacks() {
+                @Override
+                public void onOrderCreatedSuccess(boolean isSuccess) {
+                    userDataView.hideLoading();
+                    if (isSuccess) {
+                        realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
+                        userDataView.navigateToConfirmationScreen();
+                        userDataView.finish();
+                    } else {
+                        userDataView.onError(mContext.getString(R.string.something_wrong));
+                    }
                 }
-            }
 
-            @Override
-            public void onOrderCreatedFailed(String error) {
-                userDataView.hideLoading();
-                userDataView.onError(error);
-            }
-        });
+                @Override
+                public void onOrderCreatedFailed(String error) {
+                    userDataView.hideLoading();
+                    userDataView.onError(error);
+                }
+            });
+        }
     }
 
 

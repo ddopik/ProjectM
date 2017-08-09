@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spade.mek.R;
+import com.spade.mek.ui.register.RegisterActivity;
 
 /**
  * Created by Ayman Abouzeid on 6/28/17.
@@ -37,9 +39,11 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
     }
 
     private void init(View mView) {
-        Button continueAsGuest = (Button) mView.findViewById(R.id.loginAsGuestBtn);
+        TextView continueAsGuest = (TextView) mView.findViewById(R.id.loginAsGuestBtn);
         Button loginWithFacebook = (Button) mView.findViewById(R.id.loginWithFacebookBtn);
         Button loginWithGoogle = (Button) mView.findViewById(R.id.loginWithGoogleBtn);
+        Button signIn = (Button) mView.findViewById(R.id.loginBtn);
+        Button register = (Button) mView.findViewById(R.id.registerBtn);
 
         continueAsGuest.setOnClickListener(v -> {
             loginDialogActions.loginAsGuest();
@@ -54,6 +58,10 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
 //            loginDialogActions.loginWithGoogle();
             loginPresenter.loginWithGoogle(LoginDialogFragment.this);
 //            dismiss();
+        });
+        register.setOnClickListener(v -> {
+            dismiss();
+            startActivity(RegisterActivity.getLaunchIntent(getContext()));
         });
     }
 

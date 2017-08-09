@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.spade.mek.R;
+import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.utils.LoginProviders;
@@ -15,6 +16,11 @@ import com.spade.sociallogin.FacebookLoginManager;
 import com.spade.sociallogin.GoogleLoginCallBack;
 import com.spade.sociallogin.GoogleLoginManager;
 import com.spade.sociallogin.SocialUser;
+
+import org.json.JSONObject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Ayman Abouzeidd on 6/12/17.
@@ -74,6 +80,17 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     public void loginAsGuest() {
         mLoginView.navigateToMainScreen();
     }
+
+    @Override
+    public void serverLogin(JSONObject requestJson) {
+        ApiHelper.loginUser(requestJson)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(registrationResponse -> {
+                }, throwable -> {
+                });
+    }
+
 
     @Override
     public void googleLogout() {

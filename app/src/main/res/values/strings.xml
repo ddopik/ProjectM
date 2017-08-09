@@ -56,6 +56,7 @@
     <string name="enter_city">Please Enter Your City</string>
     <string name="enter_subject">Please Enter Subject</string>
     <string name="enter_message">Please Enter Message</string>
+    <string name="enter_password">Please Enter Your Password</string>
     <string name="select_type_of_donation">Please Select Type Of Donation</string>
     <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
     <string name="thank_you">Thank You</string>
@@ -115,6 +116,15 @@
     <string name="rent_value">How much is the rent value for the property you own?</string>
     <string name="zakat_value">Zakat value</string>
     <string name="calculator">Zakat Calculator</string>
+    <string name="choose_category">Choose from the below categories to filter with </string>
+    <string name="filter">Filter</string>
+    <string name="clear">Clear</string>
+    <string name="online_payment">Online Payment</string>
+    <string name="payment_method">Choose Payment Method</string>
+    <string name="choose_another_channel">Choose Another Channel</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

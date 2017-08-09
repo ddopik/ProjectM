@@ -7,7 +7,8 @@ package com.spade.mek.utils;
 public enum LoginProviders {
     NONE(0),
     FACEBOOK(10),
-    GOOGLE(20);
+    GOOGLE(20),
+    SERVER_LOGIN(30);
 
     private int loginProviderCode;
 

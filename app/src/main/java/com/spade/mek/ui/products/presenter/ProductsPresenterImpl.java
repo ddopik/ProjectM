@@ -6,6 +6,8 @@ import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.products.view.ProductsView;
 import com.spade.mek.utils.ShareManager;
 
+import org.json.JSONObject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -64,6 +66,25 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                     mProductsView.hideUrgentCasesLoading();
                 }, throwable -> {
                     mProductsView.hideUrgentCasesLoading();
+                    if (throwable != null) {
+                        mProductsView.onError(throwable.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void filterProducts(String lang, JSONObject jsonObject) {
+        mProductsView.showProductsLoading();
+        ApiHelper.filterProducts(jsonObject, lang)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(allProductsResponse -> {
+                    if (allProductsResponse != null) {
+                        mProductsView.showFilteredProducts(allProductsResponse.getProductsData());
+                    }
+                    mProductsView.hideProductsLoading();
+                }, throwable -> {
+                    mProductsView.hideProductsLoading();
                     if (throwable != null) {
                         mProductsView.onError(throwable.getMessage());
                     }

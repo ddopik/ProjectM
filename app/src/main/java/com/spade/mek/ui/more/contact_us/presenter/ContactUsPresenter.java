@@ -20,4 +20,6 @@ public interface ContactUsPresenter extends BasePresenter<ContactUsView> {
     void requestLocationPermission(Activity activity);
 
     float calculateDistance(double lat1, double lng1, double lat2, double lng2);
+
+    void sendMail(String mailTo);
 }

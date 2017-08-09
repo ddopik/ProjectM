@@ -15,83 +15,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/cash_on_deivery">
+        android:layout_above="@+id/proceed_btn">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/first_name_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:hint="@string/first_name"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/blue" />
-
-                <EditText
-                    android:id="@+id/last_name_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:hint="@string/last_name"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/blue" />
-            </LinearLayout>
-
-
-            <EditText
-                android:id="@+id/phone_number_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:gravity="start"
-                android:hint="@string/phone"
-                android:inputType="phone"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textColor="@color/blue" />
-
-            <EditText
-                android:id="@+id/email_address_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:gravity="start"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textColor="@color/blue" />
-
-            <EditText
-                android:id="@+id/address_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:gravity="start"
-                android:hint="@string/address"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textColor="@color/blue" />
-
-            <!--<EditText-->
-            <!--android:id="@+id/type_of_donation_edit_text"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-            <!--android:gravity="start"-->
-            <!--android:hint="@string/type_of_donation"-->
-            <!--android:padding="@dimen/activity_horizontal_margin"-->
-            <!--android:textColor="@color/blue" />-->
+            <include layout="@layout/user_info_layout" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -119,39 +50,91 @@
                 android:layout_marginEnd="@dimen/dp4"
                 android:layout_marginStart="@dimen/dp4"
                 android:background="@color/blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:padding="@dimen/dp8"
+                android:text="@string/payment_method" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cash_on_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/buttonGrey"
+                    android:gravity="center"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/cash_on_deleivery"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/material_text_subhead"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/online_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/orange"
+                    android:gravity="center"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="@string/online_payment"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/material_text_subhead"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/choose_another_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="@string/choose_another_channel"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/material_text_subhead" />
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/cash_on_deivery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/proceed_btn"
-        android:background="@color/buttonGrey"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+    <!--<LinearLayout-->
+    <!--android:id="@+id/cash_on_deivery"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@+id/proceed_btn"-->
+    <!--android:background="@color/buttonGrey"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="@dimen/activity_horizontal_margin">-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/cash_on_deleivery"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/material_text_title"
-            android:textStyle="bold" />
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/cash_on_deleivery"-->
+    <!--android:textColor="@color/orange"-->
+    <!--android:textSize="@dimen/material_text_title"-->
+    <!--android:textStyle="bold" />-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp8"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/misr_collector"
-            android:textColor="@color/textGrey"
-            android:textSize="@dimen/material_text_subhead" />
-    </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/dp8"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/misr_collector"-->
+    <!--android:textColor="@color/textGrey"-->
+    <!--android:textSize="@dimen/material_text_subhead" />-->
+    <!--</LinearLayout>-->
 
     <Button
         android:id="@+id/proceed_btn"

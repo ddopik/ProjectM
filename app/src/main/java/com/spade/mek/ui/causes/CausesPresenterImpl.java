@@ -5,6 +5,8 @@ import android.content.Context;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.utils.ShareManager;
 
+import org.json.JSONObject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -63,6 +65,25 @@ public class CausesPresenterImpl implements CausesPresenter {
                     mCausesView.hideUrgentCasesLoading();
                 }, throwable -> {
                     mCausesView.hideUrgentCasesLoading();
+                    if (throwable != null) {
+                        mCausesView.onError(throwable.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void filterCauses(String lang, JSONObject jsonObject) {
+        mCausesView.showCausesLoading();
+        ApiHelper.filterCauses(jsonObject, lang)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(allCausesResponse -> {
+                    if (allCausesResponse != null) {
+                        mCausesView.showAFilteredCauses(allCausesResponse);
+                    }
+                    mCausesView.hideCausesLoading();
+                }, throwable -> {
+                    mCausesView.hideCausesLoading();
                     if (throwable != null) {
                         mCausesView.onError(throwable.getMessage());
                     }

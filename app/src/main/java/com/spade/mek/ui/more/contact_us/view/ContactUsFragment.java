@@ -117,6 +117,7 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
         });
         sendMessage.setOnClickListener(v -> startActivity(SendMessageActivity.getLaunchIntent(getContext())));
         call.setOnClickListener(v -> contactUsPresenter.callNumber(getActivity(), phoneNumber.getText().toString()));
+        emailAddress.setOnClickListener(v -> contactUsPresenter.sendMail(emailAddress.getText().toString()));
         website.setOnClickListener(v -> contactUsPresenter.openUrl(website.getText().toString()));
         facebook.setOnClickListener(v -> contactUsPresenter.openUrl(facebookUrl));
         instagram.setOnClickListener(v -> contactUsPresenter.openUrl(instagramUrl));

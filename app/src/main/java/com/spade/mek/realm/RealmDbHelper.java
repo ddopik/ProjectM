@@ -5,6 +5,7 @@ import android.content.Context;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.CartItemModel;
 import com.spade.mek.ui.login.User;
+import com.spade.mek.ui.login.UserModel;
 import com.spade.sociallogin.SocialUser;
 
 import io.reactivex.Observable;
@@ -16,6 +17,8 @@ import io.realm.RealmList;
 
 public interface RealmDbHelper {
     void saveUser(SocialUser socialUser);
+
+    void saveUser(UserModel userModel, String userToken);
 
     void addCartItem(CartItemModel cartItemModel, Context context);
 

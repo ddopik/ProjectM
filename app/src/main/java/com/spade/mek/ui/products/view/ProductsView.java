@@ -2,7 +2,6 @@ package com.spade.mek.ui.products.view;
 
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.home.products.Products;
-import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductsData;
 
 import java.util.List;
@@ -16,6 +15,8 @@ public interface ProductsView extends BaseView {
     void showUrgentCases(List<Products> urgentCaseList);
 
     void showAllProducts(ProductsData productsData);
+
+    void showFilteredProducts(ProductsData productsData);
 
     void showUrgentCasesLoading();
 

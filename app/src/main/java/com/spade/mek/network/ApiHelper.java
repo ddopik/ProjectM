@@ -5,7 +5,9 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
+import com.spade.mek.ui.cart.model.PaymentResponse;
 import com.spade.mek.ui.causes.AllCausesResponse;
+import com.spade.mek.ui.home.FilterCategoriesResponse;
 import com.spade.mek.ui.home.causes.LatestCausesResponse;
 import com.spade.mek.ui.home.products.LatestProductsResponse;
 import com.spade.mek.ui.home.urgent_cases.UrgentCasesResponse;
@@ -17,6 +19,7 @@ import com.spade.mek.ui.more.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
 import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductDetailsResponse;
+import com.spade.mek.ui.register.RegistrationResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +48,12 @@ public class ApiHelper {
     private static final String CREATE_ORDER_URL = BASE_POST_URL + "/order/create";
     private static final String SEND_MESSAGE_URL = BASE_POST_URL + "/contact/store";
     private static final String CONTACT_US_INFO_URL = BASE_URL + "/contact/info";
-
+    private static final String CATEGORIES_URL = BASE_URL + "/categories";
+    private static final String FILTER_CAUSES_URL = BASE_URL + "/categories/causes";
+    private static final String FILTER_PRODUCTS_URL = BASE_URL + "/categories/products";
+    private static final String ONLINE_PAYMENT_CHECKOUT_URL = "/payment";
+    private static final String REGISTER_USER_URL = BASE_POST_URL + "/register";
+    private static final String LOGIN_USER_URL = BASE_POST_URL + "/login";
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
     private static final String PAGE_NUMBER = "page";
@@ -142,6 +150,29 @@ public class ApiHelper {
                 .getObjectObservable(ContactUsDataResponse.class);
     }
 
+    public static Observable<FilterCategoriesResponse> getFilterCategories(String appLang) {
+        return Rx2AndroidNetworking.get(CATEGORIES_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(FilterCategoriesResponse.class);
+    }
+
+    public static Observable<AllProductsResponse> filterProducts(JSONObject filterIds, String appLang) {
+        return Rx2AndroidNetworking.post(FILTER_PRODUCTS_URL)
+                .addJSONObjectBody(filterIds)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(AllProductsResponse.class);
+    }
+
+    public static Observable<AllCausesResponse> filterCauses(JSONObject filterIds, String appLang) {
+        return Rx2AndroidNetworking.post(FILTER_CAUSES_URL)
+                .addJSONObjectBody(filterIds)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(AllCausesResponse.class);
+    }
+
     public static void sendMessage(JSONObject requestJson, sendMessageCallBacks sendMessageCallBacks) {
         AndroidNetworking.post(SEND_MESSAGE_URL)
                 .addJSONObjectBody(requestJson)
@@ -189,6 +220,30 @@ public class ApiHelper {
                     }
                 });
         return success;
+    }
+
+    public static Observable<RegistrationResponse> registerUser(JSONObject registerObject) {
+        return Rx2AndroidNetworking.post(REGISTER_USER_URL)
+                .addJSONObjectBody(registerObject)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getObjectObservable(RegistrationResponse.class);
+    }
+
+    public static Observable<RegistrationResponse> loginUser(JSONObject registerObject) {
+        return Rx2AndroidNetworking.post(LOGIN_USER_URL)
+                .addJSONObjectBody(registerObject)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getObjectObservable(RegistrationResponse.class);
+    }
+
+    public static Observable<PaymentResponse> createOnlinePaymentOrder(JSONObject requestJson, CreateOrderCallbacks createOrderCallbacks) {
+        return Rx2AndroidNetworking.post(ONLINE_PAYMENT_CHECKOUT_URL)
+                .addJSONObjectBody(requestJson)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getObjectObservable(PaymentResponse.class);
     }
 
     public interface CreateOrderCallbacks {
