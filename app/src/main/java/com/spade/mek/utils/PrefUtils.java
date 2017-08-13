@@ -46,6 +46,11 @@ public class PrefUtils {
         return getSharedPref(mContext).getString(USER_ID, GUEST_USER_ID);
     }
 
+    public static String getUserToken(Context mContext) {
+        return getSharedPref(mContext).getString(USER_TOKEN, "");
+    }
+
+
     public static boolean isFirstLaunch(Context context) {
         return getSharedPref(context).getBoolean(IS_FIRST_LAUNCH, true);
     }

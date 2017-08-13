@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spade.mek.R;
+import com.spade.mek.ui.login.server_login.ServerLoginActivity;
 import com.spade.mek.ui.register.RegisterActivity;
 
 /**
@@ -49,19 +50,21 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
             loginDialogActions.loginAsGuest();
             dismiss();
         });
-        loginWithFacebook.setOnClickListener(v -> {
-//            loginDialogActions.loginWithFaceBook();
-            loginPresenter.loginWithFacebook(LoginDialogFragment.this);
-//            dismiss();
-        });
-        loginWithGoogle.setOnClickListener(v -> {
-//            loginDialogActions.loginWithGoogle();
-            loginPresenter.loginWithGoogle(LoginDialogFragment.this);
-//            dismiss();
-        });
+        loginWithFacebook.setOnClickListener(v -> loginPresenter.loginWithFacebook(LoginDialogFragment.this));
+        loginWithGoogle.setOnClickListener(v -> loginPresenter.loginWithGoogle(LoginDialogFragment.this));
         register.setOnClickListener(v -> {
             dismiss();
-            startActivity(RegisterActivity.getLaunchIntent(getContext()));
+            Intent intent = RegisterActivity.getLaunchIntent(getContext());
+            intent.putExtra(RegisterActivity.EXTRA_TYPE, RegisterActivity.CHECKOUT_TYPE);
+            getActivity().finish();
+            startActivity(intent);
+        });
+        signIn.setOnClickListener(v -> {
+            dismiss();
+            Intent intent = ServerLoginActivity.getLaunchIntent(getContext());
+            intent.putExtra(RegisterActivity.EXTRA_TYPE, RegisterActivity.CHECKOUT_TYPE);
+            getActivity().finish();
+            startActivity(intent);
         });
     }
 

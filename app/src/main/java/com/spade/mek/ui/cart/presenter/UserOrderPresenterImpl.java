@@ -10,6 +10,7 @@ import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.Order;
 import com.spade.mek.ui.cart.model.OrderItems;
+import com.spade.mek.ui.cart.view.PaymentActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.cart.view.UserDataView;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
@@ -23,6 +24,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * Created by Ayman Abouzeid on 6/27/17.
  */
@@ -34,6 +38,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     private UserDataView userDataView;
     private Order order;
     private int paymentType;
+    private String orderId;
 
     public UserOrderPresenterImpl(Context mContext) {
         this.mContext = mContext;
@@ -76,10 +81,59 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 emailAddress, address, userId);
     }
 
+    @Override
+    public void finishPaymentStatus(int paymentStatus) {
+        if (paymentStatus == PaymentActivity.PAYMENT_SUCCESS) {
+            realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
+        }
+        userDataView.showLoading();
+        JSONObject requestJsonObject = new JSONObject();
+        try {
+            requestJsonObject.put("status", paymentStatus);
+            requestJsonObject.put("order_id", orderId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiHelper.changeStatus(requestJsonObject, new ApiHelper.ChangePaymentStatus() {
+            @Override
+            public void onStatusCHangedSuccess() {
+                realmDbHelper.updateOrderStatus(orderId, true);
+                userDataView.hideLoading();
+                userDataView.navigateToConfirmationScreen();
+                userDataView.finish();
+            }
+
+            @Override
+            public void onStatusChangedFailed() {
+                realmDbHelper.updateOrderStatus(orderId, false);
+                userDataView.hideLoading();
+            }
+        });
+    }
+
+
     private void checkoutOrder(JSONObject requestJson) {
         if (paymentType == UserDataFragment.ONLINE_PAYMENT_TYPE) {
-//            ApiHelper.createOnlinePaymentOrder(requestJson)
+            userDataView.showLoading();
+            ApiHelper.createOnlinePaymentOrder(requestJson, PrefUtils.getUserToken(mContext))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(paymentResponse -> {
+                        userDataView.hideLoading();
+                        if (paymentResponse != null && paymentResponse.isSuccess()) {
+                            realmDbHelper.saveOrderDone(paymentResponse.getPaymentResponseData().getOrderId());
+                            orderId = paymentResponse.getPaymentResponseData().getOrderId();
+                            userDataView.navigateToPayment(paymentResponse.getPaymentResponseData().getPaymentUrl());
+                        }
+                    }, throwable -> {
+                        userDataView.hideLoading();
+                        if (throwable != null)
+                            userDataView.onError(throwable.getMessage());
+                    });
+
         } else if (paymentType == UserDataFragment.CASH_ON_DELIVERY) {
+            userDataView.showLoading();
             ApiHelper.createOrder(requestJson, new ApiHelper.CreateOrderCallbacks() {
                 @Override
                 public void onOrderCreatedSuccess(boolean isSuccess) {
@@ -172,6 +226,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 requestJsonObject.put("phone", order.getPhoneNumber());
                 requestJsonObject.put("type_of_donation", order.getTypeOfDonation());
                 requestJsonObject.put("address", order.getAddress());
+                requestJsonObject.put("amount", getOrderTotalCost(PrefUtils.getUserId(mContext)));
                 requestJsonObject.put("products", jsonElements);
             } catch (JSONException e) {
                 e.printStackTrace();

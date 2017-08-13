@@ -14,6 +14,6 @@ public interface RegisterView extends BaseView {
 
     void finish();
 
-    void navigateToHomeScreen();
+    void navigate();
 
 }

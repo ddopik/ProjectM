@@ -17,6 +17,7 @@ import com.spade.sociallogin.GoogleLoginCallBack;
 import com.spade.sociallogin.GoogleLoginManager;
 import com.spade.sociallogin.SocialUser;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -29,7 +30,6 @@ import io.reactivex.schedulers.Schedulers;
 public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, FacebookLoginCallBack {
 
     private LoginView mLoginView;
-    //    private CartView cartView;
     private LoginDialogView loginDialogView;
     private GoogleLoginManager mGoogleLoginManager;
     private FacebookLoginManager mFacebookLoginManager;
@@ -41,12 +41,6 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         mContext = context;
         realmDbHelper = new RealmDbImpl();
     }
-
-//    public LoginPresenterImpl(CartView cartView, Context context) {
-//        mContext = context;
-//        realmDbHelper = new RealmDbImpl();
-//        this.cartView = cartView;
-//    }
 
     public LoginPresenterImpl(LoginDialogView loginDialogView, Context context) {
         mContext = context;
@@ -82,15 +76,44 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     }
 
     @Override
-    public void serverLogin(JSONObject requestJson) {
-        ApiHelper.loginUser(requestJson)
+    public void serverLogin(UserModel userModel) {
+        mLoginView.showLoading();
+        JSONObject requestJsonObject = null;
+        try {
+            requestJsonObject = new JSONObject();
+            requestJsonObject.put("email", userModel.getUserEmail());
+            requestJsonObject.put("password", userModel.getPassword());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ApiHelper.loginUser(requestJsonObject)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(registrationResponse -> {
+                .subscribe(loginResponse -> {
+                    if (loginResponse != null) {
+                        realmDbHelper.saveUser(loginResponse.getRegistrationResponseData().getUserModel(),
+                                loginResponse.getRegistrationResponseData().getToken());
+                        UserModel userDataModel = loginResponse.getRegistrationResponseData().getUserModel();
+                        realmDbHelper.updateUserData(userDataModel.getFirstName(), userDataModel.getLastName(), userDataModel.getUserPhone(),
+                                userDataModel.getUserEmail(), userDataModel.getUserAddress(), userDataModel.getUserId());
+                        realmDbHelper.updateCartItemsWithLoggedInUser(userDataModel.getUserId());
+
+                        PrefUtils.setLoginProvider(mContext, LoginProviders.SERVER_LOGIN.getLoginProviderCode());
+                        PrefUtils.setUserID(mContext, userDataModel.getUserId());
+                        PrefUtils.setUserToken(mContext, loginResponse.getRegistrationResponseData().getToken());
+
+                        mLoginView.hideLoading();
+                        mLoginView.finish();
+                        mLoginView.navigate();
+                    }
                 }, throwable -> {
+                    mLoginView.hideLoading();
+                    if (throwable != null) {
+                        mLoginView.onError(throwable.getLocalizedMessage());
+                    }
                 });
     }
-
 
     @Override
     public void googleLogout() {
@@ -157,9 +180,6 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         if (mLoginView != null) {
             mLoginView.navigateToMainScreen();
         }
-//        else if (cartView != null) {
-//            cartView.loginSuccess();
-//        }
         else if (loginDialogView != null) {
             loginDialogView.loginSuccess();
         }

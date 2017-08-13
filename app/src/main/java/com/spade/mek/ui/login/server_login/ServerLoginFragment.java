@@ -1,7 +1,6 @@
 package com.spade.mek.ui.login.server_login;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,51 +12,53 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.home.MainActivity;
-import com.spade.mek.ui.login.User;
+import com.spade.mek.ui.login.LoginPresenter;
+import com.spade.mek.ui.login.LoginPresenterImpl;
+import com.spade.mek.ui.login.LoginView;
 import com.spade.mek.ui.login.UserModel;
-import com.spade.mek.ui.register.RegisterPresenter;
-import com.spade.mek.ui.register.RegisterPresenterImpl;
-import com.spade.mek.ui.register.RegisterView;
-import com.spade.mek.utils.PrefUtils;
+import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.Validator;
 
 /**
  * Created by Ayman Abouzeid on 6/23/17.
  */
 
-public class ServerLoginFragment extends BaseFragment implements RegisterView {
+public class ServerLoginFragment extends BaseFragment implements LoginView {
 
-    private EditText firstNameEditText, lastNameEditText,
-            phoneNumberEditText, emailAddressEditText, addressEditText, passwordEditText, confirmPassswordEditText;
-    private String firstNameString, lastNameString, phoneNumberString,
-            emailAddressString, addressString, passwordString, confirmPasswordString;
+    private EditText emailAddressEditText, passwordEditText;
+    private String emailAddressString, passwordString;
     private ProgressDialog progressDialog;
 
     private View fragmentView;
-    private RegisterPresenter registerPresenter;
+    private LoginPresenter loginPresenter;
+    private int type;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        type = getArguments().getInt(RegisterActivity.EXTRA_TYPE);
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(R.layout.fragment_register, container, false);
+        fragmentView = inflater.inflate(R.layout.fragment_server_login, container, false);
         initViews();
         return fragmentView;
     }
 
     @Override
     protected void initPresenter() {
-        registerPresenter = new RegisterPresenterImpl(getContext());
-        registerPresenter.setView(this);
+        loginPresenter = new LoginPresenterImpl(this, getContext());
+        loginPresenter.setView(this);
     }
 
     @Override
     protected void initViews() {
-        firstNameEditText = (EditText) fragmentView.findViewById(R.id.first_name_edit_text);
-        lastNameEditText = (EditText) fragmentView.findViewById(R.id.last_name_edit_text);
-        phoneNumberEditText = (EditText) fragmentView.findViewById(R.id.phone_number_edit_text);
         emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
-        addressEditText = (EditText) fragmentView.findViewById(R.id.address_edit_text);
         passwordEditText = (EditText) fragmentView.findViewById(R.id.password_edit_text);
         Button proceedBtn = (Button) fragmentView.findViewById(R.id.register_btn);
         proceedBtn.setOnClickListener(v -> {
@@ -65,49 +66,12 @@ public class ServerLoginFragment extends BaseFragment implements RegisterView {
                 proceed();
             }
         });
-//        setUserData();
-    }
-
-    private void setUserData() {
-        User user = registerPresenter.getUser(PrefUtils.getUserId(getContext()));
-        if (user != null) {
-            if (user.getFirstName() != null) {
-                firstNameEditText.setText(user.getFirstName());
-            }
-
-            if (user.getLastName() != null) {
-                lastNameEditText.setText(user.getLastName());
-            }
-
-            if (user.getUserPhone() != null) {
-                phoneNumberEditText.setText(user.getUserPhone());
-            }
-
-            if (user.getUserAddress() != null) {
-                addressEditText.setText(user.getUserAddress());
-            }
-            if (user.getUserEmail() != null) {
-                emailAddressEditText.setText(user.getUserEmail());
-            }
-        }
     }
 
     private boolean checkIfDataIsValid() {
-        firstNameString = firstNameEditText.getText().toString();
-        lastNameString = lastNameEditText.getText().toString();
         emailAddressString = emailAddressEditText.getText().toString();
-        phoneNumberString = phoneNumberEditText.getText().toString();
-        addressString = addressEditText.getText().toString();
         passwordString = passwordEditText.getText().toString();
 
-        if (firstNameString.isEmpty()) {
-            firstNameEditText.setError(getString(R.string.enter_first_name));
-            return false;
-        }
-        if (lastNameString.isEmpty()) {
-            lastNameEditText.setError(getString(R.string.enter_last_name));
-            return false;
-        }
         if (emailAddressString.isEmpty()) {
             emailAddressEditText.setError(getString(R.string.enter_email_address));
             return false;
@@ -118,10 +82,6 @@ public class ServerLoginFragment extends BaseFragment implements RegisterView {
             return false;
         }
 
-        if (phoneNumberString.isEmpty()) {
-            phoneNumberEditText.setError(getString(R.string.enter_phone_number));
-            return false;
-        }
         if (passwordString.isEmpty()) {
             passwordEditText.setError(getString(R.string.enter_password));
             return false;
@@ -131,17 +91,9 @@ public class ServerLoginFragment extends BaseFragment implements RegisterView {
 
     private void proceed() {
         UserModel userModel = new UserModel();
-        userModel.setFirstName(firstNameString);
-        userModel.setLastName(lastNameString);
         userModel.setUserEmail(emailAddressString);
-        userModel.setUserPhone(phoneNumberString);
         userModel.setPassword(passwordString);
-        if (addressString.isEmpty()) {
-            userModel.setUserAddress("");
-        } else {
-            userModel.getUserAddress();
-        }
-        registerPresenter.register(userModel);
+        loginPresenter.serverLogin(userModel);
     }
 
     @Override
@@ -178,9 +130,16 @@ public class ServerLoginFragment extends BaseFragment implements RegisterView {
     }
 
     @Override
-    public void navigateToHomeScreen() {
-        Intent intent = MainActivity.getLaunchIntent(getContext());
-        startActivity(intent);
+    public void navigate() {
+        if (type == RegisterActivity.REGISTER_TYPE) {
+            startActivity(MainActivity.getLaunchIntent(getContext()));
+        } else if (type == RegisterActivity.CHECKOUT_TYPE) {
+            startActivity(UserDataActivity.getLaunchIntent(getContext()));
+        }
     }
 
+    @Override
+    public void navigateToMainScreen() {
+
+    }
 }

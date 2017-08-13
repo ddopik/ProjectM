@@ -7,24 +7,31 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.spade.mek.R;
-import com.spade.mek.ui.register.RegisterFragment;
+
+import static com.spade.mek.ui.register.RegisterActivity.EXTRA_TYPE;
+import static com.spade.mek.ui.register.RegisterActivity.REGISTER_TYPE;
 
 /**
  * Created by Ayman Abouzeidd on 6/12/17.
  */
 
 public class ServerLoginActivity extends AppCompatActivity {
+    private int type;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        type = getIntent().getIntExtra(EXTRA_TYPE, REGISTER_TYPE);
         addFragment();
     }
 
     private void addFragment() {
-        RegisterFragment registerFragment = new RegisterFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, registerFragment).commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt(EXTRA_TYPE, type);
+        ServerLoginFragment serverLoginFragment = new ServerLoginFragment();
+        serverLoginFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, serverLoginFragment).commit();
     }
 
     public static Intent getLaunchIntent(Context context) {

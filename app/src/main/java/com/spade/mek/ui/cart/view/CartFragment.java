@@ -35,7 +35,6 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     private RecyclerView cartRecyclerView;
     private TextView totalItems, totalCost;
     private TextView totalEmptyItems, totalEmptyCost;
-    private Button checkOutButton;
     private CartPresenter cartPresenter;
     private RelativeLayout cartLayout, cartEmptyLayout;
     private static final String NO_MONEY = "00";
@@ -65,7 +64,7 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
         CartRealmAdapter cartAdapter = new CartRealmAdapter(realm.where(CartItem.class).equalTo("userId", PrefUtils.getUserId(getContext())).findAll(), true);
 
         cartRecyclerView = (RecyclerView) cartView.findViewById(R.id.cart_recycler_view);
-        checkOutButton = (Button) cartView.findViewById(R.id.check_out_btn);
+        Button checkOutButton = (Button) cartView.findViewById(R.id.check_out_btn);
         cartLayout = (RelativeLayout) cartView.findViewById(R.id.cart_layout);
         cartEmptyLayout = (RelativeLayout) cartView.findViewById(R.id.empty_cart_layout);
         totalItems = (TextView) cartView.findViewById(R.id.total_items);

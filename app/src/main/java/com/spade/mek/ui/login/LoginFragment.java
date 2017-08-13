@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.MainActivity;
+import com.spade.mek.ui.login.server_login.ServerLoginActivity;
 import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
@@ -58,6 +59,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
         loginWithFacebook.setOnClickListener(v -> mLoginPresenter.loginWithFacebook(this));
         loginWithGoogle.setOnClickListener(v -> mLoginPresenter.loginWithGoogle(this));
         registerButton.setOnClickListener(v -> startActivity(RegisterActivity.getLaunchIntent(getContext())));
+        signInButton.setOnClickListener(v -> startActivity(ServerLoginActivity.getLaunchIntent(getContext())));
         continueAsGuest.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
@@ -69,6 +71,26 @@ public class LoginFragment extends BaseFragment implements LoginView {
     @Override
     public void onError(int resID) {
         Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void finish() {
+
+    }
+
+    @Override
+    public void navigate() {
+
     }
 
     @Override

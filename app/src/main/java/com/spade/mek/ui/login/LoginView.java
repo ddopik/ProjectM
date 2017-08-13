@@ -7,6 +7,13 @@ import com.spade.mek.base.BaseView;
  */
 
 public interface LoginView extends BaseView {
+    void showLoading();
+
+    void hideLoading();
+
+    void finish();
+
+    void navigate();
 
     void navigateToMainScreen();
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.CartItemModel;
+import com.spade.mek.ui.cart.model.OrderDone;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
@@ -32,12 +33,6 @@ public class RealmDbImpl implements RealmDbHelper {
         user.setUserPhoto(socialUser.getUserPhoto());
         user.setUserId(socialUser.getUserId());
         realmInstance.copyToRealmOrUpdate(user);
-//        realmInstance.executeTransaction(realm -> {
-//            User user = realm.createObject(User.class, socialUser.getUserId());
-//            user.setUserEmail(socialUser.getEmailAddress());
-//            user.setFirstName(socialUser.getName());
-//            user.setUserPhoto(socialUser.getUserPhoto());
-//        });
         realmInstance.commitTransaction();
         realmInstance.close();
     }
@@ -221,6 +216,27 @@ public class RealmDbImpl implements RealmDbHelper {
         Realm realm = Realm.getDefaultInstance();
         realm.refresh();
         return realm.where(User.class).equalTo("userId", userId).findFirst();
+    }
+
+    @Override
+    public void saveOrderDone(String orderID) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        OrderDone orderDone = realm.createObject(OrderDone.class);
+        orderDone.setOrderID(orderID);
+        orderDone.setSynced(false);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    @Override
+    public void updateOrderStatus(String orderId, boolean synced) {
+        Realm realm = Realm.getDefaultInstance();
+        OrderDone orderDone = realm.where(OrderDone.class).equalTo("orderID", orderId).findFirst();
+        realm.beginTransaction();
+        orderDone.setSynced(synced);
+        realm.commitTransaction();
+        realm.close();
     }
 
 

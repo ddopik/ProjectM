@@ -43,4 +43,8 @@ public interface RealmDbHelper {
     long getItemsCount(String userId);
 
     User getUser(String userId);
+
+    void saveOrderDone(String orderID);
+
+    void updateOrderStatus(String orderId, boolean synced);
 }

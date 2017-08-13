@@ -15,4 +15,6 @@ public interface UserDataView extends BaseView {
     void finish();
 
     void navigateToConfirmationScreen();
+
+    void navigateToPayment(String paymentUrl);
 }

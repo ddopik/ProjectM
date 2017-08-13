@@ -67,12 +67,14 @@ public class RegisterPresenterImpl implements RegisterPresenter {
                         realmDbHelper.updateUserData(userModel.getFirstName(), userModel.getLastName(), userModel.getUserPhone(),
                                 userModel.getUserEmail(), userModel.getUserAddress(), userModel.getUserId());
                         realmDbHelper.updateCartItemsWithLoggedInUser(userModel.getUserId());
+
                         PrefUtils.setLoginProvider(mContext, LoginProviders.SERVER_LOGIN.getLoginProviderCode());
                         PrefUtils.setUserID(mContext, userModel.getUserId());
                         PrefUtils.setUserToken(mContext, registrationResponse.getRegistrationResponseData().getToken());
+
                         registerView.hideLoading();
                         registerView.finish();
-                        registerView.navigateToHomeScreen();
+                        registerView.navigate();
                     }
                 }, throwable -> {
                     if (throwable != null) {

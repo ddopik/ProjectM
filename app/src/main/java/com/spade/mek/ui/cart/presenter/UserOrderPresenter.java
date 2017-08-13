@@ -16,4 +16,6 @@ public interface UserOrderPresenter extends BasePresenter<UserDataView> {
     User getUser(String userId);
 
     void updateUserData(String firstName, String lastName, String phoneNumber, String emailAddress, String address, String userId);
+
+    void finishPaymentStatus(int paymentStatus);
 }

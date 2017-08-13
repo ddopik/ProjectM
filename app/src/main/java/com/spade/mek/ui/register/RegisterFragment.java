@@ -1,7 +1,6 @@
 package com.spade.mek.ui.register;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
@@ -33,6 +33,13 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 
     private View fragmentView;
     private RegisterPresenter registerPresenter;
+    private int type;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        type = getArguments().getInt(RegisterActivity.EXTRA_TYPE);
+    }
 
     @Nullable
     @Override
@@ -175,9 +182,12 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
     }
 
     @Override
-    public void navigateToHomeScreen() {
-        Intent intent = MainActivity.getLaunchIntent(getContext());
-        startActivity(intent);
+    public void navigate() {
+        if (type == RegisterActivity.REGISTER_TYPE) {
+            startActivity(MainActivity.getLaunchIntent(getContext()));
+        } else if (type == RegisterActivity.CHECKOUT_TYPE) {
+            startActivity(UserDataActivity.getLaunchIntent(getContext()));
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.spade.mek.ui.cart.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import com.spade.mek.utils.Validator;
 
 public class UserDataFragment extends BaseFragment implements UserDataView {
 
+    private static final int PAYMENT_REQUEST_CODE = 1001;
     public static final String EXTRA_TOTAL_COST = "EXTRA_TOTAL_COST";
     public static final int ONLINE_PAYMENT_TYPE = 0;
     public static final int CASH_ON_DELIVERY = 1;
@@ -223,6 +225,13 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         startActivity(intent);
     }
 
+    @Override
+    public void navigateToPayment(String paymentUrl) {
+        Intent intent = PaymentActivity.getLaunchIntent(getContext());
+        intent.putExtra(PaymentActivity.EXTRA_URL, paymentUrl);
+        startActivityForResult(intent, PAYMENT_REQUEST_CODE);
+    }
+
     private void chooseOnlinePayment() {
         paymentType = ONLINE_PAYMENT_TYPE;
         onlinePayment.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
@@ -238,5 +247,24 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.buttonGrey));
         cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
+    }
+
+//    private void finishPayment(int status) {
+//        if (status == PaymentActivity.PAYMENT_SUCCESS) {
+//
+//        }
+//    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                if (requestCode == PAYMENT_REQUEST_CODE) {
+                    int paymentStatus = data.getIntExtra(PaymentActivity.EXTRA_PAYMENT_STATUS, PaymentActivity.PAYMENT_SUCCESS);
+                    userOrderPresenter.finishPaymentStatus(paymentStatus);
+                }
+                break;
+        }
     }
 }
