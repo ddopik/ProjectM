@@ -28,4 +28,16 @@ public interface HomeView extends BaseView {
     void hideLatestProductsLoading();
 
     void hideLatestCausesLoading();
+
+    void hideLatestProducts();
+
+    void hideLatestCauses();
+
+    void hideUrgentCases();
+
+    void showLatestProducts();
+
+    void showLatestCauses();
+
+    void showUrgentCases();
 }

@@ -1,12 +1,18 @@
 package com.spade.mek.ui.more;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SpinnerAdapter;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
@@ -25,8 +31,8 @@ import com.spade.mek.utils.PrefUtils;
 
 public class MoreFragment extends BaseFragment implements MoreView, LoginDialogFragment.LoginDialogActions {
 
-    private View moreView;
     private boolean isLoggedIn = false;
+    private View moreView;
     private MorePresenter morePresenter;
     private LoginDialogFragment loginDialogFragment;
     private Button logBtn;
@@ -47,10 +53,29 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
 
     @Override
     protected void initViews() {
+        String appLang = PrefUtils.getAppLang(getContext());
         RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
         RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
         RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
         RelativeLayout zakatCalculatorLayout = (RelativeLayout) moreView.findViewById(R.id.zakat_calculator_layout);
+
+        ImageView arrowImage = (ImageView) moreView.findViewById(R.id.arrow_image);
+        ImageView arrowImage1 = (ImageView) moreView.findViewById(R.id.arrow_image_1);
+        ImageView arrowImage2 = (ImageView) moreView.findViewById(R.id.arrow_image_2);
+        ImageView arrowImage3 = (ImageView) moreView.findViewById(R.id.arrow_image_3);
+        ImageView arrowImage4 = (ImageView) moreView.findViewById(R.id.arrow_image_4);
+
+        if (appLang.equals(PrefUtils.ARABIC_LANG)) {
+            arrowImage.setRotationY(180);
+            arrowImage1.setRotationY(180);
+            arrowImage2.setRotationY(180);
+            arrowImage3.setRotationY(180);
+            arrowImage4.setRotationY(180);
+        }
+
+        AppCompatSpinner languageSpinner = (AppCompatSpinner) moreView.findViewById(R.id.language_spinner);
+        SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(getContext(), R.layout.type_of_donation_item, getResources().getStringArray(R.array.languages));
+        languageSpinner.setAdapter(spinnerAdapter);
 
         logBtn = (Button) moreView.findViewById(R.id.log_button);
         logBtn.setOnClickListener(v -> {
@@ -66,7 +91,21 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         newsLayout.setOnClickListener(v -> startActivity(NewsActivity.getLaunchIntent(getContext())));
         donationsLayout.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         zakatCalculatorLayout.setOnClickListener(v -> startActivity(ZakatCalculatorActivity.getLaunchIntent(getContext())));
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (position == 0)
+//                    morePresenter.changeLanguage(MorePresenterImpl.EN_LANG);
+                if (position == 1)
+                    morePresenter.changeLanguage(MorePresenterImpl.AR_LANG);
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         updateUI();
     }
 
@@ -109,5 +148,12 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     public void navigateToLoginScreen() {
         startActivity(LoginActivity.getLaunchIntent(getContext()));
         getActivity().finish();
+    }
+
+    @Override
+    public void restartActivity() {
+        Intent intent = getActivity().getIntent();
+        getActivity().finish();
+        startActivity(intent);
     }
 }

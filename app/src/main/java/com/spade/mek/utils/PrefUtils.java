@@ -59,7 +59,7 @@ public class PrefUtils {
         return getSharedPref(context).getString(APP_LANG, ENGLISH_LANG);
     }
 
-    public void setAppLang(Context context, String appLang) {
+    public static void setAppLang(Context context, String appLang) {
         getSharedPref(context).edit().putString(APP_LANG, appLang).apply();
     }
 }

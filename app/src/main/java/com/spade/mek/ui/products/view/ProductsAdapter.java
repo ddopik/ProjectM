@@ -78,9 +78,13 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
                 ((ItemViewHolder) holder).shareImageView.setVisibility(View.VISIBLE);
             }
         } else if (holder instanceof HeaderViewHolder) {
-            UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
-            urgentCasesPagerAdapter.setOnCaseClicked(this);
-            ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
+            if (urgentCaseList.isEmpty()) {
+                ((HeaderViewHolder) holder).casesViewPager.setVisibility(View.GONE);
+            } else {
+                UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
+                urgentCasesPagerAdapter.setOnCaseClicked(this);
+                ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
+            }
             ((HeaderViewHolder) holder).title.setText(title);
         }
     }
@@ -94,7 +98,6 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
     public int getItemViewType(int position) {
         if (isPositionHeader(position))
             return HEADER_TYPE;
-
         return ITEM_TYPE;
     }
 

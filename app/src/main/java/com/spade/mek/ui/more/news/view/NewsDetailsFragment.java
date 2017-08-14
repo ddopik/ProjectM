@@ -159,7 +159,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
 
         itemUrl = news.getUrl();
         if (itemUrl == null || itemUrl.isEmpty()) {
-            shareImage.setVisibility(View.GONE);
+            shareImage.setVisibility(View.INVISIBLE);
         } else {
             shareImage.setVisibility(View.VISIBLE);
         }

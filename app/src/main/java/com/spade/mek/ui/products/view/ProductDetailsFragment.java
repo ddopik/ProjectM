@@ -1,6 +1,5 @@
 package com.spade.mek.ui.products.view;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -204,7 +203,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
             productPrice.setText(String.format(getString(R.string.egp), String.valueOf(products.getProductPrice())));
             if (products.getProductTarget() >= products.getProductDone())
                 remainingAmount.setText(getResources().getQuantityString(R.plurals.items_plural,
-                        (products.getProductTarget() - products.getProductDone()),(products.getProductTarget() - products.getProductDone())));
+                        (products.getProductTarget() - products.getProductDone()), (products.getProductTarget() - products.getProductDone())));
             else
                 remainingAmount.setVisibility(View.GONE);
         }
@@ -226,7 +225,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
 
         itemUrl = products.getProductUrl();
         if (itemUrl == null || itemUrl.isEmpty()) {
-            shareImage.setVisibility(View.GONE);
+            shareImage.setVisibility(View.INVISIBLE);
         } else {
             shareImage.setVisibility(View.VISIBLE);
         }

@@ -1,0 +1,157 @@
+<resources>
+    <string name="app_name">مصر الخير</string>
+    <string name="facebook_app_id">1540467815995295</string>
+    <string name="fb_login_protocol_scheme">fb1540467815995295</string>
+    <string name="maps_api_key">AIzaSyBYy96pA-a846ZUFrE6WPCBberWUZ2MGh0</string>
+
+    <string name="title_home">الرئيسية</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_products">أوجه التبرع</string>
+    <string name="title_causes">شارك في الخير</string>
+    <string name="title_more">المزيد</string>
+    <string name="login_with">الدخول عن طريق</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="welcome_statement"> تطبيق مؤسسة مصر الخير \n أهلاً بيك في</string>
+    <string name="continue_as_guest">ادخل بدون تسجيل</string>
+    <string name="something_wrong">حدث خطأ ما</string>
+    <string name="latest_products">أوجه التبرع</string>
+    <string name="latest_causes">أحدث مشاركات الخير</string>
+    <string name="check_all">المزيد</string>
+    <string name="egp">%s جنيه مصري</string>
+    <string name="urgent_case">حالة عاجلة</string>
+    <string name="donate_now">تبرع الآن</string>
+    <string name="all_products">جميع المنتجات</string>
+    <string name="all_causes">جميع مشاركات الخير</string>
+    <string name="item_to_go"> من المنتج %s متبقي </string>
+    <string name="egp_to_go">%sEGP متبقي</string>
+    <string name="published_at">نشر في %s</string>
+    <string name="cart">تبرعاتي</string>
+    <string name="custom_amount">المبلغ</string>
+    <string name="add_to_cart">أضف لتبرعاتك</string>
+    <string name="add_money_description">الذي تود أن تتبرع به \n أضف المبلغ</string>
+    <string name="egp_text">جنيه مصري</string>
+    <string name="title_product">المنتج</string>
+    <string name="title_cause">شارك في الخير</string>
+    <string name="proceed">تابع عملية التبرع</string>
+    <string name="check_out">ادفع تبرعك</string>
+    <string name="total_items">%s إجمالي التبرعات</string>
+    <string name="user_name">الاسم</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="first_name">الاسم الأول</string>
+    <string name="last_name">الاسم الأخير</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="address">العنوان</string>
+    <string name="type_of_donation">نوع التبرع</string>
+    <string name="cash_on_deleivery">تحصيل التبرع من المنزل</string>
+    <string name="misr_collector">سيصلك مندوب مؤسسة مصر الخير خلال 72 ساعة ليقوم بإتمام الطلب</string>
+    <string name="enter_first_name">برجاء ادخال الاسم الأول</string>
+    <string name="enter_last_name">برجاء ادخال الاسم الأخير</string>
+    <string name="enter_user_name">برجاء ادخال اسم المستخدم</string>
+    <string name="enter_email_address">برجاء ادخال البريد الإلكتروني</string>
+    <string name="enter_phone_number">برجاء ادخال رقم الهاتف</string>
+    <string name="enter_address">برجاء ادخال العنوان</string>
+    <string name="enter_valid_email_address"> برجاءادخال بريد إلكتروني صحيح </string>
+    <string name="enter_city">برجاء ادخال المدينة</string>
+    <string name="enter_subject">برجاء ادخال المحتوي</string>
+    <string name="enter_message">برجاء ادخال رسالة</string>
+    <string name="enter_password">برجاء ادخال كلمة السر</string>
+    <string name="select_type_of_donation">اختر نوع التبرع</string>
+    <string name="donation_success">سيصلك مندوب مؤسسة مصر الخير خلال 72 ساعة ليقوم بإتمام الطلب %sEGP لقد قمت بتسجيل طلب تبرع بمبلغ  \n شكراً لدعمك مؤسسة مصر الخير!</string>
+    <string name="thank_you">شكراً</string>
+    <string name="for_help">For helping us to help others </string>
+    <string name="your_cart">تبرعاتي</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="dialog_login_description"> أو بيانات تبرعاتك \n ادخل بدون تسجيل، مع العلم بإنه لن يتم الاحتفاظ ببياناتك</string>
+    <string name="profile">حسابك الشخصي</string>
+    <string name="donation_channels">وسائل التبرع</string>
+    <string name="contact_us">اتصل بنا</string>
+    <string name="news">الأخبار</string>
+    <string name="language">اللغة</string>
+    <string name="arabic">العربية</string>
+    <string name="english">الإنجليزية</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="coming_soon">قريباً</string>
+    <string name="cart_empty">Your Cart is Empty</string>
+    <string name="nothing_added">Nothing is added to your cart yet</string>
+    <string name="related_news">أخبار أخرى</string>
+    <string name="donate_through_channel">يمكنك التبرع عن طريق:</string>
+    <string name="store_address">العنوان</string>
+    <string name="phone_no">رقم الهاتف.\t </string>
+    <string name="phone_code">(02)</string>
+    <string name="fax">رقم الفاكس</string>
+    <string name="contract_sector_fax">رقم فاكس قطاع التعاقدات</string>
+    <string name="working_hours">ساعات العمل</string>
+    <string name="check_direction">اوصل للفرع عن طريق خرائط جوجل</string>
+    <string name="stores">فروع مؤسسة مصر الخير</string>
+    <string name="visit_stores">مستنيينك في أي فرع من فروع مؤسسة مصر الخير</string>
+    <string name="available_stores">الفروع</string>
+    <string name="available_banks">البنوك</string>
+    <string name="city">المحافظة</string>
+    <string name="area">المنطقة</string>
+    <string name="swift" formatted="false">سويفت: %s \n%s</string>
+    <string name="currency">\t(%s)</string>
+    <string name="donate_outside_egypt">ممكن تحوّل من حسابك البنكي باستخدام البيانات التالية\n للتبرع من خارج مصر</string>
+    <string name="banks">البنوك</string>
+    <string name="view_all_banks">جميع البنوك</string>
+    <string name="call">اتصل الآن</string>
+    <string name="message_us">راسلنا</string>
+    <string name="subject">العنوان</string>
+    <string name="message">الرسالة</string>
+    <string name="send_message">أرسل رسالة</string>
+    <string name="message_sent">تم إرسال رسالتك بنجاح</string>
+    <string name="money_zakat">زكاة المال</string>
+    <string name="money_amount">ما هو قيمة المال الذي تملكه؟</string>
+    <string name="asset_zakat">زكاة الأصول والممتلكات</string>
+    <string name="shares_value">ما هي قيمة الأسهم التي تمتلكها في السوق؟</string>
+    <string name="gained_profit">ما هي قيمة الأرباح التي تم الحصول عليها؟</string>
+    <string name="bonds_value">ما هي قيمة السندات التي تمتلكها في السوق؟</string>
+    <string name="gold_zakat">زكاة الذهب</string>
+    <string name="gold_gram_price"> أدخل قيمة الذهب الحالية بالجرام</string>
+    <string name="gold_weight"> ما هو وزن الذهب الذي تمتلكه؟</string>
+    <string name="real_estate_zakat">زكاة العقارات المملوكة</string>
+    <string name="rent_value">ما هو قيمة إيجار العقار الشهري الذي تملكه؟</string>
+    <string name="zakat_value">قيمة الزكاة</string>
+    <string name="calculator">قيمة الزكاة</string>
+    <string name="choose_category">يمكنك اختيار ما يناسبك من القائمة بالأسفل </string>
+    <string name="filter">تصفية</string>
+    <string name="clear">Clear</string>
+    <string name="online_payment">تبرع أونلاين</string>
+    <string name="payment_method">اختر طريقة الدفع</string>
+    <string name="choose_another_channel">اختر وسيلة تبرع أخري</string>
+    <string name="password">كلمة السر</string>
+    <string name="confirm_password">تأكيد كلمة السر</string>
+    <string name="register">حساب جديد</string>
+    <string-array name="type_of_donations">
+        <item>نوع التبرع</item>
+        <item>زكاة</item>
+        <item>Charity</item>
+        <item>Donation</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>الإنجليزية</item>
+        <item>العربية</item>
+    </string-array>
+
+    <string-array name="donation_channels">
+        <item>البنوك</item>
+        <item>فروع مؤسسة مصر الخير</item>
+        <item>فوري</item>
+        <item>تحصيل التبرع من المنزل</item>
+        <item>التبرع باستخدام بطاقتك الائتمانية</item>
+
+    </string-array>
+    <plurals name="items_plural">
+        <item quantity="one">%d المتبقي من المنتج</item>
+        <item quantity="two">%d المتبقي من المنتج</item>
+        <item quantity="other">%d المتبقي من المنتج</item>
+        <item quantity="many">%d المتبقي من المنتج</item>
+        <item quantity="few">%d المتبقي من المنتج</item>
+        <item quantity="zero">%d المتبقي من المنتج</item>
+    </plurals>
+    <string name="title_activity_maps">الخريطة</string>
+</resources>

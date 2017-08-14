@@ -82,9 +82,13 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             }
 
         } else if (holder instanceof HeaderViewHolder) {
-            UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
-            urgentCasesPagerAdapter.setOnCaseClicked(this);
-            ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
+            if (urgentCaseList.isEmpty()) {
+                ((HeaderViewHolder) holder).casesViewPager.setVisibility(View.GONE);
+            } else {
+                UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
+                urgentCasesPagerAdapter.setOnCaseClicked(this);
+                ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
+            }
             ((HeaderViewHolder) holder).title.setText(title);
 
         }

@@ -37,7 +37,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|start"
                 android:layout_marginLeft="@dimen/dp32"
                 android:layout_marginStart="@dimen/dp32"
                 app:srcCompat="@drawable/ic_triangle" />
@@ -55,7 +55,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     app:srcCompat="@drawable/ic_share" />
 
             </RelativeLayout>

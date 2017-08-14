@@ -1,5 +1,6 @@
 package com.spade.mek.ui.splash;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -9,9 +10,12 @@ import android.widget.ImageView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.LoginActivity;
+import com.spade.mek.ui.more.MorePresenterImpl;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
+
+import java.util.Locale;
 
 /**
  * Created by spade on 6/7/17.
@@ -29,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
         String appLang = PrefUtils.getAppLang(getApplicationContext());
         imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
-
+        changeLanguage();
         counterToNavigate();
     }
 
@@ -47,5 +51,18 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(MainActivity.getLaunchIntent(this));
         }
         finish();
+    }
+
+    @SuppressWarnings("deprecation")
+    public void changeLanguage() {
+        Locale locale;
+        if (PrefUtils.getAppLang(this).equals(PrefUtils.ARABIC_LANG)) {
+            locale = new Locale(MorePresenterImpl.AR_LANG);
+        } else {
+            locale = new Locale(MorePresenterImpl.EN_LANG);
+        }
+        Configuration conf = new Configuration();
+        conf.locale = locale;
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
     }
 }

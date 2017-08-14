@@ -32,6 +32,8 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribe(latestProductsResponse -> {
                     if (latestProductsResponse != null && latestProductsResponse.getLatestProductsList() != null) {
                         mHomeView.showLatestProducts(latestProductsResponse.getLatestProductsList());
+                    } else {
+                        mHomeView.hideLatestProducts();
                     }
                     mHomeView.hideLatestProductsLoading();
                 }, throwable -> {
@@ -39,6 +41,7 @@ public class HomePresenterImpl implements HomePresenter {
                         mHomeView.onError(throwable.getMessage());
                     }
                     mHomeView.hideLatestProductsLoading();
+                    mHomeView.hideLatestProducts();
                 });
     }
 
@@ -51,6 +54,8 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribe(latestCausesResponse -> {
                     if (latestCausesResponse != null && latestCausesResponse.getProductsList() != null) {
                         mHomeView.showLatestCauses(latestCausesResponse.getProductsList());
+                    } else {
+                        mHomeView.hideLatestCauses();
                     }
                     mHomeView.hideLatestCausesLoading();
                 }, throwable -> {
@@ -58,6 +63,7 @@ public class HomePresenterImpl implements HomePresenter {
                         mHomeView.onError(throwable.getMessage());
                     }
                     mHomeView.hideLatestCausesLoading();
+                    mHomeView.hideLatestCauses();
                 });
     }
 
@@ -68,12 +74,15 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urgentCasesResponse -> {
-                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCases()!= null) {
+                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCases() != null) {
                         mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCases());
+                    } else {
+                        mHomeView.hideUrgentCases();
                     }
                     mHomeView.hideUrgentCasesLoading();
                 }, throwable -> {
                     mHomeView.hideUrgentCasesLoading();
+                    mHomeView.hideUrgentCases();
                     if (throwable != null) {
                         mHomeView.onError(throwable.getMessage());
                     }

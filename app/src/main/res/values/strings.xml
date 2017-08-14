@@ -132,6 +132,11 @@
         <item>Donation</item>
     </string-array>
 
+    <string-array name="languages">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+
     <string-array name="donation_channels">
         <item>Banks</item>
         <item>Stores</item>

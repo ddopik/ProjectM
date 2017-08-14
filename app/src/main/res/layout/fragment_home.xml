@@ -28,7 +28,8 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/urgent_cases_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/view_pager_height" />
+                android:layout_height="@dimen/view_pager_height"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -41,7 +42,8 @@
             <RelativeLayout
                 android:id="@+id/check_products_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/latest_products_text_view"
@@ -66,14 +68,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/arrow_right"
-                        android:layout_toStartOf="@+id/arrow_right"
+                        android:layout_toLeftOf="@+id/products_arrow"
+                        android:layout_toStartOf="@+id/products_arrow"
                         android:text="@string/check_all"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/material_text_subhead" />
 
                     <ImageView
-                        android:id="@+id/arrow_right"
+                        android:id="@+id/products_arrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -112,19 +114,20 @@
             <RelativeLayout
                 android:id="@+id/check_causes_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/latest_causes_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:text="@string/latest_causes"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/material_text_title"
-                    android:textStyle="bold"
-                    android:layout_alignParentLeft="true" />
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:id="@+id/check_all_causes"
@@ -137,14 +140,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/causes_arrow_right"
-                        android:layout_toStartOf="@+id/causes_arrow_right"
+                        android:layout_toLeftOf="@+id/causes_arrow"
+                        android:layout_toStartOf="@+id/causes_arrow"
                         android:text="@string/check_all"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/material_text_subhead" />
 
                     <ImageView
-                        android:id="@+id/causes_arrow_right"
+                        android:id="@+id/causes_arrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
