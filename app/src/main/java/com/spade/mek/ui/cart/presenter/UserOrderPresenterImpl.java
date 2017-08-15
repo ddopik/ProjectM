@@ -108,6 +108,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
             public void onStatusChangedFailed() {
                 realmDbHelper.updateOrderStatus(orderId, false);
                 userDataView.hideLoading();
+                userDataView.finish();
             }
         });
     }

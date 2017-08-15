@@ -26,6 +26,7 @@ import com.spade.mek.ui.cart.presenter.UserOrderPresenter;
 import com.spade.mek.ui.cart.presenter.UserOrderPresenterImpl;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
+import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.Validator;
 
@@ -59,6 +60,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_user_data, container, false);
         initViews();
+        overrideFonts(getContext(), fragmentView);
         return fragmentView;
     }
 
@@ -94,7 +96,10 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 donationTypePosition = position;
-                donationTypeString = getResources().getStringArray(R.array.type_of_donations)[position];
+                if (position == 1)
+                    donationTypeString = getString(R.string.zakat);
+                if (position == 2)
+                    donationTypeString = getString(R.string.sadaqah);
             }
 
             @Override
@@ -102,6 +107,9 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
             }
         });
+        if (PrefUtils.getLoginProvider(getContext()) == LoginProviders.NONE.getLoginProviderCode()) {
+            onlinePayment.setVisibility(View.GONE);
+        }
         onlinePayment.setOnClickListener(v -> chooseOnlinePayment());
         cashOnDelivery.setOnClickListener(v -> chooseCashOnDelivery());
         chooseCashOnDelivery();
@@ -262,7 +270,11 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
             case Activity.RESULT_OK:
                 if (requestCode == PAYMENT_REQUEST_CODE) {
                     int paymentStatus = data.getIntExtra(PaymentActivity.EXTRA_PAYMENT_STATUS, PaymentActivity.PAYMENT_SUCCESS);
-                    userOrderPresenter.finishPaymentStatus(paymentStatus);
+                    if (paymentStatus == 0) {
+                        userOrderPresenter.finishPaymentStatus(PaymentActivity.PAYMENT_SUCCESS);
+                    } else {
+                        userOrderPresenter.finishPaymentStatus(PaymentActivity.PAYMENT_FAIL);
+                    }
                 }
                 break;
         }

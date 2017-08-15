@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         ImageView actionImage = (ImageView) itemView.findViewById(R.id.action_image_view);
         ImageView shareImage = (ImageView) itemView.findViewById(R.id.share_image_view);
         ImageView caseImage = (ImageView) itemView.findViewById(R.id.case_image_view);
+        ImageView isUrgentImage = (ImageView) itemView.findViewById(R.id.ic_urgent_label);
         FrameLayout caseLayout = (FrameLayout) itemView.findViewById(R.id.case_layout);
 
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
@@ -63,6 +66,9 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         caseTitle.setText(urgentCase.getProductTitle());
 
         if (urgentCase.isUrgent()) {
+            if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                isUrgentImage.setRotationY(180);
+            }
             urgentCaseLabel.setVisibility(View.VISIBLE);
         } else {
             urgentCaseLabel.setVisibility(View.GONE);
@@ -75,6 +81,8 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         }
 
         container.addView(itemView);
+        FontUtils.overrideFonts(mContext, itemView);
+
         return itemView;
     }
 

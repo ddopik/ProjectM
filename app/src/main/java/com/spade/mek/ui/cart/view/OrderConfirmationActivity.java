@@ -2,11 +2,15 @@ package com.spade.mek.ui.cart.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -31,10 +35,30 @@ public class OrderConfirmationActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
         TextView confirmationTextView = (TextView) findViewById(R.id.confirmation_message);
+        LinearLayout parentLayout = (LinearLayout) findViewById(R.id.parent_layout);
         confirmationTextView.setText(String.format(getString(R.string.donation_success), getIntent().getStringExtra(UserDataFragment.EXTRA_TOTAL_COST)));
 
         String appLang = PrefUtils.getAppLang(getApplicationContext());
         imageView.setImageResource(ImageUtils.getOrderConfirmationLogo(appLang));
+        overrideFonts(this, parentLayout);
+    }
+
+    private void overrideFonts(Context context, View v) {
+        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
+            try {
+                if (v instanceof ViewGroup) {
+                    ViewGroup vg = (ViewGroup) v;
+                    for (int i = 0; i < vg.getChildCount(); i++) {
+                        View child = vg.getChildAt(i);
+
+                        overrideFonts(context, child);
+                    }
+                } else if (v instanceof TextView) {
+                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
+                }
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

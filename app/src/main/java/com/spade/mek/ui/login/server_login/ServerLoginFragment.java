@@ -47,6 +47,7 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_server_login, container, false);
         initViews();
+        overrideFonts(getContext(), fragmentView);
         return fragmentView;
     }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.more.donation_channels.model.Store;
+import com.spade.mek.utils.FontUtils;
 
 import java.util.List;
 
@@ -105,6 +106,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
                 store.getLat(),
                 store.getLng()));
 
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.spade.mek.ui.more.donation_channels.view;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +23,7 @@ public class DonationChannelsFragment extends BaseFragment implements DonationCh
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.donation_channel_fragment, container, false);
         init(view);
+        overrideFonts(getContext(), view);
         return view;
     }
 

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.utils.FontUtils;
 
 import java.text.DecimalFormat;
 
@@ -33,6 +34,7 @@ public class ZakatCalculatorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.zakat_calculator, container, false);
         init(view);
+        FontUtils.overrideFonts(getContext(), view);
         return view;
     }
 

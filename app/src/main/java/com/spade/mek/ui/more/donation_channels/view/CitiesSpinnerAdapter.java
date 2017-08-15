@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.more.donation_channels.model.City;
+import com.spade.mek.utils.FontUtils;
 
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class CitiesSpinnerAdapter extends BaseAdapter {
         View row = layoutInflater.inflate(R.layout.type_of_donation_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(row);
         viewHolder.cityText.setText(city.getCityName());
+        FontUtils.overrideFonts(mContext, row);
         return row;
     }
 

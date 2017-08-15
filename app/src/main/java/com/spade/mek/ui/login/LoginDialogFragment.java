@@ -1,6 +1,8 @@
 package com.spade.mek.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.ui.login.server_login.ServerLoginActivity;
 import com.spade.mek.ui.register.RegisterActivity;
+import com.spade.mek.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/28/17.
@@ -36,6 +39,7 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View dialogView = inflater.inflate(R.layout.dialog_login, container, false);
         init(dialogView);
+        overrideFonts(getContext(), dialogView);
         return dialogView;
     }
 
@@ -66,6 +70,24 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
             getActivity().finish();
             startActivity(intent);
         });
+    }
+
+    private void overrideFonts(Context context, View v) {
+        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
+            try {
+                if (v instanceof ViewGroup) {
+                    ViewGroup vg = (ViewGroup) v;
+                    for (int i = 0; i < vg.getChildCount(); i++) {
+                        View child = vg.getChildAt(i);
+
+                        overrideFonts(context, child);
+                    }
+                } else if (v instanceof TextView) {
+                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
+                }
+            } catch (Exception e) {
+            }
+        }
     }
 
     public void setLoginDialogActions(LoginDialogActions loginDialogActions) {

@@ -46,6 +46,7 @@ public class BanksFragment extends BaseFragment implements DonationBanksView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         banksView = inflater.inflate(R.layout.fragment_bank, container, false);
         initViews();
+        overrideFonts(getContext(), banksView);
         return banksView;
     }
 

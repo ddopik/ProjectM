@@ -56,6 +56,7 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
+        overrideFonts(getContext(),mProductsView);
         return mProductsView;
     }
 

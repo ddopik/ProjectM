@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.utils.FontUtils;
 
 /**
  * Created by Ayman Abouzeid on 7/13/17.
@@ -37,6 +38,7 @@ public class DonationChannelsAdapter extends RecyclerView.Adapter<DonationChanne
         holder.donationTitle.setText(mContext.getResources().getStringArray(R.array.donation_channels)[position]);
         holder.donationImage.setImageResource(typedArray.getResourceId(position, 0));
         holder.itemView.setOnClickListener(v -> onChannelClicked.onChannelClicked(position));
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
     @Override

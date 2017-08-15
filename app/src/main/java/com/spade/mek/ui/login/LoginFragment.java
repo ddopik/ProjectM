@@ -34,6 +34,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_login, container, false);
         initViews();
+        overrideFonts(getContext(), mView);
         return mView;
     }
 

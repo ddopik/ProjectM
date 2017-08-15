@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.home.FilterCategory;
+import com.spade.mek.utils.FontUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,8 @@ public class FilterCategoriesAdapter extends RecyclerView.Adapter<FilterCategori
             }
             onFilterCategoryClicked.onFilterClicked(filterCategory);
         });
+
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
     public void setOnFilterCategoryClicked(OnFilterCategoryClicked onFilterCategoryClicked) {

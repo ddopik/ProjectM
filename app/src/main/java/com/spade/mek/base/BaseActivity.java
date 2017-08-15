@@ -1,5 +1,7 @@
 package com.spade.mek.base;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -67,6 +70,24 @@ public abstract class BaseActivity extends AppCompatActivity {
                 numberTextView.setVisibility(View.VISIBLE);
             } else {
                 numberTextView.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public void overrideFonts(Context context, View v) {
+        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
+            try {
+                if (v instanceof ViewGroup) {
+                    ViewGroup vg = (ViewGroup) v;
+                    for (int i = 0; i < vg.getChildCount(); i++) {
+                        View child = vg.getChildAt(i);
+
+                        overrideFonts(context, child);
+                    }
+                } else if (v instanceof TextView) {
+                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
+                }
+            } catch (Exception e) {
             }
         }
     }

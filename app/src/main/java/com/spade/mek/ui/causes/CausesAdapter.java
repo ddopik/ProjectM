@@ -1,6 +1,7 @@
 package com.spade.mek.ui.causes;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.spade.mek.R;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.List;
 
@@ -76,6 +78,9 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
                 ((ItemViewHolder) holder).shareImageView.setVisibility(View.VISIBLE);
             }
             if (latestCause.isUrgent()) {
+                if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                    ((ItemViewHolder) holder).isUrgentImageView.setRotationY(180);
+                }
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
             } else {
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.GONE);
@@ -85,12 +90,32 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             if (urgentCaseList.isEmpty()) {
                 ((HeaderViewHolder) holder).casesViewPager.setVisibility(View.GONE);
             } else {
+                ((HeaderViewHolder) holder).casesViewPager.setVisibility(View.VISIBLE);
                 UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
                 urgentCasesPagerAdapter.setOnCaseClicked(this);
                 ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
             }
             ((HeaderViewHolder) holder).title.setText(title);
 
+        }
+        overrideFonts(mContext, holder.itemView);
+    }
+
+    private void overrideFonts(Context context, View v) {
+        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
+            try {
+                if (v instanceof ViewGroup) {
+                    ViewGroup vg = (ViewGroup) v;
+                    for (int i = 0; i < vg.getChildCount(); i++) {
+                        View child = vg.getChildAt(i);
+
+                        overrideFonts(context, child);
+                    }
+                } else if (v instanceof TextView) {
+                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
+                }
+            } catch (Exception e) {
+            }
         }
     }
 

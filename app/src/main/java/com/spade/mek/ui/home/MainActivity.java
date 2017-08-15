@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -86,7 +88,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         TextView clearFilters = (TextView) findViewById(R.id.clear_filters);
 
         RecyclerView filterCategoriesRecycler = (RecyclerView) findViewById(R.id.filter_categories);
-
+        RelativeLayout parentLayout = (RelativeLayout) findViewById(R.id.container);
         filterButton = (FloatingActionButton) findViewById(R.id.filter_btn);
         selectedFiltersText = (TextView) findViewById(R.id.selected_filter_text);
         filterViewLayout = (LinearLayout) findViewById(R.id.filter_view_layout);
@@ -94,6 +96,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
         clearFilters.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ahBottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomNavigation);
+        ahBottomNavigation.setTitleTypeface(Typeface.createFromAsset(getAssets(), "fonts/bahij_semi_bold.ttf"));
         ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         ahBottomNavigation.setAccentColor(Color.parseColor("#E7891E"));
         ahBottomNavigation.setInactiveColor(Color.parseColor("#01513e"));
@@ -131,6 +134,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         clearFilters.setOnClickListener(v -> clearFilters());
         openHomeFragment();
         getFilterCategories();
+        overrideFonts(this, parentLayout);
     }
 
     private void clearFilters() {

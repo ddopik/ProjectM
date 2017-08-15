@@ -40,6 +40,7 @@ public class SendMessageFragment extends BaseFragment implements SendMessageView
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_send_messsage, container, false);
         initViews();
+        overrideFonts(getContext(), fragmentView);
         return fragmentView;
     }
 

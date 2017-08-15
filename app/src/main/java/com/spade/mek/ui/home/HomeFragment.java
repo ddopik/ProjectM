@@ -57,6 +57,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         initViews();
+        overrideFonts(getContext(), homeView);
         return homeView;
     }
 

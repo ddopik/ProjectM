@@ -54,6 +54,7 @@ public class CausesFragment extends BaseFragment implements CausesView,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
+        overrideFonts(getContext(), mProductsView);
         return mProductsView;
     }
 
@@ -118,6 +119,7 @@ public class CausesFragment extends BaseFragment implements CausesView,
         }
         causesPresenter.filterCauses(PrefUtils.getAppLang(context), requestJsonObject);
     }
+
     @Override
     public void onError(String message) {
         if (getContext() != null)

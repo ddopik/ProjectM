@@ -50,6 +50,7 @@ public class StoresFragment extends BaseFragment implements DonationStoresView, 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         storesView = inflater.inflate(R.layout.fragment_stores, container, false);
         initViews();
+        overrideFonts(getContext(), storesView);
         return storesView;
     }
 

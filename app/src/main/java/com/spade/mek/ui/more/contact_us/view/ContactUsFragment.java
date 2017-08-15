@@ -62,6 +62,7 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         contactUsView = inflater.inflate(R.layout.fragment_contact_us, container, false);
         initViews();
+        overrideFonts(getContext(), contactUsView);
         return contactUsView;
     }
 

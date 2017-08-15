@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.more.donation_channels.model.Bank;
+import com.spade.mek.utils.FontUtils;
 
 import java.util.List;
 
@@ -44,8 +45,9 @@ public class BanksAdapter extends RecyclerView.Adapter<BanksAdapter.BanksViewHol
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         holder.categoriesRecyclerView.setAdapter(bankCategoriesAdapter);
         holder.categoriesRecyclerView.setLayoutManager(layoutManager);
-
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
+
 
     @Override
     public int getItemCount() {

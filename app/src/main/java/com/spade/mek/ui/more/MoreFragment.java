@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SpinnerAdapter;
 
@@ -42,6 +43,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         moreView = inflater.inflate(R.layout.fragment_more, container, false);
         initViews();
+        overrideFonts(getContext(), moreView);
         return moreView;
     }
 
@@ -58,6 +60,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
         RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
         RelativeLayout zakatCalculatorLayout = (RelativeLayout) moreView.findViewById(R.id.zakat_calculator_layout);
+        LinearLayout parentLayout = (LinearLayout) moreView.findViewById(R.id.parent_layout);
 
         ImageView arrowImage = (ImageView) moreView.findViewById(R.id.arrow_image);
         ImageView arrowImage1 = (ImageView) moreView.findViewById(R.id.arrow_image_1);
@@ -91,12 +94,19 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         newsLayout.setOnClickListener(v -> startActivity(NewsActivity.getLaunchIntent(getContext())));
         donationsLayout.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         zakatCalculatorLayout.setOnClickListener(v -> startActivity(ZakatCalculatorActivity.getLaunchIntent(getContext())));
+
+        if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG)) {
+            languageSpinner.setSelection(0);
+        } else {
+            languageSpinner.setSelection(1);
+        }
+
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (position == 0)
-//                    morePresenter.changeLanguage(MorePresenterImpl.EN_LANG);
-                if (position == 1)
+                if (position == 0 && !PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG))
+                    morePresenter.changeLanguage(MorePresenterImpl.EN_LANG);
+                if (position == 1 && !PrefUtils.getAppLang(getContext()).equals(PrefUtils.ARABIC_LANG))
                     morePresenter.changeLanguage(MorePresenterImpl.AR_LANG);
 
             }

@@ -46,6 +46,7 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_register, container, false);
         initViews();
+        overrideFonts(getContext(), fragmentView);
         return fragmentView;
     }
 

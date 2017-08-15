@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.more.donation_channels.model.BankCategory;
+import com.spade.mek.utils.FontUtils;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         holder.categoryTitle.setText(bankCategory.getCategoryName());
         holder.currencyTitle.setText(String.format(mContext.getString(R.string.currency), bankCategory.getCurrency()));
         holder.swiftCode.setText(String.format(mContext.getString(R.string.swift), bankCategory.getSwiftCodes().get(0), bankCategory.getBankAccount()));
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
     @Override

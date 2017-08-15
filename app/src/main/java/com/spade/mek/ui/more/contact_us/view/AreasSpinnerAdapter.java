@@ -1,6 +1,7 @@
 package com.spade.mek.ui.more.contact_us.view;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class AreasSpinnerAdapter extends BaseAdapter {
         View row = layoutInflater.inflate(R.layout.type_of_donation_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(row);
         viewHolder.cityText.setText(area.getArea());
+        viewHolder.cityText.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fonts/bahij_semi_bold.ttf"));
         return row;
     }
 

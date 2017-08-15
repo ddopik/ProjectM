@@ -23,7 +23,8 @@ import com.spade.mek.R;
  */
 
 public class PaymentActivity extends AppCompatActivity {
-    public static final int PAYMENT_SUCCESS = 0;
+    public static final int PAYMENT_SUCCESS = 1;
+    public static final int PAYMENT_FAIL = 2;
     public static final String EXTRA_PAYMENT_STATUS = "EXTRA_PAYMENT_STATUS";
     public static final String EXTRA_URL = "EXTRA_URL";
     private static final String STATUS_PARAM = "vpc_TxnResponseCode";

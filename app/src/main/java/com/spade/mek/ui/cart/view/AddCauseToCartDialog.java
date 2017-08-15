@@ -1,5 +1,7 @@
 package com.spade.mek.ui.cart.view;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -19,6 +21,7 @@ import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
 import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
+import com.spade.mek.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/22/17.
@@ -53,8 +56,29 @@ public class AddCauseToCartDialog extends DialogFragment {
         View dialogView = inflater.inflate(R.layout.dialog_product, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         init(dialogView);
+        overrideFonts(getContext(), dialogView);
         return dialogView;
     }
+
+
+    private void overrideFonts(Context context, View v) {
+        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
+            try {
+                if (v instanceof ViewGroup) {
+                    ViewGroup vg = (ViewGroup) v;
+                    for (int i = 0; i < vg.getChildCount(); i++) {
+                        View child = vg.getChildAt(i);
+
+                        overrideFonts(context, child);
+                    }
+                } else if (v instanceof TextView) {
+                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
+
 
     private void init(View view) {
         quantityEditText = (EditText) view.findViewById(R.id.quantityEditText);

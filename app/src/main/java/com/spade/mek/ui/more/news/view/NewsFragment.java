@@ -45,6 +45,7 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsAdapter.
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         newsView = inflater.inflate(R.layout.fragment_news, container, false);
         initViews();
+        overrideFonts(getContext(), newsView);
         return newsView;
     }
 

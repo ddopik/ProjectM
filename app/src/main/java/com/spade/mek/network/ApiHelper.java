@@ -225,7 +225,7 @@ public class ApiHelper {
 
     public static boolean changeStatus(JSONObject requestJson, ChangePaymentStatus changePaymentStatus) {
         success = false;
-        AndroidNetworking.post(CREATE_ORDER_URL)
+        AndroidNetworking.post(CHANGE_PAYMENT_STATUS)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
                 .build()

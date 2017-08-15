@@ -125,11 +125,13 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
+    <string name="zakat">Zakat</string>
+    <string name="sadaqah">Sadaqa</string>
+    <string name="payment_error"></string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
-        <item>Charity</item>
-        <item>Donation</item>
+        <item>Sadaqa</item>
     </string-array>
 
     <string-array name="languages">
@@ -151,6 +153,14 @@
         <item quantity="many">%d Items to go</item>
         <item quantity="few">%d Items to go</item>
         <item quantity="zero">%d Items to go</item>
+    </plurals>
+
+    <plurals name="total_items_plural">
+        <item quantity="one">Total %d Items</item>
+        <item quantity="other">Total %d Items</item>
+        <item quantity="many">Total %d Items</item>
+        <item quantity="few">Total %d Items</item>
+        <item quantity="zero">Total %d Items</item>
     </plurals>
     <string name="title_activity_maps">Map</string>
 </resources>

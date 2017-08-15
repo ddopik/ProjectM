@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.List;
 
@@ -55,9 +57,6 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
             Products latestProducts = productsList.get(position - 1);
             ((ItemViewHolder) holder).productTitle.setText(latestProducts.getProductTitle());
             ((ItemViewHolder) holder).productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(latestProducts.getProductPrice())));
-//            ((ItemViewHolder) holder).productImage.setDefaultImageResId(defaultDrawableResId);
-//            ((ItemViewHolder) holder).productImage.setErrorImageResId(defaultDrawableResId);
-//            ((ItemViewHolder) holder).productImage.setImageUrl(latestProducts.getProductImage());
 
             VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
             GlideApp.with(mContext).load(latestProducts.getProductImage()).centerCrop().
@@ -68,6 +67,9 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
             ((ItemViewHolder) holder).addToCartImageView.setOnClickListener(v -> productActions.onAddToCartClicked(latestProducts));
 
             if (latestProducts.isUrgent()) {
+                if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                    ((ItemViewHolder) holder).isUrgentImageView.setRotationY(180);
+                }
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
             } else {
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.GONE);
@@ -81,13 +83,17 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
             if (urgentCaseList.isEmpty()) {
                 ((HeaderViewHolder) holder).casesViewPager.setVisibility(View.GONE);
             } else {
+                ((HeaderViewHolder) holder).casesViewPager.setVisibility(View.VISIBLE);
                 UrgentCasesPagerAdapter urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(mContext, urgentCaseList, defaultDrawableResId);
                 urgentCasesPagerAdapter.setOnCaseClicked(this);
                 ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
             }
             ((HeaderViewHolder) holder).title.setText(title);
         }
+
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
+
 
     @Override
     public int getItemCount() {

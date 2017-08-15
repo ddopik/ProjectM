@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.List;
 
@@ -70,11 +72,16 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
         }
 
         if (latestCause.isUrgent()) {
+            if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                holder.isUrgentImageView.setRotationY(180);
+            }
             holder.isUrgentImageView.setVisibility(View.VISIBLE);
         } else {
             holder.isUrgentImageView.setVisibility(View.GONE);
         }
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
+
 
     private void animate(SeekBar seekBar, int progress, int max) {
         p = progress;

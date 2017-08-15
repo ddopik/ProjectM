@@ -45,6 +45,7 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         cartView = inflater.inflate(R.layout.fragment_cart, container, false);
         initViews();
+        overrideFonts(getContext(), cartView);
         return cartView;
     }
 
@@ -121,7 +122,7 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
             hideEmptyScreen();
             totalCost.setText(String.format(getString(R.string.egp),
                     String.valueOf(cartPresenter.getTotalCost())));
-            totalItems.setText(getResources().getQuantityString(R.plurals.items_plural, (int) cartPresenter.getItemsCount(), (int) cartPresenter.getItemsCount()));
+            totalItems.setText(getResources().getQuantityString(R.plurals.total_items_plural, (int) cartPresenter.getItemsCount(), (int) cartPresenter.getItemsCount()));
 //            totalItems.setText(String.format(getString(R.string.total_items), String.valueOf(cartPresenter.getItemsCount())));
         } else showEmptyScreen();
     }
@@ -135,7 +136,7 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
         cartLayout.setVisibility(View.GONE);
         totalEmptyCost.setText(String.format(getString(R.string.egp),
                 NO_MONEY));
-        totalEmptyItems.setText(getResources().getQuantityString(R.plurals.items_plural, 0, 0));
+        totalEmptyItems.setText(getResources().getQuantityString(R.plurals.total_items_plural, 0, 0));
     }
 
     @Override

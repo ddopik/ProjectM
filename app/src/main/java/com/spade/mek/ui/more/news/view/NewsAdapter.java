@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.more.news.model.News;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
@@ -65,6 +66,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         } else {
             holder.shareImageView.setVisibility(View.GONE);
         }
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
     public void setOnNewsClicked(OnNewsClicked onNewsClicked) {
