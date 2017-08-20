@@ -2,6 +2,7 @@ package com.spade.mek.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
@@ -9,6 +10,8 @@ import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
+import com.spade.mek.ui.more.MorePresenterImpl;
+import com.spade.mek.ui.register.RegistrationResponse;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginCallBack;
@@ -20,6 +23,8 @@ import com.spade.sociallogin.SocialUser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -29,6 +34,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, FacebookLoginCallBack {
 
+    private static final String FACEBOOK_TYPE = "Facebook";
+    private static final String GOOGLE_TYPE = "Google";
     private LoginView mLoginView;
     private LoginDialogView loginDialogView;
     private GoogleLoginManager mGoogleLoginManager;
@@ -92,20 +99,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {
                     if (loginResponse != null) {
-                        realmDbHelper.saveUser(loginResponse.getRegistrationResponseData().getUserModel(),
-                                loginResponse.getRegistrationResponseData().getToken());
-                        UserModel userDataModel = loginResponse.getRegistrationResponseData().getUserModel();
-                        realmDbHelper.updateUserData(userDataModel.getFirstName(), userDataModel.getLastName(), userDataModel.getUserPhone(),
-                                userDataModel.getUserEmail(), userDataModel.getUserAddress(), userDataModel.getUserId());
-                        realmDbHelper.updateCartItemsWithLoggedInUser(userDataModel.getUserId());
-
-                        PrefUtils.setLoginProvider(mContext, LoginProviders.SERVER_LOGIN.getLoginProviderCode());
-                        PrefUtils.setUserID(mContext, userDataModel.getUserId());
-                        PrefUtils.setUserToken(mContext, loginResponse.getRegistrationResponseData().getToken());
-
-                        mLoginView.hideLoading();
-                        mLoginView.finish();
-                        mLoginView.navigate();
+                        completeLogin(loginResponse);
                     }
                 }, throwable -> {
                     mLoginView.hideLoading();
@@ -149,18 +143,72 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
 
     @Override
     public void onGoogleLoginSuccess(SocialUser socialUser) {
-        PrefUtils.setLoginProvider(mContext, LoginProviders.GOOGLE.getLoginProviderCode());
-        PrefUtils.setUserID(mContext, socialUser.getUserId());
-        realmDbHelper.saveUser(socialUser);
-        if (mLoginView != null) {
-            mLoginView.navigateToMainScreen();
-        }
-//        else if (cartView != null) {
-//            cartView.loginSuccess();
+//        PrefUtils.setLoginProvider(mContext, LoginProviders.GOOGLE.getLoginProviderCode());
+//        PrefUtils.setUserID(mContext, socialUser.getUserId());
+//        realmDbHelper.saveUser(socialUser);
+
+        socialLoginUser(socialUser, GOOGLE_TYPE);
+//        if (mLoginView != null) {
+//            mLoginView.navigateToMainScreen();
 //        }
-        else if (loginDialogView != null) {
-            loginDialogView.loginSuccess();
+////        else if (cartView != null) {
+////            cartView.loginSuccess();
+////        }
+//        else if (loginDialogView != null) {
+//            loginDialogView.loginSuccess();
+//        }
+    }
+
+    private void socialLoginUser(SocialUser socialUser, String type) {
+        JSONObject requestJsonObject = null;
+        try {
+            requestJsonObject = new JSONObject();
+            requestJsonObject.put("name", socialUser.getName());
+            requestJsonObject.put("email", socialUser.getEmailAddress());
+            requestJsonObject.put("type", type);
+            requestJsonObject.put("social_id", socialUser.getUserId());
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        ApiHelper.socialLoginUSer(requestJsonObject)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(registrationResponse -> {
+                    if (registrationResponse != null) {
+                        completeLogin(registrationResponse);
+                    }
+                }, throwable -> {
+//                    if (throwable.getMessage() != null && throwable.getMessage().isEmpty())
+                    mLoginView.onError(R.string.something_wrong);
+//                    else
+//                        mLoginView.onError(throwable.getMessage());
+                });
+    }
+
+    private void completeLogin(RegistrationResponse response) {
+        realmDbHelper.saveUser(response.getRegistrationResponseData().getUserModel(),
+                response.getRegistrationResponseData().getToken());
+
+        UserModel userDataModel = response.getRegistrationResponseData().getUserModel();
+        realmDbHelper.updateUserData(userDataModel.getFirstName(), userDataModel.getLastName(), userDataModel.getUserPhone(),
+                userDataModel.getUserEmail(), userDataModel.getUserAddress(), userDataModel.getUserId());
+        realmDbHelper.updateCartItemsWithLoggedInUser(userDataModel.getUserId()).subscribe(isSuccess -> {
+            if (isSuccess) {
+                changeLanguage();
+                PrefUtils.setLoginProvider(mContext, LoginProviders.SERVER_LOGIN.getLoginProviderCode());
+                PrefUtils.setUserID(mContext, userDataModel.getUserId());
+                PrefUtils.setUserToken(mContext, response.getRegistrationResponseData().getToken());
+
+                if (mLoginView != null) {
+                    mLoginView.hideLoading();
+                    mLoginView.finish();
+                    mLoginView.navigate();
+                } else {
+                    loginDialogView.loginSuccess();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -174,14 +222,36 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
 
     @Override
     public void onFacebookLoginSuccess(SocialUser socialUser) {
-        PrefUtils.setLoginProvider(mContext, LoginProviders.FACEBOOK.getLoginProviderCode());
-        PrefUtils.setUserID(mContext, socialUser.getUserId());
-        realmDbHelper.saveUser(socialUser);
-        if (mLoginView != null) {
-            mLoginView.navigateToMainScreen();
-        }
-        else if (loginDialogView != null) {
-            loginDialogView.loginSuccess();
+//        PrefUtils.setLoginProvider(mContext, LoginProviders.FACEBOOK.getLoginProviderCode());
+//        PrefUtils.setUserID(mContext, socialUser.getUserId());
+//        realmDbHelper.saveUser(socialUser);
+        socialLoginUser(socialUser, FACEBOOK_TYPE);
+//        if (mLoginView != null) {
+//            mLoginView.navigateToMainScreen();
+//        } else if (loginDialogView != null) {
+//            loginDialogView.loginSuccess();
+//        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public void changeLanguage() {
+        Locale locale;
+        if (PrefUtils.isLanguageSelected(mContext)) {
+            if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                locale = new Locale(MorePresenterImpl.AR_LANG);
+            } else {
+                locale = new Locale(MorePresenterImpl.EN_LANG);
+            }
+            Configuration conf = new Configuration();
+            conf.locale = locale;
+            mContext.getResources().updateConfiguration(conf, mContext.getResources().getDisplayMetrics());
+        } else {
+            String deviceLang = Locale.getDefault().getLanguage();
+            if (!deviceLang.equals(PrefUtils.ARABIC_LANG)) {
+                PrefUtils.setAppLang(mContext, PrefUtils.ENGLISH_LANG);
+            } else {
+                PrefUtils.setAppLang(mContext, PrefUtils.ARABIC_LANG);
+            }
         }
     }
 

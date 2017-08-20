@@ -2,9 +2,17 @@
 <resources>
     <integer-array name="donation_images">
         <item>@drawable/ic_banks</item>
+        <item>@drawable/ic_egyptian_banks</item>
         <item>@drawable/ic_stores</item>
         <item>@drawable/ic_fawry</item>
         <item>@drawable/ic_cash_on_delivery</item>
         <item>@drawable/ic_online_payment</item>
+    </integer-array>
+
+    <integer-array name="dialog_donation_images">
+        <item>@drawable/ic_egyptian_banks_orange</item>
+        <item>@drawable/ic_fawry_orange</item>
+        <item>@drawable/ic_cod_orange</item>
+        <item>@drawable/ic_online_payment_orange</item>
     </integer-array>
 </resources>

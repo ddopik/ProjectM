@@ -2,6 +2,10 @@ package com.spade.mek.ui.products.presenter;
 
 import android.content.Context;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.products.view.ProductsView;
 import com.spade.mek.utils.ShareManager;
@@ -22,6 +26,9 @@ public class ProductsPresenterImpl implements ProductsPresenter {
 
     public ProductsPresenterImpl(Context context) {
         this.mContext = context;
+        Tracker productsTracker = MekApplication.getDefaultTracker();
+        productsTracker.setScreenName(mContext.getString(R.string.products_screen));
+        productsTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

@@ -2,6 +2,10 @@ package com.spade.mek.ui.home;
 
 import android.content.Context;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
@@ -21,6 +25,9 @@ public class HomePresenterImpl implements HomePresenter {
     public HomePresenterImpl(HomeView homeView, Context context) {
         setView(homeView);
         mContext = context;
+        Tracker homeTracker = MekApplication.getDefaultTracker();
+        homeTracker.setScreenName(mContext.getString(R.string.home_screen));
+        homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

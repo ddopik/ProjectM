@@ -17,63 +17,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9430f19f-4b05-4908-81c7-3621df8e39d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/FontUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_label_arabic.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_11_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_impl_11_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_tagmanager_v4_impl_11_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/ChannelsInfoDialog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/LocationUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_cod_orange.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_egyptian_banks.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_egyptian_banks_orange.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_fawry_orange.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_online_payment_orange.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_static_payments.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/global_tracker.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/screen_names.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/facebook_android_sdk_4_24_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/application/MekApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/application/MekApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/network/ApiHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/network/ApiHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddCauseToCartDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddCauseToCartDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddProductToCartDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddProductToCartDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartRealmAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartRealmAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/OrderConfirmationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/OrderConfirmationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/PaymentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/PaymentActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomeFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomePresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomePresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestCausesAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestCausesAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestProductsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestProductsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/UrgentCasesPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/UrgentCasesPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/urgent_cases/FilterCategoriesAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/urgent_cases/FilterCategoriesAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/server_login/ServerLoginFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/server_login/ServerLoginFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/AreasSpinnerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/AreasSpinnerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MorePresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MorePresenterImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/presenter/ContactUsPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/presenter/ContactUsPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/MessageConfirmationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/MessageConfirmationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/SendMessageFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/SendMessageFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/AreasSpinnerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/AreasSpinnerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CategoriesAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CategoriesAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CitiesSpinnerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CitiesSpinnerAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationStoresView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationStoresView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsDetailsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/presenter/NewsPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/presenter/NewsPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenterImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductDetailsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductDetailsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_sent.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_message_sent.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/cart_item_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cart_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_more.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_more.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_created_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_created_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/urgent_case_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/urgent_case_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/splash/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/splash/SplashActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/PrefUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/PrefUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/cause_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cause_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_us.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_us.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_details.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_details.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/latest_cause_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/latest_cause_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/donation_channels_images.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/donation_channels_images.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/version.properties" afterPath="$PROJECT_DIR$/app/version.properties" />
     </list>
@@ -109,61 +119,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NewsDetailsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsDetailsFragment.java">
+      <file leaf-file-name="DonationStoresPresenterImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="69" column="39" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
+            <state relative-caret-position="192">
+              <caret line="58" column="74" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContactUsPresenterImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/presenter/ContactUsPresenterImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2066#2111#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="screen_names.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/screen_names.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsFragment.java">
+      <file leaf-file-name="global_tracker.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/global_tracker.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+            <state relative-caret-position="36">
+              <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="64" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZakatCalculatorFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java">
+      <file leaf-file-name="MekApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/application/MekApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ZakatCalculatorActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoreFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="137" column="28" selection-start-line="137" selection-start-column="28" selection-end-line="137" selection-end-column="28" />
+            <state relative-caret-position="360">
+              <caret line="48" column="60" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -172,39 +177,57 @@
       <file leaf-file-name="ProductDetailsFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductDetailsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+            <state relative-caret-position="328">
+              <caret line="182" column="0" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductsAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsAdapter.java">
+      <file leaf-file-name="DonationChannelsFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="93" column="41" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
+            <state relative-caret-position="234">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+              <folding>
+                <element signature="e#983#1027#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductDetailsPresenterImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenterImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="69" column="81" selection-start-line="69" selection-start-column="81" selection-end-line="69" selection-end-column="81" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2548#2598#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DonationBanksPresenterImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationBanksPresenterImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsFragment.java">
+      <file leaf-file-name="BanksFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegisterFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="54">
+              <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1855#1887#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -215,11 +238,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="valueResourceFile" />
         <option value="Interface" />
         <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -682,6 +705,11 @@
                 <option name="name" value="generateDebugAssets" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-analytics:11.0.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalytics1102Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.firebase:firebase-common:11.0.2" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComGoogleFirebaseFirebaseCommon1102Library" />
@@ -801,6 +829,11 @@
                 <option name="name" value="compileRetrolambda" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-tagmanager-v4-impl:11.0.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesTagmanagerV4Impl1102Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Initializes a new Gradle build. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="init" />
@@ -845,6 +878,11 @@
                 <option name="description" value="Run unit tests for the release build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="testReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-analytics-impl:11.0.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalyticsImpl1102Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.android.gms:play-services-tasks:11.0.2" />
@@ -1573,6 +1611,11 @@
                 <option name="name" value="generateDebugAssets" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-analytics:11.0.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalytics1102Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.firebase:firebase-common:11.0.2" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareComGoogleFirebaseFirebaseCommon1102Library" />
@@ -1692,6 +1735,11 @@
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-tagmanager-v4-impl:11.0.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesTagmanagerV4Impl1102Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="incrementalDebugJavaCompilationSafeguard" />
               </ExternalTaskPojo>
@@ -1731,6 +1779,11 @@
                 <option name="description" value="Run unit tests for the release build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="testReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-analytics-impl:11.0.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalyticsImpl1102Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.android.gms:play-services-tasks:11.0.2" />
@@ -2046,7 +2099,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4495615049488" />
+        <entry key="$PROJECT_DIR$" value="4497355281389" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2418,62 +2471,63 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_label_arabic.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/urgent_case_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartRealmAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_egyptian_banks.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_egyptian_banks_orange.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddCauseToCartDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddProductToCartDialog.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/network/ApiHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/PaymentActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/cart_item_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/server_login/ServerLoginFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/AreasSpinnerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_message_sent.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/MessageConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/SendMessageFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/AreasSpinnerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/FontUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CategoriesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestCausesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestProductsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/urgent_cases/FilterCategoriesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/UrgentCasesPagerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CitiesSpinnerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/donation_channels_images.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_static_payments.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/ChannelsInfoDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsDetailsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductDetailsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_details.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_empty.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_us.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/cause_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestCausesAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/latest_cause_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/LocationUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationStoresView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/urgent_case_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/server_login/ServerLoginFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/screen_names.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomePresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/presenter/NewsPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductDetailsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/presenter/ContactUsPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/global_tracker.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/spade/mek/application/MekApplication.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
+    <option name="x" value="-4" />
+    <option name="width" value="1928" />
     <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -2501,10 +2555,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2530,6 +2581,10 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2541,12 +2596,18 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MEK" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2561,28 +2622,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MEK" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mek" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2601,21 +2640,14 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="mek" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MEK" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -2634,9 +2666,12 @@
     <property name="VectorAssetImportPath" value="$USER_HOME$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/spade/mek/news/presenter" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/spade/mek/news/view" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/news/model" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.spade.mek.ui.more.contact_us" />
@@ -2645,18 +2680,15 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spade.mek.ui.more.donation_channels.view" />
       <recent name="com.spade.mek.ui.login.server_login" />
       <recent name="com.spade.mek.ui.register" />
       <recent name="com.spade.mek.ui.login" />
       <recent name="com.spade.mek.ui.home" />
-      <recent name="com.spade.mek.ui.more.zakat_calculator" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/spade/mek/news/presenter" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/spade/mek/news/view" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/news/model" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -3115,11 +3147,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502733283781</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="AZ - arabic">
+      <created>1502816721869</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1502816721869</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="-4" y="0" width="1928" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -3128,7 +3167,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22378379" sideWeight="0.5032017" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12864865" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2627027" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27374598" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19459459" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -3137,12 +3176,12 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21664888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36756757" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31351352" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39783785" sideWeight="0.4967983" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2854054" sideWeight="0.4967983" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3226,7 +3265,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginFragment.java</url>
-          <line>105</line>
+          <line>109</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -3238,31 +3277,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java</url>
-          <line>43</line>
+          <line>50</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java</url>
-          <line>49</line>
+          <line>56</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java</url>
-          <line>68</line>
+          <line>75</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesPresenterImpl.java</url>
-          <line>48</line>
+          <line>55</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddProductToCartDialog.java</url>
-          <line>42</line>
+          <line>40</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
@@ -3274,19 +3313,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java</url>
-          <line>153</line>
+          <line>165</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java</url>
-          <line>133</line>
+          <line>141</line>
           <properties />
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java</url>
-          <line>127</line>
+          <line>135</line>
           <properties />
           <option name="timeStamp" value="44" />
         </line-breakpoint>
@@ -3304,43 +3343,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java</url>
-          <line>33</line>
+          <line>34</line>
           <properties />
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
-          <line>53</line>
+          <line>60</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartFragment.java</url>
-          <line>190</line>
+          <line>197</line>
           <properties />
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresAdapter.java</url>
-          <line>67</line>
-          <properties />
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java</url>
-          <line>72</line>
+          <line>83</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java</url>
-          <line>157</line>
+          <line>168</line>
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsFragment.java</url>
-          <line>220</line>
+          <line>221</line>
           <properties />
           <option name="timeStamp" value="58" />
         </line-breakpoint>
@@ -3352,7 +3385,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java</url>
-          <line>211</line>
+          <line>260</line>
           <properties />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
@@ -3364,19 +3397,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java</url>
-          <line>77</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java</url>
-          <line>81</line>
+          <line>88</line>
           <properties />
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/network/ApiHelper.java</url>
-          <line>161</line>
+          <line>162</line>
           <properties />
           <option name="timeStamp" value="70" />
         </line-breakpoint>
@@ -3394,37 +3427,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
-          <line>111</line>
+          <line>105</line>
           <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java</url>
-          <line>131</line>
+          <line>142</line>
           <properties />
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java</url>
-          <line>119</line>
+          <line>130</line>
           <properties />
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/network/ApiHelper.java</url>
-          <line>269</line>
+          <line>270</line>
           <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java</url>
-          <line>124</line>
+          <line>135</line>
           <properties />
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java</url>
-          <line>79</line>
+          <line>90</line>
           <properties />
           <option name="timeStamp" value="81" />
         </line-breakpoint>
@@ -3436,7 +3469,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java</url>
-          <line>106</line>
+          <line>107</line>
           <properties />
           <option name="timeStamp" value="83" />
         </line-breakpoint>
@@ -3448,218 +3481,550 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataFragment.java</url>
-          <line>268</line>
+          <line>288</line>
           <properties />
           <option name="timeStamp" value="86" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>181</line>
+          <properties />
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>177</line>
+          <properties />
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>180</line>
+          <properties />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>176</line>
+          <properties />
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomeFragment.java</url>
+          <line>92</line>
+          <properties />
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/AddCauseToCartDialog.java</url>
+          <line>106</line>
+          <properties />
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>100</line>
+          <properties />
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java</url>
+          <line>200</line>
+          <properties />
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>195</line>
+          <properties />
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java</url>
+          <line>215</line>
+          <properties />
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java</url>
+          <line>200</line>
+          <properties />
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java</url>
+          <line>197</line>
+          <properties />
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java</url>
+          <line>171</line>
+          <properties />
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java</url>
+          <line>166</line>
+          <properties />
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java</url>
+          <line>209</line>
+          <properties />
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java</url>
+          <line>165</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java</url>
+          <line>177</line>
+          <properties />
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="87" />
+      <option name="time" value="108" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/FilterCategory.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MorePresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="44" selection-end-column="9" />
+        <state relative-caret-position="291">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="123" column="100" selection-start-line="123" selection-start-column="100" selection-end-line="123" selection-end-column="100" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/DetailsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/CartPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/server_login/ServerLoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="49" column="48" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
-          <folding />
+        <state relative-caret-position="507">
+          <caret line="69" column="39" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
+        <state relative-caret-position="378">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/LocationUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/presenter/ContactUsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="20" column="0" selection-start-line="19" selection-start-column="4" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationStoresView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+        <state relative-caret-position="756">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3199#3200#0" expanded="false" />
+            <element signature="e#3237#3238#0" expanded="false" />
+            <element signature="e#3281#3282#0" expanded="false" />
+            <element signature="e#3354#3355#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/splash/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="77" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/urgent_case_item.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/LoginPresenterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2376">
+          <caret line="183" column="47" selection-start-line="183" selection-start-column="47" selection-end-line="183" selection-end-column="47" />
+          <folding>
+            <element signature="e#2556#2557#0" expanded="false" />
+            <element signature="e#2605#2606#0" expanded="false" />
+            <element signature="e#8295#8327#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#4184#4185#0" expanded="false" />
+            <element signature="e#4223#4224#0" expanded="false" />
+            <element signature="e#4285#4286#0" expanded="false" />
+            <element signature="e#4333#4334#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-25/android/widget/AdapterView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="923" column="35" selection-start-line="923" selection-start-column="35" selection-end-line="923" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6735#6736#0" expanded="false" />
+            <element signature="e#6790#6791#0" expanded="false" />
+            <element signature="e#6837#6838#0" expanded="false" />
+            <element signature="e#6889#6890#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/model/CartItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#531#532#0" expanded="false" />
+            <element signature="e#560#561#0" expanded="false" />
+            <element signature="e#601#602#0" expanded="false" />
+            <element signature="e#637#638#0" expanded="false" />
+            <element signature="e#671#672#0" expanded="false" />
+            <element signature="e#704#705#0" expanded="false" />
+            <element signature="e#753#754#0" expanded="false" />
+            <element signature="e#797#798#0" expanded="false" />
+            <element signature="e#830#831#0" expanded="false" />
+            <element signature="e#859#860#0" expanded="false" />
+            <element signature="e#903#904#0" expanded="false" />
+            <element signature="e#939#940#0" expanded="false" />
+            <element signature="e#975#976#0" expanded="false" />
+            <element signature="e#1007#1008#0" expanded="false" />
+            <element signature="e#1057#1058#0" expanded="false" />
+            <element signature="e#1099#1100#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1165#1166#0" expanded="false" />
+            <element signature="e#1213#1214#0" expanded="false" />
+            <element signature="e#1253#1254#0" expanded="false" />
+            <element signature="e#1289#1290#0" expanded="false" />
+            <element signature="e#1321#1322#0" expanded="false" />
+            <element signature="e#1371#1372#0" expanded="false" />
+            <element signature="e#1413#1414#0" expanded="false" />
+            <element signature="e#1443#1444#0" expanded="false" />
+            <element signature="e#1472#1473#0" expanded="false" />
+            <element signature="e#1513#1514#0" expanded="false" />
+            <element signature="e#1549#1550#0" expanded="false" />
+            <element signature="e#1585#1586#0" expanded="false" />
+            <element signature="e#1617#1618#0" expanded="false" />
+            <element signature="e#1667#1668#0" expanded="false" />
+            <element signature="e#1709#1710#0" expanded="false" />
+            <element signature="e#1747#1748#0" expanded="false" />
+            <element signature="e#1781#1782#0" expanded="false" />
+            <element signature="e#1835#1836#0" expanded="false" />
+            <element signature="e#1881#1882#0" expanded="false" />
+            <element signature="e#1917#1918#0" expanded="false" />
+            <element signature="e#1949#1950#0" expanded="false" />
+            <element signature="e#1999#2000#0" expanded="false" />
+            <element signature="e#2041#2042#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/version.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/ContactUsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="64" column="51" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
+        <state relative-caret-position="280">
+          <caret line="191" column="34" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="34" />
+          <folding>
+            <element signature="e#7214#7215#0" expanded="true" />
+            <element signature="e#7266#7267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_message_sent.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+        <state relative-caret-position="688">
+          <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="110" column="30" selection-start-line="108" selection-start-column="6" selection-end-line="110" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/login/server_login/ServerLoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
+          <folding>
+            <element signature="e#5220#5254#0" expanded="true" />
+            <element signature="e#5387#5429#0" expanded="true" />
+            <element signature="e#5576#5613#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/presenter/UserOrderPresenterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/UserDataFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1278">
+          <caret line="251" column="69" selection-start-line="251" selection-start-column="69" selection-end-line="251" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/zakat_calculator.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/MessageConfirmationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+        <state relative-caret-position="315">
+          <caret line="151" column="40" selection-start-line="151" selection-start-column="40" selection-end-line="151" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/SendMessageActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="429">
+          <caret line="162" column="4" selection-start-line="162" selection-start-column="4" selection-end-line="162" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/SendMessageFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/debug/res/values/google_maps_api.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+        <state relative-caret-position="342">
+          <caret line="19" column="81" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+        <state relative-caret-position="229">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/base/BaseActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="91" column="9" selection-start-line="77" selection-start-column="8" selection-end-line="91" selection-end-column="9" />
+        <state relative-caret-position="-1383">
+          <caret line="53" column="64" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/utils/FontUtils.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/HomePresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+        <state relative-caret-position="324">
+          <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#856#896#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/AreasSpinnerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductsPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="50" column="113" selection-start-line="50" selection-start-column="113" selection-end-line="50" selection-end-column="113" />
+        <state relative-caret-position="288">
+          <caret line="29" column="81" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="342">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#822#864#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/presenter/NewsPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/cart/view/CartRealmAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="71" column="59" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CategoriesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="42" column="57" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/causes/CausesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="83" column="88" selection-start-line="83" selection-start-column="88" selection-end-line="83" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestCausesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#841#881#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ImagesPagerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/presenter/NewsDetailsPresenterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+          <folding>
+            <element signature="e#1548#1604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationBanksPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -3667,214 +4032,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/LatestProductsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/urgent_cases/FilterCategoriesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/UrgentCasesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/home/adapters/UrgentCasesPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="83" column="18" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/view/AreasSpinnerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/CitiesSpinnerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationBanksActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="40" column="57" selection-start-line="40" selection-start-column="57" selection-end-line="40" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationChannelsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="234">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <element signature="e#983#1027#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/DonationStoresActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/presenter/DonationStoresPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="108" column="57" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/StoresFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+        <state relative-caret-position="192">
+          <caret line="58" column="74" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/global_tracker.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="36">
+          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/application/MekApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="68" column="57" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsDetailsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsDetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="69" column="39" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/news/view/NewsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/zakat_calculator/ZakatCalculatorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="360">
+          <caret line="48" column="60" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductDetailsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+        <state relative-caret-position="328">
+          <caret line="182" column="0" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="93" column="41" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/view/ProductsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/register/RegisterFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/contact_us/presenter/ContactUsPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
+          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2066#2111#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/donation_channels/view/BanksFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="137" column="28" selection-start-line="137" selection-start-column="28" selection-end-line="137" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="54">
+          <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1855#1887#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/more/MoreFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/spade/mek/ui/products/presenter/ProductDetailsPresenterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
+        <state relative-caret-position="274">
+          <caret line="69" column="81" selection-start-line="69" selection-start-column="81" selection-end-line="69" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2548#2598#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/screen_names.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
           <folding />
         </state>
       </provider>

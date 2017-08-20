@@ -39,7 +39,12 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
 
     @Override
     public LatestCausesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.latest_cause_item, parent, false);
+        View view;
+        if (latestCausesList.size() > 1) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.latest_cause_item, parent, false);
+        } else {
+            view = LayoutInflater.from(mContext).inflate(R.layout.cause_item, parent, false);
+        }
         return new LatestCausesViewHolder(view);
     }
 

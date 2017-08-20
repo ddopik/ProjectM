@@ -13,12 +13,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.contact_us.view.ContactUsView;
 
@@ -43,6 +47,9 @@ public class ContactUsPresenterImpl implements ContactUsPresenter,
 
     public ContactUsPresenterImpl(Context context) {
         this.context = context;
+        Tracker contactUsTracker = MekApplication.getDefaultTracker();
+        contactUsTracker.setScreenName(context.getString(R.string.contact_us_screen));
+        contactUsTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

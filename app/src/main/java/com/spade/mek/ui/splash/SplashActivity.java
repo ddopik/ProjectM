@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.spade.mek.R;
@@ -33,6 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
         String appLang = PrefUtils.getAppLang(getApplicationContext());
         imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
+        Log.d("Language", Locale.getDefault().getLanguage());
         changeLanguage();
         counterToNavigate();
     }
@@ -56,13 +58,22 @@ public class SplashActivity extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     public void changeLanguage() {
         Locale locale;
-        if (PrefUtils.getAppLang(this).equals(PrefUtils.ARABIC_LANG)) {
-            locale = new Locale(MorePresenterImpl.AR_LANG);
+        if (PrefUtils.isLanguageSelected(this)) {
+            if (PrefUtils.getAppLang(this).equals(PrefUtils.ARABIC_LANG)) {
+                locale = new Locale(MorePresenterImpl.AR_LANG);
+            } else {
+                locale = new Locale(MorePresenterImpl.EN_LANG);
+            }
+            Configuration conf = new Configuration();
+            conf.locale = locale;
+            getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
         } else {
-            locale = new Locale(MorePresenterImpl.EN_LANG);
+            String deviceLang = Locale.getDefault().getLanguage();
+            if (!deviceLang.equals(PrefUtils.ARABIC_LANG)) {
+                PrefUtils.setAppLang(this, PrefUtils.ENGLISH_LANG);
+            } else {
+                PrefUtils.setAppLang(this, PrefUtils.ARABIC_LANG);
+            }
         }
-        Configuration conf = new Configuration();
-        conf.locale = locale;
-        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
     }
 }

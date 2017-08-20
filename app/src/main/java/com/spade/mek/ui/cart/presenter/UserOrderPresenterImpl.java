@@ -39,6 +39,8 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     private Order order;
     private int paymentType;
     private String orderId;
+    private double zakatAmount;
+    private int checkOutType;
 
     public UserOrderPresenterImpl(Context mContext) {
         this.mContext = mContext;
@@ -59,8 +61,17 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     public void makeOrder(String typeOfDonation, int paymentType) {
         userDataView.showLoading();
         this.paymentType = paymentType;
+        this.checkOutType = UserDataFragment.EXTRA_PAY_FOR_PRODUCTS;
         order = new Order();
         order.setTypeOfDonation(typeOfDonation);
+        new GetUserAsyncTask().execute();
+    }
+
+    @Override
+    public void donateZakat(double moneyAmount) {
+        this.zakatAmount = moneyAmount;
+        this.checkOutType = UserDataFragment.EXTRA_DONATE_ZAKAT;
+        order = new Order();
         new GetUserAsyncTask().execute();
     }
 
@@ -83,7 +94,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
 
     @Override
     public void finishPaymentStatus(int paymentStatus) {
-        if (paymentStatus == PaymentActivity.PAYMENT_SUCCESS) {
+        if (paymentStatus == PaymentActivity.PAYMENT_SUCCESS && checkOutType == UserDataFragment.EXTRA_PAY_FOR_PRODUCTS) {
             realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
         }
         userDataView.showLoading();
@@ -140,7 +151,8 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 public void onOrderCreatedSuccess(boolean isSuccess) {
                     userDataView.hideLoading();
                     if (isSuccess) {
-                        realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
+                        if (checkOutType == UserDataFragment.EXTRA_PAY_FOR_PRODUCTS)
+                            realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(mContext));
                         userDataView.navigateToConfirmationScreen();
                         userDataView.finish();
                     } else {
@@ -202,7 +214,11 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
         @Override
         protected void onPostExecute(Void orderItemsList) {
             super.onPostExecute(orderItemsList);
-            new GetProductsAsyncTask().execute();
+            if (checkOutType == UserDataFragment.EXTRA_DONATE_ZAKAT) {
+                new CreateZakatJsonRequestObject().execute();
+            } else {
+                new GetProductsAsyncTask().execute();
+            }
         }
     }
 
@@ -228,6 +244,34 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 requestJsonObject.put("type_of_donation", order.getTypeOfDonation());
                 requestJsonObject.put("address", order.getAddress());
                 requestJsonObject.put("amount", getOrderTotalCost(PrefUtils.getUserId(mContext)));
+                requestJsonObject.put("products", jsonElements);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return requestJsonObject;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
+            checkoutOrder(jsonObject);
+        }
+    }
+
+    private class CreateZakatJsonRequestObject extends AsyncTask<Void, Void, JSONObject> {
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+            JSONArray jsonElements = new JSONArray();
+            JSONObject requestJsonObject = null;
+            try {
+                requestJsonObject = new JSONObject();
+                requestJsonObject.put("first_name", order.getFirstName());
+                requestJsonObject.put("last_name", order.getLastName());
+                requestJsonObject.put("email", order.getEmailAddress());
+                requestJsonObject.put("phone", order.getPhoneNumber());
+                requestJsonObject.put("type_of_donation", order.getTypeOfDonation());
+                requestJsonObject.put("address", order.getAddress());
+                requestJsonObject.put("amount", String.valueOf(zakatAmount));
                 requestJsonObject.put("products", jsonElements);
             } catch (JSONException e) {
                 e.printStackTrace();

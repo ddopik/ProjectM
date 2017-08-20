@@ -43,6 +43,7 @@
     <string name="last_name">Last name</string>
     <string name="phone">Phone Number</string>
     <string name="address">Address</string>
+    <string name="address_hint">Check the map for the nearest store or choose other stores from here</string>
     <string name="type_of_donation">Type of Donation</string>
     <string name="cash_on_deleivery">Cash on Delivery</string>
     <string name="misr_collector">Misr ElKheir collector will pass by you</string>
@@ -57,6 +58,7 @@
     <string name="enter_subject">Please Enter Subject</string>
     <string name="enter_message">Please Enter Message</string>
     <string name="enter_password">Please Enter Your Password</string>
+    <string name="enter_confirm_password">Please Confirm Your Password</string>
     <string name="select_type_of_donation">Please Select Type Of Donation</string>
     <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
     <string name="thank_you">Thank You</string>
@@ -127,6 +129,8 @@
     <string name="register">Register</string>
     <string name="zakat">Zakat</string>
     <string name="sadaqah">Sadaqa</string>
+    <string name="invalid_amount">Please enter a valid amount</string>
+    <string name="password_mismatch">Password and confirm password mismatch</string>
     <string name="payment_error"></string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
@@ -140,13 +144,37 @@
     </string-array>
 
     <string-array name="donation_channels">
-        <item>Banks</item>
+        <item>Foreign donations</item>
+        <item>Egyptian banks</item>
         <item>Stores</item>
         <item>Fawry</item>
         <item>Cash on delivery</item>
         <item>Online payment</item>
-
     </string-array>
+
+    <string-array name="dialog_donation_channels">
+        <item>Egyptian banks</item>
+        <item>Fawry</item>
+        <item>Cash on delivery</item>
+        <item>Online payment</item>
+    </string-array>
+
+    <string-array name="dialog_donation_channels_details">
+        <item>Donate now for Misr Elkheir Foundation in banks all over Egypt on 100100</item>
+        <item>1- Go to the nearest Fawry services.\n\n2- Enter Your mobile number, then enter your donation value on Fawry device.\n\n3-  Now, You can receive a printed receipt proofing your donation process is done successfully.\n</item>
+
+        <item>You can pay through home collection and we will send an agent to collect your donation from your doorstep.
+Home collection service is only available for Cairo, Giza, Alexandria, Al-Fayoum and Al-Mansoura residents.</item>
+        <item>You can pay now via your credit card.</item>
+    </string-array>
+
+    <string-array name="dialog_donation_channels_headline">
+        <item>Donate to MEK Bank Account 100100</item>
+        <item>Follow these steps to donate through Fawry</item>
+        <item>Request home collection now</item>
+        <item>Donate via your Credit Card</item>
+    </string-array>
+
     <plurals name="items_plural">
         <item quantity="one">%d Item to go</item>
         <item quantity="other">%d Items to go</item>

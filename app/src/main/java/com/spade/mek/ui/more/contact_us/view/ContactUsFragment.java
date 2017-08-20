@@ -162,6 +162,7 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
                 .zoom(13)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        areaListSpinner.setSelection(areaList.indexOf(area));
     }
 
     @Override
@@ -221,7 +222,8 @@ public class ContactUsFragment extends BaseFragment implements ContactUsView, On
         Map<Float, Area> locationsDistance = new HashMap<>();
         for (int i = 1; i < areaList.size(); i++) {
             Area area = areaList.get(i);
-            float distance = contactUsPresenter.calculateDistance(Double.parseDouble(area.getLat()), Double.parseDouble(area.getLng()), userLocation.getLatitude(), userLocation.getLongitude());
+            float distance = contactUsPresenter.calculateDistance(Double.parseDouble(area.getLat()), Double.parseDouble(area.getLng()),
+                    userLocation.getLatitude(), userLocation.getLongitude());
             locationsDistance.put(distance, area);
         }
         Area area = locationsDistance.get(Collections.min(locationsDistance.keySet()));

@@ -43,7 +43,7 @@ public class DonationChannelsAdapter extends RecyclerView.Adapter<DonationChanne
 
     @Override
     public int getItemCount() {
-        return 5;
+        return mContext.getResources().getStringArray(R.array.donation_channels).length;
     }
 
     public void setOnChannelClicked(OnChannelClicked onChannelClicked) {

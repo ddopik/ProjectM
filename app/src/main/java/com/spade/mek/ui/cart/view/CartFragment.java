@@ -1,5 +1,6 @@
 package com.spade.mek.ui.cart.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.presenter.CartPresenter;
 import com.spade.mek.ui.cart.presenter.CartPresenterImpl;
 import com.spade.mek.ui.login.LoginDialogFragment;
+import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
@@ -94,14 +96,19 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     }
 
     private void showLoginDialog() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(RegisterActivity.EXTRA_TYPE, RegisterActivity.CHECKOUT_TYPE);
         LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
         loginDialogFragment.setLoginDialogActions(this);
+        loginDialogFragment.setArguments(bundle);
         loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 
     @Override
     public void navigateToUserDataActivity() {
-        startActivity(UserDataActivity.getLaunchIntent(getContext()));
+        Intent intent = UserDataActivity.getLaunchIntent(getContext());
+        intent.putExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_PAY_FOR_PRODUCTS);
+        startActivity(intent);
         finish();
     }
 

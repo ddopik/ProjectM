@@ -1,6 +1,7 @@
 package com.spade.mek.ui.register;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
+import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
@@ -64,6 +66,7 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
         addressEditText = (EditText) fragmentView.findViewById(R.id.address_edit_text);
         passwordEditText = (EditText) fragmentView.findViewById(R.id.password_edit_text);
+        confirmPassswordEditText = (EditText) fragmentView.findViewById(R.id.confirm_password_edit_text);
         Button proceedBtn = (Button) fragmentView.findViewById(R.id.register_btn);
         proceedBtn.setOnClickListener(v -> {
             if (checkIfDataIsValid()) {
@@ -104,6 +107,7 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         phoneNumberString = phoneNumberEditText.getText().toString();
         addressString = addressEditText.getText().toString();
         passwordString = passwordEditText.getText().toString();
+        confirmPasswordString = confirmPassswordEditText.getText().toString();
 
         if (firstNameString.isEmpty()) {
             firstNameEditText.setError(getString(R.string.enter_first_name));
@@ -129,6 +133,16 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         }
         if (passwordString.isEmpty()) {
             passwordEditText.setError(getString(R.string.enter_password));
+            return false;
+        }
+
+        if (confirmPasswordString.isEmpty()) {
+            confirmPassswordEditText.setError(getString(R.string.enter_confirm_password));
+            return false;
+        }
+
+        if (!passwordString.equals(confirmPasswordString)) {
+            confirmPassswordEditText.setError(getString(R.string.password_mismatch));
             return false;
         }
         return true;
@@ -187,7 +201,10 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         if (type == RegisterActivity.REGISTER_TYPE) {
             startActivity(MainActivity.getLaunchIntent(getContext()));
         } else if (type == RegisterActivity.CHECKOUT_TYPE) {
-            startActivity(UserDataActivity.getLaunchIntent(getContext()));
+            Intent intent = UserDataActivity.getLaunchIntent(getContext());
+            intent.putExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_PAY_FOR_PRODUCTS);
+            startActivity(intent);
+//            startActivity(UserDataActivity.getLaunchIntent(getContext()));
         }
     }
 

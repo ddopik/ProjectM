@@ -21,6 +21,7 @@ import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
 import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.PrefUtils;
 
 /**
@@ -56,27 +57,8 @@ public class AddCauseToCartDialog extends DialogFragment {
         View dialogView = inflater.inflate(R.layout.dialog_product, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         init(dialogView);
-        overrideFonts(getContext(), dialogView);
+        FontUtils.overrideFonts(getContext(), dialogView);
         return dialogView;
-    }
-
-
-    private void overrideFonts(Context context, View v) {
-        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
-            try {
-                if (v instanceof ViewGroup) {
-                    ViewGroup vg = (ViewGroup) v;
-                    for (int i = 0; i < vg.getChildCount(); i++) {
-                        View child = vg.getChildAt(i);
-
-                        overrideFonts(context, child);
-                    }
-                } else if (v instanceof TextView) {
-                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
-                }
-            } catch (Exception e) {
-            }
-        }
     }
 
 
@@ -147,7 +129,7 @@ public class AddCauseToCartDialog extends DialogFragment {
     }
 
     private void setMoneyAmount() {
-        quantityEditText.setText(String.format("%.2f", quantityAmount));
+        quantityEditText.setText(String.valueOf(quantityAmount));
     }
 
     public void setAddToCart(AddToCart addToCart) {

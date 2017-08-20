@@ -23,6 +23,7 @@ import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.ui.more.zakat_calculator.ZakatCalculatorActivity;
+import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 
@@ -129,8 +130,11 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     }
 
     private void showLoginDialog() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(RegisterActivity.EXTRA_TYPE, RegisterActivity.DEFAULT_TYPE);
         loginDialogFragment = new LoginDialogFragment();
         loginDialogFragment.setLoginDialogActions(this);
+        loginDialogFragment.setArguments(bundle);
         loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 

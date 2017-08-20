@@ -1,6 +1,7 @@
 package com.spade.mek.ui.login.server_login;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
+import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.LoginPresenter;
 import com.spade.mek.ui.login.LoginPresenterImpl;
@@ -135,7 +137,10 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
         if (type == RegisterActivity.REGISTER_TYPE) {
             startActivity(MainActivity.getLaunchIntent(getContext()));
         } else if (type == RegisterActivity.CHECKOUT_TYPE) {
-            startActivity(UserDataActivity.getLaunchIntent(getContext()));
+            Intent intent = UserDataActivity.getLaunchIntent(getContext());
+            intent.putExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_PAY_FOR_PRODUCTS);
+            startActivity(intent);
+//            startActivity(UserDataActivity.getLaunchIntent(getContext()));
         }
     }
 

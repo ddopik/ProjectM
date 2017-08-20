@@ -16,7 +16,10 @@ import android.widget.RelativeLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.donation_channels.model.Bank;
 import com.spade.mek.ui.more.donation_channels.presenter.DonationBanksPresenter;
@@ -40,6 +43,14 @@ public class BanksFragment extends BaseFragment implements DonationBanksView {
     private List<String> banksNames = new ArrayList<>();
     private ProgressBar progressBar;
     private RelativeLayout filterLayout;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Tracker banksTracker = MekApplication.getDefaultTracker();
+        banksTracker.setScreenName(getString(R.string.banks_screen));
+        banksTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
     @Nullable
     @Override

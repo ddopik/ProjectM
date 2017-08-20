@@ -26,12 +26,14 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
 
     private LoginDialogActions loginDialogActions;
     private LoginPresenter loginPresenter;
+    private int type;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginPresenter = new LoginPresenterImpl(this, getContext());
         loginPresenter.initLoginManagers(getActivity());
+        type = getArguments().getInt(RegisterActivity.EXTRA_TYPE);
     }
 
     @Nullable
@@ -56,18 +58,24 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
         });
         loginWithFacebook.setOnClickListener(v -> loginPresenter.loginWithFacebook(LoginDialogFragment.this));
         loginWithGoogle.setOnClickListener(v -> loginPresenter.loginWithGoogle(LoginDialogFragment.this));
+
         register.setOnClickListener(v -> {
             dismiss();
             Intent intent = RegisterActivity.getLaunchIntent(getContext());
-            intent.putExtra(RegisterActivity.EXTRA_TYPE, RegisterActivity.CHECKOUT_TYPE);
-            getActivity().finish();
+            intent.putExtra(RegisterActivity.EXTRA_TYPE, type);
+            if (type == RegisterActivity.CHECKOUT_TYPE) {
+                getActivity().finish();
+            }
             startActivity(intent);
         });
+
         signIn.setOnClickListener(v -> {
             dismiss();
             Intent intent = ServerLoginActivity.getLaunchIntent(getContext());
-            intent.putExtra(RegisterActivity.EXTRA_TYPE, RegisterActivity.CHECKOUT_TYPE);
-            getActivity().finish();
+            intent.putExtra(RegisterActivity.EXTRA_TYPE, type);
+            if (type == RegisterActivity.CHECKOUT_TYPE) {
+                getActivity().finish();
+            }
             startActivity(intent);
         });
     }

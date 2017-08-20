@@ -2,6 +2,10 @@ package com.spade.mek.ui.products.presenter;
 
 import android.content.Context;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
@@ -57,6 +61,17 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
                         productDetailsView.onError(throwable.getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void sendAnalytics(String type) {
+        Tracker detailsTracker = MekApplication.getDefaultTracker();
+        if (type.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
+            detailsTracker.setScreenName(mContext.getString(R.string.causes_inner_screen));
+        } else {
+            detailsTracker.setScreenName(mContext.getString(R.string.products_inner_screen));
+        }
+        detailsTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

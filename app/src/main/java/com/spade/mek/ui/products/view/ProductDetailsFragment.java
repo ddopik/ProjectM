@@ -173,6 +173,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     @Override
     public void updateUI(Products products) {
         String itemType = products.getProductType();
+        productDetailsPresenter.sendAnalytics(itemType);
         item = products;
         if (products.isUrgent()) {
             urgentLabel.setVisibility(View.VISIBLE);

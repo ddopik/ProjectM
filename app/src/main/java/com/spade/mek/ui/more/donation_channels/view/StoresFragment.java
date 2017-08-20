@@ -1,6 +1,7 @@
 package com.spade.mek.ui.more.donation_channels.view;
 
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class StoresFragment extends BaseFragment implements DonationStoresView, 
     private List<Area> areaList;
     private ProgressBar progressBar;
     private LinearLayout filterLayout;
+    private Location userLocation;
 
 
     @Nullable
@@ -56,7 +58,7 @@ public class StoresFragment extends BaseFragment implements DonationStoresView, 
 
     @Override
     protected void initPresenter() {
-        donationStoresPresenter = new DonationStoresPresenterImpl();
+        donationStoresPresenter = new DonationStoresPresenterImpl(getContext());
         donationStoresPresenter.setView(this);
     }
 
@@ -137,6 +139,8 @@ public class StoresFragment extends BaseFragment implements DonationStoresView, 
         this.storeList.addAll(storeList);
         this.allStores.addAll(storeList);
         storesAdapter.notifyDataSetChanged();
+        donationStoresPresenter.requestLocationPermission(getActivity());
+//        sortStores();
     }
 
     @Override
@@ -151,10 +155,30 @@ public class StoresFragment extends BaseFragment implements DonationStoresView, 
             filterLayout.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void setUserLocation(Location userLocation) {
+        this.userLocation = userLocation;
+        sortStores();
+    }
+
+    @Override
+    public void showSortedList(List<Store> stores) {
+        this.storeList.clear();
+        this.storeList.addAll(stores);
+        storesAdapter.notifyDataSetChanged();
+    }
+
+    private void sortStores() {
+        if (userLocation != null && storeList != null && !storeList.isEmpty()) {
+            donationStoresPresenter.sortStoresAscending(storeList, userLocation);
+        }
+    }
+
     private void updateStores(List<Store> filteredStores) {
         this.storeList.clear();
         this.storeList.addAll(filteredStores);
         storesAdapter.notifyDataSetChanged();
+        sortStores();
     }
 
     @Override

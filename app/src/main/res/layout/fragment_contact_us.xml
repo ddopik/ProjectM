@@ -183,6 +183,7 @@
                     app:srcCompat="@drawable/ic_location" />
 
                 <TextView
+                    android:id="@+id/address_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -190,6 +191,20 @@
                     android:layout_toRightOf="@id/address_image"
                     android:text="@string/address"
                     android:textColor="@color/blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:layout_toEndOf="@id/address_text"
+                    android:gravity="center"
+                    android:layout_toRightOf="@id/address_text"
+                    android:text="@string/address_hint"
+                    android:textColor="@color/textGrey"
+                    android:textSize="@dimen/material_text_caption" />
+
 
             </RelativeLayout>
 

@@ -11,6 +11,8 @@ import com.spade.mek.ui.login.User;
 public interface UserOrderPresenter extends BasePresenter<UserDataView> {
     void makeOrder(String typeOfDonation, int type);
 
+    void donateZakat(double moneyAmount);
+
     double getOrderTotalCost(String userId);
 
     User getUser(String userId);

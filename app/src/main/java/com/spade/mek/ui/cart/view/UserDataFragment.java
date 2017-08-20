@@ -36,8 +36,13 @@ import com.spade.mek.utils.Validator;
 
 public class UserDataFragment extends BaseFragment implements UserDataView {
 
-    private static final int PAYMENT_REQUEST_CODE = 1001;
     public static final String EXTRA_TOTAL_COST = "EXTRA_TOTAL_COST";
+    public static final String EXTRA_ZAKAT_AMOUNT = "EXTRA_ZAKAT_AMOUNT";
+    public static final String EXTRA_DONATE_TYPE = "EXTRA_DONATE_TYPE";
+    public static final int EXTRA_PAY_FOR_PRODUCTS = 800;
+    public static final int EXTRA_DONATE_ZAKAT = 900;
+
+    private static final int PAYMENT_REQUEST_CODE = 1001;
     public static final int ONLINE_PAYMENT_TYPE = 0;
     public static final int CASH_ON_DELIVERY = 1;
 
@@ -54,6 +59,17 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     private double totalCost;
     private int donationTypePosition = 0;
     private int paymentType;
+    private int donationType;
+//    private double zakatAmount;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        donationType = getArguments().getInt(EXTRA_DONATE_TYPE);
+        if (donationType == EXTRA_DONATE_ZAKAT) {
+            totalCost = getArguments().getDouble(EXTRA_ZAKAT_AMOUNT);
+        }
+    }
 
     @Nullable
     @Override
@@ -185,8 +201,12 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     private void proceed() {
         userOrderPresenter.updateUserData(firstNameString, lastNameString, phoneNumberString,
                 emailAddressString, addressString, PrefUtils.getUserId(getContext()));
-        totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
-        userOrderPresenter.makeOrder(donationTypeString, paymentType);
+        if (donationType == EXTRA_DONATE_ZAKAT) {
+            userOrderPresenter.donateZakat(totalCost);
+        } else {
+            totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
+            userOrderPresenter.makeOrder(donationTypeString, paymentType);
+        }
     }
 
     @Override

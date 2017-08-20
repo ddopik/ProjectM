@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 
 /**
@@ -17,6 +20,14 @@ import com.spade.mek.base.BaseFragment;
  */
 
 public class DonationChannelsFragment extends BaseFragment implements DonationChannelsAdapter.OnChannelClicked {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Tracker donationChannelsTracker = MekApplication.getDefaultTracker();
+        donationChannelsTracker.setScreenName(getString(R.string.donation_channels_screen));
+        donationChannelsTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
     @Nullable
     @Override
@@ -45,15 +56,29 @@ public class DonationChannelsFragment extends BaseFragment implements DonationCh
                 startActivity(DonationBanksActivity.getLaunchIntent(getContext()));
                 break;
             case 1:
-                startActivity(DonationStoresActivity.getLaunchIntent(getContext()));
+                showInfoDialog(ChannelsInfoDialog.EGYPTIAN_BANKS);
                 break;
             case 2:
+                startActivity(DonationStoresActivity.getLaunchIntent(getContext()));
                 break;
             case 3:
+                showInfoDialog(ChannelsInfoDialog.FAWRY);
                 break;
             case 4:
+                showInfoDialog(ChannelsInfoDialog.CASH_ON_DELIVERY);
+                break;
+            case 5:
+                showInfoDialog(ChannelsInfoDialog.ONLINE_PAYMENT);
                 break;
         }
+    }
+
+    private void showInfoDialog(int type) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(ChannelsInfoDialog.EXTRA_TYPE, type);
+        ChannelsInfoDialog channelsInfoDialog = new ChannelsInfoDialog();
+        channelsInfoDialog.setArguments(bundle);
+        channelsInfoDialog.show(getChildFragmentManager(), ChannelsInfoDialog.class.getSimpleName());
     }
 
     @Override

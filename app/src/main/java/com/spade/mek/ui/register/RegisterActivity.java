@@ -14,6 +14,7 @@ import com.spade.mek.R;
 
 public class RegisterActivity extends AppCompatActivity {
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
+    public static final int DEFAULT_TYPE = 0;
     public static final int REGISTER_TYPE = 1;
     public static final int CHECKOUT_TYPE = 2;
     private int type;

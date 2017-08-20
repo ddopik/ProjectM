@@ -59,7 +59,11 @@ public class LoginFragment extends BaseFragment implements LoginView {
         continueAsGuest.setOnClickListener(v -> mLoginPresenter.loginAsGuest());
         loginWithFacebook.setOnClickListener(v -> mLoginPresenter.loginWithFacebook(this));
         loginWithGoogle.setOnClickListener(v -> mLoginPresenter.loginWithGoogle(this));
-        registerButton.setOnClickListener(v -> startActivity(RegisterActivity.getLaunchIntent(getContext())));
+        registerButton.setOnClickListener(v -> {
+            Intent intent = RegisterActivity.getLaunchIntent(getContext());
+            intent.putExtra(RegisterActivity.EXTRA_TYPE, RegisterActivity.REGISTER_TYPE);
+            startActivity(intent);
+        });
         signInButton.setOnClickListener(v -> startActivity(ServerLoginActivity.getLaunchIntent(getContext())));
         continueAsGuest.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
@@ -86,12 +90,12 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void finish() {
-
+        getActivity().finish();
     }
 
     @Override
     public void navigate() {
-
+        startActivity(MainActivity.getLaunchIntent(getContext()));
     }
 
     @Override

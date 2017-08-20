@@ -2,7 +2,10 @@ package com.spade.mek.ui.more.news.presenter;
 
 import android.content.Context;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.news.view.NewsView;
 import com.spade.mek.utils.ShareManager;
@@ -20,6 +23,9 @@ public class NewsPresenterImpl implements NewsPresenter {
 
     public NewsPresenterImpl(Context mContext) {
         this.mContext = mContext;
+        Tracker newsTracker = MekApplication.getDefaultTracker();
+        newsTracker.setScreenName(mContext.getString(R.string.news_screen));
+        newsTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

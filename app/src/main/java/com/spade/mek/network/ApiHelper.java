@@ -54,6 +54,7 @@ public class ApiHelper {
     private static final String ONLINE_PAYMENT_CHECKOUT_URL = BASE_POST_URL + "/payment";
     private static final String REGISTER_USER_URL = BASE_POST_URL + "/register";
     private static final String LOGIN_USER_URL = BASE_POST_URL + "/login";
+    private static final String SOCIAL_LOGIN_USER_URL = BASE_POST_URL + "/login/social";
     private static final String CHANGE_PAYMENT_STATUS = BASE_POST_URL + "/payment/change";
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
@@ -272,6 +273,14 @@ public class ApiHelper {
                 .setPriority(Priority.HIGH)
                 .build()
                 .getObjectObservable(PaymentResponse.class);
+    }
+
+    public static Observable<RegistrationResponse> socialLoginUSer(JSONObject jsonObject) {
+        return Rx2AndroidNetworking.post(SOCIAL_LOGIN_USER_URL)
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getObjectObservable(RegistrationResponse.class);
     }
 
     public interface CreateOrderCallbacks {

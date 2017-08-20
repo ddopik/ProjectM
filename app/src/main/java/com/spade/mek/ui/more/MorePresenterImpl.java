@@ -63,6 +63,7 @@ public class MorePresenterImpl implements MorePresenter {
             PrefUtils.setAppLang(context, PrefUtils.ARABIC_LANG);
         else
             PrefUtils.setAppLang(context, PrefUtils.ENGLISH_LANG);
+        PrefUtils.setIsLanguageSelected(context, true);
         moreView.restartActivity();
     }
 

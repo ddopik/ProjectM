@@ -2,6 +2,10 @@ package com.spade.mek.ui.causes;
 
 import android.content.Context;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.utils.ShareManager;
 
@@ -21,6 +25,9 @@ public class CausesPresenterImpl implements CausesPresenter {
 
     public CausesPresenterImpl(Context context) {
         this.mContext = context;
+        Tracker causesTracker = MekApplication.getDefaultTracker();
+        causesTracker.setScreenName(mContext.getString(R.string.causes_screen));
+        causesTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
