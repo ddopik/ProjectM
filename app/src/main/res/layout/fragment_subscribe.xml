@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/description_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/regular_products_description" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/textGrey" />
+
+        <TextView
+            android:id="@+id/product_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/causeGrey"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="Water connection "
+            android:textColor="@color/blue"
+            android:textSize="@dimen/material_text_subhead"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/textGrey" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/subscribe_quantity_description" />
+
+        <RelativeLayout
+            android:id="@+id/quantity_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8">
+
+            <ImageView
+                android:id="@+id/arrow_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dp8"
+                app:srcCompat="@drawable/ic_arrow_down" />
+
+            <TextView
+                android:id="@+id/quantity_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/arrow_down"
+                android:layout_toRightOf="@+id/arrow_down"
+                android:enabled="false"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/dp4"
+                android:paddingTop="@dimen/dp4"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/arrow_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/quantity_text_view"
+                android:layout_toRightOf="@id/quantity_text_view"
+                android:padding="@dimen/dp8"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:id="@+id/total_item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/arrow_up"
+                android:layout_toRightOf="@id/arrow_up"
+                android:gravity="end"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/material_text_subhead"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/textGrey" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/reminder_text" />
+
+        <RadioGroup
+            android:id="@+id/months_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin">
+
+            <RadioButton
+                android:id="@+id/one_month_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/month"
+                android:checked="true"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:buttonTint="@color/orange" />
+
+            <RadioButton
+                android:id="@+id/three_month_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/month_3"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:buttonTint="@color/orange" />
+
+            <RadioButton
+                android:id="@+id/six_month_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/month_6"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:buttonTint="@color/orange" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@color/blue"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/material_text_subhead" />
+</RelativeLayout>

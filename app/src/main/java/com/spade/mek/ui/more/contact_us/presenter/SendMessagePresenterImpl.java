@@ -56,7 +56,7 @@ public class SendMessagePresenterImpl implements SendMessagePresenter {
 
     private void sendMessage(JSONObject jsonObjectRequest) {
         sendMessageView.showLoading();
-        ApiHelper.sendMessage(jsonObjectRequest, new ApiHelper.sendMessageCallBacks() {
+        ApiHelper.sendMessage(jsonObjectRequest, new ApiHelper.SendMessageCallBacks() {
             @Override
             public void onMessageSent(boolean isSuccess) {
                 sendMessageView.hideLoading();

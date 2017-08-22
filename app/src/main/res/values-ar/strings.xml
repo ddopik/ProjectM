@@ -129,6 +129,9 @@
     <string name="register">حساب جديد</string>
     <string name="invalid_amount">برجاء ادخال قيمة الزكاة</string>
     <string name="password_mismatch">كلمتى السر غير متطابقتين</string>
+    <string name="month">شهر</string>
+    <string name="month_3">3 شهور</string>
+    <string name="month_6">6 شهور</string>
     <string-array name="type_of_donations">
         <item>نوع التبرع</item>
         <item>زكاة</item>

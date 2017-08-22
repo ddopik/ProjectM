@@ -59,6 +59,12 @@ public class Products implements Parcelable {
     @SerializedName("created_at")
     private long createdAt;
 
+    @SerializedName("is_subscribe")
+    private boolean isSubscribed;
+
+    @SerializedName("is_regular")
+    private boolean isRegularProduct;
+
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
 
@@ -193,6 +199,22 @@ public class Products implements Parcelable {
         this.createdAt = createdAt;
     }
 
+    public boolean isSubscribed() {
+        return isSubscribed;
+    }
+
+    public void setSubscribed(boolean subscribed) {
+        isSubscribed = subscribed;
+    }
+
+    public boolean isRegularProduct() {
+        return isRegularProduct;
+    }
+
+    public void setRegularProduct(boolean regularProduct) {
+        isRegularProduct = regularProduct;
+    }
+
     protected Products(Parcel in) {
         productId = in.readInt();
         productTarget = in.readInt();
@@ -209,6 +231,9 @@ public class Products implements Parcelable {
         productHashTag = in.readString();
         productPrice = in.readDouble();
         createdAt = in.readLong();
+        isSubscribed = in.readByte() != 0x00;
+        isRegularProduct = in.readByte() != 0x00;
+
         if (in.readByte() == 0x01) {
             productCategoryList = new ArrayList<ProductCategory>();
             in.readList(productCategoryList, ProductCategory.class.getClassLoader());
@@ -239,6 +264,9 @@ public class Products implements Parcelable {
         dest.writeString(productHashTag);
         dest.writeDouble(productPrice);
         dest.writeLong(createdAt);
+        dest.writeByte((byte) (isSubscribed ? 0x01 : 0x00));
+        dest.writeByte((byte) (isRegularProduct ? 0x01 : 0x00));
+
         if (productCategoryList == null) {
             dest.writeByte((byte) (0x00));
         } else {

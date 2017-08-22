@@ -247,6 +247,15 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/subscribe_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/material_text_subhead" />
+
         <Button
             android:id="@+id/donate_now_btn"
             android:layout_width="match_parent"

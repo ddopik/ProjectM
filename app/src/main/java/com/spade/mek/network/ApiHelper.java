@@ -38,6 +38,7 @@ public class ApiHelper {
     private static final String LATEST_CAUSES_URL = BASE_URL + "/causes/latest";
     private static final String URGENT_CASES_URL = BASE_URL + "/products/urgent";
     private static final String ALL_PRODUCTS_URL = BASE_URL + "/products";
+    private static final String REGULAR_PRODUCTS_URL = BASE_URL + "/products/regular";
     private static final String ALL_CAUSES_URL = BASE_URL + "/causes";
     private static final String ALL_NEWS_URL = BASE_URL + "/news";
     private static final String RELATED_NEWS_URL = BASE_URL + "/news/{id}/related";
@@ -56,9 +57,12 @@ public class ApiHelper {
     private static final String LOGIN_USER_URL = BASE_POST_URL + "/login";
     private static final String SOCIAL_LOGIN_USER_URL = BASE_POST_URL + "/login/social";
     private static final String CHANGE_PAYMENT_STATUS = BASE_POST_URL + "/payment/change";
+    private static final String SUBSCRIBE_URL = BASE_POST_URL + "/regular/subscribe";
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
     private static final String PAGE_NUMBER = "page";
+    private static final String AUTH_TOKEN = "Authorization";
+    private static final String BEARER = "bearer";
     private static boolean success;
 
     public static Observable<LatestProductsResponse> getLatestProducts(String lang) {
@@ -99,6 +103,14 @@ public class ApiHelper {
 
     public static Observable<AllProductsResponse> getAllProducts(String lang, int pageNumber) {
         return Rx2AndroidNetworking.get(ALL_PRODUCTS_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .build()
+                .getObjectObservable(AllProductsResponse.class);
+    }
+
+    public static Observable<AllProductsResponse> getRegularProducts(String lang, int pageNumber) {
+        return Rx2AndroidNetworking.get(REGULAR_PRODUCTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
                 .build()
@@ -175,7 +187,7 @@ public class ApiHelper {
                 .getObjectObservable(AllCausesResponse.class);
     }
 
-    public static void sendMessage(JSONObject requestJson, sendMessageCallBacks sendMessageCallBacks) {
+    public static void sendMessage(JSONObject requestJson, SendMessageCallBacks SendMessageCallBacks) {
         AndroidNetworking.post(SEND_MESSAGE_URL)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
@@ -184,7 +196,7 @@ public class ApiHelper {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            sendMessageCallBacks.onMessageSent(response.getBoolean("success"));
+                            SendMessageCallBacks.onMessageSent(response.getBoolean("success"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -192,7 +204,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        sendMessageCallBacks.onMessageSentFailed(anError.getMessage());
+                        SendMessageCallBacks.onMessageSentFailed(anError.getMessage());
 
                     }
                 });
@@ -250,6 +262,33 @@ public class ApiHelper {
         return success;
     }
 
+    public static void subscribeToProduct(JSONObject requestJson, String userToken, SubscriptionCallBacks subscriptionCallBacks) {
+        AndroidNetworking.post(SUBSCRIBE_URL)
+                .addJSONObjectBody(requestJson)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            success = response.getBoolean("success");
+                            if (success) {
+                                subscriptionCallBacks.onSubscribeSuccess();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            subscriptionCallBacks.onSubscriptionFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        subscriptionCallBacks.onSubscriptionFailed();
+                    }
+                });
+    }
+
     public static Observable<RegistrationResponse> registerUser(JSONObject registerObject) {
         return Rx2AndroidNetworking.post(REGISTER_USER_URL)
                 .addJSONObjectBody(registerObject)
@@ -268,7 +307,7 @@ public class ApiHelper {
 
     public static Observable<PaymentResponse> createOnlinePaymentOrder(JSONObject requestJson, String userToken) {
         return Rx2AndroidNetworking.post(ONLINE_PAYMENT_CHECKOUT_URL)
-                .addHeaders("Authorization", "bearer" + " " + userToken)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
                 .build()
@@ -296,10 +335,15 @@ public class ApiHelper {
         void onStatusChangedFailed();
     }
 
-    public interface sendMessageCallBacks {
+    public interface SendMessageCallBacks {
         void onMessageSent(boolean isSuccess);
 
         void onMessageSentFailed(String error);
+    }
 
+    public interface SubscriptionCallBacks {
+        void onSubscribeSuccess();
+
+        void onSubscriptionFailed();
     }
 }
