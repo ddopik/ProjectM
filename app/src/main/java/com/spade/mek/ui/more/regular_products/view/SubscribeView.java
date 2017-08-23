@@ -11,4 +11,8 @@ public interface SubscribeView extends BaseView {
     void showLoading();
 
     void hideLoading();
+
+    void finish();
+
+    void showConfirmationDialog();
 }

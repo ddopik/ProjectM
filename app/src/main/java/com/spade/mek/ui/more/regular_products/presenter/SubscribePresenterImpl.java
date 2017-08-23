@@ -3,8 +3,10 @@ package com.spade.mek.ui.more.regular_products.presenter;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.more.regular_products.view.ConfirmSubscriptionDialog;
 import com.spade.mek.ui.more.regular_products.view.SubscribeView;
 import com.spade.mek.utils.PrefUtils;
 
@@ -15,7 +17,7 @@ import org.json.JSONObject;
  * Created by Ayman Abouzeid on 8/22/17.
  */
 
-public class SubscribePresenterImpl implements SubscribePresenter {
+public class SubscribePresenterImpl implements SubscribePresenter, ConfirmSubscriptionDialog.ConfirmActions {
 
     private SubscribeView subscribeView;
     private Context mContext;
@@ -47,19 +49,32 @@ public class SubscribePresenterImpl implements SubscribePresenter {
         new CreateJsonRequestObject().execute();
     }
 
+    @Override
+    public void onSubscribeDialogDismissed() {
+        subscribeView.finish();
+    }
+
     private void subscribe(JSONObject jsonObject) {
         ApiHelper.subscribeToProduct(jsonObject, PrefUtils.getUserToken(mContext), new ApiHelper.SubscriptionCallBacks() {
             @Override
             public void onSubscribeSuccess() {
                 subscribeView.hideLoading();
+                subscribeView.showConfirmationDialog();
             }
 
             @Override
             public void onSubscriptionFailed() {
                 subscribeView.hideLoading();
+                subscribeView.onError(R.string.something_wrong);
             }
         });
     }
+
+    @Override
+    public void onDismiss() {
+        subscribeView.finish();
+    }
+
 
     private class CreateJsonRequestObject extends AsyncTask<Void, Void, JSONObject> {
         @Override

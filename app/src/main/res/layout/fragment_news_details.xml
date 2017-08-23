@@ -84,7 +84,7 @@
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:gravity="start"
             android:maxLines="1"
-            android:textColor="@color/textGrey"
+            android:textColor="@color/grey"
             android:textSize="@dimen/material_text_body1"
             android:visibility="gone"
             tools:text="Zakat" />
@@ -100,7 +100,7 @@
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:gravity="start"
             android:maxLines="1"
-            android:textColor="@color/textGrey"
+            android:textColor="@color/grey"
             android:textSize="@dimen/material_text_body1"
             tools:text="Zakat" />
 
@@ -111,7 +111,7 @@
             android:layout_below="@id/item_category"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:gravity="start"
-            android:textColor="@color/textDarkGrey"
+            android:textColor="@color/darkGrey"
             android:textSize="@dimen/material_text_subhead"
             tools:text="Zakat" />
 

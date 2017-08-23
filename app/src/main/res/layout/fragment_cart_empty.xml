@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/dp8"
             android:gravity="center"
             android:text="@string/nothing_added"
-            android:textColor="@color/textGrey"
+            android:textColor="@color/grey"
             android:textSize="@dimen/material_text_subhead" />
     </LinearLayout>
 
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@id/receipt_layout"
-        android:background="@color/textDarkGrey" />
+        android:background="@color/darkGrey" />
 
     <LinearLayout
         android:id="@+id/receipt_layout"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/check_out_btn"
         android:alpha="0.7"
-        android:background="@color/buttonGrey"
+        android:background="@color/lightGrey"
         android:orientation="horizontal"
         android:padding="@dimen/activity_horizontal_margin">
 
@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@id/check_out_btn"
-        android:background="@color/textDarkGrey" />
+        android:background="@color/darkGrey" />
 
     <Button
         android:id="@+id/check_out_btn"
@@ -90,10 +90,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:alpha="0.8"
-        android:background="@color/buttonGrey"
+        android:background="@color/lightGrey"
         android:text="@string/check_out"
         android:textAllCaps="false"
-        android:textColor="@color/textGrey"
+        android:textColor="@color/grey"
         android:textSize="@dimen/material_text_title"
         android:textStyle="bold" />
 </RelativeLayout>

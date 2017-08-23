@@ -12,7 +12,7 @@
         android:layout_marginEnd="@dimen/dp8"
         android:layout_marginStart="@dimen/dp8"
         android:layout_marginTop="@dimen/dp8"
-        android:background="@color/buttonGrey"
+        android:background="@color/lightGrey"
         android:orientation="horizontal">
 
         <ImageView
@@ -54,7 +54,7 @@
                 android:layout_below="@id/item_title"
                 android:layout_marginTop="@dimen/dp8"
                 android:text="Product"
-                android:textColor="@color/textGrey"
+                android:textColor="@color/grey"
                 android:textSize="@dimen/material_text_subhead" />
 
             <!--<LinearLayout-->
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_category"
                 android:layout_marginTop="@dimen/dp8"
-                android:background="@color/buttonGrey">
+                android:background="@color/lightGrey">
 
                 <ImageView
                     android:id="@+id/arrow_down"
@@ -90,7 +90,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/arrow_down"
                     android:layout_toRightOf="@+id/arrow_down"
-                    android:background="@color/buttonGrey"
+                    android:background="@color/lightGrey"
                     android:gravity="center"
                     android:inputType="numberDecimal"
                     android:maxLines="1"

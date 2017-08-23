@@ -13,6 +13,8 @@ public interface ProductDetailsPresenter extends BasePresenter<ProductDetailsVie
 
     void sendAnalytics(String type);
 
+    void unSubscribeProduct(String productID);
+
     void addItemToCart(Products product, int quantity);
 
     void addItemToCart(Products product, double quantity);

@@ -1,9 +1,12 @@
 package com.spade.mek.network;
 
+import android.support.annotation.Nullable;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.rx2androidnetworking.Rx2ANRequest;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.spade.mek.ui.cart.model.PaymentResponse;
 import com.spade.mek.ui.causes.AllCausesResponse;
@@ -20,6 +23,7 @@ import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
 import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductDetailsResponse;
 import com.spade.mek.ui.register.RegistrationResponse;
+import com.spade.mek.utils.PrefUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,8 +62,10 @@ public class ApiHelper {
     private static final String SOCIAL_LOGIN_USER_URL = BASE_POST_URL + "/login/social";
     private static final String CHANGE_PAYMENT_STATUS = BASE_POST_URL + "/payment/change";
     private static final String SUBSCRIBE_URL = BASE_POST_URL + "/regular/subscribe";
+    private static final String UNSUBSCRIBE_URL = BASE_POST_URL + "/regular/{id}/remove";
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
+    private static final String USER_ID_PARAMETER = "user_id";
     private static final String PAGE_NUMBER = "page";
     private static final String AUTH_TOKEN = "Authorization";
     private static final String BEARER = "bearer";
@@ -125,8 +131,12 @@ public class ApiHelper {
                 .getObjectObservable(AllCausesResponse.class);
     }
 
-    public static Observable<ProductDetailsResponse> getProductDetails(String appLang, int itemId) {
-        return Rx2AndroidNetworking.get(PRODUCT_DETAILS_URL)
+    public static Observable<ProductDetailsResponse> getProductDetails(String appLang, int itemId, @Nullable String userID) {
+        Rx2ANRequest.GetRequestBuilder getRequestBuilder = Rx2AndroidNetworking.get(PRODUCT_DETAILS_URL);
+        if (!userID.equals(PrefUtils.GUEST_USER_ID)) {
+            getRequestBuilder.addQueryParameter(USER_ID_PARAMETER, userID);
+        }
+        return getRequestBuilder
                 .addPathParameter(ID_PATH_PARAMETER, String.valueOf(itemId))
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .build()
@@ -289,6 +299,33 @@ public class ApiHelper {
                 });
     }
 
+    public static void unSubscribeFromProduct(String productId, String userToken, UnSubscriptionCallBacks unSubscriptionCallBacks) {
+        AndroidNetworking.get(UNSUBSCRIBE_URL)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
+                .addPathParameter(ID_PATH_PARAMETER, productId)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            success = response.getBoolean("success");
+                            if (success) {
+                                unSubscriptionCallBacks.onUnSubscribeSuccess();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            unSubscriptionCallBacks.onUnSubscriptionFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        unSubscriptionCallBacks.onUnSubscriptionFailed();
+                    }
+                });
+    }
+
     public static Observable<RegistrationResponse> registerUser(JSONObject registerObject) {
         return Rx2AndroidNetworking.post(REGISTER_USER_URL)
                 .addJSONObjectBody(registerObject)
@@ -345,5 +382,11 @@ public class ApiHelper {
         void onSubscribeSuccess();
 
         void onSubscriptionFailed();
+    }
+
+    public interface UnSubscriptionCallBacks {
+        void onUnSubscribeSuccess();
+
+        void onUnSubscriptionFailed();
     }
 }

@@ -133,19 +133,24 @@
     <string name="password_mismatch">Password and confirm password mismatch</string>
     <string name="subscribe">Subscribe</string>
     <string name="subscribed">Subscribed</string>
-    <string name="unsubscribe">UnSubscribe</string>
+    <string name="unsubscribe">Unsubscribe</string>
     <string name="view_subscribtion">View subscription</string>
     <string name="regular_donations">Regular Donations</string>
     <string name="regular_products_description">You can choose from the below products \n to regularly donate for</string>
     <!--<string name="subscribe_details">It is a long established fact that reader will \n be si</string>-->
     <string name="subscribe_quantity_description">Please define the number of products you would like to donate for</string>
     <string name="reminder_text">You would like to be reminded with your donation every</string>
-    <string name="payment_error"></string>
     <string name="month">Month</string>
     <string name="month_3">3 Months</string>
     <string name="month_6">6 Months</string>
     <string name="submit">Submit</string>
     <string name="subscribing">Subscribing to a product&#8230;</string>
+    <string name="donate_with">You donate with</string>
+    <string name="receive_reminder">You receive a reminder every</string>
+    <string name="month_reminder">%s Months</string>
+    <string name="products_number" formatted="false">%s Products | %sEGP</string>
+    <string name="regular_confirm_message">%s product has been successfully added to your profile as a regular donation product</string>
+    <string name="notification_confirmation" formatted="false">A notification will be sent to you each %s months to remind you to donate for the %s</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

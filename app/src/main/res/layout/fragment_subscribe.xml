@@ -20,15 +20,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/textGrey" />
+            android:background="@color/grey" />
 
         <TextView
             android:id="@+id/product_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/causeGrey"
+            android:background="@color/lightGrey"
             android:padding="@dimen/activity_horizontal_margin"
-            android:text="Water connection "
             android:textColor="@color/blue"
             android:textSize="@dimen/material_text_subhead"
             android:textStyle="bold" />
@@ -36,7 +35,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/textGrey" />
+            android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
@@ -106,7 +105,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/textGrey" />
+            android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"

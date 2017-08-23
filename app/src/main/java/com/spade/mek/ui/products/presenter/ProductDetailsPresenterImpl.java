@@ -13,6 +13,7 @@ import com.spade.mek.ui.cart.model.CartItemModel;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsView;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -47,7 +48,7 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
     @Override
     public void getProductDetails(String appLang, int productId) {
         productDetailsView.showLoading();
-        ApiHelper.getProductDetails(appLang, productId)
+        ApiHelper.getProductDetails(appLang, productId, PrefUtils.getUserId(mContext))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productDetailsResponse -> {
@@ -72,6 +73,24 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
             detailsTracker.setScreenName(mContext.getString(R.string.products_inner_screen));
         }
         detailsTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    @Override
+    public void unSubscribeProduct(String productID) {
+        productDetailsView.showLoading();
+        ApiHelper.unSubscribeFromProduct(productID, PrefUtils.getUserToken(mContext), new ApiHelper.UnSubscriptionCallBacks() {
+            @Override
+            public void onUnSubscribeSuccess() {
+                productDetailsView.hideLoading();
+                getProductDetails(PrefUtils.getAppLang(mContext), Integer.parseInt(productID));
+            }
+
+            @Override
+            public void onUnSubscriptionFailed() {
+                productDetailsView.hideLoading();
+                productDetailsView.onError(R.string.something_wrong);
+            }
+        });
     }
 
     @Override

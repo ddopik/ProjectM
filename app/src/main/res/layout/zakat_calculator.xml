@@ -12,7 +12,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/buttonGrey" />
+        android:background="@color/lightGrey" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,13 +40,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/money_amount"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
 
             <TextView
@@ -63,13 +63,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp8"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/shares_value"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
 
             <EditText
@@ -77,13 +77,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp8"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/gained_profit"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
 
             <EditText
@@ -91,13 +91,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/bonds_value"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
 
             <TextView
@@ -114,13 +114,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp8"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/gold_gram_price"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
 
             <EditText
@@ -128,13 +128,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/gold_weight"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
 
             <TextView
@@ -150,13 +150,13 @@
                 android:id="@+id/rent_value_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/buttonGrey"
+                android:background="@color/lightGrey"
                 android:gravity="start"
                 android:hint="@string/rent_value"
                 android:inputType="numberDecimal"
                 android:padding="@dimen/dp8"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/textGrey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/material_text_body1" />
         </LinearLayout>
     </ScrollView>
@@ -165,7 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@id/value_layout"
-        android:background="@color/buttonGrey" />
+        android:background="@color/lightGrey" />
 
     <LinearLayout
         android:id="@+id/value_layout"

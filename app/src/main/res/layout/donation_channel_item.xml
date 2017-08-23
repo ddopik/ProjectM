@@ -24,7 +24,7 @@
             android:id="@+id/donation_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/buttonGrey"
+            android:background="@color/lightGrey"
             android:gravity="center"
             android:paddingBottom="@dimen/dp8"
             android:paddingTop="@dimen/dp8"

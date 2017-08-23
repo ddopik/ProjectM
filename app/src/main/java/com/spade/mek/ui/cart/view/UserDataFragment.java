@@ -265,14 +265,14 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         onlinePayment.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
         cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.orange));
-        cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.buttonGrey));
+        cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightGrey));
 
     }
 
     private void chooseCashOnDelivery() {
         paymentType = CASH_ON_DELIVERY;
         onlinePayment.setTextColor(ContextCompat.getColor(getContext(), R.color.orange));
-        onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.buttonGrey));
+        onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightGrey));
         cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
     }

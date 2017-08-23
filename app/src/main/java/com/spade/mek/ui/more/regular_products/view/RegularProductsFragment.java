@@ -1,5 +1,6 @@
 package com.spade.mek.ui.more.regular_products.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,10 +14,12 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.more.regular_products.presenter.RegularProductsPresenter;
 import com.spade.mek.ui.more.regular_products.presenter.RegularProductsPresenterImpl;
 import com.spade.mek.ui.products.model.ProductsData;
+import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -138,10 +141,11 @@ public class RegularProductsFragment extends BaseFragment implements RegularProd
 
     @Override
     public void onProductClicked(int productId) {
-//        Intent intent = DetailsActivity.getLaunchIntent(getContext());
-//        intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
-//        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_products));
-//        startActivity(intent);
+        Intent intent = DetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_REGULAR_PRODUCT);
+        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.regular_donations));
+        startActivity(intent);
     }
 
 

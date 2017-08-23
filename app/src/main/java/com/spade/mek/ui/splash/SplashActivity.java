@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
         String appLang = PrefUtils.getAppLang(getApplicationContext());
         imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
-        Log.d("Language", Locale.getDefault().getLanguage());
+        Log.d("Language", Locale.getDefault().getLanguage() + PrefUtils.getUserToken(this));
         changeLanguage();
         counterToNavigate();
     }

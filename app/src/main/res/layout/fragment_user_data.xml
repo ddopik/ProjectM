@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/buttonGrey"
+                    android:background="@color/lightGrey"
                     android:gravity="center"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:text="@string/cash_on_deleivery"

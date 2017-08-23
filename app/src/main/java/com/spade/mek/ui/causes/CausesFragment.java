@@ -188,6 +188,7 @@ public class CausesFragment extends BaseFragment implements CausesView,
     public void onCauseClicked(int productId) {
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_causes));
         startActivity(intent);
     }

@@ -31,7 +31,7 @@
             android:gravity="center"
             android:maxLines="2"
             android:text="@string/add_money_description"
-            android:textColor="@color/textGrey" />
+            android:textColor="@color/grey" />
     </LinearLayout>
 
     <!--<include layout="@layout/counter_layout" />-->

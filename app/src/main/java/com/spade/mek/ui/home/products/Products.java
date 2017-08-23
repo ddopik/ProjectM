@@ -2,8 +2,10 @@ package com.spade.mek.ui.home.products;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
+import com.spade.mek.ui.more.regular_products.model.SubscriptionData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +66,9 @@ public class Products implements Parcelable {
 
     @SerializedName("is_regular")
     private boolean isRegularProduct;
+
+    @SerializedName("subscription_user")
+    private SubscriptionData subscriptionData;
 
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
@@ -213,6 +218,14 @@ public class Products implements Parcelable {
 
     public void setRegularProduct(boolean regularProduct) {
         isRegularProduct = regularProduct;
+    }
+
+    public SubscriptionData getSubscriptionData() {
+        return subscriptionData;
+    }
+
+    public void setSubscriptionData(SubscriptionData subscriptionData) {
+        this.subscriptionData = subscriptionData;
     }
 
     protected Products(Parcel in) {

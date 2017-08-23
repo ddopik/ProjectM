@@ -35,7 +35,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/textGrey" />
+        android:background="@color/grey" />
 
     <TextView
         android:id="@+id/headline"
@@ -44,7 +44,7 @@
         android:gravity="center"
         android:padding="@dimen/activity_horizontal_margin"
         android:text="admddjdndn"
-        android:textColor="@color/textGrey" />
+        android:textColor="@color/grey" />
 
     <TextView
         android:id="@+id/details_text"

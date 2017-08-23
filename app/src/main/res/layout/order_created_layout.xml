@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/donation_success"
-            android:textColor="@color/textGrey" />
+            android:textColor="@color/grey" />
 
         <ImageView
             android:id="@+id/logo_image_view"

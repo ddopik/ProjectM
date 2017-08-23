@@ -235,6 +235,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_products));
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
 
@@ -281,6 +282,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, causeId);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_causes));
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
 
@@ -296,6 +298,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, title);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
 

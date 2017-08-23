@@ -1,5 +1,6 @@
 package com.spade.mek.ui.more.regular_products.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
@@ -23,8 +25,8 @@ import com.spade.mek.ui.products.view.ProductDetailsFragment;
  * Created by Ayman Abouzeid on 8/22/17.
  */
 
-public class SubscribeFragment extends BaseFragment implements SubscribeView {
-
+public class SubscribeFragment extends BaseFragment implements SubscribeView, ConfirmSubscriptionDialog.ConfirmActions {
+    public static final String EXTRA_DURATION = "EXTRA_DURATION";
     private View mSubscribeView;
     private Products product;
     private int quantity = 1, duration = 1;
@@ -63,9 +65,6 @@ public class SubscribeFragment extends BaseFragment implements SubscribeView {
         ImageView decreaseImage = (ImageView) mSubscribeView.findViewById(R.id.arrow_down);
         Button submitButton = (Button) mSubscribeView.findViewById(R.id.submit_btn);
         productTitle.setText(product.getProductTitle());
-//        RadioButton oneMonthRadio = (RadioButton) mSubscribeView.findViewById(R.id.);
-//        RadioButton = (RadioButton) mSubscribeView.findViewById(R.id.);
-//        RadioButton = (RadioButton) mSubscribeView.findViewById(R.id.);
 
         monthsRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.one_month_radio_btn) {
@@ -109,7 +108,8 @@ public class SubscribeFragment extends BaseFragment implements SubscribeView {
 
     @Override
     public void onError(int resID) {
-
+        if (getContext() != null)
+            Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -125,5 +125,27 @@ public class SubscribeFragment extends BaseFragment implements SubscribeView {
     public void hideLoading() {
         if (progressDialog != null)
             progressDialog.dismiss();
+    }
+
+    @Override
+    public void finish() {
+        getActivity().finish();
+    }
+
+    @Override
+    public void showConfirmationDialog() {
+        Bundle bundle = new Bundle();
+        bundle.putString(ProductDetailsFragment.EXTRA_PRODUCT_TITLE, product.getProductTitle());
+        bundle.putString(SubscribeFragment.EXTRA_DURATION, String.valueOf(duration));
+        ConfirmSubscriptionDialog confirmSubscriptionDialog = new ConfirmSubscriptionDialog();
+        confirmSubscriptionDialog.setArguments(bundle);
+        confirmSubscriptionDialog.setConfirmActions(this);
+        confirmSubscriptionDialog.show(getChildFragmentManager(), ConfirmSubscriptionDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void onDismiss() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
     }
 }

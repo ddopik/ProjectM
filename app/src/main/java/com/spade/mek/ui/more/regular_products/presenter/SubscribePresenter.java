@@ -11,4 +11,6 @@ import com.spade.mek.ui.more.regular_products.view.SubscribeView;
 public interface SubscribePresenter extends BasePresenter<SubscribeView> {
 
     void subscribeToProduct(Products products, double amount, int quantity, int duration);
+
+    void onSubscribeDialogDismissed();
 }

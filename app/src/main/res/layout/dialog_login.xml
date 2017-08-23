@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/dialog_login_description"
-        android:textColor="@color/textGrey" />
+        android:textColor="@color/grey" />
     <!--<Button-->
     <!--android:id="@+id/loginAsGuestBtn"-->
     <!--android:layout_width="match_parent"-->

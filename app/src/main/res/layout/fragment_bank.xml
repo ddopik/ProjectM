@@ -13,7 +13,7 @@
         android:gravity="center"
         android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/donate_outside_egypt"
-        android:textColor="@color/textGrey" />
+        android:textColor="@color/grey" />
 
     <TextView
         android:id="@+id/available_stores"
