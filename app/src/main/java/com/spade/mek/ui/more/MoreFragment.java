@@ -23,6 +23,7 @@ import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsActivity;
+import com.spade.mek.ui.more.volunteering.VolunteeringActivity;
 import com.spade.mek.ui.more.zakat_calculator.ZakatCalculatorActivity;
 import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.LoginProviders;
@@ -56,6 +57,12 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    @Override
     protected void initViews() {
         String appLang = PrefUtils.getAppLang(getContext());
         RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
@@ -63,6 +70,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
         RelativeLayout zakatCalculatorLayout = (RelativeLayout) moreView.findViewById(R.id.zakat_calculator_layout);
         RelativeLayout regularDonationsLayout = (RelativeLayout) moreView.findViewById(R.id.regular_donation_layout);
+        RelativeLayout volunteeringLayout = (RelativeLayout) moreView.findViewById(R.id.volunteering_layout);
 
         LinearLayout parentLayout = (LinearLayout) moreView.findViewById(R.id.parent_layout);
 
@@ -99,6 +107,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         donationsLayout.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         zakatCalculatorLayout.setOnClickListener(v -> startActivity(ZakatCalculatorActivity.getLaunchIntent(getContext())));
         regularDonationsLayout.setOnClickListener(v -> startActivity(RegularProductsActivity.getLaunchIntent(getContext())));
+        volunteeringLayout.setOnClickListener(v -> startActivity(VolunteeringActivity.getLaunchIntent(getContext())));
+
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG)) {
             languageSpinner.setSelection(0);
         } else {

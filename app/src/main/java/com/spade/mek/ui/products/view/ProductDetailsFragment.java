@@ -160,11 +160,15 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
             if (PrefUtils.getLoginProvider(getContext()) == LoginProviders.NONE.getLoginProviderCode()) {
                 showLoginDialog();
             } else {
-                Intent intent = SubscribeActivity.getLaunchIntent(getContext());
-                intent.putExtra(EXTRA_PRODUCT, item);
-                startActivityForResult(intent, SUBSCRIBE_REQUEST_CODE);
+                startSubscriptionActivity();
             }
         }
+    }
+
+    private void startSubscriptionActivity() {
+        Intent intent = SubscribeActivity.getLaunchIntent(getContext());
+        intent.putExtra(EXTRA_PRODUCT, item);
+        startActivityForResult(intent, SUBSCRIBE_REQUEST_CODE);
     }
 
     private void showSubscriptionData() {

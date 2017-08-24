@@ -78,6 +78,10 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
             }
             startActivity(intent);
         });
+
+        if (type == RegisterActivity.DEFAULT_TYPE) {
+            continueAsGuest.setVisibility(View.GONE);
+        }
     }
 
     private void overrideFonts(Context context, View v) {

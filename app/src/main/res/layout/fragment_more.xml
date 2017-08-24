@@ -271,6 +271,57 @@
                 android:visibility="gone" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/volunteering_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/lightGrey">
+
+            <ImageView
+                android:id="@+id/volunteering_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/orange"
+                android:padding="@dimen/activity_vertical_margin"
+                app:srcCompat="@drawable/ic_volunteering" />
+
+            <ImageView
+                android:id="@+id/arrow_image_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/volunteering_image_view"
+                android:layout_toRightOf="@id/volunteering_image_view"
+                android:src="@drawable/ic_orange_triangle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_toEndOf="@id/arrow_image_6"
+                android:layout_toRightOf="@id/arrow_image_6"
+                android:text="@string/volunteering"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/material_text_subhead"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="@string/volunteering"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/material_text_caption"
+                android:visibility="gone" />
+        </RelativeLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

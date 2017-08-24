@@ -119,6 +119,10 @@
         <activity
             android:name=".ui.more.regular_products.view.SubscribeActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.more.volunteering.VolunteeringActivity"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

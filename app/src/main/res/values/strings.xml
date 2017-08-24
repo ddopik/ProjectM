@@ -151,6 +151,12 @@
     <string name="products_number" formatted="false">%s Products | %sEGP</string>
     <string name="regular_confirm_message">%s product has been successfully added to your profile as a regular donation product</string>
     <string name="notification_confirmation" formatted="false">A notification will be sent to you each %s months to remind you to donate for the %s</string>
+    <string name="apply">Apply</string>
+    <string name="current_events">Current Events</string>
+    <string name="previous_events">Past Events</string>
+    <string name="upcoming_events">UpComing Events</string>
+    <string name="volunteering">Volunteering</string>
+
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

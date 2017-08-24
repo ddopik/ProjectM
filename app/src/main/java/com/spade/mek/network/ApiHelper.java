@@ -20,6 +20,7 @@ import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
 import com.spade.mek.ui.more.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
+import com.spade.mek.ui.more.volunteering.EventsResponse;
 import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductDetailsResponse;
 import com.spade.mek.ui.register.RegistrationResponse;
@@ -62,7 +63,11 @@ public class ApiHelper {
     private static final String SOCIAL_LOGIN_USER_URL = BASE_POST_URL + "/login/social";
     private static final String CHANGE_PAYMENT_STATUS = BASE_POST_URL + "/payment/change";
     private static final String SUBSCRIBE_URL = BASE_POST_URL + "/regular/subscribe";
-    private static final String UNSUBSCRIBE_URL = BASE_POST_URL + "/regular/{id}/remove";
+    private static final String UN_SUBSCRIBE_URL = BASE_POST_URL + "/regular/{id}/remove";
+    private static final String CURRENT_EVENTS_URL = BASE_URL + "/events/current";
+    private static final String PREVIOUS_EVENTS_URL = BASE_URL + "/events/previous";
+    private static final String UP_COMING_EVENTS_URL = BASE_URL + "/events/next";
+
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
     private static final String USER_ID_PARAMETER = "user_id";
@@ -157,6 +162,30 @@ public class ApiHelper {
                 .addPathParameter(PAGE_NUMBER, String.valueOf(pageNumber))
                 .build()
                 .getObjectObservable(AllNewsResponse.class);
+    }
+
+    public static Observable<EventsResponse> getCurrentEvents(String appLang, int pageNumber) {
+        return Rx2AndroidNetworking.get(CURRENT_EVENTS_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .build()
+                .getObjectObservable(EventsResponse.class);
+    }
+
+    public static Observable<EventsResponse> getPreviousEvents(String appLang, int pageNumber) {
+        return Rx2AndroidNetworking.get(PREVIOUS_EVENTS_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .build()
+                .getObjectObservable(EventsResponse.class);
+    }
+
+    public static Observable<EventsResponse> getUpcomingEvents(String appLang, int pageNumber) {
+        return Rx2AndroidNetworking.get(UP_COMING_EVENTS_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .build()
+                .getObjectObservable(EventsResponse.class);
     }
 
     public static Observable<RelatedNewsResponse> getRelatedNews(String appLang, int newsId) {
@@ -300,7 +329,7 @@ public class ApiHelper {
     }
 
     public static void unSubscribeFromProduct(String productId, String userToken, UnSubscriptionCallBacks unSubscriptionCallBacks) {
-        AndroidNetworking.get(UNSUBSCRIBE_URL)
+        AndroidNetworking.get(UN_SUBSCRIBE_URL)
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .addPathParameter(ID_PATH_PARAMETER, productId)
                 .setPriority(Priority.HIGH)
