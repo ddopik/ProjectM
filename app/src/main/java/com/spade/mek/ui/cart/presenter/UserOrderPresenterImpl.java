@@ -111,8 +111,12 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
             public void onStatusCHangedSuccess() {
                 realmDbHelper.updateOrderStatus(orderId, true);
                 userDataView.hideLoading();
-                userDataView.navigateToConfirmationScreen();
-                userDataView.finish();
+                if (paymentStatus == PaymentActivity.PAYMENT_SUCCESS) {
+                    userDataView.navigateToConfirmationScreen();
+                    userDataView.finish();
+                } else {
+                    userDataView.showFailedTransactionAlert();
+                }
             }
 
             @Override

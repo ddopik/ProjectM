@@ -20,7 +20,7 @@ import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
 import com.spade.mek.ui.more.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
-import com.spade.mek.ui.more.volunteering.EventsResponse;
+import com.spade.mek.ui.more.volunteering.model.EventsResponse;
 import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductDetailsResponse;
 import com.spade.mek.ui.register.RegistrationResponse;
@@ -64,6 +64,8 @@ public class ApiHelper {
     private static final String CHANGE_PAYMENT_STATUS = BASE_POST_URL + "/payment/change";
     private static final String SUBSCRIBE_URL = BASE_POST_URL + "/regular/subscribe";
     private static final String UN_SUBSCRIBE_URL = BASE_POST_URL + "/regular/{id}/remove";
+    private static final String SUBMIT_VOLUNTEER = BASE_POST_URL + "/event/volunteer";
+
     private static final String CURRENT_EVENTS_URL = BASE_URL + "/events/current";
     private static final String PREVIOUS_EVENTS_URL = BASE_URL + "/events/previous";
     private static final String UP_COMING_EVENTS_URL = BASE_URL + "/events/next";
@@ -355,6 +357,32 @@ public class ApiHelper {
                 });
     }
 
+    public static void volunteerToEvent(JSONObject requestJson, VolunteeringCallBacks volunteeringCallBacks) {
+        AndroidNetworking.post(SUBMIT_VOLUNTEER)
+                .addJSONObjectBody(requestJson)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            success = response.getBoolean("success");
+                            if (success) {
+                                volunteeringCallBacks.onVolunteerSuccess();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            volunteeringCallBacks.onVolunteerFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        volunteeringCallBacks.onVolunteerFailed();
+                    }
+                });
+    }
+
     public static Observable<RegistrationResponse> registerUser(JSONObject registerObject) {
         return Rx2AndroidNetworking.post(REGISTER_USER_URL)
                 .addJSONObjectBody(registerObject)
@@ -417,5 +445,11 @@ public class ApiHelper {
         void onUnSubscribeSuccess();
 
         void onUnSubscriptionFailed();
+    }
+
+    public interface VolunteeringCallBacks {
+        void onVolunteerSuccess();
+
+        void onVolunteerFailed();
     }
 }

@@ -23,7 +23,7 @@ import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsActivity;
-import com.spade.mek.ui.more.volunteering.VolunteeringActivity;
+import com.spade.mek.ui.more.volunteering.view.VolunteeringActivity;
 import com.spade.mek.ui.more.zakat_calculator.ZakatCalculatorActivity;
 import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.LoginProviders;

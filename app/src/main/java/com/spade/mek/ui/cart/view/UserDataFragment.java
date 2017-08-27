@@ -3,11 +3,13 @@ package com.spade.mek.ui.cart.view;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -221,11 +223,6 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
     }
 
-    public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, UserDataFragment.class);
-    }
-
-
     @Override
     public void showLoading() {
         if (progressDialog == null)
@@ -258,6 +255,14 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         Intent intent = PaymentActivity.getLaunchIntent(getContext());
         intent.putExtra(PaymentActivity.EXTRA_URL, paymentUrl);
         startActivityForResult(intent, PAYMENT_REQUEST_CODE);
+    }
+
+    @Override
+    public void showFailedTransactionAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setMessage(getString(R.string.payment_error))
+                .setNegativeButton(getString(R.string.ok), (dialog, which) -> dialog.dismiss());
+        alertDialog.show();
     }
 
     private void chooseOnlinePayment() {

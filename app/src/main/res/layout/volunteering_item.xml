@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/lightGrey"
     android:orientation="vertical">
 
     <LinearLayout
@@ -11,6 +11,7 @@
         android:layout_marginEnd="@dimen/dp8"
         android:layout_marginStart="@dimen/dp8"
         android:layout_marginTop="@dimen/dp8"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <FrameLayout
@@ -20,12 +21,14 @@
             <ImageView
                 android:id="@+id/event_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="#ececec" />
 
             <TextView
                 android:id="@+id/event_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:alpha="0.9"
                 android:background="@drawable/volunteering_date_background"
                 android:gravity="center"
                 android:maxLines="1"
@@ -33,23 +36,25 @@
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/dp8"
-                android:textColor="@color/blue" />
+                android:textColor="@color/blue"
+                android:textSize="@dimen/material_text_caption" />
         </FrameLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin">
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:id="@+id/event_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
                 android:gravity="start"
                 android:maxLines="2"
                 android:text="Ramadan"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/material_text_subhead"
                 android:textStyle="bold" />
 
             <TextView
@@ -57,11 +62,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/event_title"
-                android:layout_marginBottom="@dimen/dp8"
-                android:layout_marginTop="@dimen/dp8"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginTop="@dimen/dp4"
                 android:text="Product"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/material_text_subhead" />
+                android:textSize="@dimen/material_text_caption" />
 
             <TextView
                 android:id="@+id/event_description"
@@ -69,26 +74,32 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/event_location"
                 android:gravity="start"
-                android:maxLines="3"
+                android:maxLines="2"
                 android:text="Ramadan"
                 android:textColor="@color/darkGrey"
-                android:textSize="@dimen/material_text_subhead" />
+                android:textSize="@dimen/material_text_caption" />
 
             <TextView
                 android:id="@+id/apply_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_below="@id/event_description"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/dp8"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/dp8"
                 android:background="@drawable/orange_bordered_button_bg"
                 android:gravity="center"
-                android:paddingBottom="@dimen/dp8"
+                android:paddingBottom="@dimen/dp4"
                 android:paddingEnd="@dimen/dp32"
                 android:paddingStart="@dimen/dp32"
-                android:paddingTop="@dimen/dp8"
+                android:paddingTop="@dimen/dp4"
                 android:text="@string/apply"
                 android:textColor="@color/orange"
                 android:textStyle="bold" />
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

@@ -156,7 +156,9 @@
     <string name="previous_events">Past Events</string>
     <string name="upcoming_events">UpComing Events</string>
     <string name="volunteering">Volunteering</string>
-
+    <string name="payment_error">Failed </string>
+    <string name="ok">Ok</string>
+    <string name="volunteering_confirmed">You have successfully joined our team, we \n are going to contact you for any updates about the event</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

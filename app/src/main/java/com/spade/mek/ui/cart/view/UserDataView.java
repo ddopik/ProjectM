@@ -17,4 +17,6 @@ public interface UserDataView extends BaseView {
     void navigateToConfirmationScreen();
 
     void navigateToPayment(String paymentUrl);
+
+    void showFailedTransactionAlert();
 }

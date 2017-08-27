@@ -121,9 +121,16 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.more.volunteering.VolunteeringActivity"
+            android:name=".ui.more.volunteering.view.VolunteeringActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.more.volunteering.view.EventDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.more.volunteering.view.SubmitVolunteeringActivity"
             android:screenOrientation="portrait" />
         <!--
+
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
