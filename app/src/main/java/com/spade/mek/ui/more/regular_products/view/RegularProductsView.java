@@ -14,6 +14,8 @@ public interface RegularProductsView extends BaseView {
 
     void showRegularProducts(ProductsData productsData);
 
+    void showRegularProducts(List<Products> productsList);
+
     void showProductsLoading();
 
     void hideProductsLoading();

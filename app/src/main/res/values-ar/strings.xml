@@ -150,14 +150,14 @@
         <item>فروع مؤسسة مصر الخير</item>
         <item>فوري</item>
         <item>تحصيل التبرع من المنزل</item>
-        <item>التبرع باستخدام بطاقتك الائتمانية</item>
+        <item>التبرع بالبطاقة الائتمانية</item>
     </string-array>
 
     <string-array name="dialog_donation_channels">
         <item>البنوك المصرية</item>
         <item>فوري</item>
         <item>تحصيل التبرع من المنزل</item>
-        <item>التبرع باستخدام بطاقتك الائتمانية</item>
+        <item>التبرع بالبطاقة الائتمانية</item>
     </string-array>
 
     <string-array name="dialog_donation_channels_details">

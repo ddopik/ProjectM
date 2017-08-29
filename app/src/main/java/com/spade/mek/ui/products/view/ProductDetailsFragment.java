@@ -35,12 +35,10 @@ import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
+import com.spade.mek.utils.TimeUtils;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 /**
  * Created by Ayman Abouzeid on 6/20/17.
@@ -242,21 +240,6 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         }
     }
 
-    private String getDate(long timeStamp) {
-        Calendar cal = Calendar.getInstance();
-        TimeZone timeZone = cal.getTimeZone();
-
-        DateFormat dateFormatter = DateFormat.getDateInstance();
-        dateFormatter.setTimeZone(timeZone);
-
-        Calendar calendar =
-                Calendar.getInstance(timeZone);
-        calendar.setTimeInMillis(timeStamp * 1000);
-        String result = dateFormatter.format(calendar.getTime());
-        calendar.clear();
-        return result;
-    }
-
     private void showCauseDetails(Products products) {
         productPrice.setVisibility(View.GONE);
         subscribeTextView.setVisibility(View.GONE);
@@ -342,7 +325,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
             productCreatedAt.setVisibility(View.GONE);
         } else {
             productCreatedAt.setVisibility(View.VISIBLE);
-            productCreatedAt.setText(String.format(getString(R.string.published_at), getDate(products.getCreatedAt())));
+            productCreatedAt.setText(String.format(getString(R.string.published_at), TimeUtils.getDate(products.getCreatedAt())));
         }
 
         if (itemType.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {

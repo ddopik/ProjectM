@@ -20,6 +20,8 @@ import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
 import com.spade.mek.ui.more.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
+import com.spade.mek.ui.more.profile.model.PaymentHistoryResponse;
+import com.spade.mek.ui.more.profile.model.ProfileRegularProductsResponse;
 import com.spade.mek.ui.more.volunteering.model.EventsResponse;
 import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductDetailsResponse;
@@ -64,11 +66,13 @@ public class ApiHelper {
     private static final String CHANGE_PAYMENT_STATUS = BASE_POST_URL + "/payment/change";
     private static final String SUBSCRIBE_URL = BASE_POST_URL + "/regular/subscribe";
     private static final String UN_SUBSCRIBE_URL = BASE_POST_URL + "/regular/{id}/remove";
-    private static final String SUBMIT_VOLUNTEER = BASE_POST_URL + "/event/volunteer";
+    private static final String SUBMIT_VOLUNTEER = BASE_POST_URL + "/events/volunteer";
+    private static final String PROFILE_REGULAR_PODUCTS = BASE_URL + "/user/regular";
 
     private static final String CURRENT_EVENTS_URL = BASE_URL + "/events/current";
     private static final String PREVIOUS_EVENTS_URL = BASE_URL + "/events/previous";
     private static final String UP_COMING_EVENTS_URL = BASE_URL + "/events/next";
+    private static final String PAYMENT_HISTORY_URL = BASE_URL + "/payment/history";
 
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
@@ -128,6 +132,14 @@ public class ApiHelper {
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
                 .build()
                 .getObjectObservable(AllProductsResponse.class);
+    }
+
+    public static Observable<ProfileRegularProductsResponse> getProfileRegularProducts(String lang, String userToken) {
+        return Rx2AndroidNetworking.get(PROFILE_REGULAR_PODUCTS)
+                .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
+                .build()
+                .getObjectObservable(ProfileRegularProductsResponse.class);
     }
 
     public static Observable<AllCausesResponse> getAllCauses(String lang, int pageNumber) {
@@ -406,6 +418,15 @@ public class ApiHelper {
                 .setPriority(Priority.HIGH)
                 .build()
                 .getObjectObservable(PaymentResponse.class);
+    }
+
+    public static Observable<PaymentHistoryResponse> getPaymentHistory(String appLang, String userToken) {
+        return Rx2AndroidNetworking.get(PAYMENT_HISTORY_URL)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getObjectObservable(PaymentHistoryResponse.class);
     }
 
     public static Observable<RegistrationResponse> socialLoginUSer(JSONObject jsonObject) {

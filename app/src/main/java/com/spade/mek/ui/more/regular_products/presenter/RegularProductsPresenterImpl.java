@@ -53,4 +53,23 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
                     }
                 });
     }
+
+    @Override
+    public void getProfileRegularProducts(String lang, String userToken) {
+        mRegularProductsView.showProductsLoading();
+        ApiHelper.getProfileRegularProducts(lang, userToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(allProductsResponse -> {
+                    if (allProductsResponse != null) {
+                        mRegularProductsView.showRegularProducts(allProductsResponse.getProductsDataProductsList());
+                    }
+                    mRegularProductsView.hideProductsLoading();
+                }, throwable -> {
+                    mRegularProductsView.hideProductsLoading();
+                    if (throwable != null) {
+                        mRegularProductsView.onError(throwable.getMessage());
+                    }
+                });
+    }
 }

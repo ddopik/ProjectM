@@ -130,6 +130,11 @@ public class RegularProductsFragment extends BaseFragment implements RegularProd
     }
 
     @Override
+    public void showRegularProducts(List<Products> productsList) {
+
+    }
+
+    @Override
     public void showProductsLoading() {
         productsProgressBar.setVisibility(View.VISIBLE);
     }

@@ -60,7 +60,7 @@
     <string name="enter_password">Please Enter Your Password</string>
     <string name="enter_confirm_password">Please Confirm Your Password</string>
     <string name="select_type_of_donation">Please Select Type Of Donation</string>
-    <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
+    <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 72h</string>
     <string name="thank_you">Thank You</string>
     <string name="for_help">For helping us to help others </string>
     <string name="your_cart">Your Cart</string>
@@ -159,6 +159,11 @@
     <string name="payment_error">Failed </string>
     <string name="ok">Ok</string>
     <string name="volunteering_confirmed">You have successfully joined our team, we \n are going to contact you for any updates about the event</string>
+    <string name="items">%s Items</string>
+    <string name="payment_history">Payment History</string>
+    <string name="see_more">See More&#8230; </string>
+    <string name="see_less">See Less&#8230; </string>
+
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
@@ -216,6 +221,13 @@ Home collection service is only available for Cairo, Giza, Alexandria, Al-Fayoum
         <item quantity="many">Total %d Items</item>
         <item quantity="few">Total %d Items</item>
         <item quantity="zero">Total %d Items</item>
+    </plurals>
+    <plurals name="payment_items_plural">
+        <item quantity="one">%d Items</item>
+        <item quantity="other"> %d Items</item>
+        <item quantity="many"> %d Items</item>
+        <item quantity="few"> %d Items</item>
+        <item quantity="zero"> %d Items</item>
     </plurals>
     <string name="title_activity_maps">Map</string>
 </resources>

@@ -22,6 +22,7 @@ import com.spade.mek.ui.login.LoginDialogFragment;
 import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
+import com.spade.mek.ui.more.profile.view.ProfileActivity;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsActivity;
 import com.spade.mek.ui.more.volunteering.view.VolunteeringActivity;
 import com.spade.mek.ui.more.zakat_calculator.ZakatCalculatorActivity;
@@ -65,6 +66,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     @Override
     protected void initViews() {
         String appLang = PrefUtils.getAppLang(getContext());
+        RelativeLayout profileLayout = (RelativeLayout) moreView.findViewById(R.id.profile_layout);
         RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
         RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
         RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
@@ -108,7 +110,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         zakatCalculatorLayout.setOnClickListener(v -> startActivity(ZakatCalculatorActivity.getLaunchIntent(getContext())));
         regularDonationsLayout.setOnClickListener(v -> startActivity(RegularProductsActivity.getLaunchIntent(getContext())));
         volunteeringLayout.setOnClickListener(v -> startActivity(VolunteeringActivity.getLaunchIntent(getContext())));
-
+        profileLayout.setOnClickListener(v -> startActivity(ProfileActivity.getLaunchIntent(getContext())));
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG)) {
             languageSpinner.setSelection(0);
         } else {

@@ -166,13 +166,11 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
     @Override
     public void onError(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void onError(int resID) {
         Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
-
     }
 
 

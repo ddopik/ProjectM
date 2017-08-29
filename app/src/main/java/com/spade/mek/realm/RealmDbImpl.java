@@ -184,6 +184,7 @@ public class RealmDbImpl implements RealmDbHelper {
 
             e.onNext(true);
             e.onComplete();
+
         });
     }
 

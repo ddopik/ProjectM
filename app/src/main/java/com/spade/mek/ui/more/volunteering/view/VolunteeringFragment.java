@@ -24,7 +24,7 @@ public class VolunteeringFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_volunteering, container, false);
+        view = inflater.inflate(R.layout.fragment_paging, container, false);
         initViews();
         return view;
     }
@@ -44,7 +44,7 @@ public class VolunteeringFragment extends BaseFragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        VolunteeringPagerAdapter adapter = new VolunteeringPagerAdapter(getChildFragmentManager());
+        PagingAdapter adapter = new PagingAdapter(getChildFragmentManager());
         adapter.addFragment(getPreviousEventsFragment(), getString(R.string.previous_events));
         adapter.addFragment(getCurrentEventsFragment(), getString(R.string.current_events));
         adapter.addFragment(getUpComingEventsFragment(), getString(R.string.upcoming_events));
