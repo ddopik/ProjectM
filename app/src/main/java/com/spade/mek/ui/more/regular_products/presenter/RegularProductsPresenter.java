@@ -11,5 +11,9 @@ public interface RegularProductsPresenter extends BasePresenter<RegularProductsV
 
     void getRegularProducts(String lang, int page);
 
-    void getProfileRegularProducts(String lang, String userToken);
+    void getProfileRegularProducts(String lang, String userID, String userToken);
+
+    void unSubscribeProduct(String productID);
+
 }
+

@@ -1,6 +1,5 @@
 package com.spade.mek.ui.more.profile.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,24 +12,31 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
-import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.login.LoginDialogFragment;
 import com.spade.mek.ui.more.regular_products.presenter.RegularProductsPresenter;
 import com.spade.mek.ui.more.regular_products.presenter.RegularProductsPresenterImpl;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsView;
+import com.spade.mek.ui.more.regular_products.view.SubscribeFragment;
+import com.spade.mek.ui.more.regular_products.view.ViewSubscriptionDialog;
 import com.spade.mek.ui.products.model.ProductsData;
-import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.spade.mek.ui.products.view.ProductDetailsFragment.EXTRA_PRODUCT_PRICE;
+import static com.spade.mek.ui.products.view.ProductDetailsFragment.EXTRA_PRODUCT_TITLE;
+import static com.spade.mek.ui.products.view.ProductDetailsFragment.EXTRA_SUBSCRIPTION_AMOUNT;
+import static com.spade.mek.ui.products.view.ProductDetailsFragment.EXTRA_SUBSCRIPTION_QUANTITY;
+
 /**
  * Created by Ayman Abouzeid on 6/19/17.
  */
 
-public class ProfileRegularProductsFragment extends BaseFragment implements RegularProductsView, ProfileRegularProductsAdapter.ProductActions {
+public class ProfileRegularProductsFragment extends BaseFragment
+        implements RegularProductsView, ProfileRegularProductsAdapter.ProductActions, ViewSubscriptionDialog.SubscriptionActions {
 
     private static RegularProductsPresenter regularProductsPresenter;
     private ProfileRegularProductsAdapter regularProductsAdapter;
@@ -38,6 +44,7 @@ public class ProfileRegularProductsFragment extends BaseFragment implements Regu
     private View mRegularProductsView;
     private ProgressBar productsProgressBar;
     private String appLang;
+    private int productId;
 
     @Nullable
     @Override
@@ -71,7 +78,7 @@ public class ProfileRegularProductsFragment extends BaseFragment implements Regu
     }
 
     private void getProducts() {
-        regularProductsPresenter.getProfileRegularProducts(appLang, PrefUtils.getUserToken(getContext()));
+        regularProductsPresenter.getProfileRegularProducts(appLang, String.valueOf(PrefUtils.getUserId(getContext())), PrefUtils.getUserToken(getContext()));
     }
 
 
@@ -94,10 +101,11 @@ public class ProfileRegularProductsFragment extends BaseFragment implements Regu
 
     @Override
     public void showRegularProducts(List<Products> productsList) {
+        this.productsList.clear();
         if (productsList != null) {
             this.productsList.addAll(productsList);
-            regularProductsAdapter.notifyDataSetChanged();
         }
+        regularProductsAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -111,13 +119,29 @@ public class ProfileRegularProductsFragment extends BaseFragment implements Regu
     }
 
     @Override
-    public void onProductClicked(int productId) {
-        Intent intent = DetailsActivity.getLaunchIntent(getContext());
-        intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
-        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_REGULAR_PRODUCT);
-        intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.regular_donations));
-        startActivity(intent);
+    public void unSubscribeSuccess() {
+        getProducts();
+    }
+
+    @Override
+    public void onProductClicked(Products item) {
+        productId = item.getProductId();
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_PRODUCT_TITLE, item.getProductTitle());
+        bundle.putString(EXTRA_SUBSCRIPTION_AMOUNT, String.valueOf(item.getSubscriptionData().getTotalAmount()));
+        bundle.putString(EXTRA_SUBSCRIPTION_QUANTITY, String.valueOf(item.getSubscriptionData().getQuantity()));
+        bundle.putString(EXTRA_PRODUCT_PRICE, String.valueOf(item.getProductPrice()));
+        bundle.putString(SubscribeFragment.EXTRA_DURATION, item.getSubscriptionData().getDuration());
+
+        ViewSubscriptionDialog viewSubscriptionDialog = new ViewSubscriptionDialog();
+        viewSubscriptionDialog.setArguments(bundle);
+        viewSubscriptionDialog.setSubscriptionActions(this);
+        viewSubscriptionDialog.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());
     }
 
 
+    @Override
+    public void onUnSubscribeClicked() {
+        regularProductsPresenter.unSubscribeProduct(String.valueOf(productId));
+    }
 }

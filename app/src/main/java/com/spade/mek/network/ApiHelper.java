@@ -1,7 +1,5 @@
 package com.spade.mek.network;
 
-import android.support.annotation.Nullable;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -134,10 +132,11 @@ public class ApiHelper {
                 .getObjectObservable(AllProductsResponse.class);
     }
 
-    public static Observable<ProfileRegularProductsResponse> getProfileRegularProducts(String lang, String userToken) {
+    public static Observable<ProfileRegularProductsResponse> getProfileRegularProducts(String lang, String userId, String userToken) {
         return Rx2AndroidNetworking.get(PROFILE_REGULAR_PODUCTS)
-                .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
+                .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .addQueryParameter(USER_ID_PARAMETER, userId)
                 .build()
                 .getObjectObservable(ProfileRegularProductsResponse.class);
     }
@@ -150,7 +149,7 @@ public class ApiHelper {
                 .getObjectObservable(AllCausesResponse.class);
     }
 
-    public static Observable<ProductDetailsResponse> getProductDetails(String appLang, int itemId, @Nullable String userID) {
+    public static Observable<ProductDetailsResponse> getProductDetails(String appLang, int itemId, String userID) {
         Rx2ANRequest.GetRequestBuilder getRequestBuilder = Rx2AndroidNetworking.get(PRODUCT_DETAILS_URL);
         if (!userID.equals(PrefUtils.GUEST_USER_ID)) {
             getRequestBuilder.addQueryParameter(USER_ID_PARAMETER, userID);

@@ -197,6 +197,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     private void openProductsFragment() {
         filterButton.setVisibility(View.VISIBLE);
+        clearFilters();
         ProductsFragment productsFragment = new ProductsFragment();
         productsFragment.setCartAction(this);
         addFragment(getString(R.string.title_products), productsFragment);
@@ -211,6 +212,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     private void openCausesFragment() {
         filterButton.setVisibility(View.VISIBLE);
+        clearFilters();
         CausesFragment causesFragment = new CausesFragment();
         causesFragment.setCartAction(this);
         addFragment(getString(R.string.title_causes), causesFragment);

@@ -145,6 +145,11 @@ public class RegularProductsFragment extends BaseFragment implements RegularProd
     }
 
     @Override
+    public void unSubscribeSuccess() {
+
+    }
+
+    @Override
     public void onProductClicked(int productId) {
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);

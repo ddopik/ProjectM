@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SpinnerAdapter;
 
@@ -39,8 +38,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     private boolean isLoggedIn = false;
     private View moreView;
     private MorePresenter morePresenter;
-    private LoginDialogFragment loginDialogFragment;
     private Button logBtn;
+    private RelativeLayout profileLayout;
 
     @Nullable
     @Override
@@ -66,7 +65,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     @Override
     protected void initViews() {
         String appLang = PrefUtils.getAppLang(getContext());
-        RelativeLayout profileLayout = (RelativeLayout) moreView.findViewById(R.id.profile_layout);
+        profileLayout = (RelativeLayout) moreView.findViewById(R.id.profile_layout);
         RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
         RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
         RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
@@ -74,13 +73,13 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         RelativeLayout regularDonationsLayout = (RelativeLayout) moreView.findViewById(R.id.regular_donation_layout);
         RelativeLayout volunteeringLayout = (RelativeLayout) moreView.findViewById(R.id.volunteering_layout);
 
-        LinearLayout parentLayout = (LinearLayout) moreView.findViewById(R.id.parent_layout);
-
         ImageView arrowImage = (ImageView) moreView.findViewById(R.id.arrow_image);
         ImageView arrowImage1 = (ImageView) moreView.findViewById(R.id.arrow_image_1);
         ImageView arrowImage2 = (ImageView) moreView.findViewById(R.id.arrow_image_2);
         ImageView arrowImage3 = (ImageView) moreView.findViewById(R.id.arrow_image_3);
         ImageView arrowImage4 = (ImageView) moreView.findViewById(R.id.arrow_image_4);
+        ImageView arrowImage5 = (ImageView) moreView.findViewById(R.id.arrow_image_5);
+        ImageView arrowImage6 = (ImageView) moreView.findViewById(R.id.arrow_image_6);
 
         if (appLang.equals(PrefUtils.ARABIC_LANG)) {
             arrowImage.setRotationY(180);
@@ -88,6 +87,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
             arrowImage2.setRotationY(180);
             arrowImage3.setRotationY(180);
             arrowImage4.setRotationY(180);
+            arrowImage5.setRotationY(180);
+            arrowImage6.setRotationY(180);
         }
 
         AppCompatSpinner languageSpinner = (AppCompatSpinner) moreView.findViewById(R.id.language_spinner);
@@ -138,8 +139,10 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     private void updateUI() {
         isLoggedIn = PrefUtils.getLoginProvider(getContext()) != LoginProviders.NONE.getLoginProviderCode();
         if (isLoggedIn) {
+            profileLayout.setVisibility(View.VISIBLE);
             logBtn.setText(getString(R.string.logout));
         } else {
+            profileLayout.setVisibility(View.GONE);
             logBtn.setText(getString(R.string.login));
         }
     }
@@ -147,7 +150,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     private void showLoginDialog() {
         Bundle bundle = new Bundle();
         bundle.putInt(RegisterActivity.EXTRA_TYPE, RegisterActivity.DEFAULT_TYPE);
-        loginDialogFragment = new LoginDialogFragment();
+        LoginDialogFragment loginDialogFragment = new LoginDialogFragment();
         loginDialogFragment.setLoginDialogActions(this);
         loginDialogFragment.setArguments(bundle);
         loginDialogFragment.show(getChildFragmentManager(), LoginDialogFragment.class.getSimpleName());

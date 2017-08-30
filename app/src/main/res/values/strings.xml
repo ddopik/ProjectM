@@ -163,6 +163,8 @@
     <string name="payment_history">Payment History</string>
     <string name="see_more">See More&#8230; </string>
     <string name="see_less">See Less&#8230; </string>
+    <string name="confirm_volunteer_description">Please confirm your data to be updated \n with the event\'s updates</string>
+    <string name="search">Search</string>
 
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>

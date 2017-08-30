@@ -25,6 +25,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     private Context context;
     private int defaultDrawableResId;
     private OnEventClicked onEventClicked;
+    private boolean isEnded;
 
     public EventsAdapter(List<Event> eventList, Context context, int defaultDrawableResId) {
         this.eventList = eventList;
@@ -46,7 +47,11 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         holder.eventDescription.setText(event.getEventDetails());
         holder.eventAddress.setText(event.getEventAddress());
         holder.eventDate.setText(event.getEventStartDate().substring(0, 10));
-
+        if (isEnded) {
+            holder.applyBtn.setVisibility(View.INVISIBLE);
+        } else {
+            holder.applyBtn.setVisibility(View.VISIBLE);
+        }
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(context.getResources(), defaultDrawableResId, null);
         GlideApp.with(context).load(event.getEventImage()).
                 placeholder(defaultDrawable).error(defaultDrawable).centerCrop().into(holder.eventImage);
@@ -57,6 +62,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
     @Override
     public int getItemCount() {
         return eventList.size();
+    }
+
+    public void setEnded(boolean ended) {
+        isEnded = ended;
     }
 
     public void setOnEventClicked(OnEventClicked onEventClicked) {

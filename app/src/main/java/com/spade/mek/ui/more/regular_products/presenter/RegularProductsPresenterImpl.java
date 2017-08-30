@@ -2,8 +2,10 @@ package com.spade.mek.ui.more.regular_products.presenter;
 
 import android.content.Context;
 
+import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsView;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -55,9 +57,9 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
     }
 
     @Override
-    public void getProfileRegularProducts(String lang, String userToken) {
+    public void getProfileRegularProducts(String lang, String userID, String userToken) {
         mRegularProductsView.showProductsLoading();
-        ApiHelper.getProfileRegularProducts(lang, userToken)
+        ApiHelper.getProfileRegularProducts(lang, userID, userToken)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(allProductsResponse -> {
@@ -71,5 +73,23 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
                         mRegularProductsView.onError(throwable.getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void unSubscribeProduct(String productID) {
+        mRegularProductsView.showProductsLoading();
+        ApiHelper.unSubscribeFromProduct(productID, PrefUtils.getUserToken(mContext), new ApiHelper.UnSubscriptionCallBacks() {
+            @Override
+            public void onUnSubscribeSuccess() {
+                mRegularProductsView.hideProductsLoading();
+                mRegularProductsView.unSubscribeSuccess();
+            }
+
+            @Override
+            public void onUnSubscriptionFailed() {
+                mRegularProductsView.hideProductsLoading();
+                mRegularProductsView.onError(R.string.something_wrong);
+            }
+        });
     }
 }

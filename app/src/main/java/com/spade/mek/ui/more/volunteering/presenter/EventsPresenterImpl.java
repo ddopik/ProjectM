@@ -2,6 +2,7 @@ package com.spade.mek.ui.more.volunteering.presenter;
 
 import android.content.Context;
 
+import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.volunteering.view.EventsView;
 
@@ -48,8 +49,9 @@ public class EventsPresenterImpl implements EventsPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(eventsResponse -> {
-                    eventsView.showCurrentEvents(eventsResponse.getEventList());
+                    eventsView.showPreviousEvents(eventsResponse.getEventList());
                 }, throwable -> {
+                    eventsView.onError(R.string.something_wrong);
                 });
     }
 
@@ -59,8 +61,9 @@ public class EventsPresenterImpl implements EventsPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(eventsResponse -> {
-                    eventsView.showCurrentEvents(eventsResponse.getEventList());
+                    eventsView.showUpComingEvents(eventsResponse.getEventList());
                 }, throwable -> {
+                    eventsView.onError(R.string.something_wrong);
                 });
     }
 }

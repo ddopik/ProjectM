@@ -20,4 +20,6 @@ public interface RegularProductsView extends BaseView {
 
     void hideProductsLoading();
 
+    void unSubscribeSuccess();
+
 }

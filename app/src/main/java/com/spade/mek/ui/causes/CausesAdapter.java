@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -96,6 +98,14 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
                 ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
             }
             ((HeaderViewHolder) holder).title.setText(title);
+            ((HeaderViewHolder) holder).searchImage.setOnClickListener(v -> ((HeaderViewHolder) holder).searchEditText.setVisibility(View.VISIBLE));
+            ((HeaderViewHolder) holder).searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    return true;
+                }
+                return false;
+            });
 
         }
         overrideFonts(mContext, holder.itemView);
@@ -202,14 +212,18 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
     }
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
-
+        EditText searchEditText;
+        ImageView searchImage;
         TextView title;
         ViewPager casesViewPager;
+
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
             casesViewPager = (ViewPager) itemView.findViewById(R.id.urgent_cases_view_pager);
             title = (TextView) itemView.findViewById(R.id.title);
+            searchEditText = (EditText) itemView.findViewById(R.id.search_edit_text);
+            searchImage = (ImageView) itemView.findViewById(R.id.searchImage);
         }
     }
 }

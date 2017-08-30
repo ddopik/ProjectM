@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
@@ -117,24 +118,28 @@ public class EventsFragment extends BaseFragment implements EventsView, EventsAd
 
     @Override
     public void onError(int resID) {
-
+        if (getContext() != null)
+            Toast.makeText(getContext(), getString(resID), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showCurrentEvents(List<Event> eventList) {
         this.eventList.addAll(eventList);
+        eventsAdapter.setEnded(false);
         eventsAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showPreviousEvents(List<Event> eventList) {
         this.eventList.addAll(eventList);
+        eventsAdapter.setEnded(true);
         eventsAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showUpComingEvents(List<Event> eventList) {
         this.eventList.addAll(eventList);
+        eventsAdapter.setEnded(false);
         eventsAdapter.notifyDataSetChanged();
     }
 

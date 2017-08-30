@@ -42,15 +42,15 @@ public class ProfileRegularProductsAdapter extends RecyclerView.Adapter<ProfileR
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         Products products = productsList.get(position);
         holder.productTitle.setText(products.getProductTitle());
-        holder.productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(products.getProductPrice())));
-//        + " | " +
-//                String.format(mContext.getString(R.string.month_reminder), products.getSubscriptionData().getDuration()));
+        holder.productPrice.setText(String.format(mContext.getString(R.string.egp), String.valueOf(products.getProductPrice()))
+                + " | " +
+                String.format(mContext.getString(R.string.month_reminder), products.getSubscriptionData().getDuration()));
 
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
         GlideApp.with(mContext).load(products.getProductImage()).centerCrop().
                 placeholder(defaultDrawable).error(defaultDrawable).into(holder.productImage);
 
-        holder.itemView.setOnClickListener(v -> productActions.onProductClicked(products.getProductId()));
+        holder.itemView.setOnClickListener(v -> productActions.onProductClicked(products));
         FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
@@ -64,7 +64,7 @@ public class ProfileRegularProductsAdapter extends RecyclerView.Adapter<ProfileR
     }
 
     public interface ProductActions {
-        void onProductClicked(int productId);
+        void onProductClicked(Products product);
     }
 
 
