@@ -1,7 +1,6 @@
 package com.spade.mek.ui.causes;
 
 import com.spade.mek.base.BasePresenter;
-import com.spade.mek.ui.products.view.ProductsView;
 
 import org.json.JSONObject;
 
@@ -16,5 +15,7 @@ public interface CausesPresenter extends BasePresenter<CausesView> {
     void getUrgentCases(String lang);
 
     void filterCauses(String lang, JSONObject jsonObject);
+
+    void search(String searchKeyWord);
 
 }

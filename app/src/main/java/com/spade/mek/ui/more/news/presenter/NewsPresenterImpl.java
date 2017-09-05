@@ -8,6 +8,7 @@ import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.news.view.NewsView;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,6 +49,25 @@ public class NewsPresenterImpl implements NewsPresenter {
                     newsView.hideLoading();
                     if (allNewsResponse != null) {
                         newsView.showNews(allNewsResponse);
+                    } else {
+                        newsView.onError(R.string.something_wrong);
+                    }
+                }, throwable -> {
+                    newsView.hideLoading();
+                    newsView.onError(throwable.getLocalizedMessage());
+                });
+    }
+
+    @Override
+    public void search(String searchKeyWord) {
+        newsView.showLoading();
+        ApiHelper.searchNews(searchKeyWord, PrefUtils.getAppLang(mContext),"news")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(newsSearchResponse -> {
+                    newsView.hideLoading();
+                    if (newsSearchResponse != null) {
+                        newsView.showSearchResults(newsSearchResponse);
                     } else {
                         newsView.onError(R.string.something_wrong);
                     }

@@ -29,6 +29,7 @@ import com.spade.mek.R;
 import com.spade.mek.base.BaseActivity;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.causes.CausesFragment;
+import com.spade.mek.ui.home.search.SearchActivity;
 import com.spade.mek.ui.home.urgent_cases.FilterCategoriesAdapter;
 import com.spade.mek.ui.more.MoreFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     private static final int CAUSES_POSITION = 1;
     private static final int PRODUCTS_POSITION = 2;
     private static final int MORE_POSITION = 3;
+    private static final int SEARCH_POSITION = 4;
     private LinearLayout filterViewLayout;
     private TextView selectedFiltersText;
     private List<FilterCategory> filterCategories;
@@ -97,7 +99,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         clearFilters.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ahBottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomNavigation);
         ahBottomNavigation.setTitleTypeface(Typeface.createFromAsset(getAssets(), "fonts/bahij_semi_bold.ttf"));
-        ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE);
         ahBottomNavigation.setAccentColor(Color.parseColor("#E7891E"));
         ahBottomNavigation.setInactiveColor(Color.parseColor("#01513e"));
         ahBottomNavigation.setForceTint(true);
@@ -155,12 +157,14 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         AHBottomNavigationItem causesItem = new AHBottomNavigationItem(getString(R.string.title_causes), R.drawable.ic_causes);
         AHBottomNavigationItem productsItem = new AHBottomNavigationItem(getString(R.string.title_products), R.drawable.ic_products);
         AHBottomNavigationItem moreItem = new AHBottomNavigationItem(getString(R.string.title_more), R.drawable.ic_more);
+        AHBottomNavigationItem searchItem = new AHBottomNavigationItem(getString(R.string.search), R.drawable.ic_search_white);
 
         List<AHBottomNavigationItem> ahBottomNavigationItems = new ArrayList<>();
         ahBottomNavigationItems.add(homeItem);
         ahBottomNavigationItems.add(causesItem);
         ahBottomNavigationItems.add(productsItem);
         ahBottomNavigationItems.add(moreItem);
+        ahBottomNavigationItems.add(searchItem);
 
         return ahBottomNavigationItems;
     }
@@ -183,6 +187,9 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
             case MORE_POSITION:
                 openMoreFragment();
                 return true;
+            case SEARCH_POSITION:
+                openSearchActivity();
+                return false;
         }
         return true;
     }
@@ -216,6 +223,10 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         CausesFragment causesFragment = new CausesFragment();
         causesFragment.setCartAction(this);
         addFragment(getString(R.string.title_causes), causesFragment);
+    }
+
+    private void openSearchActivity() {
+        startActivity(SearchActivity.getLaunchIntent(this));
     }
 
     public static Intent getLaunchIntent(Context context) {

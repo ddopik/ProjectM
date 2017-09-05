@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
+import com.spade.mek.ui.home.search.model.NewsSearchResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
 import com.spade.mek.ui.more.news.model.News;
 import com.spade.mek.ui.more.news.presenter.NewsPresenter;
@@ -117,6 +118,11 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsAdapter.
             this.newsList.addAll(allNewsResponse.getNewsData().getNewsList());
         }
         newsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showSearchResults(NewsSearchResponse newsSearchResponse) {
+
     }
 
     @Override

@@ -16,4 +16,6 @@ public interface ProductsPresenter extends BasePresenter<ProductsView> {
     void getUrgentCases(String lang);
 
     void filterProducts(String lang, JSONObject jsonObject);
+
+    void search(String searchKeyWord);
 }

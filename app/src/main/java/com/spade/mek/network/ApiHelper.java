@@ -11,6 +11,8 @@ import com.spade.mek.ui.causes.AllCausesResponse;
 import com.spade.mek.ui.home.FilterCategoriesResponse;
 import com.spade.mek.ui.home.causes.LatestCausesResponse;
 import com.spade.mek.ui.home.products.LatestProductsResponse;
+import com.spade.mek.ui.home.search.model.NewsSearchResponse;
+import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.home.urgent_cases.UrgentCasesResponse;
 import com.spade.mek.ui.more.contact_us.model.ContactUsDataResponse;
 import com.spade.mek.ui.more.donation_channels.model.BanksResponse;
@@ -71,13 +73,15 @@ public class ApiHelper {
     private static final String PREVIOUS_EVENTS_URL = BASE_URL + "/events/previous";
     private static final String UP_COMING_EVENTS_URL = BASE_URL + "/events/next";
     private static final String PAYMENT_HISTORY_URL = BASE_URL + "/payment/history";
-
+    private static final String SEARCH_URL = BASE_URL + "/search";
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
     private static final String USER_ID_PARAMETER = "user_id";
     private static final String PAGE_NUMBER = "page";
     private static final String AUTH_TOKEN = "Authorization";
     private static final String BEARER = "bearer";
+    private static final String TYPE = "type";
+    private static final String SEARCH = "search";
     private static boolean success;
 
     public static Observable<LatestProductsResponse> getLatestProducts(String lang) {
@@ -434,6 +438,24 @@ public class ApiHelper {
                 .setPriority(Priority.HIGH)
                 .build()
                 .getObjectObservable(RegistrationResponse.class);
+    }
+
+    public static Observable<SearchResponse> search(String searchKeyword, String appLang, String itemType) {
+        return Rx2AndroidNetworking.post(SEARCH_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .addBodyParameter(TYPE, itemType)
+                .addBodyParameter(SEARCH, searchKeyword)
+                .build()
+                .getObjectObservable(SearchResponse.class);
+    }
+
+    public static Observable<NewsSearchResponse> searchNews(String searchKeyword, String appLang, String itemType) {
+        return Rx2AndroidNetworking.post(SEARCH_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .addBodyParameter(TYPE, itemType)
+                .addBodyParameter(SEARCH, searchKeyword)
+                .build()
+                .getObjectObservable(NewsSearchResponse.class);
     }
 
     public interface CreateOrderCallbacks {

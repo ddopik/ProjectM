@@ -30,6 +30,7 @@ public class PagingAdapter extends FragmentPagerAdapter {
         return mFragmentList.get(position);
     }
 
+
     @Override
     public CharSequence getPageTitle(int position) {
         return mFragmentTitleList.get(position);

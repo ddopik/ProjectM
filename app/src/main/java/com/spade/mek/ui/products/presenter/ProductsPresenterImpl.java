@@ -7,7 +7,9 @@ import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.products.view.ProductsView;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import org.json.JSONObject;
@@ -90,6 +92,23 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                         mProductsView.showFilteredProducts(allProductsResponse.getProductsData());
                     }
                     mProductsView.hideProductsLoading();
+                }, throwable -> {
+                    mProductsView.hideProductsLoading();
+                    if (throwable != null) {
+                        mProductsView.onError(throwable.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void search(String searchKeyWord) {
+        mProductsView.showProductsLoading();
+        ApiHelper.search(searchKeyWord, PrefUtils.getAppLang(mContext), UrgentCasesPagerAdapter.PRODUCT_TYPE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(searchResponse -> {
+                    mProductsView.hideProductsLoading();
+                    mProductsView.showSearchResults(searchResponse);
                 }, throwable -> {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {

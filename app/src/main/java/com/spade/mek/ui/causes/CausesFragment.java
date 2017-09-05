@@ -19,6 +19,8 @@ import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.SearchActivity;
+import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
@@ -72,7 +74,8 @@ public class CausesFragment extends BaseFragment implements CausesView,
         urgentCaseList = new ArrayList<>();
         appLang = PrefUtils.getAppLang(getContext());
 
-        causesAdapter = new CausesAdapter(getContext(), productsList, urgentCaseList, getString(R.string.all_causes), ImageUtils.getDefaultImage(appLang));
+        causesAdapter = new CausesAdapter(getContext(), productsList, urgentCaseList, getString(R.string.all_causes),
+                SearchActivity.LIST_VIEW, ImageUtils.getDefaultImage(appLang));
         causesAdapter.setProductActions(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setAdapter(causesAdapter);
@@ -181,6 +184,11 @@ public class CausesFragment extends BaseFragment implements CausesView,
     @Override
     public void hideCausesLoading() {
         productsProgressBar.setVisibility(View.GONE);
+
+    }
+
+    @Override
+    public void showSearchResults(SearchResponse searchResponse) {
 
     }
 

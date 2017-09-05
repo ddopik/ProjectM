@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.SearchActivity;
 import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
 import com.spade.mek.utils.PrefUtils;
@@ -32,13 +33,16 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
     private int defaultDrawableResId;
     private ProductActions productActions;
     private String title;
+    private int viewType;
 
-    public ProductsAdapter(List<Products> productsList, List<Products> urgentCaseList, int defaultResId, String title, Context context) {
+    public ProductsAdapter(List<Products> productsList, List<Products> urgentCaseList,
+                           int defaultResId, String title, int viewType, Context context) {
         this.mContext = context;
         this.productsList = productsList;
         this.urgentCaseList = urgentCaseList;
         this.defaultDrawableResId = defaultResId;
         this.title = title;
+        this.viewType = viewType;
     }
 
     @Override
@@ -88,7 +92,11 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
                 urgentCasesPagerAdapter.setOnCaseClicked(this);
                 ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
             }
-            ((HeaderViewHolder) holder).title.setText(title);
+            if (viewType == SearchActivity.SEARCH_VIEW) {
+                ((HeaderViewHolder) holder).title.setVisibility(View.GONE);
+            } else {
+                ((HeaderViewHolder) holder).title.setText(title);
+            }
         }
 
         FontUtils.overrideFonts(mContext, holder.itemView);

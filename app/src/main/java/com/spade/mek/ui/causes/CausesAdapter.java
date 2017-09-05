@@ -1,15 +1,12 @@
 package com.spade.mek.ui.causes;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -17,6 +14,8 @@ import android.widget.TextView;
 import com.spade.mek.R;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.SearchActivity;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
 import com.spade.mek.utils.PrefUtils;
 
@@ -34,17 +33,18 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
     private List<Products> latestCausesList;
     private List<Products> urgentCaseList;
     private int defaultDrawableResId;
-    private int p;
     private CausesAction productActions;
     private String title;
+    private int viewType;
 
 
-    public CausesAdapter(Context context, List<Products> latestCausesList, List<Products> urgentCaseList, String title, int defaultDrawableResId) {
+    public CausesAdapter(Context context, List<Products> latestCausesList, List<Products> urgentCaseList, String title, int viewType, int defaultDrawableResId) {
         this.mContext = context;
         this.latestCausesList = latestCausesList;
         this.urgentCaseList = urgentCaseList;
         this.defaultDrawableResId = defaultDrawableResId;
         this.title = title;
+        this.viewType = viewType;
     }
 
     @Override
@@ -97,54 +97,14 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
                 urgentCasesPagerAdapter.setOnCaseClicked(this);
                 ((HeaderViewHolder) holder).casesViewPager.setAdapter(urgentCasesPagerAdapter);
             }
-            ((HeaderViewHolder) holder).title.setText(title);
-            ((HeaderViewHolder) holder).searchImage.setOnClickListener(v -> ((HeaderViewHolder) holder).searchEditText.setVisibility(View.VISIBLE));
-            ((HeaderViewHolder) holder).searchEditText.setOnEditorActionListener((v, actionId, event) -> {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                    return true;
-                }
-                return false;
-            });
-
-        }
-        overrideFonts(mContext, holder.itemView);
-    }
-
-    private void overrideFonts(Context context, View v) {
-        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
-            try {
-                if (v instanceof ViewGroup) {
-                    ViewGroup vg = (ViewGroup) v;
-                    for (int i = 0; i < vg.getChildCount(); i++) {
-                        View child = vg.getChildAt(i);
-
-                        overrideFonts(context, child);
-                    }
-                } else if (v instanceof TextView) {
-                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
-                }
-            } catch (Exception e) {
+            if (viewType == SearchActivity.SEARCH_VIEW) {
+                ((HeaderViewHolder) holder).title.setVisibility(View.GONE);
+            } else {
+                ((HeaderViewHolder) holder).title.setText(title);
             }
         }
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
-
-//    private void animate(SeekBar seekBar, int progress, int max) {
-//        p = progress;
-//        ValueAnimator anim = ValueAnimator.ofInt(progress,
-//                max);
-//        anim.setDuration(100);
-//        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(
-//                    ValueAnimator animation) {
-//                p = (Integer) animation
-//                        .getAnimatedValue();
-//                seekBar.setProgress(p);
-//            }
-//        });
-//        anim.start();
-//    }
 
     @Override
     public int getItemCount() {
@@ -212,8 +172,6 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
     }
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
-        EditText searchEditText;
-        ImageView searchImage;
         TextView title;
         ViewPager casesViewPager;
 
@@ -222,8 +180,6 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             super(itemView);
             casesViewPager = (ViewPager) itemView.findViewById(R.id.urgent_cases_view_pager);
             title = (TextView) itemView.findViewById(R.id.title);
-            searchEditText = (EditText) itemView.findViewById(R.id.search_edit_text);
-            searchImage = (ImageView) itemView.findViewById(R.id.searchImage);
         }
     }
 }

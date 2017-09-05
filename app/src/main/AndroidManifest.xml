@@ -133,6 +133,9 @@
         <activity
             android:name=".ui.more.profile.view.ProfileActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.search.SearchActivity"
+            android:screenOrientation="portrait" />
         <!--
 
              The API key for Google Maps-based APIs is defined as a string resource.

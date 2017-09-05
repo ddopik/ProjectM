@@ -7,6 +7,8 @@ import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import org.json.JSONObject;
@@ -89,6 +91,23 @@ public class CausesPresenterImpl implements CausesPresenter {
                         mCausesView.showAFilteredCauses(allCausesResponse);
                     }
                     mCausesView.hideCausesLoading();
+                }, throwable -> {
+                    mCausesView.hideCausesLoading();
+                    if (throwable != null) {
+                        mCausesView.onError(throwable.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void search(String searchKeyWord) {
+        mCausesView.showCausesLoading();
+        ApiHelper.search(searchKeyWord, PrefUtils.getAppLang(mContext), UrgentCasesPagerAdapter.CAUSE_TYPE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(searchResponse -> {
+                    mCausesView.hideCausesLoading();
+                    mCausesView.showSearchResults(searchResponse);
                 }, throwable -> {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {

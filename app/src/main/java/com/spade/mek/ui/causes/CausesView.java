@@ -2,6 +2,7 @@ package com.spade.mek.ui.causes;
 
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.model.SearchResponse;
 
 import java.util.List;
 
@@ -24,5 +25,8 @@ public interface CausesView extends BaseView {
     void showCausesLoading();
 
     void hideCausesLoading();
+
+    void showSearchResults(SearchResponse searchResponse);
+
 
 }

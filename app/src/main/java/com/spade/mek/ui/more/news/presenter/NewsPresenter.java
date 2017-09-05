@@ -9,4 +9,6 @@ import com.spade.mek.ui.more.news.view.NewsView;
 
 public interface NewsPresenter extends BasePresenter<NewsView> {
     void getNews(String appLang, int pageNumber);
+
+    void search(String searchKeyWord);
 }

@@ -19,6 +19,8 @@ import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.SearchActivity;
+import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.products.model.ProductsData;
 import com.spade.mek.ui.products.presenter.ProductsPresenter;
 import com.spade.mek.ui.products.presenter.ProductsPresenterImpl;
@@ -56,7 +58,7 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
-        overrideFonts(getContext(),mProductsView);
+        overrideFonts(getContext(), mProductsView);
         return mProductsView;
     }
 
@@ -74,7 +76,7 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
         urgentCaseList = new ArrayList<>();
         appLang = PrefUtils.getAppLang(getContext());
 
-        productsAdapter = new ProductsAdapter(productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang), getString(R.string.all_products), getContext());
+        productsAdapter = new ProductsAdapter(productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang), getString(R.string.all_products), SearchActivity.LIST_VIEW, getContext());
         productsAdapter.setProductActions(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -168,6 +170,9 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
         }
     }
 
+    public static void search(String searchKeyword) {
+    }
+
     @Override
     public void showUrgentCasesLoading() {
 
@@ -186,6 +191,11 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     @Override
     public void hideProductsLoading() {
         productsProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showSearchResults(SearchResponse searchResponse) {
+
     }
 
     @Override
