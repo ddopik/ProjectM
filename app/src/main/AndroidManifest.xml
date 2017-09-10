@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.spade.mek">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -22,13 +23,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-        <!-- <activity -->
-        <!-- android:name="com.facebook.FacebookActivity" -->
-        <!-- android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" -->
-        <!-- android:label="@string/app_name" /> -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="onesignal_app_id"
+            android:value="5a4be6a1-7aff-46fd-9af2-6e0ecdae1f09" />
+        <meta-data
+            android:name=" onesignal_google_project_number"
+            android:value="722108995407" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
         <!-- <activity -->
         <!-- android:name="com.facebook.CustomTabActivity" -->
         <!-- android:exported="true"> -->
@@ -59,7 +71,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.login.view.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
         <activity
@@ -136,15 +148,23 @@
         <activity
             android:name=".ui.home.search.SearchActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.more.profile.view.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.view.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+
         <!--
 
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
-        -->
+            The API key for Google Maps-based APIs is defined as a string resource.
+            (See the file "res/values/google_maps_api.xml").
+            Note that the API key is linked to the encryption key used to sign the APK.
+            You need a different API key for each encryption key, including the release key that is used to
+            sign the APK for publishing.
+            You can define the keys for the debug and release targets in src/debug/ and src/release/.
+       -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

@@ -16,8 +16,8 @@ import android.widget.SpinnerAdapter;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
-import com.spade.mek.ui.login.LoginActivity;
-import com.spade.mek.ui.login.LoginDialogFragment;
+import com.spade.mek.ui.login.view.LoginActivity;
+import com.spade.mek.ui.login.view.LoginDialogFragment;
 import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;

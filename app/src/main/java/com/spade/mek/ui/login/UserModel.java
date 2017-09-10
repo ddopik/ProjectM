@@ -18,6 +18,7 @@ public class UserModel {
     private String firstName;
     @SerializedName("last_name")
     private String lastName;
+    @SerializedName("address")
     private String userAddress;
     @SerializedName("phone")
     private String userPhone;

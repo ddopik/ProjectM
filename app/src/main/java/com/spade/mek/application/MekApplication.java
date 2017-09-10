@@ -1,11 +1,14 @@
 package com.spade.mek.application;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
+import com.facebook.FacebookSdk;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
-import com.spade.mek.R;
+import com.onesignal.OSNotificationOpenResult;
+import com.onesignal.OneSignal;
 import com.spade.mek.realm.RealmConfig;
 import com.spade.mek.realm.RealmDbMigration;
 import com.spade.mek.realm.RealmModules;
@@ -28,10 +31,16 @@ public class MekApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sAnalytics = GoogleAnalytics.getInstance(this);
+        FacebookSdk.sdkInitialize(this);
         FacebookLoginManager.initFacebookEvents(this);
         AndroidNetworking.initialize(this);
         Realm.init(this);
         setRealmDefaultConfiguration();
+//        OneSignal
+//                .init(this, "722108995407", "5a4be6a1-7aff-46fd-9af2-6e0ecdae1f09", new NotificationOpenReceiver());
+        OneSignal.startInit(this).init();
+        OneSignal.idsAvailable((userId, registrationId) -> Log.d(userId, registrationId));
+        OneSignal.idsAvailable((userId, registrationId) -> PrefUtils.setNotificationToken(this, userId));
     }
 
     private void setRealmDefaultConfiguration() {
@@ -49,5 +58,12 @@ public class MekApplication extends Application {
             sTracker = sAnalytics.newTracker("UA-104912436-1");
         }
         return sTracker;
+    }
+
+    class NotificationOpenReceiver implements OneSignal.NotificationOpenedHandler {
+
+        @Override
+        public void notificationOpened(OSNotificationOpenResult result) {
+        }
     }
 }

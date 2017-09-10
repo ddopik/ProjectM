@@ -14,6 +14,7 @@ import com.spade.mek.ui.home.products.LatestProductsResponse;
 import com.spade.mek.ui.home.search.model.NewsSearchResponse;
 import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.home.urgent_cases.UrgentCasesResponse;
+import com.spade.mek.ui.login.UserModel;
 import com.spade.mek.ui.more.contact_us.model.ContactUsDataResponse;
 import com.spade.mek.ui.more.donation_channels.model.BanksResponse;
 import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
@@ -74,6 +75,9 @@ public class ApiHelper {
     private static final String UP_COMING_EVENTS_URL = BASE_URL + "/events/next";
     private static final String PAYMENT_HISTORY_URL = BASE_URL + "/payment/history";
     private static final String SEARCH_URL = BASE_URL + "/search";
+    private static final String EDIT_PROFILE_URL = BASE_POST_URL + "/profile/edit";
+    private static final String SEND_CODE_URL = BASE_POST_URL + "/password/forget";
+    private static final String CHANGE_PASSWORD_URL = BASE_POST_URL + "/password/change";
     private static final String LANG_PATH_PARAMETER = "lang";
     private static final String ID_PATH_PARAMETER = "id";
     private static final String USER_ID_PARAMETER = "user_id";
@@ -82,6 +86,7 @@ public class ApiHelper {
     private static final String BEARER = "bearer";
     private static final String TYPE = "type";
     private static final String SEARCH = "search";
+    private static final String SAVE_TOKEN_URL = BASE_POST_URL + "/token/save";
     private static boolean success;
 
     public static Observable<LatestProductsResponse> getLatestProducts(String lang) {
@@ -458,6 +463,98 @@ public class ApiHelper {
                 .getObjectObservable(NewsSearchResponse.class);
     }
 
+    public static Observable<RegistrationResponse> editProfile(UserModel userModel, String userToken, String notificationToken) {
+        return Rx2AndroidNetworking.post(EDIT_PROFILE_URL)
+                .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
+                .addBodyParameter("first_name", userModel.getFirstName())
+                .addBodyParameter("last_name", userModel.getLastName())
+                .addBodyParameter("phone", userModel.getUserPhone())
+                .addBodyParameter("address", userModel.getUserAddress())
+                .addBodyParameter("notification_token", notificationToken)
+                .build()
+                .getObjectObservable(RegistrationResponse.class);
+    }
+
+    public static void saveToken(String notificationToken, SaveTokenCallBacks saveTokenCallBacks) {
+        AndroidNetworking.post(SAVE_TOKEN_URL)
+                .addBodyParameter("token", notificationToken)
+                .addBodyParameter("device_type", "Android")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            success = response.getBoolean("success");
+                            if (success) {
+                                saveTokenCallBacks.onTokenSavedSuccess();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            saveTokenCallBacks.onTokenSavedFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        saveTokenCallBacks.onTokenSavedFailed();
+                    }
+                });
+    }
+
+    public static void sendMeCode(String emailAddress, SendCodeActions sendCodeActions) {
+        AndroidNetworking.post(SEND_CODE_URL)
+                .addBodyParameter("email", emailAddress)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            success = response.getBoolean("success");
+                            if (success) {
+                                sendCodeActions.onCodeSent();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            sendCodeActions.onCodeSendFail();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        sendCodeActions.onCodeSendFail();
+                    }
+                });
+    }
+
+    public static void changePassword(String password, String code, ChangePasswordActions changePasswordActions) {
+        AndroidNetworking.post(CHANGE_PASSWORD_URL)
+                .addBodyParameter("code", code)
+                .addBodyParameter("password", password)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            success = response.getBoolean("success");
+                            if (success) {
+                                changePasswordActions.onPasswordChangedSuccess();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            changePasswordActions.onPasswordChangedFail();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        changePasswordActions.onPasswordChangedFail();
+                    }
+                });
+    }
+
     public interface CreateOrderCallbacks {
         void onOrderCreatedSuccess(boolean isSuccess);
 
@@ -493,5 +590,23 @@ public class ApiHelper {
         void onVolunteerSuccess();
 
         void onVolunteerFailed();
+    }
+
+    public interface SaveTokenCallBacks {
+        void onTokenSavedSuccess();
+
+        void onTokenSavedFailed();
+    }
+
+    public interface SendCodeActions {
+        void onCodeSent();
+
+        void onCodeSendFail();
+    }
+
+    public interface ChangePasswordActions {
+        void onPasswordChangedSuccess();
+
+        void onPasswordChangedFail();
     }
 }

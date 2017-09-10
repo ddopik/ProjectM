@@ -18,7 +18,7 @@ import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.presenter.CartPresenter;
 import com.spade.mek.ui.cart.presenter.CartPresenterImpl;
-import com.spade.mek.ui.login.LoginDialogFragment;
+import com.spade.mek.ui.login.view.LoginDialogFragment;
 import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;

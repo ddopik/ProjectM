@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.products.Products;
-import com.spade.mek.ui.login.LoginDialogFragment;
+import com.spade.mek.ui.login.view.LoginDialogFragment;
 import com.spade.mek.ui.more.regular_products.presenter.RegularProductsPresenter;
 import com.spade.mek.ui.more.regular_products.presenter.RegularProductsPresenterImpl;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsView;

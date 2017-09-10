@@ -168,6 +168,15 @@
     <string name="looking_for">What are you looking for!!</string>
     <string name="try_another_keyword">Try another keyword</string>
     <string name="nothing_matches">Nothing matches your search, try another keywords to find what you are looking for</string>
+    <string name="save">Save</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="send_me_code">Send me a code</string>
+    <string name="invalid_email_address">Invalid email address</string>
+    <string name="code">Code</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_code">Please enter the code</string>
+    <string name="password_changed_successfully">Password changed successfully</string>
+    <string name="forget_password">Forget password</string>
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>

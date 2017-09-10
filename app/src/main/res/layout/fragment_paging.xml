@@ -54,6 +54,14 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="@dimen/dp4"
+            app:srcCompat="@drawable/ic_edit_profile" />
     </FrameLayout>
 
     <android.support.design.widget.TabLayout

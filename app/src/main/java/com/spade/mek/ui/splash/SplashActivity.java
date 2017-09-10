@@ -9,8 +9,9 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.spade.mek.R;
+import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.home.MainActivity;
-import com.spade.mek.ui.login.LoginActivity;
+import com.spade.mek.ui.login.view.LoginActivity;
 import com.spade.mek.ui.more.MorePresenterImpl;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
@@ -24,7 +25,7 @@ import java.util.Locale;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long DELAY_MILLIS = 2000;
+    private static final long DELAY_MILLIS = 1000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +37,8 @@ public class SplashActivity extends AppCompatActivity {
         imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
         Log.d("Language", PrefUtils.getUserToken(this));
         changeLanguage();
-        counterToNavigate();
+//        counterToNavigate();
+        saveNotificationToken();
     }
 
     private void counterToNavigate() {
@@ -74,6 +76,26 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 PrefUtils.setAppLang(this, PrefUtils.ARABIC_LANG);
             }
+        }
+    }
+
+    private void saveNotificationToken() {
+        if (!PrefUtils.isTokenSaved(this)) {
+            ApiHelper.saveToken(PrefUtils.getNotificationToken(this), new ApiHelper.SaveTokenCallBacks() {
+                @Override
+                public void onTokenSavedSuccess() {
+                    PrefUtils.setIsTokenSaved(getApplicationContext(), true);
+                    counterToNavigate();
+                }
+
+                @Override
+                public void onTokenSavedFailed() {
+                    PrefUtils.setIsTokenSaved(getApplicationContext(), false);
+                    counterToNavigate();
+                }
+            });
+        } else {
+            counterToNavigate();
         }
     }
 }

@@ -2,6 +2,7 @@ package com.spade.mek.ui.login.server_login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spade.mek.R;
@@ -16,10 +18,11 @@ import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.home.MainActivity;
-import com.spade.mek.ui.login.LoginPresenter;
-import com.spade.mek.ui.login.LoginPresenterImpl;
-import com.spade.mek.ui.login.LoginView;
 import com.spade.mek.ui.login.UserModel;
+import com.spade.mek.ui.login.presenter.LoginPresenter;
+import com.spade.mek.ui.login.presenter.LoginPresenterImpl;
+import com.spade.mek.ui.login.view.ForgetPasswordActivity;
+import com.spade.mek.ui.login.view.LoginView;
 import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.Validator;
 
@@ -64,11 +67,14 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
         emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
         passwordEditText = (EditText) fragmentView.findViewById(R.id.password_edit_text);
         Button proceedBtn = (Button) fragmentView.findViewById(R.id.register_btn);
+        TextView forgetPassword = (TextView) fragmentView.findViewById(R.id.forget_password_text_view);
         proceedBtn.setOnClickListener(v -> {
             if (checkIfDataIsValid()) {
                 proceed();
             }
         });
+        forgetPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        forgetPassword.setOnClickListener(v -> startActivity(ForgetPasswordActivity.getLaunchIntent(getContext())));
     }
 
     private boolean checkIfDataIsValid() {

@@ -25,7 +25,7 @@ import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.ProductCategory;
 import com.spade.mek.ui.home.products.Products;
-import com.spade.mek.ui.login.LoginDialogFragment;
+import com.spade.mek.ui.login.view.LoginDialogFragment;
 import com.spade.mek.ui.more.regular_products.view.SubscribeActivity;
 import com.spade.mek.ui.more.regular_products.view.SubscribeFragment;
 import com.spade.mek.ui.more.regular_products.view.ViewSubscriptionDialog;

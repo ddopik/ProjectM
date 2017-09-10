@@ -1,5 +1,7 @@
 package com.spade.mek.ui.more.profile.view;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -23,6 +26,7 @@ import com.spade.mek.utils.PrefUtils;
  */
 
 public class ProfileFragment extends BaseFragment {
+    private static final int REQUEST_EDIT_PROFILE = 10;
     private View view;
     private TextView userName, userEmail, userPhone;
 
@@ -43,6 +47,7 @@ public class ProfileFragment extends BaseFragment {
     protected void initViews() {
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.fragments_viewpager);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        ImageView editProfile = (ImageView) view.findViewById(R.id.edit_profile);
         userName = (TextView) view.findViewById(R.id.user_name);
         userEmail = (TextView) view.findViewById(R.id.user_email);
         userPhone = (TextView) view.findViewById(R.id.user_phone);
@@ -52,8 +57,14 @@ public class ProfileFragment extends BaseFragment {
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-
+        editProfile.setOnClickListener(v -> {
+            startEditProfileActivity();
+        });
         setUserData();
+    }
+
+    private void startEditProfileActivity() {
+        startActivityForResult(EditProfileActivity.getLaunchIntent(getContext()), REQUEST_EDIT_PROFILE);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -80,5 +91,15 @@ public class ProfileFragment extends BaseFragment {
         if (user.getUserPhone() != null && !user.getUserPhone().isEmpty())
             userPhone.setText(user.getUserPhone());
         else userPhone.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_EDIT_PROFILE) {
+                setUserData();
+            }
+        }
     }
 }
