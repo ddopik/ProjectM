@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:maxLines="2"
-            android:text="Family Ramdan Boxes"
             android:textColor="@color/blue"
             android:textSize="@dimen/material_text_subhead"
             android:textStyle="bold" />

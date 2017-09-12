@@ -1,7 +1,5 @@
 package com.spade.mek.ui.cart.view;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -22,7 +20,6 @@ import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.FontUtils;
-import com.spade.mek.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/22/17.

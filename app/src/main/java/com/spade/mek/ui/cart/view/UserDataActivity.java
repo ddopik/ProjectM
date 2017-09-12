@@ -42,7 +42,7 @@ public class UserDataActivity extends AppCompatActivity {
         int donateType = getIntent().getIntExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_PAY_FOR_PRODUCTS);
         bundle.putInt(UserDataFragment.EXTRA_DONATE_TYPE, donateType);
         if (donateType == UserDataFragment.EXTRA_DONATE_ZAKAT) {
-            bundle.putDouble(UserDataFragment.EXTRA_ZAKAT_AMOUNT, getIntent().getIntExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, 0));
+            bundle.putDouble(UserDataFragment.EXTRA_ZAKAT_AMOUNT, getIntent().getDoubleExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, 0));
         }
         UserDataFragment userDataFragment = new UserDataFragment();
         userDataFragment.setArguments(bundle);

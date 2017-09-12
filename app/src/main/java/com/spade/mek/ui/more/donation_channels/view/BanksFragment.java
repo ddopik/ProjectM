@@ -74,9 +74,9 @@ public class BanksFragment extends BaseFragment implements DonationBanksView {
         bankList = new ArrayList<>();
         allBanks = new ArrayList<>();
 
-        RecyclerView banksRecycler = (RecyclerView) banksView.findViewById(R.id.banks_recycler_view);
-        banksNamesFilterSpinner = (AppCompatSpinner) banksView.findViewById(R.id.banks_spinner);
-        filterLayout = (RelativeLayout) banksView.findViewById(R.id.filter_layout);
+        RecyclerView banksRecycler = banksView.findViewById(R.id.banks_recycler_view);
+        banksNamesFilterSpinner = banksView.findViewById(R.id.banks_spinner);
+        filterLayout = banksView.findViewById(R.id.filter_layout);
 
         banksNamesFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

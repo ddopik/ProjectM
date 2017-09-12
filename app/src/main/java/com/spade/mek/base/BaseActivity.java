@@ -1,6 +1,7 @@
 package com.spade.mek.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,13 +18,16 @@ import com.spade.mek.R;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.cart.view.CartActivity;
+import com.spade.mek.ui.cart.view.QuickDonationDialog;
+import com.spade.mek.ui.cart.view.UserDataActivity;
+import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/13/17.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements QuickDonationDialog.CheckOut {
 
     private TextView numberTextView;
     private View badgeView;
@@ -42,8 +46,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.cart_menu, menu);
         badgeView = menu.findItem(R.id.cart_item).getActionView();
-        numberTextView = (TextView) badgeView.findViewById(R.id.items_count);
+        MenuItem quickDonation = menu.findItem(R.id.quick_donation);
+        numberTextView = badgeView.findViewById(R.id.items_count);
         badgeView.setOnClickListener(v -> startActivity(CartActivity.getLaunchIntent(this)));
+        quickDonation.setOnMenuItemClickListener(menuItem -> {
+            openQuickDonationDialog();
+            return true;
+        });
         updateCounter();
         return true;
     }
@@ -92,6 +101,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    private void openQuickDonationDialog() {
+        QuickDonationDialog quickDonationDialog = new QuickDonationDialog();
+        quickDonationDialog.setCheckOut(this);
+        quickDonationDialog.show(getSupportFragmentManager(), QuickDonationDialog.class.getSimpleName());
+    }
+
+    @Override
+    public void onCheckOutClicked(double quantity) {
+        Intent intent = UserDataActivity.getLaunchIntent(this);
+        intent.putExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_DONATE_ZAKAT);
+        intent.putExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, quantity);
+        startActivity(intent);
+    }
 
     protected abstract void addFragment();
 

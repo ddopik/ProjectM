@@ -1,6 +1,7 @@
 package com.spade.mek.application;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
@@ -9,11 +10,20 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
+import com.spade.mek.R;
 import com.spade.mek.realm.RealmConfig;
 import com.spade.mek.realm.RealmDbMigration;
 import com.spade.mek.realm.RealmModules;
+import com.spade.mek.ui.home.DetailsActivity;
+import com.spade.mek.ui.home.MainActivity;
+import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
+import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -26,20 +36,18 @@ public class MekApplication extends Application {
 
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
+    public static final String TYPE_NOTIFICATION = "TYPE_NOTIFICATION";
 
     @Override
     public void onCreate() {
         super.onCreate();
         sAnalytics = GoogleAnalytics.getInstance(this);
-        FacebookSdk.sdkInitialize(this);
+//        FacebookSdk.sdkInitialize(this);
         FacebookLoginManager.initFacebookEvents(this);
         AndroidNetworking.initialize(this);
         Realm.init(this);
         setRealmDefaultConfiguration();
-//        OneSignal
-//                .init(this, "722108995407", "5a4be6a1-7aff-46fd-9af2-6e0ecdae1f09", new NotificationOpenReceiver());
-        OneSignal.startInit(this).init();
-        OneSignal.idsAvailable((userId, registrationId) -> Log.d(userId, registrationId));
+        OneSignal.startInit(this).setNotificationOpenedHandler(new NotificationOpenReceiver()).init();
         OneSignal.idsAvailable((userId, registrationId) -> PrefUtils.setNotificationToken(this, userId));
     }
 
@@ -60,10 +68,48 @@ public class MekApplication extends Application {
         return sTracker;
     }
 
-    class NotificationOpenReceiver implements OneSignal.NotificationOpenedHandler {
+    private class NotificationOpenReceiver implements OneSignal.NotificationOpenedHandler {
 
         @Override
         public void notificationOpened(OSNotificationOpenResult result) {
+            Log.d("Application", result.toString());
+            try {
+                JSONObject dataObject = result.notification.payload.additionalData;
+                String type = dataObject.getString("type");
+                int id = dataObject.getInt("product_id");
+                Log.d("Application", type + " .. " + id);
+                startMainActivity(type, id);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    private void startMainActivity(String type, int id) {
+        Intent intent = MainActivity.getLaunchIntent(this);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, type);
+        intent.setType(TYPE_NOTIFICATION);
+        startActivity(intent);
+//        if (type.equals(UrgentCasesPagerAdapter.NEWS_TYPE)) {
+//            Intent newsIntent = NewsDetailsActivity.getLaunchIntent(this);
+//            newsIntent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+//            startActivity(newsIntent);
+//        } else {
+//            Intent detailsIntent = DetailsActivity.getLaunchIntent(this);
+//            if (type.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
+//                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_cause));
+//                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
+//            } else if (type.equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+//                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_product));
+//                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
+//            } else if (type.equals(UrgentCasesPagerAdapter.NEWS_TYPE)) {
+//                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.regular_donations));
+//                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_REGULAR_PRODUCT);
+//            }
+//            detailsIntent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+//            startActivity(detailsIntent);
+//        }
     }
 }

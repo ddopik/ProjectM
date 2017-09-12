@@ -26,12 +26,16 @@ import android.widget.TextView;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseActivity;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.causes.CausesFragment;
+import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.search.SearchActivity;
 import com.spade.mek.ui.home.urgent_cases.FilterCategoriesAdapter;
 import com.spade.mek.ui.more.MoreFragment;
+import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
+import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
 import com.spade.mek.utils.NavigationManager;
 import com.spade.mek.utils.PrefUtils;
@@ -71,6 +75,9 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         init();
+        if (getIntent() != null && getIntent().getType() != null && getIntent().getType().equals(MekApplication.TYPE_NOTIFICATION)) {
+            handleIntent(getIntent());
+        }
     }
 
     @Override
@@ -86,18 +93,18 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     }
 
     private void init() {
-        ImageView submitFilter = (ImageView) findViewById(R.id.submit_filter);
-        TextView clearFilters = (TextView) findViewById(R.id.clear_filters);
+        ImageView submitFilter = findViewById(R.id.submit_filter);
+        TextView clearFilters = findViewById(R.id.clear_filters);
 
-        RecyclerView filterCategoriesRecycler = (RecyclerView) findViewById(R.id.filter_categories);
-        RelativeLayout parentLayout = (RelativeLayout) findViewById(R.id.container);
-        filterButton = (FloatingActionButton) findViewById(R.id.filter_btn);
-        selectedFiltersText = (TextView) findViewById(R.id.selected_filter_text);
-        filterViewLayout = (LinearLayout) findViewById(R.id.filter_view_layout);
-        overlayImage = (ImageView) findViewById(R.id.overlay_image);
+        RecyclerView filterCategoriesRecycler = findViewById(R.id.filter_categories);
+        RelativeLayout parentLayout = findViewById(R.id.container);
+        filterButton = findViewById(R.id.filter_btn);
+        selectedFiltersText = findViewById(R.id.selected_filter_text);
+        filterViewLayout = findViewById(R.id.filter_view_layout);
+        overlayImage = findViewById(R.id.overlay_image);
 
         clearFilters.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        ahBottomNavigation = (AHBottomNavigation) findViewById(R.id.bottomNavigation);
+        ahBottomNavigation = findViewById(R.id.bottomNavigation);
         ahBottomNavigation.setTitleTypeface(Typeface.createFromAsset(getAssets(), "fonts/bahij_semi_bold.ttf"));
         ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         ahBottomNavigation.setAccentColor(Color.parseColor("#E7891E"));
@@ -352,6 +359,31 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
             selectedFiltersText.setText(Html.fromHtml(filterName));
         } else {
             selectedFiltersText.setText("");
+        }
+    }
+
+    private void handleIntent(Intent intent) {
+        String type = intent.getStringExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE);
+        int id = intent.getExtras().getInt(ProductDetailsFragment.ITEM_ID);
+
+        if (type.equals(UrgentCasesPagerAdapter.NEWS_TYPE)) {
+            Intent newsIntent = NewsDetailsActivity.getLaunchIntent(this);
+            newsIntent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+            startActivity(newsIntent);
+        } else {
+            Intent detailsIntent = DetailsActivity.getLaunchIntent(this);
+            if (type.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
+                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_cause));
+                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
+            } else if (type.equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_product));
+                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
+            } else if (type.equals(UrgentCasesPagerAdapter.NEWS_TYPE)) {
+                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.regular_donations));
+                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_REGULAR_PRODUCT);
+            }
+            detailsIntent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+            startActivity(detailsIntent);
         }
     }
 
