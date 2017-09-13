@@ -6,10 +6,13 @@ import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.CartItemModel;
 import com.spade.mek.ui.cart.model.OrderDone;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.SocialUser;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.realm.Realm;
@@ -196,6 +199,11 @@ public class RealmDbImpl implements RealmDbHelper {
         return cartItemList;
     }
 
+    public CartItem getCartItem(Realm realm, String userId, int itemId) {
+        CartItem cartItem = realm.where(CartItem.class).equalTo("userId", userId).equalTo("itemId", itemId).findFirst();
+        return cartItem;
+    }
+
     @Override
     public double getTotalCost(String userId) {
         Realm realm = Realm.getDefaultInstance();
@@ -238,6 +246,26 @@ public class RealmDbImpl implements RealmDbHelper {
         orderDone.setSynced(synced);
         realm.commitTransaction();
         realm.close();
+    }
+
+    @Override
+    public Observable<Boolean> updateCartItems(List<Products> productsList, String userId) {
+        return Observable.create(e -> {
+            Realm realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            for (Products products : productsList) {
+                CartItem cartItem = getCartItem(realm, userId, products.getProductId());
+                cartItem.setItemTitle(products.getProductTitle());
+                cartItem.setItemPrice(products.getProductPrice());
+                if (products.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+                    cartItem.setTotalCost(products.getProductPrice() * cartItem.getAmount());
+                }
+            }
+            realm.commitTransaction();
+            realm.close();
+            e.onNext(true);
+            e.onComplete();
+        });
     }
 
 

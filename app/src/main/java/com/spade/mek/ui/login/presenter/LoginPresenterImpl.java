@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
@@ -93,6 +94,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
             requestJsonObject = new JSONObject();
             requestJsonObject.put("email", userModel.getUserEmail());
             requestJsonObject.put("password", userModel.getPassword());
+            requestJsonObject.put("notification_token",PrefUtils.getNotificationToken(mContext));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -170,6 +172,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
             requestJsonObject.put("email", socialUser.getEmailAddress());
             requestJsonObject.put("type", type);
             requestJsonObject.put("social_id", socialUser.getUserId());
+            requestJsonObject.put("notification_token",PrefUtils.getNotificationToken(mContext));
         } catch (JSONException e) {
             e.printStackTrace();
         }

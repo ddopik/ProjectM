@@ -268,6 +268,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:alpha="0.78"
             android:background="@color/lightGrey">
 
             <ImageView
@@ -296,7 +297,7 @@
                 android:layout_toEndOf="@id/arrow_image_6"
                 android:layout_toRightOf="@id/arrow_image_6"
                 android:text="@string/volunteering"
-                android:textColor="@color/blue"
+                android:textColor="@color/grey"
                 android:textSize="@dimen/material_text_subhead"
                 android:textStyle="bold" />
 
@@ -308,10 +309,10 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:text="@string/volunteering"
+                android:text="@string/coming_soon"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/material_text_caption"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </RelativeLayout>
 
         <TextView

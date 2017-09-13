@@ -78,7 +78,9 @@ public class ApiHelper {
     private static final String EDIT_PROFILE_URL = BASE_POST_URL + "/profile/edit";
     private static final String SEND_CODE_URL = BASE_POST_URL + "/password/forget";
     private static final String CHANGE_PASSWORD_URL = BASE_POST_URL + "/password/change";
+    private static final String CART_DATA_URL = BASE_URL + "/cart/details";
     private static final String LANG_PATH_PARAMETER = "lang";
+    private static final String CART_BODY_PARAMETER = "cart";
     private static final String ID_PATH_PARAMETER = "id";
     private static final String USER_ID_PARAMETER = "user_id";
     private static final String PAGE_NUMBER = "page";
@@ -246,6 +248,14 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .build()
                 .getObjectObservable(AllCausesResponse.class);
+    }
+
+    public static Observable<LatestProductsResponse> getCartItemsData(String lang, JSONObject jsonRequest) {
+        return Rx2AndroidNetworking.post(CART_DATA_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .addJSONObjectBody(jsonRequest)
+                .build()
+                .getObjectObservable(LatestProductsResponse.class);
     }
 
     public static void sendMessage(JSONObject requestJson, SendMessageCallBacks SendMessageCallBacks) {

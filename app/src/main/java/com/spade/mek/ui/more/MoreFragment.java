@@ -23,7 +23,6 @@ import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.ui.more.profile.view.ProfileActivity;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsActivity;
-import com.spade.mek.ui.more.volunteering.view.VolunteeringActivity;
 import com.spade.mek.ui.more.zakat_calculator.ZakatCalculatorActivity;
 import com.spade.mek.ui.register.RegisterActivity;
 import com.spade.mek.utils.LoginProviders;
@@ -65,21 +64,21 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
     @Override
     protected void initViews() {
         String appLang = PrefUtils.getAppLang(getContext());
-        profileLayout = (RelativeLayout) moreView.findViewById(R.id.profile_layout);
-        RelativeLayout newsLayout = (RelativeLayout) moreView.findViewById(R.id.news_layout);
-        RelativeLayout donationsLayout = (RelativeLayout) moreView.findViewById(R.id.donation_channels_layout);
-        RelativeLayout contactUsLayout = (RelativeLayout) moreView.findViewById(R.id.contact_us_layout);
-        RelativeLayout zakatCalculatorLayout = (RelativeLayout) moreView.findViewById(R.id.zakat_calculator_layout);
-        RelativeLayout regularDonationsLayout = (RelativeLayout) moreView.findViewById(R.id.regular_donation_layout);
-        RelativeLayout volunteeringLayout = (RelativeLayout) moreView.findViewById(R.id.volunteering_layout);
+        profileLayout = moreView.findViewById(R.id.profile_layout);
+        RelativeLayout newsLayout = moreView.findViewById(R.id.news_layout);
+        RelativeLayout donationsLayout = moreView.findViewById(R.id.donation_channels_layout);
+        RelativeLayout contactUsLayout = moreView.findViewById(R.id.contact_us_layout);
+        RelativeLayout zakatCalculatorLayout = moreView.findViewById(R.id.zakat_calculator_layout);
+        RelativeLayout regularDonationsLayout = moreView.findViewById(R.id.regular_donation_layout);
+//        RelativeLayout volunteeringLayout =   moreView.findViewById(R.id.volunteering_layout);
 
-        ImageView arrowImage = (ImageView) moreView.findViewById(R.id.arrow_image);
-        ImageView arrowImage1 = (ImageView) moreView.findViewById(R.id.arrow_image_1);
-        ImageView arrowImage2 = (ImageView) moreView.findViewById(R.id.arrow_image_2);
-        ImageView arrowImage3 = (ImageView) moreView.findViewById(R.id.arrow_image_3);
-        ImageView arrowImage4 = (ImageView) moreView.findViewById(R.id.arrow_image_4);
-        ImageView arrowImage5 = (ImageView) moreView.findViewById(R.id.arrow_image_5);
-        ImageView arrowImage6 = (ImageView) moreView.findViewById(R.id.arrow_image_6);
+        ImageView arrowImage = moreView.findViewById(R.id.arrow_image);
+        ImageView arrowImage1 = moreView.findViewById(R.id.arrow_image_1);
+        ImageView arrowImage2 = moreView.findViewById(R.id.arrow_image_2);
+        ImageView arrowImage3 = moreView.findViewById(R.id.arrow_image_3);
+        ImageView arrowImage4 = moreView.findViewById(R.id.arrow_image_4);
+        ImageView arrowImage5 = moreView.findViewById(R.id.arrow_image_5);
+        ImageView arrowImage6 = moreView.findViewById(R.id.arrow_image_6);
 
         if (appLang.equals(PrefUtils.ARABIC_LANG)) {
             arrowImage.setRotationY(180);
@@ -110,7 +109,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         donationsLayout.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         zakatCalculatorLayout.setOnClickListener(v -> startActivity(ZakatCalculatorActivity.getLaunchIntent(getContext())));
         regularDonationsLayout.setOnClickListener(v -> startActivity(RegularProductsActivity.getLaunchIntent(getContext())));
-        volunteeringLayout.setOnClickListener(v -> startActivity(VolunteeringActivity.getLaunchIntent(getContext())));
+//        volunteeringLayout.setOnClickListener(v -> startActivity(VolunteeringActivity.getLaunchIntent(getContext())));
         profileLayout.setOnClickListener(v -> startActivity(ProfileActivity.getLaunchIntent(getContext())));
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG)) {
             languageSpinner.setSelection(0);

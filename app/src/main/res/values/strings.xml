@@ -66,7 +66,7 @@
     <string name="your_cart">Your Cart</string>
     <string name="loading">Loading&#8230;</string>
     <string name="confirmation">Confirmation</string>
-    <string name="dialog_login_description">If you continued as a guest your data and \n history will not be saved</string>
+    <string name="dialog_login_description">If you continued as a guest your data and history will not be saved.\nPlease log-in to pay your donation online"</string>
     <string name="profile">Profile</string>
     <string name="donation_channels">Donation Channels</string>
     <string name="contact_us">Contact Us</string>

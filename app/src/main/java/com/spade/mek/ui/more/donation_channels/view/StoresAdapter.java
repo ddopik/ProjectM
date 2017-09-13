@@ -23,6 +23,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
     private List<Store> storeList;
     private Context mContext;
     private StoreActions storeActions;
+    private static final String NULL = "null";
 
     public StoresAdapter(List<Store> storeList, Context mContext) {
         this.storeList = storeList;
@@ -44,7 +45,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
             holder.storeTitle.setText(store.getTitle());
         }
 
-        if (store.getAddress() != null && !store.getAddress().isEmpty()) {
+        if (store.getAddress() != null && !store.getAddress().isEmpty() && !store.getAddress().equals(NULL)) {
             holder.storeAddress.setText(store.getAddress());
         } else {
             holder.addressLayout.setVisibility(View.GONE);
@@ -56,7 +57,7 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
             holder.sectorFaxLayout.setVisibility(View.GONE);
         }
 
-        if (store.getWorkingHours() != null && !store.getWorkingHours().isEmpty()) {
+        if (store.getWorkingHours() != null && !store.getWorkingHours().isEmpty() && !store.getWorkingHours().equals(NULL)) {
             holder.workingHours.setText(store.getWorkingHours());
         } else {
             holder.workingHoursLayout.setVisibility(View.GONE);
@@ -78,27 +79,35 @@ public class StoresAdapter extends RecyclerView.Adapter<StoresAdapter.StoreViewH
                     storePhones += store.getTelephone().get(i);
                 }
             }
-            holder.storePhone.setText(storePhones);
+            if (!storePhones.equals(NULL)) {
+                holder.storePhone.setText(storePhones);
+            } else {
+                holder.phoneLayout.setVisibility(View.GONE);
+            }
         } else {
             holder.phoneLayout.setVisibility(View.GONE);
         }
 
         if (store.getFax() != null && !store.getFax().isEmpty()) {
-            String storePhones = "";
+            String storeFaxes = "";
             for (int i = 0; i < store.getFax().size(); i++) {
                 if (i % 2 == 0 && i != store.getFax().size() - 1) {
-                    storePhones += store.getFax().get(i) + "-";
+                    storeFaxes += store.getFax().get(i) + "-";
                 } else if (i % 2 == 0 && i == store.getFax().size() - 1) {
-                    storePhones += store.getFax().get(i);
+                    storeFaxes += store.getFax().get(i);
                 }
 
                 if (i % 2 != 0 && i != store.getFax().size() - 1) {
-                    storePhones += store.getFax().get(i) + "\n";
+                    storeFaxes += store.getFax().get(i) + "\n";
                 } else if (i % 2 != 0 && i == store.getFax().size() - 1) {
-                    storePhones += store.getFax().get(i);
+                    storeFaxes += store.getFax().get(i);
                 }
             }
-            holder.storeFax.setText(storePhones);
+            if (!storeFaxes.equals(NULL)) {
+                holder.storeFax.setText(storeFaxes);
+            } else {
+                holder.faxLayout.setVisibility(View.GONE);
+            }
         } else {
             holder.faxLayout.setVisibility(View.GONE);
         }

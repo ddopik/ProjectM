@@ -41,12 +41,12 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
 
     @Override
     public void editProfile(UserModel userModel) {
-        //TODO notification token
         editProfileView.showLoading();
-        ApiHelper.editProfile(userModel, PrefUtils.getUserToken(mContext), "")
+        ApiHelper.editProfile(userModel, PrefUtils.getUserToken(mContext), PrefUtils.getNotificationToken(mContext))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(registrationResponse -> {
+                    realmDbHelper.saveUser(registrationResponse.getRegistrationResponseData().getUserModel(), PrefUtils.getUserToken(mContext));
                     editProfileView.hideLoading();
                     editProfileView.finish();
                 }, throwable -> {

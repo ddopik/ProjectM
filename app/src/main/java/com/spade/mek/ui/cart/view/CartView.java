@@ -19,4 +19,8 @@ public interface CartView extends BaseView {
     void loginSuccess();
 
     void navigateToUserDataActivity();
+
+    void showProgressBar();
+
+    void hideProgressBar();
 }

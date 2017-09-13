@@ -99,6 +99,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
                 requestJsonObject.put("phone", userModel.getUserPhone());
                 requestJsonObject.put("address", userModel.getUserAddress());
                 requestJsonObject.put("password", userModel.getPassword());
+                requestJsonObject.put("notification_token",PrefUtils.getNotificationToken(mContext));
 
             } catch (JSONException e) {
                 e.printStackTrace();

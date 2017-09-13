@@ -83,6 +83,8 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
 
         if (type == RegisterActivity.DEFAULT_TYPE) {
             continueAsGuest.setVisibility(View.GONE);
+        } else {
+
         }
     }
 

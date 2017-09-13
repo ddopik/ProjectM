@@ -1,5 +1,6 @@
 package com.spade.mek.ui.more.profile.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,7 +32,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
     private EditText phoneNumberEditText;
     private EditText addressEditText;
     private String firstNameString, lastNameString, phoneNumberString,
-             addressString;
+            addressString;
     private ProgressDialog progressDialog;
 
     @Nullable
@@ -133,6 +134,7 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
 
     @Override
     public void finish() {
+        getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
     }
 }
