@@ -2,12 +2,14 @@ package com.spade.mek.ui.causes;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -56,7 +58,8 @@ public class CausesPresenterImpl implements CausesPresenter {
                 }, throwable -> {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {
-                        mCausesView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -75,7 +78,8 @@ public class CausesPresenterImpl implements CausesPresenter {
                 }, throwable -> {
                     mCausesView.hideUrgentCasesLoading();
                     if (throwable != null) {
-                        mCausesView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -94,7 +98,8 @@ public class CausesPresenterImpl implements CausesPresenter {
                 }, throwable -> {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {
-                        mCausesView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -111,7 +116,8 @@ public class CausesPresenterImpl implements CausesPresenter {
                 }, throwable -> {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {
-                        mCausesView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }

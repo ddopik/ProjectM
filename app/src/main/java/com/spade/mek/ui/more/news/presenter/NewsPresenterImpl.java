@@ -2,12 +2,14 @@ package com.spade.mek.ui.more.news.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.news.view.NewsView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -54,14 +56,17 @@ public class NewsPresenterImpl implements NewsPresenter {
                     }
                 }, throwable -> {
                     newsView.hideLoading();
-                    newsView.onError(throwable.getLocalizedMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        newsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 
     @Override
     public void search(String searchKeyWord) {
         newsView.showLoading();
-        ApiHelper.searchNews(searchKeyWord, PrefUtils.getAppLang(mContext),"news")
+        ApiHelper.searchNews(searchKeyWord, PrefUtils.getAppLang(mContext), "news")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(newsSearchResponse -> {
@@ -73,7 +78,10 @@ public class NewsPresenterImpl implements NewsPresenter {
                     }
                 }, throwable -> {
                     newsView.hideLoading();
-                    newsView.onError(throwable.getLocalizedMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        newsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 }

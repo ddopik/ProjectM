@@ -2,9 +2,10 @@ package com.spade.mek.ui.more.volunteering.presenter;
 
 import android.content.Context;
 
-import com.spade.mek.R;
+import com.androidnetworking.error.ANError;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.volunteering.view.EventsView;
+import com.spade.mek.utils.ErrorUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -40,6 +41,10 @@ public class EventsPresenterImpl implements EventsPresenter {
                 .subscribe(eventsResponse -> {
                     eventsView.showCurrentEvents(eventsResponse.getEventList());
                 }, throwable -> {
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        eventsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 
@@ -51,7 +56,10 @@ public class EventsPresenterImpl implements EventsPresenter {
                 .subscribe(eventsResponse -> {
                     eventsView.showPreviousEvents(eventsResponse.getEventList());
                 }, throwable -> {
-                    eventsView.onError(R.string.something_wrong);
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        eventsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 
@@ -63,7 +71,10 @@ public class EventsPresenterImpl implements EventsPresenter {
                 .subscribe(eventsResponse -> {
                     eventsView.showUpComingEvents(eventsResponse.getEventList());
                 }, throwable -> {
-                    eventsView.onError(R.string.something_wrong);
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        eventsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 }

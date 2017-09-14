@@ -1,5 +1,7 @@
 package com.spade.mek.network;
 
+import android.util.Log;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -27,6 +29,7 @@ import com.spade.mek.ui.more.volunteering.model.EventsResponse;
 import com.spade.mek.ui.products.model.AllProductsResponse;
 import com.spade.mek.ui.products.model.ProductDetailsResponse;
 import com.spade.mek.ui.register.RegistrationResponse;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 
 import org.json.JSONException;
@@ -39,8 +42,14 @@ import io.reactivex.Observable;
  */
 
 public class ApiHelper {
-    private static final String BASE_URL = "http://dev.spade.studio/mek-apis/public/api/v1/{lang}";
-    private static final String BASE_POST_URL = "http://dev.spade.studio/mek-apis/public/api/v1";
+    ///// DEV
+    //    private static final String BASE_POST_URL = "http://dev.spade.studio/mek-apis/public/api/v1";
+//    private static final String BASE_URL = "http://dev.spade.studio/mek-apis/public/api/v1/{lang}";
+
+//// LIVE
+    private static final String BASE_URL = "http://app.misrelkheir.org/api/v1/{lang}";
+    private static final String BASE_POST_URL = "http://app.misrelkheir.org/api/v1";
+
     //    private static final String BASE_URL = "http://mekapi.spade.studio/api/v1/{lang}";
     private static final String LATEST_PRODUCTS_URL = BASE_URL + "/products/latest";
     private static final String LATEST_CAUSES_URL = BASE_URL + "/causes/latest";
@@ -275,7 +284,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        SendMessageCallBacks.onMessageSentFailed(anError.getMessage());
+                        SendMessageCallBacks.onMessageSentFailed(ErrorUtils.getErrors(anError.getErrorBody()));
 
                     }
                 });
@@ -300,7 +309,8 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        createOrderCallbacks.onOrderCreatedFailed(anError.getMessage());
+                        Log.d("Error", anError.getErrorBody());
+                        createOrderCallbacks.onOrderCreatedFailed(ErrorUtils.getErrors(anError.getErrorBody()));
 
                     }
                 });
@@ -321,13 +331,13 @@ public class ApiHelper {
                             changePaymentStatus.onStatusCHangedSuccess();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            changePaymentStatus.onStatusChangedFailed();
+                            changePaymentStatus.onStatusChangedFailed(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        changePaymentStatus.onStatusChangedFailed();
+                        changePaymentStatus.onStatusChangedFailed(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
         return success;
@@ -349,13 +359,13 @@ public class ApiHelper {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            subscriptionCallBacks.onSubscriptionFailed();
+                            subscriptionCallBacks.onSubscriptionFailed(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        subscriptionCallBacks.onSubscriptionFailed();
+                        subscriptionCallBacks.onSubscriptionFailed(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -376,13 +386,13 @@ public class ApiHelper {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            unSubscriptionCallBacks.onUnSubscriptionFailed();
+                            unSubscriptionCallBacks.onUnSubscriptionFailed(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        unSubscriptionCallBacks.onUnSubscriptionFailed();
+                        unSubscriptionCallBacks.onUnSubscriptionFailed(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -402,13 +412,13 @@ public class ApiHelper {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            volunteeringCallBacks.onVolunteerFailed();
+                            volunteeringCallBacks.onVolunteerFailed(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        volunteeringCallBacks.onVolunteerFailed();
+                        volunteeringCallBacks.onVolunteerFailed(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -501,13 +511,13 @@ public class ApiHelper {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            saveTokenCallBacks.onTokenSavedFailed();
+                            saveTokenCallBacks.onTokenSavedFailed(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        saveTokenCallBacks.onTokenSavedFailed();
+                        saveTokenCallBacks.onTokenSavedFailed(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -527,13 +537,13 @@ public class ApiHelper {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            sendCodeActions.onCodeSendFail();
+                            sendCodeActions.onCodeSendFail(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        sendCodeActions.onCodeSendFail();
+                        sendCodeActions.onCodeSendFail(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -554,13 +564,13 @@ public class ApiHelper {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            changePasswordActions.onPasswordChangedFail();
+                            changePasswordActions.onPasswordChangedFail(e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        changePasswordActions.onPasswordChangedFail();
+                        changePasswordActions.onPasswordChangedFail(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -575,7 +585,7 @@ public class ApiHelper {
     public interface ChangePaymentStatus {
         void onStatusCHangedSuccess();
 
-        void onStatusChangedFailed();
+        void onStatusChangedFailed(String error);
     }
 
     public interface SendMessageCallBacks {
@@ -587,36 +597,36 @@ public class ApiHelper {
     public interface SubscriptionCallBacks {
         void onSubscribeSuccess();
 
-        void onSubscriptionFailed();
+        void onSubscriptionFailed(String error);
     }
 
     public interface UnSubscriptionCallBacks {
         void onUnSubscribeSuccess();
 
-        void onUnSubscriptionFailed();
+        void onUnSubscriptionFailed(String error);
     }
 
     public interface VolunteeringCallBacks {
         void onVolunteerSuccess();
 
-        void onVolunteerFailed();
+        void onVolunteerFailed(String error);
     }
 
     public interface SaveTokenCallBacks {
         void onTokenSavedSuccess();
 
-        void onTokenSavedFailed();
+        void onTokenSavedFailed(String error);
     }
 
     public interface SendCodeActions {
         void onCodeSent();
 
-        void onCodeSendFail();
+        void onCodeSendFail(String error);
     }
 
     public interface ChangePasswordActions {
         void onPasswordChangedSuccess();
 
-        void onPasswordChangedFail();
+        void onPasswordChangedFail(String error);
     }
 }

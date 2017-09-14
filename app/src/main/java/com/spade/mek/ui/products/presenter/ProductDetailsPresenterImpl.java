@@ -2,6 +2,7 @@ package com.spade.mek.ui.products.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
@@ -13,6 +14,7 @@ import com.spade.mek.ui.cart.model.CartItemModel;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -59,7 +61,8 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
                 }, throwable -> {
                     productDetailsView.hideLoading();
                     if (throwable != null) {
-                        productDetailsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        productDetailsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -86,9 +89,9 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
             }
 
             @Override
-            public void onUnSubscriptionFailed() {
+            public void onUnSubscriptionFailed(String error) {
                 productDetailsView.hideLoading();
-                productDetailsView.onError(R.string.something_wrong);
+                productDetailsView.onError(error);
             }
         });
     }

@@ -2,23 +2,18 @@ package com.spade.mek.application;
 
 import android.app.Application;
 import android.content.Intent;
-import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
-import com.facebook.FacebookSdk;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
-import com.spade.mek.R;
 import com.spade.mek.realm.RealmConfig;
 import com.spade.mek.realm.RealmDbMigration;
 import com.spade.mek.realm.RealmModules;
-import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.MainActivity;
-import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
-import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
+import com.spade.mek.ui.splash.SplashActivity;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginManager;
 
@@ -72,13 +67,15 @@ public class MekApplication extends Application {
 
         @Override
         public void notificationOpened(OSNotificationOpenResult result) {
-            Log.d("Application", result.toString());
             try {
                 JSONObject dataObject = result.notification.payload.additionalData;
                 String type = dataObject.getString("type");
-                int id = dataObject.getInt("product_id");
-                Log.d("Application", type + " .. " + id);
-                startMainActivity(type, id);
+                if (type.equals("custom")) {
+                    startActivity(SplashActivity.getLaunchIntent(getApplicationContext()));
+                } else {
+                    int id = dataObject.getInt("product_id");
+                    startMainActivity(type, id);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -92,24 +89,5 @@ public class MekApplication extends Application {
         intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, type);
         intent.setType(TYPE_NOTIFICATION);
         startActivity(intent);
-//        if (type.equals(UrgentCasesPagerAdapter.NEWS_TYPE)) {
-//            Intent newsIntent = NewsDetailsActivity.getLaunchIntent(this);
-//            newsIntent.putExtra(ProductDetailsFragment.ITEM_ID, id);
-//            startActivity(newsIntent);
-//        } else {
-//            Intent detailsIntent = DetailsActivity.getLaunchIntent(this);
-//            if (type.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
-//                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_cause));
-//                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
-//            } else if (type.equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
-//                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_product));
-//                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
-//            } else if (type.equals(UrgentCasesPagerAdapter.NEWS_TYPE)) {
-//                detailsIntent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.regular_donations));
-//                detailsIntent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_REGULAR_PRODUCT);
-//            }
-//            detailsIntent.putExtra(ProductDetailsFragment.ITEM_ID, id);
-//            startActivity(detailsIntent);
-//        }
     }
 }

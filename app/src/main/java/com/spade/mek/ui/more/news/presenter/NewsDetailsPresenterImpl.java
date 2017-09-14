@@ -2,8 +2,10 @@ package com.spade.mek.ui.more.news.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.news.view.NewsDetailsView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -48,7 +50,8 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
                 }, throwable -> {
                     newsDetailsView.hideLoading();
                     if (throwable != null) {
-                        newsDetailsView.onError(throwable.getLocalizedMessage());
+                        ANError anError = (ANError) throwable;
+                        newsDetailsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -64,7 +67,8 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
                     }
                 }, throwable -> {
                     if (throwable != null) {
-                        newsDetailsView.onError(throwable.getLocalizedMessage());
+                        ANError anError = (ANError) throwable;
+                        newsDetailsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }

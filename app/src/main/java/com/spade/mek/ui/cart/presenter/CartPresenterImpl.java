@@ -2,12 +2,14 @@ package com.spade.mek.ui.cart.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.view.CartView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 
 import org.json.JSONArray;
@@ -112,7 +114,10 @@ public class CartPresenterImpl implements CartPresenter {
                     }
                 }, throwable -> {
                     mCartView.hideProgressBar();
-                    mCartView.onError(throwable.getMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        mCartView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                     mCartView.updateUI();
                 });
     }

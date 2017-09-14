@@ -2,6 +2,7 @@ package com.spade.mek.ui.products.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
@@ -9,6 +10,7 @@ import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.products.view.ProductsView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -57,7 +59,8 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                 }, throwable -> {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {
-                        mProductsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -76,7 +79,8 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                 }, throwable -> {
                     mProductsView.hideUrgentCasesLoading();
                     if (throwable != null) {
-                        mProductsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -95,7 +99,8 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                 }, throwable -> {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {
-                        mProductsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -112,7 +117,8 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                 }, throwable -> {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {
-                        mProductsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }

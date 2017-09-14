@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
@@ -25,6 +26,7 @@ import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.donation_channels.model.Store;
 import com.spade.mek.ui.more.donation_channels.view.DonationStoresView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.LocationUtils;
 
 import java.util.ArrayList;
@@ -89,7 +91,10 @@ public class DonationStoresPresenterImpl implements DonationStoresPresenter, Act
                     }
                 }, throwable -> {
                     donationStoresView.hideLoading();
-                    donationStoresView.onError(throwable.getLocalizedMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        donationStoresView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 

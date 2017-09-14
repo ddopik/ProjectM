@@ -22,7 +22,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidnetworking.error.ANError;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.spade.mek.R;
@@ -37,6 +39,7 @@ import com.spade.mek.ui.more.MoreFragment;
 import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.NavigationManager;
 import com.spade.mek.utils.PrefUtils;
 
@@ -258,6 +261,10 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
                         filterCategoriesAdapter.notifyDataSetChanged();
                     }
                 }, throwable -> {
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        Toast.makeText(this, ErrorUtils.getErrors(anError.getErrorBody()), Toast.LENGTH_LONG).show();
+                    }
                 });
     }
 

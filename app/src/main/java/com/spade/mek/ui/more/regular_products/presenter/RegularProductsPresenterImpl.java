@@ -2,9 +2,10 @@ package com.spade.mek.ui.more.regular_products.presenter;
 
 import android.content.Context;
 
-import com.spade.mek.R;
+import com.androidnetworking.error.ANError;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.regular_products.view.RegularProductsView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -51,7 +52,8 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
                 }, throwable -> {
                     mRegularProductsView.hideProductsLoading();
                     if (throwable != null) {
-                        mRegularProductsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mRegularProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -70,7 +72,8 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
                 }, throwable -> {
                     mRegularProductsView.hideProductsLoading();
                     if (throwable != null) {
-                        mRegularProductsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mRegularProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -86,9 +89,9 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
             }
 
             @Override
-            public void onUnSubscriptionFailed() {
+            public void onUnSubscriptionFailed(String error) {
                 mRegularProductsView.hideProductsLoading();
-                mRegularProductsView.onError(R.string.something_wrong);
+                mRegularProductsView.onError(error);
             }
         });
     }

@@ -3,6 +3,7 @@ package com.spade.mek.ui.cart.presenter;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
@@ -15,6 +16,7 @@ import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.cart.view.UserDataView;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.login.User;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 
 import org.json.JSONArray;
@@ -68,10 +70,12 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     @Override
-    public void donateZakat(double moneyAmount) {
+    public void donateZakat(double moneyAmount, String typeOfDonation, int paymentType) {
         this.zakatAmount = moneyAmount;
         this.checkOutType = UserDataFragment.EXTRA_DONATE_ZAKAT;
+        this.paymentType = paymentType;
         order = new Order();
+        order.setTypeOfDonation(typeOfDonation);
         new GetUserAsyncTask().execute();
     }
 
@@ -120,8 +124,9 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
             }
 
             @Override
-            public void onStatusChangedFailed() {
+            public void onStatusChangedFailed(String error) {
                 realmDbHelper.updateOrderStatus(orderId, false);
+                userDataView.onError(error);
                 userDataView.hideLoading();
                 userDataView.finish();
             }
@@ -144,8 +149,10 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                         }
                     }, throwable -> {
                         userDataView.hideLoading();
-                        if (throwable != null)
-                            userDataView.onError(throwable.getMessage());
+                        if (throwable != null) {
+                            ANError anError = (ANError) throwable;
+                            userDataView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        }
                     });
 
         } else if (paymentType == UserDataFragment.CASH_ON_DELIVERY) {

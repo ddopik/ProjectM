@@ -1,5 +1,7 @@
 package com.spade.mek.ui.splash;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -89,7 +91,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onTokenSavedFailed() {
+                public void onTokenSavedFailed(String error) {
                     PrefUtils.setIsTokenSaved(getApplicationContext(), false);
                     counterToNavigate();
                 }
@@ -97,5 +99,9 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             counterToNavigate();
         }
+    }
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, SplashActivity.class);
     }
 }

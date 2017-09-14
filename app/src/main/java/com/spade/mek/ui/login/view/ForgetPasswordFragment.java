@@ -68,9 +68,9 @@ public class ForgetPasswordFragment extends Fragment {
             }
 
             @Override
-            public void onCodeSendFail() {
+            public void onCodeSendFail(String error) {
                 hideProgressDialog();
-                Toast.makeText(getContext(), getString(R.string.invalid_email_address), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
             }
         });
     }

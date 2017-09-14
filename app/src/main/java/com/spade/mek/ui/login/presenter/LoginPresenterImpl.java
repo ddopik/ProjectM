@@ -16,6 +16,7 @@ import com.spade.mek.ui.login.view.LoginDialogView;
 import com.spade.mek.ui.login.view.LoginView;
 import com.spade.mek.ui.more.MorePresenterImpl;
 import com.spade.mek.ui.register.RegistrationResponse;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginCallBack;
@@ -94,7 +95,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
             requestJsonObject = new JSONObject();
             requestJsonObject.put("email", userModel.getUserEmail());
             requestJsonObject.put("password", userModel.getPassword());
-            requestJsonObject.put("notification_token",PrefUtils.getNotificationToken(mContext));
+            requestJsonObject.put("notification_token", PrefUtils.getNotificationToken(mContext));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -109,7 +110,8 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
                 }, throwable -> {
                     mLoginView.hideLoading();
                     if (throwable != null) {
-                        mLoginView.onError(throwable.getLocalizedMessage());
+                        ANError anError = (ANError) throwable;
+                        mLoginView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -172,7 +174,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
             requestJsonObject.put("email", socialUser.getEmailAddress());
             requestJsonObject.put("type", type);
             requestJsonObject.put("social_id", socialUser.getUserId());
-            requestJsonObject.put("notification_token",PrefUtils.getNotificationToken(mContext));
+            requestJsonObject.put("notification_token", PrefUtils.getNotificationToken(mContext));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -184,10 +186,10 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
                         completeLogin(registrationResponse);
                     }
                 }, throwable -> {
-//                    if (throwable.getMessage() != null && throwable.getMessage().isEmpty())
-                    mLoginView.onError(R.string.something_wrong);
-//                    else
-//                        mLoginView.onError(throwable.getMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        mLoginView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 

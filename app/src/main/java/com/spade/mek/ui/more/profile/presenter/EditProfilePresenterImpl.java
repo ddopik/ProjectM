@@ -2,13 +2,14 @@ package com.spade.mek.ui.more.profile.presenter;
 
 import android.content.Context;
 
-import com.spade.mek.R;
+import com.androidnetworking.error.ANError;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
 import com.spade.mek.ui.more.profile.view.EditProfileView;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -51,7 +52,10 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
                     editProfileView.finish();
                 }, throwable -> {
                     editProfileView.hideLoading();
-                    editProfileView.onError(R.string.something_wrong);
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        editProfileView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 

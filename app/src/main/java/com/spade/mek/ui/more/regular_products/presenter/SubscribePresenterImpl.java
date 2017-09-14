@@ -3,7 +3,6 @@ package com.spade.mek.ui.more.regular_products.presenter;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.more.regular_products.view.ConfirmSubscriptionDialog;
@@ -63,9 +62,9 @@ public class SubscribePresenterImpl implements SubscribePresenter, ConfirmSubscr
             }
 
             @Override
-            public void onSubscriptionFailed() {
+            public void onSubscriptionFailed(String error) {
                 subscribeView.hideLoading();
-                subscribeView.onError(R.string.something_wrong);
+                subscribeView.onError(error);
             }
         });
     }

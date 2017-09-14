@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
@@ -25,6 +26,7 @@ import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.contact_us.view.ContactUsView;
+import com.spade.mek.utils.ErrorUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -75,7 +77,10 @@ public class ContactUsPresenterImpl implements ContactUsPresenter,
                     contactUsView.hideLoading();
                 }, throwable -> {
                     contactUsView.hideLoading();
-                    contactUsView.onError(throwable.getLocalizedMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        contactUsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 

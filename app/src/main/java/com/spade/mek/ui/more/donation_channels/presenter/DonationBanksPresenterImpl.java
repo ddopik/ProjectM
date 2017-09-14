@@ -1,8 +1,10 @@
 package com.spade.mek.ui.more.donation_channels.presenter;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.donation_channels.view.DonationBanksView;
+import com.spade.mek.utils.ErrorUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -44,7 +46,10 @@ public class DonationBanksPresenterImpl implements DonationBanksPresenter {
 //                    }
                 }, throwable -> {
                     donationBanksView.hideLoading();
-                    donationBanksView.onError(throwable.getLocalizedMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        donationBanksView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 }

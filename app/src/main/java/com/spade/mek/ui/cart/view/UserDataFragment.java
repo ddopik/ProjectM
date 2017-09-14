@@ -2,8 +2,6 @@ package com.spade.mek.ui.cart.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -204,7 +202,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         userOrderPresenter.updateUserData(firstNameString, lastNameString, phoneNumberString,
                 emailAddressString, addressString, PrefUtils.getUserId(getContext()));
         if (donationType == EXTRA_DONATE_ZAKAT) {
-            userOrderPresenter.donateZakat(totalCost);
+            userOrderPresenter.donateZakat(totalCost, donationTypeString, paymentType);
         } else {
             totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
             userOrderPresenter.makeOrder(donationTypeString, paymentType);

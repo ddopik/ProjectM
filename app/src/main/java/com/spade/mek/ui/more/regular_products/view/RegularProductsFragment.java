@@ -59,12 +59,12 @@ public class RegularProductsFragment extends BaseFragment implements RegularProd
 
     @Override
     protected void initViews() {
-        RecyclerView recyclerView = (RecyclerView) mRegularProductsView.findViewById(R.id.products_recycler_view);
-        TextView regularDescription = (TextView) mRegularProductsView.findViewById(R.id.description_text_view);
+        RecyclerView recyclerView =  mRegularProductsView.findViewById(R.id.products_recycler_view);
+        TextView regularDescription =  mRegularProductsView.findViewById(R.id.description_text_view);
         View separator = mRegularProductsView.findViewById(R.id.separator);
         regularDescription.setVisibility(View.VISIBLE);
         separator.setVisibility(View.VISIBLE);
-        productsProgressBar = (ProgressBar) mRegularProductsView.findViewById(R.id.products_progress_bar);
+        productsProgressBar =  mRegularProductsView.findViewById(R.id.products_progress_bar);
         productsList = new ArrayList<>();
         appLang = PrefUtils.getAppLang(getContext());
 

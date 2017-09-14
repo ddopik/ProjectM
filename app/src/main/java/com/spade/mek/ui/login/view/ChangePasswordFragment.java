@@ -71,9 +71,9 @@ public class ChangePasswordFragment extends Fragment {
             }
 
             @Override
-            public void onPasswordChangedFail() {
+            public void onPasswordChangedFail(String error) {
                 hideProgressDialog();
-                Toast.makeText(getContext(), getString(R.string.something_wrong), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
             }
         });
     }

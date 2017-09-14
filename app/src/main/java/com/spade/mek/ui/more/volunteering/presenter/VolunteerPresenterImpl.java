@@ -59,9 +59,9 @@ public class VolunteerPresenterImpl implements VolunteerPresenter {
             }
 
             @Override
-            public void onVolunteerFailed() {
+            public void onVolunteerFailed(String error) {
                 userDataView.hideLoading();
-                userDataView.onError(R.string.something_wrong);
+                userDataView.onError(error);
             }
         });
     }

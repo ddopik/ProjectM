@@ -57,13 +57,13 @@ public class SubscribeFragment extends BaseFragment implements SubscribeView, Co
 
     @Override
     protected void initViews() {
-        RadioGroup monthsRadioGroup = (RadioGroup) mSubscribeView.findViewById(R.id.months_radio_group);
-        TextView productTitle = (TextView) mSubscribeView.findViewById(R.id.product_title);
-        quantityText = (TextView) mSubscribeView.findViewById(R.id.quantity_text_view);
-        totalAmount = (TextView) mSubscribeView.findViewById(R.id.total_item_price);
-        ImageView increaseImage = (ImageView) mSubscribeView.findViewById(R.id.arrow_up);
-        ImageView decreaseImage = (ImageView) mSubscribeView.findViewById(R.id.arrow_down);
-        Button submitButton = (Button) mSubscribeView.findViewById(R.id.submit_btn);
+        RadioGroup monthsRadioGroup = mSubscribeView.findViewById(R.id.months_radio_group);
+        TextView productTitle = mSubscribeView.findViewById(R.id.product_title);
+        quantityText = mSubscribeView.findViewById(R.id.quantity_text_view);
+        totalAmount = mSubscribeView.findViewById(R.id.total_item_price);
+        ImageView increaseImage = mSubscribeView.findViewById(R.id.arrow_up);
+        ImageView decreaseImage = mSubscribeView.findViewById(R.id.arrow_down);
+        Button submitButton = mSubscribeView.findViewById(R.id.submit_btn);
         productTitle.setText(product.getProductTitle());
 
         monthsRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {

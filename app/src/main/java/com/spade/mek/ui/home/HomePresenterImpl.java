@@ -2,11 +2,13 @@ package com.spade.mek.ui.home;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -45,7 +47,8 @@ public class HomePresenterImpl implements HomePresenter {
                     mHomeView.hideLatestProductsLoading();
                 }, throwable -> {
                     if (throwable != null) {
-                        mHomeView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                     mHomeView.hideLatestProductsLoading();
                     mHomeView.hideLatestProducts();
@@ -67,7 +70,8 @@ public class HomePresenterImpl implements HomePresenter {
                     mHomeView.hideLatestCausesLoading();
                 }, throwable -> {
                     if (throwable != null) {
-                        mHomeView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                     mHomeView.hideLatestCausesLoading();
                     mHomeView.hideLatestCauses();
@@ -91,7 +95,8 @@ public class HomePresenterImpl implements HomePresenter {
                     mHomeView.hideUrgentCasesLoading();
                     mHomeView.hideUrgentCases();
                     if (throwable != null) {
-                        mHomeView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }

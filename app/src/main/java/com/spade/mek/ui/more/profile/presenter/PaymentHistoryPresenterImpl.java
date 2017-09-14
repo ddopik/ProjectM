@@ -1,7 +1,9 @@
 package com.spade.mek.ui.more.profile.presenter;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.profile.view.ProfilePaymentView;
+import com.spade.mek.utils.ErrorUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -36,7 +38,10 @@ public class PaymentHistoryPresenterImpl implements PaymentPresenter {
                     }
                 }, throwable -> {
                     profilePaymentView.hideLoading();
-                    profilePaymentView.onError(throwable.getMessage());
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        profilePaymentView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                    }
                 });
     }
 }

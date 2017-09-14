@@ -3,11 +3,13 @@ package com.spade.mek.ui.register;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.androidnetworking.error.ANError;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 
@@ -79,9 +81,10 @@ public class RegisterPresenterImpl implements RegisterPresenter {
                         });
                     }
                 }, throwable -> {
+                    registerView.hideLoading();
                     if (throwable != null) {
-                        registerView.hideLoading();
-                        registerView.onError(throwable.getLocalizedMessage());
+                        ANError anError = (ANError) throwable;
+                        registerView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
                     }
                 });
     }
@@ -99,7 +102,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
                 requestJsonObject.put("phone", userModel.getUserPhone());
                 requestJsonObject.put("address", userModel.getUserAddress());
                 requestJsonObject.put("password", userModel.getPassword());
-                requestJsonObject.put("notification_token",PrefUtils.getNotificationToken(mContext));
+                requestJsonObject.put("notification_token", PrefUtils.getNotificationToken(mContext));
 
             } catch (JSONException e) {
                 e.printStackTrace();
