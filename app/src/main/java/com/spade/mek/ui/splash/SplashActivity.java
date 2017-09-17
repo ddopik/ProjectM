@@ -8,7 +8,9 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
@@ -28,13 +30,15 @@ import java.util.Locale;
 public class SplashActivity extends AppCompatActivity {
 
     private static final long DELAY_MILLIS = 1000;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
+        ImageView imageView = findViewById(R.id.logo_image_view);
+        progressBar = findViewById(R.id.progress_bar);
         String appLang = PrefUtils.getAppLang(getApplicationContext());
         imageView.setImageResource(ImageUtils.getSplashLogo(appLang));
         Log.d("Language", PrefUtils.getUserToken(this));
@@ -83,17 +87,22 @@ public class SplashActivity extends AppCompatActivity {
 
     private void saveNotificationToken() {
         if (!PrefUtils.isTokenSaved(this)) {
+            progressBar.setVisibility(View.VISIBLE);
             ApiHelper.saveToken(PrefUtils.getNotificationToken(this), new ApiHelper.SaveTokenCallBacks() {
                 @Override
                 public void onTokenSavedSuccess() {
                     PrefUtils.setIsTokenSaved(getApplicationContext(), true);
-                    counterToNavigate();
+                    progressBar.setVisibility(View.GONE);
+                    navigate();
+//                    counterToNavigate();
                 }
 
                 @Override
                 public void onTokenSavedFailed(String error) {
                     PrefUtils.setIsTokenSaved(getApplicationContext(), false);
-                    counterToNavigate();
+                    progressBar.setVisibility(View.GONE);
+                    navigate();
+//                    counterToNavigate();
                 }
             });
         } else {

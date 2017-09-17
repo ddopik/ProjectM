@@ -129,7 +129,10 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         causeSeekBar = (SeekBar) productDetailsView.findViewById(R.id.cause_target_progress_bar);
         urgentLabel = (FrameLayout) productDetailsView.findViewById(R.id.urgent_case_label);
         causeProgressLayout = (RelativeLayout) productDetailsView.findViewById(R.id.cause_progress_layout);
-
+        ImageView urgentImageView = productDetailsView.findViewById(R.id.urgent_case_item);
+        if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ARABIC_LANG)) {
+            urgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
+        }
         imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
         imagesViewPager.setAdapter(imagesPagerAdapter);
 

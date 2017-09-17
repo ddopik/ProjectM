@@ -72,7 +72,7 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
 
             if (latestProducts.isUrgent()) {
                 if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
-                    ((ItemViewHolder) holder).isUrgentImageView.setRotationY(180);
+                    ((ItemViewHolder) holder).isUrgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
                 }
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
             } else {
@@ -156,12 +156,12 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            productTitle = (TextView) itemView.findViewById(R.id.product_title);
-            productPrice = (TextView) itemView.findViewById(R.id.product_price);
-            productImage = (ImageView) itemView.findViewById(R.id.product_image);
-            shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
-            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
-            addToCartImageView = (ImageView) itemView.findViewById(R.id.add_to_cart_image_view);
+            productTitle = itemView.findViewById(R.id.product_title);
+            productPrice = itemView.findViewById(R.id.product_price);
+            productImage = itemView.findViewById(R.id.product_image);
+            shareImageView = itemView.findViewById(R.id.share_image_view);
+            isUrgentImageView = itemView.findViewById(R.id.is_urgent_image_view);
+            addToCartImageView = itemView.findViewById(R.id.add_to_cart_image_view);
 
         }
     }
@@ -172,8 +172,8 @@ public class ProductsAdapter extends RecyclerView.Adapter implements UrgentCases
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
-            casesViewPager = (ViewPager) itemView.findViewById(R.id.urgent_cases_view_pager);
-            title = (TextView) itemView.findViewById(R.id.title);
+            casesViewPager = itemView.findViewById(R.id.urgent_cases_view_pager);
+            title = itemView.findViewById(R.id.title);
         }
     }
 }

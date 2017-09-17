@@ -81,20 +81,20 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         ImageView arrowImage6 = moreView.findViewById(R.id.arrow_image_6);
 
         if (appLang.equals(PrefUtils.ARABIC_LANG)) {
-            arrowImage.setRotationY(180);
-            arrowImage1.setRotationY(180);
-            arrowImage2.setRotationY(180);
-            arrowImage3.setRotationY(180);
-            arrowImage4.setRotationY(180);
-            arrowImage5.setRotationY(180);
-            arrowImage6.setRotationY(180);
+            arrowImage.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage1.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage2.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage3.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage4.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage5.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage6.setImageResource(R.drawable.rotated_triangle_image);
         }
 
-        AppCompatSpinner languageSpinner = (AppCompatSpinner) moreView.findViewById(R.id.language_spinner);
+        AppCompatSpinner languageSpinner = moreView.findViewById(R.id.language_spinner);
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(getContext(), R.layout.type_of_donation_item, getResources().getStringArray(R.array.languages));
         languageSpinner.setAdapter(spinnerAdapter);
 
-        logBtn = (Button) moreView.findViewById(R.id.log_button);
+        logBtn = moreView.findViewById(R.id.log_button);
         logBtn.setOnClickListener(v -> {
             if (!isLoggedIn) {
                 showLoginDialog();

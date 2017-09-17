@@ -7,16 +7,16 @@
     <string name="title_home">الرئيسية</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_products">أوجه التبرع</string>
+    <string name="title_products">منتجات</string>
     <string name="title_causes">شارك في الخير</string>
     <string name="title_more">المزيد</string>
     <string name="login_with">الدخول عن طريق</string>
     <string name="facebook">Facebook</string>
     <string name="google">Google</string>
-    <string name="welcome_statement">أهلاً بيك \nفي تطبيق مؤسسة مصر الخير  </string>
+    <string name="welcome_statement">أهلاً بيك \nفي تطبيق مؤسسة مصر الخير</string>
     <string name="continue_as_guest">ادخل بدون تسجيل</string>
     <string name="something_wrong">حدث خطأ ما</string>
-    <string name="latest_products">أوجه التبرع</string>
+    <string name="latest_products">أحدث المنتجات</string>
     <string name="latest_causes">أحدث مشاركات الخير</string>
     <string name="check_all">المزيد</string>
     <string name="egp">%s جنيه مصري</string>
@@ -24,7 +24,7 @@
     <string name="donate_now">تبرع الآن</string>
     <string name="all_products">جميع المنتجات</string>
     <string name="all_causes">جميع مشاركات الخير</string>
-    <string name="item_to_go"> من المنتج %s متبقي </string>
+    <string name="item_to_go">من المنتج %s متبقي</string>
     <string name="egp_to_go">متبقي %s جنيه مصرى</string>
     <string name="published_at">نشر في %s</string>
     <string name="cart">تبرعاتي</string>
@@ -43,30 +43,36 @@
     <string name="last_name">الاسم الأخير</string>
     <string name="phone">رقم الهاتف</string>
     <string name="address">العنوان</string>
-    <string name="address_hint">Check the map for the nearest store or choose other stores from here</string>
+    <string name="address_hint">تحقق من الخريطة لأقرب فرع</string>
     <string name="type_of_donation">نوع التبرع</string>
     <string name="cash_on_deleivery">تبرع من المنزل</string>
-    <string name="misr_collector">سيصلك مندوب مؤسسة مصر الخير خلال 72 ساعة ليقوم بإتمام الطلب</string>
+    <string name="misr_collector">مندوبنا هيكلمك قريب لتحديد المعاد المناسب لك.. وهيوصلك خلال 72 ساعة
+    ليقوم بإتمام الطلب
+</string>
     <string name="enter_first_name">برجاء ادخال الاسم الأول</string>
     <string name="enter_last_name">برجاء ادخال الاسم الأخير</string>
     <string name="enter_user_name">برجاء ادخال اسم المستخدم</string>
     <string name="enter_email_address">برجاء ادخال البريد الإلكتروني</string>
     <string name="enter_phone_number">برجاء ادخال رقم الهاتف</string>
     <string name="enter_address">برجاء ادخال العنوان</string>
-    <string name="enter_valid_email_address"> برجاءادخال بريد إلكتروني صحيح </string>
+    <string name="enter_valid_email_address">برجاءادخال بريد إلكتروني صحيح</string>
     <string name="enter_city">برجاء ادخال المدينة</string>
     <string name="enter_subject">برجاء ادخال المحتوي</string>
     <string name="enter_message">برجاء ادخال رسالة</string>
     <string name="enter_password">برجاء ادخال كلمة السر</string>
     <string name="enter_confirm_password">برجاء تأكيد كلمة السر</string>
     <string name="select_type_of_donation">اختر نوع التبرع</string>
-    <string name="donation_success">سيصلك مندوب مؤسسة مصر الخير خلال 72 ساعة ليقوم بإتمام الطلب %sEGP لقد قمت بتسجيل طلب تبرع بمبلغ  \n شكراً لدعمك مؤسسة مصر الخير!</string>
+    <string name="donation_success">شكراً لدعمك مؤسسة مصر الخير لقد قمت بتسجيل طلب تبرع بمبلغ %s EGP !</string>
+    <string name="collector_pass_by">مندوبنا هيكلمك قريب لتحديد المعاد المناسب لك ليقوم بإتمام الطلب وهيوصلك خلال 72 ساعة</string>
+
     <string name="thank_you">شكراً</string>
     <string name="for_help">شكراً ليك.. بمشاركتك قدرنا نوصّل الخير للي يستحقه</string>
     <string name="your_cart">تبرعاتي</string>
     <string name="loading">Loading&#8230;</string>
     <string name="confirmation">تأكيد</string>
-    <string name="dialog_login_description"> ادخل بدون تسجيل، مع العلم بإنه لن يتم الاحتفاظ  \nببياناتك أو بيانات تبرعاتك</string>
+    <string name="dialog_login_description">ادخل بدون تسجيل، مع العلم بإنه لن يتم الاحتفاظ \nببياناتك أو
+    بيانات تبرعاتك
+</string>
     <string name="profile">حسابك الشخصي</string>
     <string name="donation_channels">وسائل التبرع</string>
     <string name="contact_us">اتصل بنا</string>
@@ -78,11 +84,13 @@
     <string name="logout">تسجيل الخروج</string>
     <string name="coming_soon">قريباً</string>
     <string name="cart_empty">لا يوجد أي منتجات في صندوق التبرعات</string>
-    <string name="nothing_added">لم يتم إضافة تبرعات حتى الآن. اتبرع دلوقتي بمنتج أو اتبرع لحالة من حالات مصر الخير</string>
+    <string name="nothing_added">لم يتم إضافة تبرعات حتى الآن. اتبرع دلوقتي بمنتج أو اتبرع لحالة من
+    حالات مصر الخير
+</string>
     <string name="related_news">أخبار أخرى</string>
-    <string name="donate_through_channel">تقدر تتبرع عن طريق </string>
+    <string name="donate_through_channel">تقدر تتبرع عن طريق</string>
     <string name="store_address">العنوان</string>
-    <string name="phone_no">رقم الهاتف.\t </string>
+    <string name="phone_no">رقم الهاتف.\t</string>
     <string name="phone_code">(02)</string>
     <string name="fax">رقم الفاكس</string>
     <string name="contract_sector_fax">رقم فاكس قطاع التعاقدات</string>
@@ -96,7 +104,9 @@
     <string name="area">المنطقة</string>
     <string name="swift" formatted="false">سويفت: %s \n%s</string>
     <string name="currency">\t(%s)</string>
-    <string name="donate_outside_egypt">ممكن تحوّل من حسابك البنكي باستخدام البيانات التالية\n للتبرع من خارج مصر</string>
+    <string name="donate_outside_egypt">ممكن تحوّل من حسابك البنكي باستخدام البيانات التالية\n للتبرع من
+    خارج مصر
+</string>
     <string name="banks">البنوك</string>
     <string name="view_all_banks">جميع البنوك</string>
     <string name="call">اتصل الآن</string>
@@ -112,13 +122,15 @@
     <string name="gained_profit">ما هي قيمة الأرباح التي تم الحصول عليها؟</string>
     <string name="bonds_value">ما هي قيمة السندات التي تمتلكها في السوق؟</string>
     <string name="gold_zakat">زكاة الذهب</string>
-    <string name="gold_gram_price"> أدخل قيمة الذهب الحالية بالجرام</string>
-    <string name="gold_weight"> ما هو وزن الذهب الذي تمتلكه؟</string>
+    <string name="zakat">زكاة</string>
+    <string name="sadaqah">صدقة</string>
+    <string name="gold_gram_price">أدخل قيمة الذهب الحالية بالجرام</string>
+    <string name="gold_weight">ما هو وزن الذهب الذي تمتلكه؟</string>
     <string name="real_estate_zakat">زكاة العقارات المملوكة</string>
     <string name="rent_value">ما هو قيمة إيجار العقار الشهري الذي تملكه؟</string>
     <string name="zakat_value">قيمة الزكاة</string>
     <string name="calculator">احسب زكاتك</string>
-    <string name="choose_category">يمكنك اختيار ما يناسبك من القائمة بالأسفل </string>
+    <string name="choose_category">يمكنك اختيار ما يناسبك من القائمة بالأسفل</string>
     <string name="filter">تصفية</string>
     <string name="clear">مسح</string>
     <string name="online_payment">تبرع أونلاين</string>
@@ -129,14 +141,66 @@
     <string name="register">حساب جديد</string>
     <string name="invalid_amount">برجاء ادخال قيمة الزكاة</string>
     <string name="password_mismatch">كلمتى السر غير متطابقتين</string>
+    <string name="subscribe">اشترك الآن</string>
+    <string name="subscribed">مشترك</string>
+    <string name="unsubscribe">إلغاء الاشتراك</string>
+    <string name="view_subscribtion">عرض الاشتراك</string>
+    <string name="regular_donations">خيرك دايم</string>
+    <string name="regular_products_description">يمكنك الاختيار من بين المنتجات \n التالية للتبرع
+    بانتظام
+</string>
+    <!--<string name="subscribe_details">It is a long established fact that reader will \n be si</string>-->
+    <string name="subscribe_quantity_description">اختر عدد المنتجات</string>
+    <string name="reminder_text">تحب نفكرك بالتبرع كل</string>
     <string name="month">شهر</string>
     <string name="month_3">3 شهور</string>
     <string name="month_6">6 شهور</string>
+    <string name="submit">ارسال</string>
+    <string name="subscribing">اشتراك &#8230;</string>
+    <string name="donate_with">تبرع ب</string>
+    <string name="receive_reminder">هيوصلك تنبيه كل</string>
+    <string name="month_reminder">%s شهور</string>
+    <string name="products_number" formatted="false">%s منتجات | %s جنيه مصري</string>
+    <string name="regular_confirm_message">%s هيوصلك تنبيه عشان تقدر تتبرع بـ</string>
+    <string name="notification_confirmation" formatted="false">%s عشان تقدر تتبرع بيها كل %s تم إضافة
+</string>
+    <string name="apply">تطوع الآن</string>
+    <string name="current_events">حملات حالية</string>
+    <string name="previous_events">حملات سابقة</string>
+    <string name="upcoming_events">حملات قادمة</string>
+    <string name="volunteering">أنشطة تطوعية</string>
+    <string name="payment_error">هناك مشكلة أثناء محاولتك التبرع.. راجع البيانات وحاول مرة تانية
+</string>
+    <string name="ok">موافق</string>
+    <string name="volunteering_confirmed">دلوقتي بقيت واحد من فريق المتطوعين في مؤسسة مصر الخير \n
+    هنبعتلك كل فترة التحديثات والحملات اللي بنشارك فيها عشان تقدر تبقى عضو فعال ومؤثر معانا
+</string>
+    <string name="items">%s منتجات</string>
+    <string name="payment_history">تاريخ الدفع</string>
+    <string name="see_more">المزيد&#8230; </string>
+    <string name="see_less">أقل&#8230; </string>
+    <string name="confirm_volunteer_description">اللي بتحصل أول بأول \n اتأكد من البيانات عشان تقدر
+    تتابع كل التحديثات
+</string>
+    <string name="search">بحث</string>
+    <string name="looking_for">ما الذي تريد أن تبحث عنه؟</string>
+    <string name="try_another_keyword">حاول البحث بكلمة أخرى</string>
+    <string name="nothing_matches">لا شيء يطابق بحثك، جرب كلمة أخرى للعثور على ما تبحث عنه</string>
+    <string name="save">حفظ</string>
+    <string name="edit_profile">تعديل</string>
+    <string name="send_me_code">ارسال الرمز</string>
+    <string name="invalid_email_address">البريد الإلكتروني غير صحيح</string>
+    <string name="code">الرمز</string>
+    <string name="reset_password">تغيير كلمة السر</string>
+    <string name="enter_code">برجاء ادخال الرمز</string>
+    <string name="password_changed_successfully">تم تغيير كلمة السر بنجاح</string>
+    <string name="forget_password">نسيت كلمة السر</string>
+    <string name="quick_donation">تبرع الآن</string>
     <string-array name="type_of_donations">
         <item>نوع التبرع</item>
         <item>زكاة</item>
-        <item>Charity</item>
-        <item>Donation</item>
+        <item>صدقة</item>
+
     </string-array>
 
     <string-array name="languages">
@@ -149,27 +213,29 @@
         <item>البنوك المصرية</item>
         <item>فروع مؤسسة مصر الخير</item>
         <item>فوري</item>
-        <item>تحصيل التبرع من المنزل</item>
-        <item>التبرع بالبطاقة الائتمانية</item>
+        <item>تبرع من المنزل</item>
+        <item>تبرع أونلاين</item>
     </string-array>
 
     <string-array name="dialog_donation_channels">
         <item>البنوك المصرية</item>
         <item>فوري</item>
-        <item>تحصيل التبرع من المنزل</item>
-        <item>التبرع بالبطاقة الائتمانية</item>
+        <item>تبرع من المنزل</item>
+        <item>تبرع أونلاين</item>
     </string-array>
 
     <string-array name="dialog_donation_channels_details">
         <item>تبرع الآن على حساب مؤسسة مصر الخير في جميع بنوك مصر على حساب 100100</item>
         <item>1- روح أقرب فرع أو منفذ بيقدم خدمة فوري
-\n\n
-2- اكتب رقم موبايلك، وبعدها قيمة التبرع لمؤسسة مصر الخير
-\n\n
-3- انتظر لحد ما تستلم فاتورة من البائع بتثبت تبرعك بالقيمة المطلوبة لصالح مؤسسة مصر الخير</item>
+        \n\n
+        2- اكتب رقم موبايلك، وبعدها قيمة التبرع لمؤسسة مصر الخير
+        \n\n
+        3- انتظر لحد ما تستلم فاتورة من البائع بتثبت تبرعك بالقيمة المطلوبة لصالح مؤسسة مصر الخير
+    </item>
 
         <item>اطلب دلوقتي مندوب تحصيل من مؤسسة مصر الخير.
-خدمة طلب مندوب التحصيل متاحة لمحافظات القاهرة والجيزة والإسكندرية والفيوم والمنصورة</item>
+        خدمة طلب مندوب التحصيل متاحة لمحافظات القاهرة والجيزة والإسكندرية والفيوم والمنصورة
+    </item>
         <item>تقدر تتبرع أونلاين لمؤسسة مصر الخير عن طريق بطاقتك الائتمانية.</item>
     </string-array>
 
@@ -197,5 +263,26 @@
         <item quantity="few">%d إجمالي التبرعات</item>
         <item quantity="zero">%d إجمالي التبرعات</item>
     </plurals>
+
+    <plurals name="payment_items_plural">
+        <item quantity="one">%d منتج</item>
+        <item quantity="two">%d منتجات</item>
+        <item quantity="other"> %d منتجات</item>
+        <item quantity="many"> %d منتجات</item>
+        <item quantity="few"> %d منتجات</item>
+        <item quantity="zero"> %d منتج</item>
+    </plurals>
+
     <string name="title_activity_maps">الخريطة</string>
+    <string name="home_screen">Home</string>
+    <string name="products_screen">Products_Listing</string>
+    <string name="products_inner_screen">Products_Inner</string>
+    <string name="causes_screen">Causes_Listing</string>
+    <string name="causes_inner_screen">Causes_Inner</string>
+    <string name="donation_channels_screen">Donation_Channels</string>
+    <string name="banks_screen">Banks</string>
+    <string name="stores_screen">Stores</string>
+    <string name="contact_us_screen">Contact_Us</string>
+    <string name="news_screen">News</string>
+    <string name="zakat_calculator_screen">Zakat_Calculator</string>
 </resources>

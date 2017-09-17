@@ -64,7 +64,7 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         }
         if (latestProducts.isUrgent()) {
             if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
-                holder.isUrgentImageView.setRotationY(180);
+                holder.isUrgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
             }
             holder.isUrgentImageView.setVisibility(View.VISIBLE);
         } else {

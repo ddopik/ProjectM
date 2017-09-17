@@ -28,6 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        setTitle(getString(R.string.register));
+
         type = getIntent().getIntExtra(EXTRA_TYPE, REGISTER_TYPE);
         addFragment();
     }

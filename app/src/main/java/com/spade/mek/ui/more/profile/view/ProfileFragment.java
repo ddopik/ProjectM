@@ -86,7 +86,15 @@ public class ProfileFragment extends BaseFragment {
     private void setUserData() {
         RealmDbHelper realmDbHelper = new RealmDbImpl();
         User user = realmDbHelper.getUser(PrefUtils.getUserId(getContext()));
-        userName.setText(user.getFirstName() + " " + user.getLastName());
+        if (user.getFirstName() != null && user.getLastName() != null) {
+            userName.setText(user.getFirstName() + " " + user.getLastName());
+        } else if (user.getFirstName() != null) {
+            userName.setText(user.getFirstName());
+        } else if (user.getLastName() != null) {
+            userName.setText(user.getLastName());
+        } else {
+            userName.setVisibility(View.GONE);
+        }
         userEmail.setText(user.getUserEmail());
         if (user.getUserPhone() != null && !user.getUserPhone().isEmpty())
             userPhone.setText(user.getUserPhone());

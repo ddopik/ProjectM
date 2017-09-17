@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.androidnetworking.AndroidNetworking;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.onesignal.OSNotificationOpenResult;
@@ -20,6 +21,8 @@ import com.spade.sociallogin.FacebookLoginManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.fabric.sdk.android.BuildConfig;
+import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -36,12 +39,34 @@ public class MekApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (!BuildConfig.DEBUG) {
+            Fabric.with(this, new Crashlytics());
+        }
+        initGoogleAnalytics();
+        initFacebookEvents();
+        initAndroidNetworking();
+        initRealm();
+        initOneSignal();
+    }
+
+    private void initGoogleAnalytics() {
         sAnalytics = GoogleAnalytics.getInstance(this);
-//        FacebookSdk.sdkInitialize(this);
+    }
+
+    private void initFacebookEvents() {
         FacebookLoginManager.initFacebookEvents(this);
+    }
+
+    private void initAndroidNetworking() {
         AndroidNetworking.initialize(this);
+    }
+
+    private void initRealm() {
         Realm.init(this);
         setRealmDefaultConfiguration();
+    }
+
+    private void initOneSignal() {
         OneSignal.startInit(this).setNotificationOpenedHandler(new NotificationOpenReceiver()).init();
         OneSignal.idsAvailable((userId, registrationId) -> PrefUtils.setNotificationToken(this, userId));
     }

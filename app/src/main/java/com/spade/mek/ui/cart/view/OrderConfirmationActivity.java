@@ -33,9 +33,19 @@ public class OrderConfirmationActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.confirmation));
 
-        ImageView imageView = (ImageView) findViewById(R.id.logo_image_view);
-        TextView confirmationTextView = (TextView) findViewById(R.id.confirmation_message);
-        LinearLayout parentLayout = (LinearLayout) findViewById(R.id.parent_layout);
+        int paymentType = getIntent().getIntExtra(UserDataFragment.EXTRA_PAYMENT_TYPE, UserDataFragment.ONLINE_PAYMENT_TYPE);
+
+        LinearLayout parentLayout = findViewById(R.id.parent_layout);
+        ImageView imageView = findViewById(R.id.logo_image_view);
+        TextView confirmationTextView = findViewById(R.id.confirmation_message);
+        TextView collectorTextView = findViewById(R.id.collector_message);
+
+        if (paymentType == UserDataFragment.CASH_ON_DELIVERY) {
+            collectorTextView.setVisibility(View.VISIBLE);
+        } else {
+            collectorTextView.setVisibility(View.GONE);
+        }
+
         confirmationTextView.setText(String.format(getString(R.string.donation_success), getIntent().getStringExtra(UserDataFragment.EXTRA_TOTAL_COST)));
 
         String appLang = PrefUtils.getAppLang(getApplicationContext());

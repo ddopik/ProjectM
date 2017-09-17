@@ -21,6 +21,15 @@
             android:text="@string/donation_success"
             android:textColor="@color/grey" />
 
+        <TextView
+            android:id="@+id/collector_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/collector_pass_by"
+            android:textColor="@color/grey"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/logo_image_view"
             android:layout_width="wrap_content"

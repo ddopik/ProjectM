@@ -47,13 +47,12 @@
                     android:id="@+id/urgent_case_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:visibility="gone">
 
                     <ImageView
+                        android:id="@+id/urgent_case_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_label" />

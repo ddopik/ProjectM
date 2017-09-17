@@ -81,7 +81,7 @@ public class CausesAdapter extends RecyclerView.Adapter implements UrgentCasesPa
             }
             if (latestCause.isUrgent()) {
                 if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
-                    ((ItemViewHolder) holder).isUrgentImageView.setRotationY(180);
+                    ((ItemViewHolder) holder).isUrgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
                 }
                 ((ItemViewHolder) holder).isUrgentImageView.setVisibility(View.VISIBLE);
             } else {

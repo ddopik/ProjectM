@@ -39,9 +39,10 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     public static final String EXTRA_TOTAL_COST = "EXTRA_TOTAL_COST";
     public static final String EXTRA_ZAKAT_AMOUNT = "EXTRA_ZAKAT_AMOUNT";
     public static final String EXTRA_DONATE_TYPE = "EXTRA_DONATE_TYPE";
+    public static final String EXTRA_PAYMENT_TYPE = "EXTRA_PAYMENT_TYPE";
     public static final int EXTRA_PAY_FOR_PRODUCTS = 800;
-    public static final int EXTRA_DONATE_ZAKAT = 900;
 
+    public static final int EXTRA_DONATE_ZAKAT = 900;
     private static final int PAYMENT_REQUEST_CODE = 1001;
     public static final int ONLINE_PAYMENT_TYPE = 0;
     public static final int CASH_ON_DELIVERY = 1;
@@ -245,6 +246,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     public void navigateToConfirmationScreen() {
         Intent intent = OrderConfirmationActivity.getLaunchIntent(getContext());
         intent.putExtra(EXTRA_TOTAL_COST, String.valueOf(totalCost));
+        intent.putExtra(EXTRA_PAYMENT_TYPE, paymentType);
         startActivity(intent);
     }
 

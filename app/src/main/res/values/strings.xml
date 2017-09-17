@@ -60,7 +60,8 @@
     <string name="enter_password">Please Enter Your Password</string>
     <string name="enter_confirm_password">Please Confirm Your Password</string>
     <string name="select_type_of_donation">Please Select Type Of Donation</string>
-    <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 72h</string>
+    <string name="donation_success">Thanks for choosing Misr Elkheir Foundation to donate %sEGP</string>
+    <string name="collector_pass_by"> Our collector will pass by you within the coming 72h</string>
     <string name="thank_you">Thank You</string>
     <string name="for_help">For helping us to help others </string>
     <string name="your_cart">Your Cart</string>
@@ -156,8 +157,8 @@
     <string name="previous_events">Past Events</string>
     <string name="upcoming_events">UpComing Events</string>
     <string name="volunteering">Volunteering</string>
-    <string name="payment_error">Failed </string>
-    <string name="ok">Ok</string>
+    <string name="payment_error">Failed to complete transaction; Please try again later</string>
+    <string name="ok">OK</string>
     <string name="volunteering_confirmed">You have successfully joined our team, we \n are going to contact you for any updates about the event</string>
     <string name="items">%s Items</string>
     <string name="payment_history">Payment History</string>
