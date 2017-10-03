@@ -2,7 +2,13 @@ package com.spade.mek.ui.home;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
@@ -21,6 +27,9 @@ public class HomePresenterImpl implements HomePresenter {
     public HomePresenterImpl(HomeView homeView, Context context) {
         setView(homeView);
         mContext = context;
+        Tracker homeTracker = MekApplication.getDefaultTracker();
+        homeTracker.setScreenName(mContext.getString(R.string.home_screen));
+        homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -32,13 +41,17 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribe(latestProductsResponse -> {
                     if (latestProductsResponse != null && latestProductsResponse.getLatestProductsList() != null) {
                         mHomeView.showLatestProducts(latestProductsResponse.getLatestProductsList());
+                    } else {
+                        mHomeView.hideLatestProducts();
                     }
                     mHomeView.hideLatestProductsLoading();
                 }, throwable -> {
                     if (throwable != null) {
-                        mHomeView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
                     }
                     mHomeView.hideLatestProductsLoading();
+                    mHomeView.hideLatestProducts();
                 });
     }
 
@@ -51,13 +64,17 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribe(latestCausesResponse -> {
                     if (latestCausesResponse != null && latestCausesResponse.getProductsList() != null) {
                         mHomeView.showLatestCauses(latestCausesResponse.getProductsList());
+                    } else {
+                        mHomeView.hideLatestCauses();
                     }
                     mHomeView.hideLatestCausesLoading();
                 }, throwable -> {
                     if (throwable != null) {
-                        mHomeView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
                     }
                     mHomeView.hideLatestCausesLoading();
+                    mHomeView.hideLatestCauses();
                 });
     }
 
@@ -68,14 +85,18 @@ public class HomePresenterImpl implements HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(urgentCasesResponse -> {
-                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCasesData().getProductsList() != null) {
-                        mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCasesData().getProductsList());
+                    if (urgentCasesResponse != null && urgentCasesResponse.getUrgentCases() != null) {
+                        mHomeView.showUrgentCases(urgentCasesResponse.getUrgentCases());
+                    } else {
+                        mHomeView.hideUrgentCases();
                     }
                     mHomeView.hideUrgentCasesLoading();
                 }, throwable -> {
                     mHomeView.hideUrgentCasesLoading();
+                    mHomeView.hideUrgentCases();
                     if (throwable != null) {
-                        mHomeView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

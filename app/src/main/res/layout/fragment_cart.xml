@@ -5,6 +5,13 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <RelativeLayout
         android:id="@+id/cart_layout"
         android:layout_width="match_parent"
@@ -23,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/check_out_btn"
-            android:background="@color/buttonGrey"
+            android:background="@color/lightGrey"
             android:orientation="horizontal"
             android:padding="@dimen/activity_horizontal_margin">
 

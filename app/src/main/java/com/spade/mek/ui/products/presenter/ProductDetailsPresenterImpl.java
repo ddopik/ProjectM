@@ -2,6 +2,11 @@ package com.spade.mek.ui.products.presenter;
 
 import android.content.Context;
 
+import com.androidnetworking.error.ANError;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
@@ -9,6 +14,8 @@ import com.spade.mek.ui.cart.model.CartItemModel;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsView;
+import com.spade.mek.utils.ErrorUtils;
+import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,7 +50,7 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
     @Override
     public void getProductDetails(String appLang, int productId) {
         productDetailsView.showLoading();
-        ApiHelper.getProductDetails(appLang, productId)
+        ApiHelper.getProductDetails(appLang, productId, PrefUtils.getUserId(mContext))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productDetailsResponse -> {
@@ -54,9 +61,39 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
                 }, throwable -> {
                     productDetailsView.hideLoading();
                     if (throwable != null) {
-                        productDetailsView.onError(throwable.getMessage());
+                        ANError anError = (ANError) throwable;
+                        productDetailsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
+    }
+
+    @Override
+    public void sendAnalytics(String type) {
+        Tracker detailsTracker = MekApplication.getDefaultTracker();
+        if (type.equals(UrgentCasesPagerAdapter.CAUSE_TYPE)) {
+            detailsTracker.setScreenName(mContext.getString(R.string.causes_inner_screen));
+        } else {
+            detailsTracker.setScreenName(mContext.getString(R.string.products_inner_screen));
+        }
+        detailsTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    @Override
+    public void unSubscribeProduct(String productID) {
+        productDetailsView.showLoading();
+        ApiHelper.unSubscribeFromProduct(productID, PrefUtils.getUserToken(mContext), new ApiHelper.UnSubscriptionCallBacks() {
+            @Override
+            public void onUnSubscribeSuccess() {
+                productDetailsView.hideLoading();
+                getProductDetails(PrefUtils.getAppLang(mContext), Integer.parseInt(productID));
+            }
+
+            @Override
+            public void onUnSubscriptionFailed(String error) {
+                productDetailsView.hideLoading();
+                productDetailsView.onError(error);
+            }
+        });
     }
 
     @Override

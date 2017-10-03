@@ -17,6 +17,7 @@ import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
 import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
+import com.spade.mek.utils.FontUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/22/17.
@@ -54,6 +55,7 @@ public class AddProductToCartDialog extends DialogFragment {
         View dialogView = inflater.inflate(R.layout.dialog_product, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         init(dialogView);
+        FontUtils.overrideFonts(getContext(), dialogView);
         return dialogView;
     }
 

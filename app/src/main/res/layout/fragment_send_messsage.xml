@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/user_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:gravity="start"
+                    android:hint="@string/user_name"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/blue" />
+
+                <EditText
+                    android:id="@+id/city_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:hint="@string/city"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/blue" />
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/email_address_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:gravity="start"
+                android:maxLines="1"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textColor="@color/blue" />
+
+            <EditText
+                android:id="@+id/subject_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:gravity="start"
+                android:maxLines="1"
+                android:hint="@string/subject"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textColor="@color/blue" />
+
+            <EditText
+                android:id="@+id/message_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp8"
+                android:background="@drawable/message_background"
+                android:gravity="start"
+                android:hint="@string/message"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/send_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:text="@string/send_message"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="bold" />
+</RelativeLayout>

@@ -2,6 +2,7 @@
     <string name="app_name">Misr ElKheir</string>
     <string name="facebook_app_id">1540467815995295</string>
     <string name="fb_login_protocol_scheme">fb1540467815995295</string>
+    <string name="maps_api_key">AIzaSyBYy96pA-a846ZUFrE6WPCBberWUZ2MGh0</string>
 
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -42,23 +43,31 @@
     <string name="last_name">Last name</string>
     <string name="phone">Phone Number</string>
     <string name="address">Address</string>
+    <string name="address_hint">Check the map for the nearest store or choose other stores from here</string>
     <string name="type_of_donation">Type of Donation</string>
     <string name="cash_on_deleivery">Cash on Delivery</string>
     <string name="misr_collector">Misr ElKheir collector will pass by you</string>
     <string name="enter_first_name">Please Enter Your First Name</string>
     <string name="enter_last_name">Please Enter Your Last Name</string>
+    <string name="enter_user_name">Please Enter Your User Name</string>
     <string name="enter_email_address">Please Enter Your E-Mail Address</string>
     <string name="enter_phone_number">Please Enter Your Phone Number</string>
     <string name="enter_address">Please Enter Your Address</string>
     <string name="enter_valid_email_address">Please Enter Valid E-Mail Address</string>
+    <string name="enter_city">Please Enter Your City</string>
+    <string name="enter_subject">Please Enter Subject</string>
+    <string name="enter_message">Please Enter Message</string>
+    <string name="enter_password">Please Enter Your Password</string>
+    <string name="enter_confirm_password">Please Confirm Your Password</string>
     <string name="select_type_of_donation">Please Select Type Of Donation</string>
-    <string name="donation_success">You have successfully donated %sEGP \n Our collector will pass by you within 24h</string>
+    <string name="donation_success">Thanks for choosing Misr Elkheir Foundation to donate %sEGP</string>
+    <string name="collector_pass_by"> Our collector will pass by you within the coming 72h</string>
     <string name="thank_you">Thank You</string>
     <string name="for_help">For helping us to help others </string>
     <string name="your_cart">Your Cart</string>
     <string name="loading">Loading&#8230;</string>
     <string name="confirmation">Confirmation</string>
-    <string name="dialog_login_description">If you continued as a guest your data and \n history will not be saved</string>
+    <string name="dialog_login_description">If you continued as a guest your data and history will not be saved.\nPlease log-in to pay your donation online"</string>
     <string name="profile">Profile</string>
     <string name="donation_channels">Donation Channels</string>
     <string name="contact_us">Contact Us</string>
@@ -72,11 +81,147 @@
     <string name="cart_empty">Your Cart is Empty</string>
     <string name="nothing_added">Nothing is added to your cart yet</string>
     <string name="related_news">Related News</string>
+    <string name="donate_through_channel">You can donate through any of the below channels</string>
+    <string name="store_address">Address</string>
+    <string name="phone_no">Phone no.\t </string>
+    <string name="phone_code">(02)</string>
+    <string name="fax">Fax</string>
+    <string name="contract_sector_fax">Contract Sector Fax</string>
+    <string name="working_hours">Working hours</string>
+    <string name="check_direction">Check direction</string>
+    <string name="stores">Stores</string>
+    <string name="visit_stores">You can visit any of Misr ElKheir stores \n for cash donation</string>
+    <string name="available_stores">Available Stores</string>
+    <string name="available_banks">Available Banks</string>
+    <string name="city">City</string>
+    <string name="area">Area</string>
+    <string name="swift" formatted="false">Swift: %s \n%s</string>
+    <string name="currency">\t(%s)</string>
+    <string name="donate_outside_egypt">To donate from outside Egypt,\n Please use this information to deliver your donation</string>
+    <string name="banks">Banks</string>
+    <string name="view_all_banks">View all banks</string>
+    <string name="call">Call Now</string>
+    <string name="message_us">Message Us</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send_message">Send Message</string>
+    <string name="message_sent">Your message has been successfully sent</string>
+    <string name="money_zakat">Zakat for money</string>
+    <string name="money_amount">How much money do you have?</string>
+    <string name="asset_zakat">Zakat for Assets &amp; Property</string>
+    <string name="shares_value">What is the value of shares you own in the market?</string>
+    <string name="gained_profit">What is the value of gained profits?</string>
+    <string name="bonds_value">What is the value of bonds you have?</string>
+    <string name="gold_zakat">Zakat for gold</string>
+    <string name="gold_gram_price">Enter the value of a gram of gold</string>
+    <string name="gold_weight">How much gold weight do you have?</string>
+    <string name="real_estate_zakat">Zakat for Owned Real Estate</string>
+    <string name="rent_value">How much is the rent value for the property you own?</string>
+    <string name="zakat_value">Zakat value</string>
+    <string name="calculator">Zakat Calculator</string>
+    <string name="choose_category">Choose from the below categories to filter with </string>
+    <string name="filter">Filter</string>
+    <string name="clear">Clear</string>
+    <string name="online_payment">Online Payment</string>
+    <string name="payment_method">Choose Payment Method</string>
+    <string name="choose_another_channel">Choose Another Channel</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="zakat">Zakat</string>
+    <string name="sadaqah">Sadaqa</string>
+    <string name="invalid_amount">Please enter a valid amount</string>
+    <string name="password_mismatch">Password and confirm password mismatch</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="subscribed">Subscribed</string>
+    <string name="unsubscribe">Unsubscribe</string>
+    <string name="view_subscribtion">View subscription</string>
+    <string name="regular_donations">Regular Donations</string>
+    <string name="regular_products_description">You can choose from the below products \n to regularly donate for</string>
+    <!--<string name="subscribe_details">It is a long established fact that reader will \n be si</string>-->
+    <string name="subscribe_quantity_description">Please define the number of products you would like to donate for</string>
+    <string name="reminder_text">You would like to be reminded with your donation every</string>
+    <string name="month">Month</string>
+    <string name="month_3">3 Months</string>
+    <string name="month_6">6 Months</string>
+    <string name="submit">Submit</string>
+    <string name="subscribing">Subscribing to a product&#8230;</string>
+    <string name="donate_with">You donate with</string>
+    <string name="receive_reminder">You receive a reminder every</string>
+    <string name="month_reminder">%s Months</string>
+    <string name="products_number" formatted="false">%s Products | %sEGP</string>
+    <string name="regular_confirm_message">%s product has been successfully added to your profile as a regular donation product</string>
+    <string name="notification_confirmation" formatted="false">A notification will be sent to you each %s months to remind you to donate for the %s</string>
+    <string name="apply">Apply</string>
+    <string name="current_events">Current Events</string>
+    <string name="previous_events">Past Events</string>
+    <string name="upcoming_events">UpComing Events</string>
+    <string name="volunteering">Volunteering</string>
+    <string name="payment_error">Failed to complete transaction; Please try again later</string>
+    <string name="ok">OK</string>
+    <string name="volunteering_confirmed">You have successfully joined our team, we \n are going to contact you for any updates about the event</string>
+    <string name="items">%s Items</string>
+    <string name="payment_history">Payment History</string>
+    <string name="see_more">See More&#8230; </string>
+    <string name="see_less">See Less&#8230; </string>
+    <string name="confirm_volunteer_description">Please confirm your data to be updated \n with the event\'s updates</string>
+    <string name="search">Search</string>
+    <string name="looking_for">What are you looking for!!</string>
+    <string name="try_another_keyword">Try another keyword</string>
+    <string name="nothing_matches">Nothing matches your search, try another keywords to find what you are looking for</string>
+    <string name="save">Save</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="send_me_code">Send me a code</string>
+    <string name="invalid_email_address">Invalid email address</string>
+    <string name="code">Code</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_code">Please enter the code</string>
+    <string name="password_changed_successfully">Password changed successfully</string>
+    <string name="forget_password">Forget password</string>
+    <string name="quick_donation">Quick donation</string>
+    <string name="title_activity_maps">الخريطة</string>
+
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
-        <item>Charity</item>
-        <item>Donation</item>
+        <item>Sadaqa</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+
+    <string-array name="donation_channels">
+        <item>Foreign donations</item>
+        <item>Egyptian banks</item>
+        <item>Stores</item>
+        <item>Fawry</item>
+        <item>Cash on delivery</item>
+        <item>Online payment</item>
+    </string-array>
+
+    <string-array name="dialog_donation_channels">
+        <item>Egyptian banks</item>
+        <item>Fawry</item>
+        <item>Cash on delivery</item>
+        <item>Online payment</item>
+    </string-array>
+
+    <string-array name="dialog_donation_channels_details">
+        <item>Donate now for Misr Elkheir Foundation in banks all over Egypt on 100100</item>
+        <item>1- Go to the nearest Fawry services.\n\n2- Enter Your mobile number, then enter your donation value on Fawry device.\n\n3-  Now, You can receive a printed receipt proofing your donation process is done successfully.\n</item>
+
+        <item>You can pay through home collection and we will send an agent to collect your donation from your doorstep.
+Home collection service is only available for Cairo, Giza, Alexandria, Al-Fayoum and Al-Mansoura residents.</item>
+        <item>You can pay now via your credit card.</item>
+    </string-array>
+
+    <string-array name="dialog_donation_channels_headline">
+        <item>Donate to MEK Bank Account 100100</item>
+        <item>Follow these steps to donate through Fawry</item>
+        <item>Request home collection now</item>
+        <item>Donate via your Credit Card</item>
     </string-array>
 
     <plurals name="items_plural">
@@ -85,5 +230,20 @@
         <item quantity="many">%d Items to go</item>
         <item quantity="few">%d Items to go</item>
         <item quantity="zero">%d Items to go</item>
+    </plurals>
+
+    <plurals name="total_items_plural">
+        <item quantity="one">Total %d Items</item>
+        <item quantity="other">Total %d Items</item>
+        <item quantity="many">Total %d Items</item>
+        <item quantity="few">Total %d Items</item>
+        <item quantity="zero">Total %d Items</item>
+    </plurals>
+    <plurals name="payment_items_plural">
+        <item quantity="one">%d Items</item>
+        <item quantity="other"> %d Items</item>
+        <item quantity="many"> %d Items</item>
+        <item quantity="few"> %d Items</item>
+        <item quantity="zero"> %d Items</item>
     </plurals>
 </resources>

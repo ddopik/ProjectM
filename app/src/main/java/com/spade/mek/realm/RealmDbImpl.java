@@ -4,10 +4,15 @@ import android.content.Context;
 
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.CartItemModel;
+import com.spade.mek.ui.cart.model.OrderDone;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.login.User;
+import com.spade.mek.ui.login.UserModel;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.SocialUser;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.realm.Realm;
@@ -31,12 +36,22 @@ public class RealmDbImpl implements RealmDbHelper {
         user.setUserPhoto(socialUser.getUserPhoto());
         user.setUserId(socialUser.getUserId());
         realmInstance.copyToRealmOrUpdate(user);
-//        realmInstance.executeTransaction(realm -> {
-//            User user = realm.createObject(User.class, socialUser.getUserId());
-//            user.setUserEmail(socialUser.getEmailAddress());
-//            user.setFirstName(socialUser.getName());
-//            user.setUserPhoto(socialUser.getUserPhoto());
-//        });
+        realmInstance.commitTransaction();
+        realmInstance.close();
+    }
+
+    @Override
+    public void saveUser(UserModel userModel, String userToken) {
+        Realm realmInstance = Realm.getDefaultInstance();
+        realmInstance.beginTransaction();
+        User user = new User();
+        user.setUserEmail(userModel.getUserEmail());
+        user.setFirstName(userModel.getFirstName());
+        user.setUserId(userModel.getUserId());
+        user.setLastName(userModel.getLastName());
+        user.setUserPhone(userModel.getUserPhone());
+        user.setUserToken(userToken);
+        realmInstance.copyToRealmOrUpdate(user);
         realmInstance.commitTransaction();
         realmInstance.close();
     }
@@ -172,6 +187,7 @@ public class RealmDbImpl implements RealmDbHelper {
 
             e.onNext(true);
             e.onComplete();
+
         });
     }
 
@@ -181,6 +197,11 @@ public class RealmDbImpl implements RealmDbHelper {
         RealmList<CartItem> cartItemList = new RealmList<>();
         cartItemList.addAll(realm.where(CartItem.class).equalTo("userId", userId).findAll());
         return cartItemList;
+    }
+
+    public CartItem getCartItem(Realm realm, String userId, int itemId) {
+        CartItem cartItem = realm.where(CartItem.class).equalTo("userId", userId).equalTo("itemId", itemId).findFirst();
+        return cartItem;
     }
 
     @Override
@@ -204,6 +225,47 @@ public class RealmDbImpl implements RealmDbHelper {
         Realm realm = Realm.getDefaultInstance();
         realm.refresh();
         return realm.where(User.class).equalTo("userId", userId).findFirst();
+    }
+
+    @Override
+    public void saveOrderDone(String orderID) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        OrderDone orderDone = realm.createObject(OrderDone.class);
+        orderDone.setOrderID(orderID);
+        orderDone.setSynced(false);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    @Override
+    public void updateOrderStatus(String orderId, boolean synced) {
+        Realm realm = Realm.getDefaultInstance();
+        OrderDone orderDone = realm.where(OrderDone.class).equalTo("orderID", orderId).findFirst();
+        realm.beginTransaction();
+        orderDone.setSynced(synced);
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    @Override
+    public Observable<Boolean> updateCartItems(List<Products> productsList, String userId) {
+        return Observable.create(e -> {
+            Realm realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            for (Products products : productsList) {
+                CartItem cartItem = getCartItem(realm, userId, products.getProductId());
+                cartItem.setItemTitle(products.getProductTitle());
+                cartItem.setItemPrice(products.getProductPrice());
+                if (products.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
+                    cartItem.setTotalCost(products.getProductPrice() * cartItem.getAmount());
+                }
+            }
+            realm.commitTransaction();
+            realm.close();
+            e.onNext(true);
+            e.onComplete();
+        });
     }
 
 

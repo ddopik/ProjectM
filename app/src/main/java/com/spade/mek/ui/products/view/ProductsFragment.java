@@ -1,5 +1,6 @@
 package com.spade.mek.ui.products.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,11 +19,17 @@ import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.SearchActivity;
+import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.products.model.ProductsData;
 import com.spade.mek.ui.products.presenter.ProductsPresenter;
 import com.spade.mek.ui.products.presenter.ProductsPresenterImpl;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +41,7 @@ import java.util.List;
 public class ProductsFragment extends BaseFragment implements ProductsView,
         ProductsAdapter.ProductActions, AddCauseToCartDialog.AddToCart, AddProductToCartDialog.AddToCart {
 
-    private ProductsPresenter productsPresenter;
+    private static ProductsPresenter productsPresenter;
     private ProductsAdapter productsAdapter;
     private List<Products> urgentCaseList;
     private List<Products> productsList;
@@ -51,6 +58,7 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
+        overrideFonts(getContext(), mProductsView);
         return mProductsView;
     }
 
@@ -68,7 +76,7 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
         urgentCaseList = new ArrayList<>();
         appLang = PrefUtils.getAppLang(getContext());
 
-        productsAdapter = new ProductsAdapter(productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang), getString(R.string.all_products), getContext());
+        productsAdapter = new ProductsAdapter(productsList, urgentCaseList, ImageUtils.getDefaultImage(appLang), getString(R.string.all_products), SearchActivity.LIST_VIEW, getContext());
         productsAdapter.setProductActions(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -151,6 +159,21 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     }
 
     @Override
+    public void showFilteredProducts(ProductsData productsData) {
+        currentPage = productsData.getCurrentPage();
+        lastPage = productsData.getLastPage();
+        isLoading = false;
+        if (productsData.getProductsList() != null) {
+            this.productsList.clear();
+            this.productsList.addAll(productsData.getProductsList());
+            productsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public static void search(String searchKeyword) {
+    }
+
+    @Override
     public void showUrgentCasesLoading() {
 
     }
@@ -171,9 +194,15 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     }
 
     @Override
+    public void showSearchResults(SearchResponse searchResponse) {
+
+    }
+
+    @Override
     public void onProductClicked(int productId) {
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_products));
         startActivity(intent);
     }
@@ -211,6 +240,18 @@ public class ProductsFragment extends BaseFragment implements ProductsView,
     @Override
     public void onItemInserted() {
         cartAction.onItemInserted();
+    }
+
+    public static void filterProducts(Context context, ArrayList<String> filterId) {
+        JSONArray jsonElements = new JSONArray(filterId);
+        JSONObject requestJsonObject = null;
+        try {
+            requestJsonObject = new JSONObject();
+            requestJsonObject.put("categories", jsonElements);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        productsPresenter.filterProducts(PrefUtils.getAppLang(context), requestJsonObject);
     }
 
     public interface CartAction {

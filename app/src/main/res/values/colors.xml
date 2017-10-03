@@ -2,16 +2,17 @@
 <resources>
     <color name="colorPrimary">#01513e</color>
     <color name="colorPrimaryDark">#002818</color>
-    <color name="colorAccent">#3a7e69</color>
+    <color name="colorAccent">#E7891E</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="facebookColor">#3A5896</color>
     <color name="googleColor">#DB4A38</color>
     <color name="orange">#E7891E</color>
     <color name="blue">#03386D</color>
-    <color name="causeGrey">#F3F3F3</color>
-    <color name="buttonGrey">#ECECEC</color>
+    <color name="opacity_blue">#5503386d</color>
+    <color name="lightGrey">#f4f4f4</color>
     <color name="popupsBackground">#231F20</color>
-    <color name="textGrey">#7e7e7e</color>
-    <color name="textDarkGrey">#3f3f3f</color>
+    <color name="grey">#7e7e7e</color>
+    <color name="darkGrey">#3f3f3f</color>
+    <color name="grey_background">#231f20</color>
 </resources>

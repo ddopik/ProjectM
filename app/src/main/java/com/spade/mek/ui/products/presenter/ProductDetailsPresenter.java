@@ -11,6 +11,10 @@ import com.spade.mek.ui.products.view.ProductDetailsView;
 public interface ProductDetailsPresenter extends BasePresenter<ProductDetailsView> {
     void getProductDetails(String appLang, int productId);
 
+    void sendAnalytics(String type);
+
+    void unSubscribeProduct(String productID);
+
     void addItemToCart(Products product, int quantity);
 
     void addItemToCart(Products product, double quantity);

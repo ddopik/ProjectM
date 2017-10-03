@@ -19,6 +19,7 @@ import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
 import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
+import com.spade.mek.utils.FontUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/22/17.
@@ -53,8 +54,10 @@ public class AddCauseToCartDialog extends DialogFragment {
         View dialogView = inflater.inflate(R.layout.dialog_product, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         init(dialogView);
+        FontUtils.overrideFonts(getContext(), dialogView);
         return dialogView;
     }
+
 
     private void init(View view) {
         quantityEditText = (EditText) view.findViewById(R.id.quantityEditText);
@@ -123,7 +126,7 @@ public class AddCauseToCartDialog extends DialogFragment {
     }
 
     private void setMoneyAmount() {
-        quantityEditText.setText(String.format("%.2f", quantityAmount));
+        quantityEditText.setText(String.valueOf(quantityAmount));
     }
 
     public void setAddToCart(AddToCart addToCart) {

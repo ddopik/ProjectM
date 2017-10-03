@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
     android:layout_height="200dp"
-    android:layout_marginEnd="@dimen/dp8"
-    android:layout_marginRight="@dimen/dp8"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
     <FrameLayout
@@ -22,6 +22,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:alpha="0.85"
             android:src="@drawable/gradient_shape" />
 
         <ImageView
@@ -54,15 +55,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_small_label" />
     </FrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/causeGrey"
+        android:background="@color/lightGrey"
         android:paddingBottom="@dimen/dp8">
 
         <SeekBar

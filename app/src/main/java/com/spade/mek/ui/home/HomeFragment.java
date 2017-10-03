@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -47,6 +48,8 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress;
     private HomeActions homeActions;
     private CartAction cartAction;
+    private ViewPager urgentCasesViewPager;
+    private RelativeLayout checkAllCauses, checkAllProducts;
 
 
     @Nullable
@@ -54,6 +57,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         initViews();
+        overrideFonts(getContext(), homeView);
         return homeView;
     }
 
@@ -67,23 +71,27 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         String appLang = PrefUtils.getAppLang(getContext());
         boolean isReverse = homePresenter.isReverse(appLang);
         int defaultImageResId = ImageUtils.getDefaultImage(appLang);
+        int arrowImage = ImageUtils.getArrow(appLang);
 
         urgentCasesProgress = (ProgressBar) homeView.findViewById(R.id.urgent_cases_progress_bar);
         latestProductsProgress = (ProgressBar) homeView.findViewById(R.id.latest_products_progress_bar);
         latestCausesProgress = (ProgressBar) homeView.findViewById(R.id.latest_causes_progress_bar);
 
-        RelativeLayout checkAllProducts = (RelativeLayout) homeView.findViewById(R.id.check_all_products);
-        RelativeLayout checkAllCauses = (RelativeLayout) homeView.findViewById(R.id.check_all_causes);
+        checkAllProducts = (RelativeLayout) homeView.findViewById(R.id.check_products_layout);
+        checkAllCauses = (RelativeLayout) homeView.findViewById(R.id.check_causes_layout);
 
         checkAllProducts.setOnClickListener(v -> homeActions.onCheckAllProductsClicked());
         checkAllCauses.setOnClickListener(v -> homeActions.onCheckAllCausesClicked());
 
-        ViewPager urgentCasesViewPager = (ViewPager) homeView.findViewById(R.id.urgent_cases_view_pager);
+        urgentCasesViewPager = (ViewPager) homeView.findViewById(R.id.urgent_cases_view_pager);
         RecyclerView latestProductsRecycler = (RecyclerView) homeView.findViewById(R.id.latest_products_recycler_view);
         RecyclerView latestCausesRecycler = (RecyclerView) homeView.findViewById(R.id.latest_causes_recycler_view);
-
-        RecyclerView.LayoutManager latestProductsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, isReverse);
-        RecyclerView.LayoutManager latestCausesLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, isReverse);
+        ImageView productsImageView = (ImageView) homeView.findViewById(R.id.products_arrow);
+        ImageView causesImageView = (ImageView) homeView.findViewById(R.id.causes_arrow);
+        productsImageView.setImageResource(arrowImage);
+        causesImageView.setImageResource(arrowImage);
+        RecyclerView.LayoutManager latestProductsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager latestCausesLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
         latestProductsRecycler.setLayoutManager(latestProductsLayoutManager);
         latestCausesRecycler.setLayoutManager(latestCausesLayoutManager);
@@ -125,6 +133,11 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         this.latestProductsList.clear();
         this.latestProductsList.addAll(latestProductsList);
         latestProductsAdapter.notifyDataSetChanged();
+        if (this.latestProductsList.isEmpty()) {
+            hideLatestProducts();
+        } else {
+            showLatestProducts();
+        }
     }
 
     @Override
@@ -132,6 +145,11 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         this.latestCausesList.clear();
         this.latestCausesList.addAll(latestCausesList);
         latestCausesAdapter.notifyDataSetChanged();
+        if (this.latestCausesList.isEmpty()) {
+            hideLatestCauses();
+        } else {
+            showLatestCauses();
+        }
     }
 
     @Override
@@ -139,6 +157,12 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         this.urgentCaseList.clear();
         this.urgentCaseList.addAll(urgentCaseList);
         urgentCasesPagerAdapter.notifyDataSetChanged();
+
+        if (urgentCaseList.isEmpty()) {
+            hideUrgentCases();
+        } else {
+            showUrgentCases();
+        }
 
     }
 
@@ -172,6 +196,36 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestCausesProgress.setVisibility(View.GONE);
     }
 
+    @Override
+    public void hideLatestProducts() {
+        checkAllProducts.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideLatestCauses() {
+        checkAllCauses.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideUrgentCases() {
+        urgentCasesViewPager.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showLatestProducts() {
+        checkAllProducts.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showLatestCauses() {
+        checkAllCauses.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showUrgentCases() {
+        urgentCasesViewPager.setVisibility(View.VISIBLE);
+    }
+
     public void setHomeActions(HomeActions homeActions) {
         this.homeActions = homeActions;
     }
@@ -181,6 +235,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_products));
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
 
@@ -227,6 +282,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, causeId);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_causes));
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
 
@@ -242,6 +298,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, title);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
 

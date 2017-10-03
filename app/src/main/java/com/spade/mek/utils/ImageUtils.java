@@ -31,4 +31,12 @@ public class ImageUtils {
             return R.drawable.ic_logo_confirmation_ar;
         }
     }
+
+    public static int getArrow(String appLang) {
+        if (appLang.equals(PrefUtils.ENGLISH_LANG)) {
+            return R.drawable.ic_arrow_right;
+        } else {
+            return R.drawable.ic_arrow_left;
+        }
+    }
 }

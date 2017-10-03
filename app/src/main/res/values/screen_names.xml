@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_screen">Home</string>
+    <string name="products_screen">Products_Listing</string>
+    <string name="products_inner_screen">Products_Inner</string>
+    <string name="causes_screen">Causes_Listing</string>
+    <string name="causes_inner_screen">Causes_Inner</string>
+    <string name="donation_channels_screen">Donation_Channels</string>
+    <string name="banks_screen">Banks</string>
+    <string name="stores_screen">Stores</string>
+    <string name="contact_us_screen">Contact_Us</string>
+    <string name="news_screen">News</string>
+    <string name="zakat_calculator_screen">Zakat_Calculator</string>
+</resources>

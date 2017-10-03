@@ -4,6 +4,8 @@ import com.spade.mek.base.BasePresenter;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.view.CartView;
 
+import io.realm.RealmList;
+
 /**
  * Created by Ayman Abouzeid on 6/27/17.
  */
@@ -21,4 +23,8 @@ public interface CartPresenter extends BasePresenter<CartView> {
     long getItemsCount();
 
     void updateUserCartItems(String userId);
+
+    void updateCartItemsData();
+
+    RealmList<CartItem> getCartItems(String userId);
 }

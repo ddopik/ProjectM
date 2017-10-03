@@ -18,7 +18,6 @@ public class UserDataActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_user_data);
         setContentView(R.layout.activity_base);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,7 +38,14 @@ public class UserDataActivity extends AppCompatActivity {
     }
 
     void addFragment() {
+        Bundle bundle = new Bundle();
+        int donateType = getIntent().getIntExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_PAY_FOR_PRODUCTS);
+        bundle.putInt(UserDataFragment.EXTRA_DONATE_TYPE, donateType);
+        if (donateType == UserDataFragment.EXTRA_DONATE_ZAKAT) {
+            bundle.putDouble(UserDataFragment.EXTRA_ZAKAT_AMOUNT, getIntent().getDoubleExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, 0));
+        }
         UserDataFragment userDataFragment = new UserDataFragment();
+        userDataFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, userDataFragment).commit();
     }
 

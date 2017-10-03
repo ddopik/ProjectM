@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.spade.mek.ui.more.regular_products.model.SubscriptionData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,6 +58,21 @@ public class Products implements Parcelable {
 
     @SerializedName("created_at")
     private long createdAt;
+
+    @SerializedName("is_subscribe")
+    private boolean isSubscribed;
+
+    @SerializedName("is_regular")
+    private boolean isRegularProduct;
+
+    @SerializedName("quantity")
+    private String productQuantity;
+
+    @SerializedName("price")
+    private String causePrice;
+
+    @SerializedName("subscription_user")
+    private SubscriptionData subscriptionData;
 
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
@@ -193,70 +208,107 @@ public class Products implements Parcelable {
         this.createdAt = createdAt;
     }
 
-    protected Products(Parcel in) {
-        productId = in.readInt();
-        productTarget = in.readInt();
-        causeTarget = in.readDouble();
-        causeDone = in.readDouble();
-        productDone = in.readInt();
-        productUrl = in.readString();
-        productImage = in.readString();
-        isFeatured = in.readByte() != 0x00;
-        isUrgent = in.readByte() != 0x00;
-        productType = in.readString();
-        productTitle = in.readString();
-        productDescription = in.readString();
-        productHashTag = in.readString();
-        productPrice = in.readDouble();
-        createdAt = in.readLong();
-        if (in.readByte() == 0x01) {
-            productCategoryList = new ArrayList<ProductCategory>();
-            in.readList(productCategoryList, ProductCategory.class.getClassLoader());
-        } else {
-            productCategoryList = null;
-        }
+    public boolean isSubscribed() {
+        return isSubscribed;
     }
 
-    @Override
+    public void setSubscribed(boolean subscribed) {
+        isSubscribed = subscribed;
+    }
+
+    public boolean isRegularProduct() {
+        return isRegularProduct;
+    }
+
+    public void setRegularProduct(boolean regularProduct) {
+        isRegularProduct = regularProduct;
+    }
+
+    public SubscriptionData getSubscriptionData() {
+        return subscriptionData;
+    }
+
+    public void setSubscriptionData(SubscriptionData subscriptionData) {
+        this.subscriptionData = subscriptionData;
+    }
+
+    public String getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(String productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public String getCausePrice() {
+        return causePrice;
+    }
+
+    public void setCausePrice(String causePrice) {
+        this.causePrice = causePrice;
+    }
+
+    public final static Parcelable.Creator<Products> CREATOR = new Creator<Products>() {
+        @SuppressWarnings({"unchecked"})
+        public Products createFromParcel(Parcel in) {
+            Products instance = new Products();
+            instance.productId = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.productTarget = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.causeTarget = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.causeDone = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.productDone = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.productUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productImage = ((String) in.readValue((String.class.getClassLoader())));
+            instance.isFeatured = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.isUrgent = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.productType = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productTitle = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productDescription = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productHashTag = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productPrice = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.createdAt = ((Long) in.readValue((Long.class.getClassLoader())));
+            instance.isSubscribed = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.isRegularProduct = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.productQuantity = ((String) in.readValue((Integer.class.getClassLoader())));
+            instance.causePrice = ((String) in.readValue((Double.class.getClassLoader())));
+            instance.subscriptionData = ((SubscriptionData) in.readValue((SubscriptionData.class.getClassLoader())));
+//            in.readList(instance.productCategoryList, (ProductCategory.class.getClassLoader()));
+            return instance;
+        }
+
+        public Products[] newArray(int size) {
+            return (new Products[size]);
+        }
+
+    };
+
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(productId);
+        dest.writeValue(productTarget);
+        dest.writeValue(causeTarget);
+        dest.writeValue(causeDone);
+        dest.writeValue(productDone);
+        dest.writeValue(productUrl);
+        dest.writeValue(productImage);
+        dest.writeValue(isFeatured);
+        dest.writeValue(isUrgent);
+        dest.writeValue(productType);
+        dest.writeValue(productTitle);
+        dest.writeValue(productDescription);
+        dest.writeValue(productHashTag);
+        dest.writeValue(productPrice);
+        dest.writeValue(createdAt);
+        dest.writeValue(isSubscribed);
+        dest.writeValue(isRegularProduct);
+        dest.writeValue(productQuantity);
+        dest.writeValue(causePrice);
+        dest.writeValue(subscriptionData);
+//        dest.writeList(productCategoryList);
+    }
+
     public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(productId);
-        dest.writeInt(productTarget);
-        dest.writeDouble(causeTarget);
-        dest.writeDouble(causeDone);
-        dest.writeInt(productDone);
-        dest.writeString(productUrl);
-        dest.writeString(productImage);
-        dest.writeByte((byte) (isFeatured ? 0x01 : 0x00));
-        dest.writeByte((byte) (isUrgent ? 0x01 : 0x00));
-        dest.writeString(productType);
-        dest.writeString(productTitle);
-        dest.writeString(productDescription);
-        dest.writeString(productHashTag);
-        dest.writeDouble(productPrice);
-        dest.writeLong(createdAt);
-        if (productCategoryList == null) {
-            dest.writeByte((byte) (0x00));
-        } else {
-            dest.writeByte((byte) (0x01));
-            dest.writeList(productCategoryList);
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Products> CREATOR = new Parcelable.Creator<Products>() {
-        @Override
-        public Products createFromParcel(Parcel in) {
-            return new Products(in);
-        }
-
-        @Override
-        public Products[] newArray(int size) {
-            return new Products[size];
-        }
-    };
 }

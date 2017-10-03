@@ -1,5 +1,6 @@
 package com.spade.mek.ui.causes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,9 +19,15 @@ import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.home.search.SearchActivity;
+import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +39,7 @@ import java.util.List;
 public class CausesFragment extends BaseFragment implements CausesView,
         CausesAdapter.CausesAction, AddProductToCartDialog.AddToCart, AddCauseToCartDialog.AddToCart {
 
-    private CausesPresenter causesPresenter;
+    private static CausesPresenter causesPresenter;
     private CausesAdapter causesAdapter;
     private List<Products> urgentCaseList;
     private List<Products> productsList;
@@ -49,6 +56,7 @@ public class CausesFragment extends BaseFragment implements CausesView,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
+        overrideFonts(getContext(), mProductsView);
         return mProductsView;
     }
 
@@ -66,7 +74,8 @@ public class CausesFragment extends BaseFragment implements CausesView,
         urgentCaseList = new ArrayList<>();
         appLang = PrefUtils.getAppLang(getContext());
 
-        causesAdapter = new CausesAdapter(getContext(), productsList, urgentCaseList, getString(R.string.all_causes), ImageUtils.getDefaultImage(appLang));
+        causesAdapter = new CausesAdapter(getContext(), productsList, urgentCaseList, getString(R.string.all_causes),
+                SearchActivity.LIST_VIEW, ImageUtils.getDefaultImage(appLang));
         causesAdapter.setProductActions(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setAdapter(causesAdapter);
@@ -102,6 +111,18 @@ public class CausesFragment extends BaseFragment implements CausesView,
         causesPresenter.getAllCauses(appLang, pageNumber);
     }
 
+    public static void filterCauses(Context context, ArrayList<String> filterId) {
+        JSONArray jsonElements = new JSONArray(filterId);
+        JSONObject requestJsonObject = null;
+        try {
+            requestJsonObject = new JSONObject();
+            requestJsonObject.put("categories", jsonElements);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        causesPresenter.filterCauses(PrefUtils.getAppLang(context), requestJsonObject);
+    }
+
     @Override
     public void onError(String message) {
         if (getContext() != null)
@@ -133,6 +154,18 @@ public class CausesFragment extends BaseFragment implements CausesView,
     }
 
     @Override
+    public void showAFilteredCauses(AllCausesResponse allCausesResponse) {
+        isLoading = false;
+        currentPage = allCausesResponse.getProductsData().getCurrentPage();
+        lastPage = allCausesResponse.getProductsData().getLastPage();
+        if (allCausesResponse.getProductsData() != null && allCausesResponse.getProductsData().getProductsList() != null) {
+            this.productsList.clear();
+            this.productsList.addAll(allCausesResponse.getProductsData().getProductsList());
+            causesAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public void showUrgentCasesLoading() {
 
     }
@@ -155,9 +188,15 @@ public class CausesFragment extends BaseFragment implements CausesView,
     }
 
     @Override
+    public void showSearchResults(SearchResponse searchResponse) {
+
+    }
+
+    @Override
     public void onCauseClicked(int productId) {
         Intent intent = DetailsActivity.getLaunchIntent(getContext());
         intent.putExtra(ProductDetailsFragment.ITEM_ID, productId);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         intent.putExtra(DetailsActivity.SCREEN_TITLE, getString(R.string.title_causes));
         startActivity(intent);
     }

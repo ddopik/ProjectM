@@ -31,7 +31,7 @@ public class DetailsActivity extends BaseActivity implements ProductDetailsFragm
     protected void addFragment() {
         Bundle bundle = new Bundle();
         bundle.putInt(ProductDetailsFragment.ITEM_ID, getIntent().getIntExtra(ProductDetailsFragment.ITEM_ID, 1));
-
+        bundle.putInt(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, getIntent().getIntExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT));
         ProductDetailsFragment productDetailsFragment = new ProductDetailsFragment();
         productDetailsFragment.setArguments(bundle);
         productDetailsFragment.setCartAction(this);

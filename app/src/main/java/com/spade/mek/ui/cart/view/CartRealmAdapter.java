@@ -1,6 +1,7 @@
 package com.spade.mek.ui.cart.view;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.spade.mek.R;
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmRecyclerViewAdapter;
@@ -36,7 +38,7 @@ public class CartRealmAdapter extends RealmRecyclerViewAdapter<CartItem, CartRea
     @Override
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View view = layoutInflater.inflate(R.layout.cart_item_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.cart_item_layout, null);
         return new CartViewHolder(view);
     }
 
@@ -63,6 +65,25 @@ public class CartRealmAdapter extends RealmRecyclerViewAdapter<CartItem, CartRea
         holder.increaseImage.setOnClickListener(v -> cartActions.onIncreaseClicked(cartItem, position));
         holder.decreaseImage.setOnClickListener(v -> cartActions.onDecreaseClicked(cartItem, position));
         holder.closeImage.setOnClickListener(v -> cartActions.onClearClicked(cartItem, position));
+        overrideFonts(mContext, holder.itemView);
+    }
+
+    private void overrideFonts(Context context, View v) {
+        if (PrefUtils.getAppLang(context).equals(PrefUtils.ARABIC_LANG)) {
+            try {
+                if (v instanceof ViewGroup) {
+                    ViewGroup vg = (ViewGroup) v;
+                    for (int i = 0; i < vg.getChildCount(); i++) {
+                        View child = vg.getChildAt(i);
+
+                        overrideFonts(context, child);
+                    }
+                } else if (v instanceof TextView) {
+                    ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/bahij_semi_bold.ttf"));
+                }
+            } catch (Exception e) {
+            }
+        }
     }
 
 

@@ -9,4 +9,6 @@ import com.spade.mek.base.BaseView;
 public interface MoreView extends BaseView {
 
     void navigateToLoginScreen();
+
+    void restartActivity();
 }

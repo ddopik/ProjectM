@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
     private int defaultImageResId;
     public static final String CAUSE_TYPE = "cause";
     public static final String PRODUCT_TYPE = "product";
+    public static final String NEWS_TYPE = "news";
     private OnCaseClicked onCaseClicked;
 
 
@@ -41,12 +44,13 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.urgent_case_item, container,
                 false);
-        TextView caseTitle = (TextView) itemView.findViewById(R.id.case_title);
-        FrameLayout urgentCaseLabel = (FrameLayout) itemView.findViewById(R.id.urgent_case_label);
-        ImageView actionImage = (ImageView) itemView.findViewById(R.id.action_image_view);
-        ImageView shareImage = (ImageView) itemView.findViewById(R.id.share_image_view);
-        ImageView caseImage = (ImageView) itemView.findViewById(R.id.case_image_view);
-        FrameLayout caseLayout = (FrameLayout) itemView.findViewById(R.id.case_layout);
+        TextView caseTitle = itemView.findViewById(R.id.case_title);
+        FrameLayout urgentCaseLabel = itemView.findViewById(R.id.urgent_case_label);
+        ImageView actionImage = itemView.findViewById(R.id.action_image_view);
+        ImageView shareImage = itemView.findViewById(R.id.share_image_view);
+        ImageView caseImage = itemView.findViewById(R.id.case_image_view);
+        ImageView isUrgentImage = itemView.findViewById(R.id.ic_urgent_label);
+        FrameLayout caseLayout = itemView.findViewById(R.id.case_layout);
 
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
         GlideApp.with(mContext).load(urgentCase.getProductImage()).centerCrop().
@@ -63,6 +67,9 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         caseTitle.setText(urgentCase.getProductTitle());
 
         if (urgentCase.isUrgent()) {
+            if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                isUrgentImage.setImageResource(R.drawable.rotated_large_urgent_image);
+            }
             urgentCaseLabel.setVisibility(View.VISIBLE);
         } else {
             urgentCaseLabel.setVisibility(View.GONE);
@@ -75,6 +82,8 @@ public class UrgentCasesPagerAdapter extends PagerAdapter {
         }
 
         container.addView(itemView);
+        FontUtils.overrideFonts(mContext, itemView);
+
         return itemView;
     }
 

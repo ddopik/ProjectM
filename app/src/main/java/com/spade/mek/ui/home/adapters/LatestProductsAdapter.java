@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.PrefUtils;
 
 import java.util.List;
 
@@ -61,10 +63,14 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
             holder.shareImageView.setVisibility(View.VISIBLE);
         }
         if (latestProducts.isUrgent()) {
+            if (PrefUtils.getAppLang(mContext).equals(PrefUtils.ARABIC_LANG)) {
+                holder.isUrgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
+            }
             holder.isUrgentImageView.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             holder.isUrgentImageView.setVisibility(View.GONE);
         }
+        FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
     @Override

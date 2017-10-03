@@ -6,6 +6,7 @@
     android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -18,7 +19,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/donation_success"
-            android:textColor="@color/textGrey" />
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:id="@+id/collector_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/collector_pass_by"
+            android:textColor="@color/grey"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/logo_image_view"

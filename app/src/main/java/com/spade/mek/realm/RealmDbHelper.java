@@ -4,8 +4,12 @@ import android.content.Context;
 
 import com.spade.mek.ui.cart.model.CartItem;
 import com.spade.mek.ui.cart.model.CartItemModel;
+import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.login.User;
+import com.spade.mek.ui.login.UserModel;
 import com.spade.sociallogin.SocialUser;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.realm.RealmList;
@@ -16,6 +20,8 @@ import io.realm.RealmList;
 
 public interface RealmDbHelper {
     void saveUser(SocialUser socialUser);
+
+    void saveUser(UserModel userModel, String userToken);
 
     void addCartItem(CartItemModel cartItemModel, Context context);
 
@@ -40,4 +46,10 @@ public interface RealmDbHelper {
     long getItemsCount(String userId);
 
     User getUser(String userId);
+
+    void saveOrderDone(String orderID);
+
+    void updateOrderStatus(String orderId, boolean synced);
+
+    Observable<Boolean> updateCartItems(List<Products> productsList, String userId);
 }

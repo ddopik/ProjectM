@@ -10,4 +10,6 @@ public interface MorePresenter extends BasePresenter<MoreView> {
     void login();
 
     void logout();
+
+    void changeLanguage(String lang);
 }
