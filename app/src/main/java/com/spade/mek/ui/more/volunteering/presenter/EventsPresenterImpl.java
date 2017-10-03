@@ -43,7 +43,7 @@ public class EventsPresenterImpl implements EventsPresenter {
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        eventsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        eventsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -58,7 +58,7 @@ public class EventsPresenterImpl implements EventsPresenter {
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        eventsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        eventsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -73,7 +73,7 @@ public class EventsPresenterImpl implements EventsPresenter {
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        eventsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        eventsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

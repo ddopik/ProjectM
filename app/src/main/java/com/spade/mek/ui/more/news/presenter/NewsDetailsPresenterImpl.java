@@ -51,7 +51,7 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
                     newsDetailsView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        newsDetailsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        newsDetailsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -68,7 +68,7 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        newsDetailsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        newsDetailsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

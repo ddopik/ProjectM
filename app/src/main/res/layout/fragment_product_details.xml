@@ -265,6 +265,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_title"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

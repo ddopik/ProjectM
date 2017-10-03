@@ -79,7 +79,7 @@ public class ContactUsPresenterImpl implements ContactUsPresenter,
                     contactUsView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        contactUsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        contactUsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

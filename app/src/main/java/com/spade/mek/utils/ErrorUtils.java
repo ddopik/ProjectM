@@ -1,5 +1,7 @@
 package com.spade.mek.utils;
 
+import com.androidnetworking.error.ANError;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,20 +13,24 @@ import org.json.JSONObject;
 public class ErrorUtils {
 
 
-    public static String getErrors(String errorResponse) {
+    public static String getErrors(ANError anError) {
         String error = "";
-        try {
-            JSONObject jsonObject = new JSONObject(errorResponse);
-            JSONArray jsonArray = jsonObject.getJSONObject("msg").getJSONArray("errors");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                if (i == jsonArray.length() - 1) {
-                    error += jsonArray.getString(i);
-                } else {
-                    error += jsonArray.getString(i) + " , ";
+        if (anError.getErrorBody() != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(anError.getErrorBody());
+                JSONArray jsonArray = jsonObject.getJSONObject("msg").getJSONArray("errors");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    if (i == jsonArray.length() - 1) {
+                        error += jsonArray.getString(i);
+                    } else {
+                        error += jsonArray.getString(i) + " , ";
+                    }
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } else {
+            error = anError.getMessage();
         }
         return error;
     }

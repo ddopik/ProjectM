@@ -18,6 +18,8 @@ public class RegisterActivity extends AppCompatActivity {
     public static final int DEFAULT_TYPE = 0;
     public static final int REGISTER_TYPE = 1;
     public static final int CHECKOUT_TYPE = 2;
+    public static final int SUBSCRIBTION_TYPE = 3;
+
     private int type;
 
     @Override

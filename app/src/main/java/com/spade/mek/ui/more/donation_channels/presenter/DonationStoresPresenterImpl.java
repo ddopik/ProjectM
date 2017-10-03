@@ -93,7 +93,7 @@ public class DonationStoresPresenterImpl implements DonationStoresPresenter, Act
                     donationStoresView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        donationStoresView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        donationStoresView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

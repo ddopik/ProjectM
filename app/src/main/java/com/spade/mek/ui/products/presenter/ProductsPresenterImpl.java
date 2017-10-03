@@ -60,7 +60,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mProductsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -80,7 +80,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                     mProductsView.hideUrgentCasesLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mProductsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -100,7 +100,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mProductsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -118,7 +118,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
                     mProductsView.hideProductsLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mProductsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

@@ -179,6 +179,8 @@
     <string name="password_changed_successfully">Password changed successfully</string>
     <string name="forget_password">Forget password</string>
     <string name="quick_donation">Quick donation</string>
+    <string name="title_activity_maps">الخريطة</string>
+
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>
         <item>Zakat</item>
@@ -244,5 +246,4 @@ Home collection service is only available for Cairo, Giza, Alexandria, Al-Fayoum
         <item quantity="few"> %d Items</item>
         <item quantity="zero"> %d Items</item>
     </plurals>
-    <string name="title_activity_maps">Map</string>
 </resources>

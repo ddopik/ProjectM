@@ -22,7 +22,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -131,7 +130,6 @@
         <activity
             android:name=".ui.more.regular_products.view.SubscribeActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.more.volunteering.view.VolunteeringActivity"
             android:screenOrientation="portrait" />
@@ -141,14 +139,12 @@
         <activity
             android:name=".ui.more.volunteering.view.SubmitVolunteeringActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.more.profile.view.ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.search.SearchActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.more.profile.view.EditProfileActivity"
             android:screenOrientation="portrait" />
@@ -157,24 +153,22 @@
             android:screenOrientation="portrait" />
 
         <!--
-
             The API key for Google Maps-based APIs is defined as a string resource.
             (See the file "res/values/google_maps_api.xml").
             Note that the API key is linked to the encryption key used to sign the APK.
             You need a different API key for each encryption key, including the release key that is used to
             sign the APK for publishing.
             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-       -->
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="50c1e901aaaa50ab5dd9ad362c853fb5708bb647" />
-        <!--<meta-data-->
-        <!--android:name="io.fabric.ApiKey"-->
-        <!--android:value="31368b3377ce4b12de8373a088616c26f4fb82c0" />-->
+        <!-- <meta-data -->
+        <!-- android:name="io.fabric.ApiKey" -->
+        <!-- android:value="31368b3377ce4b12de8373a088616c26f4fb82c0" /> -->
     </application>
 
 </manifest>

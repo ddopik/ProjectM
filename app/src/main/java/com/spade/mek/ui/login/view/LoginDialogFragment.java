@@ -48,11 +48,11 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
     }
 
     private void init(View mView) {
-        TextView continueAsGuest = (TextView) mView.findViewById(R.id.loginAsGuestBtn);
-        Button loginWithFacebook = (Button) mView.findViewById(R.id.loginWithFacebookBtn);
-        Button loginWithGoogle = (Button) mView.findViewById(R.id.loginWithGoogleBtn);
-        Button signIn = (Button) mView.findViewById(R.id.loginBtn);
-        Button register = (Button) mView.findViewById(R.id.registerBtn);
+        TextView continueAsGuest = mView.findViewById(R.id.loginAsGuestBtn);
+        Button loginWithFacebook = mView.findViewById(R.id.loginWithFacebookBtn);
+        Button loginWithGoogle = mView.findViewById(R.id.loginWithGoogleBtn);
+        Button signIn = mView.findViewById(R.id.loginBtn);
+        Button register = mView.findViewById(R.id.registerBtn);
 
         continueAsGuest.setOnClickListener(v -> {
             loginDialogActions.loginAsGuest();
@@ -83,8 +83,6 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
 
         if (type == RegisterActivity.DEFAULT_TYPE) {
             continueAsGuest.setVisibility(View.GONE);
-        } else {
-
         }
     }
 
@@ -155,8 +153,5 @@ public class LoginDialogFragment extends DialogFragment implements LoginDialogVi
 
         void onLoginSuccess();
 
-//        void loginWithFaceBook();
-
-//        void loginWithGoogle();
     }
 }

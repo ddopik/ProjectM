@@ -34,7 +34,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class UserOrderPresenterImpl implements UserOrderPresenter {
-
+    public static final int DONATE_FOR_PRODUCTS = 0;
+    public static final int DONATE_WITHOUT_PRODUCTS = 1;
     private Context mContext;
     private RealmDbHelper realmDbHelper;
     private UserDataView userDataView;
@@ -43,6 +44,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     private String orderId;
     private double zakatAmount;
     private int checkOutType;
+    private int donationWay;
 
     public UserOrderPresenterImpl(Context mContext) {
         this.mContext = mContext;
@@ -60,20 +62,22 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     @Override
-    public void makeOrder(String typeOfDonation, int paymentType) {
+    public void makeOrder(String typeOfDonation, int paymentType, int donationWay) {
         userDataView.showLoading();
         this.paymentType = paymentType;
         this.checkOutType = UserDataFragment.EXTRA_PAY_FOR_PRODUCTS;
+        this.donationWay = donationWay;
         order = new Order();
         order.setTypeOfDonation(typeOfDonation);
         new GetUserAsyncTask().execute();
     }
 
     @Override
-    public void donateZakat(double moneyAmount, String typeOfDonation, int paymentType) {
+    public void donateZakat(double moneyAmount, String typeOfDonation, int paymentType, int donationWay) {
         this.zakatAmount = moneyAmount;
         this.checkOutType = UserDataFragment.EXTRA_DONATE_ZAKAT;
         this.paymentType = paymentType;
+        this.donationWay = donationWay;
         order = new Order();
         order.setTypeOfDonation(typeOfDonation);
         new GetUserAsyncTask().execute();
@@ -110,27 +114,27 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
             e.printStackTrace();
         }
 
-        ApiHelper.changeStatus(requestJsonObject, new ApiHelper.ChangePaymentStatus() {
-            @Override
-            public void onStatusCHangedSuccess() {
-                realmDbHelper.updateOrderStatus(orderId, true);
-                userDataView.hideLoading();
-                if (paymentStatus == PaymentActivity.PAYMENT_SUCCESS) {
-                    userDataView.navigateToConfirmationScreen();
-                    userDataView.finish();
-                } else {
-                    userDataView.showFailedTransactionAlert();
-                }
-            }
-
-            @Override
-            public void onStatusChangedFailed(String error) {
-                realmDbHelper.updateOrderStatus(orderId, false);
-                userDataView.onError(error);
-                userDataView.hideLoading();
-                userDataView.finish();
-            }
-        });
+//        ApiHelper.changeStatus(requestJsonObject, new ApiHelper.ChangePaymentStatus() {
+//            @Override
+//            public void onStatusCHangedSuccess() {
+//                realmDbHelper.updateOrderStatus(orderId, true);
+//                userDataView.hideLoading();
+//                if (paymentStatus == PaymentActivity.PAYMENT_SUCCESS) {
+//                    userDataView.navigateToConfirmationScreen();
+//                    userDataView.finish();
+//                } else {
+//                    userDataView.showFailedTransactionAlert();
+//                }
+//            }
+//
+//            @Override
+//            public void onStatusChangedFailed(String error) {
+//                realmDbHelper.updateOrderStatus(orderId, false);
+//                userDataView.onError(error);
+//                userDataView.hideLoading();
+//                userDataView.finish();
+//            }
+//        });
     }
 
 
@@ -143,15 +147,18 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                     .subscribe(paymentResponse -> {
                         userDataView.hideLoading();
                         if (paymentResponse != null && paymentResponse.isSuccess()) {
-                            realmDbHelper.saveOrderDone(paymentResponse.getPaymentResponseData().getOrderId());
+//                            realmDbHelper.saveOrderDone(paymentResponse.getPaymentResponseData().getOrderId());
                             orderId = paymentResponse.getPaymentResponseData().getOrderId();
-                            userDataView.navigateToPayment(paymentResponse.getPaymentResponseData().getPaymentUrl());
+//                            userDataView.navigateToPayment(paymentResponse.getPaymentResponseData().getPaymentUrl());
+                            userDataView.openUrl(paymentResponse.getPaymentResponseData().getPaymentUrl());
+                            userDataView.finish();
+
                         }
                     }, throwable -> {
                         userDataView.hideLoading();
                         if (throwable != null) {
                             ANError anError = (ANError) throwable;
-                            userDataView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                            userDataView.onError(ErrorUtils.getErrors(anError));
                         }
                     });
 
@@ -253,6 +260,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 requestJsonObject.put("email", order.getEmailAddress());
                 requestJsonObject.put("phone", order.getPhoneNumber());
                 requestJsonObject.put("type_of_donation", order.getTypeOfDonation());
+                requestJsonObject.put("type_of_donation_flag", donationWay);
                 requestJsonObject.put("address", order.getAddress());
                 requestJsonObject.put("amount", getOrderTotalCost(PrefUtils.getUserId(mContext)));
                 requestJsonObject.put("products", jsonElements);
@@ -281,6 +289,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 requestJsonObject.put("email", order.getEmailAddress());
                 requestJsonObject.put("phone", order.getPhoneNumber());
                 requestJsonObject.put("type_of_donation", order.getTypeOfDonation());
+                requestJsonObject.put("type_of_donation_flag", donationWay);
                 requestJsonObject.put("address", order.getAddress());
                 requestJsonObject.put("amount", String.valueOf(zakatAmount));
                 requestJsonObject.put("products", jsonElements);

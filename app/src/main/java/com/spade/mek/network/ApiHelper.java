@@ -1,7 +1,5 @@
 package com.spade.mek.network;
 
-import android.util.Log;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -46,7 +44,7 @@ public class ApiHelper {
 //    private static final String BASE_POST_URL = "http://dev.spade.studio/mek-apis/public/api/v1";
 //    private static final String BASE_URL = "http://dev.spade.studio/mek-apis/public/api/v1/{lang}";
 
-//// LIVE
+    //// LIVE
     private static final String BASE_URL = "https://app.misrelkheir.org/api/v1/{lang}";
     private static final String BASE_POST_URL = "https://app.misrelkheir.org/api/v1";
 
@@ -284,7 +282,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        SendMessageCallBacks.onMessageSentFailed(ErrorUtils.getErrors(anError.getErrorBody()));
+                        SendMessageCallBacks.onMessageSentFailed(ErrorUtils.getErrors(anError));
 
                     }
                 });
@@ -309,39 +307,38 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.d("Error", anError.getErrorBody());
-                        createOrderCallbacks.onOrderCreatedFailed(ErrorUtils.getErrors(anError.getErrorBody()));
+                        createOrderCallbacks.onOrderCreatedFailed(ErrorUtils.getErrors(anError));
 
                     }
                 });
         return success;
     }
 
-    public static boolean changeStatus(JSONObject requestJson, ChangePaymentStatus changePaymentStatus) {
-        success = false;
-        AndroidNetworking.post(CHANGE_PAYMENT_STATUS)
-                .addJSONObjectBody(requestJson)
-                .setPriority(Priority.HIGH)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            success = response.getBoolean("success");
-                            changePaymentStatus.onStatusCHangedSuccess();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            changePaymentStatus.onStatusChangedFailed(e.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        changePaymentStatus.onStatusChangedFailed(ErrorUtils.getErrors(anError.getErrorBody()));
-                    }
-                });
-        return success;
-    }
+//    public static boolean changeStatus(JSONObject requestJson, ChangePaymentStatus changePaymentStatus) {
+//        success = false;
+//        AndroidNetworking.post(CHANGE_PAYMENT_STATUS)
+//                .addJSONObjectBody(requestJson)
+//                .setPriority(Priority.HIGH)
+//                .build()
+//                .getAsJSONObject(new JSONObjectRequestListener() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try {
+//                            success = response.getBoolean("success");
+//                            changePaymentStatus.onStatusCHangedSuccess();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            changePaymentStatus.onStatusChangedFailed(e.getMessage());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(ANError anError) {
+//                        changePaymentStatus.onStatusChangedFailed(ErrorUtils.getErrors(anError));
+//                    }
+//                });
+//        return success;
+//    }
 
     public static void subscribeToProduct(JSONObject requestJson, String userToken, SubscriptionCallBacks subscriptionCallBacks) {
         AndroidNetworking.post(SUBSCRIBE_URL)
@@ -365,7 +362,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        subscriptionCallBacks.onSubscriptionFailed(ErrorUtils.getErrors(anError.getErrorBody()));
+                        subscriptionCallBacks.onSubscriptionFailed(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -392,7 +389,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        unSubscriptionCallBacks.onUnSubscriptionFailed(ErrorUtils.getErrors(anError.getErrorBody()));
+                        unSubscriptionCallBacks.onUnSubscriptionFailed(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -418,7 +415,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        volunteeringCallBacks.onVolunteerFailed(ErrorUtils.getErrors(anError.getErrorBody()));
+                        volunteeringCallBacks.onVolunteerFailed(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -517,7 +514,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        saveTokenCallBacks.onTokenSavedFailed(ErrorUtils.getErrors(anError.getErrorBody()));
+                        saveTokenCallBacks.onTokenSavedFailed(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -543,7 +540,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        sendCodeActions.onCodeSendFail(ErrorUtils.getErrors(anError.getErrorBody()));
+                        sendCodeActions.onCodeSendFail(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -570,7 +567,7 @@ public class ApiHelper {
 
                     @Override
                     public void onError(ANError anError) {
-                        changePasswordActions.onPasswordChangedFail(ErrorUtils.getErrors(anError.getErrorBody()));
+                        changePasswordActions.onPasswordChangedFail(ErrorUtils.getErrors(anError));
                     }
                 });
     }

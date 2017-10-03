@@ -263,7 +263,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        Toast.makeText(this, ErrorUtils.getErrors(anError.getErrorBody()), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, ErrorUtils.getErrors(anError), Toast.LENGTH_LONG).show();
                     }
                 });
     }

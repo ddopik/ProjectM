@@ -54,7 +54,7 @@ public class EditProfilePresenterImpl implements EditProfilePresenter {
                     editProfileView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        editProfileView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        editProfileView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

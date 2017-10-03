@@ -1,6 +1,5 @@
 package com.spade.mek.ui.products.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -110,25 +109,25 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     @Override
     protected void initViews() {
         imagesList = new ArrayList<>();
-        ViewPager imagesViewPager = (ViewPager) productDetailsView.findViewById(R.id.product_images_view_pager);
-        donateNowBtn = (Button) productDetailsView.findViewById(R.id.donate_now_btn);
+        ViewPager imagesViewPager = productDetailsView.findViewById(R.id.product_images_view_pager);
+        donateNowBtn = productDetailsView.findViewById(R.id.donate_now_btn);
         String appLang = PrefUtils.getAppLang(getContext());
 
-        productTitle = (TextView) productDetailsView.findViewById(R.id.item_title);
-        productCategory = (TextView) productDetailsView.findViewById(R.id.item_category);
-        productDetails = (TextView) productDetailsView.findViewById(R.id.item_details);
-        productPrice = (TextView) productDetailsView.findViewById(R.id.item_price);
-        productCreatedAt = (TextView) productDetailsView.findViewById(R.id.item_publish_date);
-        productHashTag = (TextView) productDetailsView.findViewById(R.id.item_hash_tag);
-        causeTargetTextView = (TextView) productDetailsView.findViewById(R.id.cause_target);
-        causeCurrentAmount = (TextView) productDetailsView.findViewById(R.id.cause_current_state);
-        remainingAmount = (TextView) productDetailsView.findViewById(R.id.remaining_amount_text_view);
-        subscribeTextView = (TextView) productDetailsView.findViewById(R.id.subscribe_text);
-        shareImage = (ImageView) productDetailsView.findViewById(R.id.share_image_view);
-        progressBar = (ProgressBar) productDetailsView.findViewById(R.id.progress_bar);
-        causeSeekBar = (SeekBar) productDetailsView.findViewById(R.id.cause_target_progress_bar);
-        urgentLabel = (FrameLayout) productDetailsView.findViewById(R.id.urgent_case_label);
-        causeProgressLayout = (RelativeLayout) productDetailsView.findViewById(R.id.cause_progress_layout);
+        productTitle = productDetailsView.findViewById(R.id.item_title);
+        productCategory = productDetailsView.findViewById(R.id.item_category);
+        productDetails = productDetailsView.findViewById(R.id.item_details);
+        productPrice = productDetailsView.findViewById(R.id.item_price);
+        productCreatedAt = productDetailsView.findViewById(R.id.item_publish_date);
+        productHashTag = productDetailsView.findViewById(R.id.item_hash_tag);
+        causeTargetTextView = productDetailsView.findViewById(R.id.cause_target);
+        causeCurrentAmount = productDetailsView.findViewById(R.id.cause_current_state);
+        remainingAmount = productDetailsView.findViewById(R.id.remaining_amount_text_view);
+        subscribeTextView = productDetailsView.findViewById(R.id.subscribe_text);
+        shareImage = productDetailsView.findViewById(R.id.share_image_view);
+        progressBar = productDetailsView.findViewById(R.id.progress_bar);
+        causeSeekBar = productDetailsView.findViewById(R.id.cause_target_progress_bar);
+        urgentLabel = productDetailsView.findViewById(R.id.urgent_case_label);
+        causeProgressLayout = productDetailsView.findViewById(R.id.cause_progress_layout);
         ImageView urgentImageView = productDetailsView.findViewById(R.id.urgent_case_item);
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ARABIC_LANG)) {
             urgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
@@ -236,11 +235,10 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SUBSCRIBE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                productDetailsPresenter.getProductDetails(PrefUtils.getAppLang(getContext()), item.getProductId());
-            }
-        }
+//        if (requestCode == SUBSCRIBE_REQUEST_CODE) {
+//            if (resultCode == Activity.RESULT_OK) {
+        productDetailsPresenter.getProductDetails(PrefUtils.getAppLang(getContext()), item.getProductId());
+//            }
     }
 
     private void showCauseDetails(Products products) {
@@ -316,7 +314,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     public void updateUI(Products products) {
         String itemType = products.getProductType();
         productDetailsPresenter.sendAnalytics(itemType);
-
+        donateNowBtn.setVisibility(View.VISIBLE);
         item = products;
         if (products.isUrgent()) {
             urgentLabel.setVisibility(View.VISIBLE);

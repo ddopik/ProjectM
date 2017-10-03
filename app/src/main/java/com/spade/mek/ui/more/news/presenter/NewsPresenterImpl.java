@@ -58,7 +58,7 @@ public class NewsPresenterImpl implements NewsPresenter {
                     newsView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        newsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        newsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -80,7 +80,7 @@ public class NewsPresenterImpl implements NewsPresenter {
                     newsView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        newsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        newsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

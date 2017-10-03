@@ -84,7 +84,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
                     registerView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        registerView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        registerView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

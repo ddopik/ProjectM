@@ -48,7 +48,7 @@ public class HomePresenterImpl implements HomePresenter {
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mHomeView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
                     }
                     mHomeView.hideLatestProductsLoading();
                     mHomeView.hideLatestProducts();
@@ -71,7 +71,7 @@ public class HomePresenterImpl implements HomePresenter {
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mHomeView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
                     }
                     mHomeView.hideLatestCausesLoading();
                     mHomeView.hideLatestCauses();
@@ -96,7 +96,7 @@ public class HomePresenterImpl implements HomePresenter {
                     mHomeView.hideUrgentCases();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mHomeView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

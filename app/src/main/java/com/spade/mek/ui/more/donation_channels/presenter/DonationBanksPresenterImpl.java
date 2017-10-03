@@ -48,7 +48,7 @@ public class DonationBanksPresenterImpl implements DonationBanksPresenter {
                     donationBanksView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        donationBanksView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        donationBanksView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

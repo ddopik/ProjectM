@@ -111,7 +111,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
                     mLoginView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mLoginView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mLoginView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -188,7 +188,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
                 }, throwable -> {
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mLoginView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mLoginView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

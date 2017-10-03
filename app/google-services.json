@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "722108995407-9aoal7mebm1rt76pk9hdjv8ataghrpk6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spade.mek",
+            "certificate_hash": "20801a04d1257fe0cd7e25adfd79a1bc4c354aa3"
+          }
+        },
+        {
           "client_id": "722108995407-189nbs0rrmujdiho4aq27001459ic8vt.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722108995407-189nbs0rrmujdiho4aq27001459ic8vt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

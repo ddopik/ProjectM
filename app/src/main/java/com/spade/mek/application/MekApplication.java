@@ -7,11 +7,15 @@ import com.androidnetworking.AndroidNetworking;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
 import com.spade.mek.realm.RealmConfig;
+import com.spade.mek.realm.RealmDbHelper;
+import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.realm.RealmDbMigration;
 import com.spade.mek.realm.RealmModules;
+import com.spade.mek.ui.cart.presenter.UserOrderPresenterImpl;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.ui.splash.SplashActivity;
@@ -67,7 +71,8 @@ public class MekApplication extends Application {
     }
 
     private void initOneSignal() {
-        OneSignal.startInit(this).setNotificationOpenedHandler(new NotificationOpenReceiver()).init();
+        OneSignal.startInit(this).setNotificationReceivedHandler(new NotificationReceivingHandler())
+                .setNotificationOpenedHandler(new NotificationOpenReceiver()).init();
         OneSignal.idsAvailable((userId, registrationId) -> PrefUtils.setNotificationToken(this, userId));
     }
 
@@ -86,6 +91,29 @@ public class MekApplication extends Application {
             sTracker = sAnalytics.newTracker("UA-104912436-1");
         }
         return sTracker;
+    }
+
+    private class NotificationReceivingHandler implements OneSignal.NotificationReceivedHandler {
+        @Override
+        public void notificationReceived(OSNotification notification) {
+            try {
+                JSONObject dataObject = notification.payload.additionalData;
+                String type = dataObject.getString("type");
+                if (type.equals("payment")) {
+                    int donationType = dataObject.getInt("type_of_donation");
+                    if (donationType == UserOrderPresenterImpl.DONATE_FOR_PRODUCTS) {
+                        boolean isSuccess = dataObject.getInt("status") == 1;
+                        if (isSuccess) {
+                            RealmDbHelper realmDbHelper = new RealmDbImpl();
+                            realmDbHelper.deleteAllCartItems(PrefUtils.getUserId(getApplicationContext()));
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+
+
+            }
+        }
     }
 
     private class NotificationOpenReceiver implements OneSignal.NotificationOpenedHandler {

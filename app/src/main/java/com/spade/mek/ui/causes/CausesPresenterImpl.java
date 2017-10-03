@@ -59,7 +59,7 @@ public class CausesPresenterImpl implements CausesPresenter {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mCausesView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -79,7 +79,7 @@ public class CausesPresenterImpl implements CausesPresenter {
                     mCausesView.hideUrgentCasesLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mCausesView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -99,7 +99,7 @@ public class CausesPresenterImpl implements CausesPresenter {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mCausesView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -117,7 +117,7 @@ public class CausesPresenterImpl implements CausesPresenter {
                     mCausesView.hideCausesLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mCausesView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mCausesView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

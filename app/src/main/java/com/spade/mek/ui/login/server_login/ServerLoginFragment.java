@@ -147,7 +147,7 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
             intent.putExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_PAY_FOR_PRODUCTS);
             startActivity(intent);
 //            startActivity(UserDataActivity.getLaunchIntent(getContext()));
-        }
+        }else{}
     }
 
     @Override

@@ -16,9 +16,7 @@ import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
 import com.spade.mek.ui.home.MainActivity;
-import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
-import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.Validator;
 
 /**
@@ -60,45 +58,21 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 
     @Override
     protected void initViews() {
-        firstNameEditText = (EditText) fragmentView.findViewById(R.id.first_name_edit_text);
-        lastNameEditText = (EditText) fragmentView.findViewById(R.id.last_name_edit_text);
-        phoneNumberEditText = (EditText) fragmentView.findViewById(R.id.phone_number_edit_text);
-        emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
-        addressEditText = (EditText) fragmentView.findViewById(R.id.address_edit_text);
-        passwordEditText = (EditText) fragmentView.findViewById(R.id.password_edit_text);
-        confirmPassswordEditText = (EditText) fragmentView.findViewById(R.id.confirm_password_edit_text);
-        Button proceedBtn = (Button) fragmentView.findViewById(R.id.register_btn);
+        firstNameEditText = fragmentView.findViewById(R.id.first_name_edit_text);
+        lastNameEditText = fragmentView.findViewById(R.id.last_name_edit_text);
+        phoneNumberEditText = fragmentView.findViewById(R.id.phone_number_edit_text);
+        emailAddressEditText = fragmentView.findViewById(R.id.email_address_edit_text);
+        addressEditText = fragmentView.findViewById(R.id.address_edit_text);
+        passwordEditText = fragmentView.findViewById(R.id.password_edit_text);
+        confirmPassswordEditText = fragmentView.findViewById(R.id.confirm_password_edit_text);
+        Button proceedBtn = fragmentView.findViewById(R.id.register_btn);
         proceedBtn.setOnClickListener(v -> {
             if (checkIfDataIsValid()) {
                 proceed();
             }
         });
-//        setUserData();
     }
 
-    private void setUserData() {
-        User user = registerPresenter.getUser(PrefUtils.getUserId(getContext()));
-        if (user != null) {
-            if (user.getFirstName() != null) {
-                firstNameEditText.setText(user.getFirstName());
-            }
-
-            if (user.getLastName() != null) {
-                lastNameEditText.setText(user.getLastName());
-            }
-
-            if (user.getUserPhone() != null) {
-                phoneNumberEditText.setText(user.getUserPhone());
-            }
-
-            if (user.getUserAddress() != null) {
-                addressEditText.setText(user.getUserAddress());
-            }
-            if (user.getUserEmail() != null) {
-                emailAddressEditText.setText(user.getUserEmail());
-            }
-        }
-    }
 
     private boolean checkIfDataIsValid() {
         firstNameString = firstNameEditText.getText().toString();

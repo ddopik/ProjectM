@@ -62,7 +62,7 @@ public class ProductDetailsPresenterImpl implements ProductDetailsPresenter {
                     productDetailsView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        productDetailsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        productDetailsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

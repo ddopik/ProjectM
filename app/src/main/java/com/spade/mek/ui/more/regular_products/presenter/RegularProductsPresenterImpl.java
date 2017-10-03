@@ -53,7 +53,7 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
                     mRegularProductsView.hideProductsLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mRegularProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mRegularProductsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
@@ -73,7 +73,7 @@ public class RegularProductsPresenterImpl implements RegularProductsPresenter {
                     mRegularProductsView.hideProductsLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mRegularProductsView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mRegularProductsView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }

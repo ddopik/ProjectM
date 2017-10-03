@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -203,10 +204,10 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         userOrderPresenter.updateUserData(firstNameString, lastNameString, phoneNumberString,
                 emailAddressString, addressString, PrefUtils.getUserId(getContext()));
         if (donationType == EXTRA_DONATE_ZAKAT) {
-            userOrderPresenter.donateZakat(totalCost, donationTypeString, paymentType);
+            userOrderPresenter.donateZakat(totalCost, donationTypeString, paymentType, UserOrderPresenterImpl.DONATE_WITHOUT_PRODUCTS);
         } else {
             totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
-            userOrderPresenter.makeOrder(donationTypeString, paymentType);
+            userOrderPresenter.makeOrder(donationTypeString, paymentType, UserOrderPresenterImpl.DONATE_FOR_PRODUCTS);
         }
     }
 
@@ -257,6 +258,12 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         startActivityForResult(intent, PAYMENT_REQUEST_CODE);
     }
 
+    public void openUrl(String url) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivityForResult(i, PAYMENT_REQUEST_CODE);
+    }
+
     @Override
     public void showFailedTransactionAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
@@ -294,12 +301,12 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         switch (resultCode) {
             case Activity.RESULT_OK:
                 if (requestCode == PAYMENT_REQUEST_CODE) {
-                    int paymentStatus = data.getIntExtra(PaymentActivity.EXTRA_PAYMENT_STATUS, PaymentActivity.PAYMENT_SUCCESS);
-                    if (paymentStatus == 0) {
-                        userOrderPresenter.finishPaymentStatus(PaymentActivity.PAYMENT_SUCCESS);
-                    } else {
-                        userOrderPresenter.finishPaymentStatus(PaymentActivity.PAYMENT_FAIL);
-                    }
+//                    int paymentStatus = data.getIntExtra(PaymentActivity.EXTRA_PAYMENT_STATUS, PaymentActivity.PAYMENT_SUCCESS);
+//                    if (paymentStatus == 0) {
+//                        userOrderPresenter.finishPaymentStatus(PaymentActivity.PAYMENT_SUCCESS);
+//                    } else {
+//                        userOrderPresenter.finishPaymentStatus(PaymentActivity.PAYMENT_FAIL);
+//                    }
                 }
                 break;
         }

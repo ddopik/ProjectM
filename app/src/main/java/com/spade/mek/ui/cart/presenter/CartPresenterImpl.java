@@ -116,7 +116,7 @@ public class CartPresenterImpl implements CartPresenter {
                     mCartView.hideProgressBar();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        mCartView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        mCartView.onError(ErrorUtils.getErrors(anError));
                     }
                     mCartView.updateUI();
                 });

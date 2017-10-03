@@ -184,6 +184,11 @@ public class SubmitVolunteerFragment extends BaseFragment implements UserDataVie
     }
 
     @Override
+    public void openUrl(String paymentUrl) {
+
+    }
+
+    @Override
     public void showFailedTransactionAlert() {
     }
 

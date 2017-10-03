@@ -40,7 +40,7 @@ public class PaymentHistoryPresenterImpl implements PaymentPresenter {
                     profilePaymentView.hideLoading();
                     if (throwable != null) {
                         ANError anError = (ANError) throwable;
-                        profilePaymentView.onError(ErrorUtils.getErrors(anError.getErrorBody()));
+                        profilePaymentView.onError(ErrorUtils.getErrors(anError));
                     }
                 });
     }
