@@ -17,7 +17,7 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     def versionPropsFile = file('version.properties')
 
     if (versionPropsFile.canRead()) {
@@ -103,4 +103,3 @@ dependencies {
 
 apply plugin: 'realm-android'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'me.tatarka.retrolambda'

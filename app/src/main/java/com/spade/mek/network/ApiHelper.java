@@ -41,12 +41,12 @@ import io.reactivex.Observable;
 
 public class ApiHelper {
     ///// DEV
-//    private static final String BASE_POST_URL = "http://dev.spade.studio/mek-apis/public/api/v1";
-//    private static final String BASE_URL = "http://dev.spade.studio/mek-apis/public/api/v1/{lang}";
+    private static final String BASE_POST_URL = "http://dev.spade.studio/mek-apis/public/api/v1";
+    private static final String BASE_URL = "http://dev.spade.studio/mek-apis/public/api/v1/{lang}";
 
     //// LIVE
-    private static final String BASE_URL = "https://app.misrelkheir.org/api/v1/{lang}";
-    private static final String BASE_POST_URL = "https://app.misrelkheir.org/api/v1";
+//    private static final String BASE_URL = "https://app.misrelkheir.org/api/v1/{lang}";
+//    private static final String BASE_POST_URL = "https://app.misrelkheir.org/api/v1";
 
     //    private static final String BASE_URL = "http://mekapi.spade.studio/api/v1/{lang}";
     private static final String LATEST_PRODUCTS_URL = BASE_URL + "/products/latest";
