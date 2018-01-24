@@ -158,6 +158,7 @@
     <string name="upcoming_events">UpComing Events</string>
     <string name="volunteering">Volunteering</string>
     <string name="payment_error">Failed to complete transaction; Please try again later</string>
+    <string name="no_internet">Sorry no Internet Connection</string>
     <string name="ok">OK</string>
     <string name="volunteering_confirmed">You have successfully joined our team, we \n are going to contact you for any updates about the event</string>
     <string name="items">%s Items</string>

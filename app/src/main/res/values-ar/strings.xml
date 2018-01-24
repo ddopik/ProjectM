@@ -13,7 +13,7 @@
     <string name="login_with">الدخول عن طريق</string>
     <string name="facebook">Facebook</string>
     <string name="google">Google</string>
-    <string name="welcome_statement">أهلاً بيك \nفي تطبيق مؤسسة مصر الخير</string>
+    <string name="welcome_statement">أهلاً بك \nفي تطبيق مؤسسة مصر الخير</string>
     <string name="continue_as_guest">ادخل بدون تسجيل</string>
     <string name="something_wrong">حدث خطأ ما</string>
     <string name="latest_products">أحدث المنتجات</string>
@@ -172,6 +172,7 @@
     <string name="payment_error">هناك مشكلة أثناء محاولتك التبرع.. راجع البيانات وحاول مرة تانية
 </string>
     <string name="ok">موافق</string>
+    <string name="no_internet">عفوا لا يوجد اتصال بالانترنت</string>
     <string name="volunteering_confirmed">دلوقتي بقيت واحد من فريق المتطوعين في مؤسسة مصر الخير \n
     هنبعتلك كل فترة التحديثات والحملات اللي بنشارك فيها عشان تقدر تبقى عضو فعال ومؤثر معانا
 </string>

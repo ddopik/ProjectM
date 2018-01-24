@@ -1,5 +1,8 @@
 package com.spade.mek.ui.more.news.presenter;
 
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+
 import com.spade.mek.base.BasePresenter;
 import com.spade.mek.ui.more.news.view.NewsDetailsView;
 

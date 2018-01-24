@@ -1,10 +1,14 @@
 package com.spade.mek.ui.more.news.presenter;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.androidnetworking.error.ANError;
+import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.news.view.NewsDetailsView;
+import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
 import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
@@ -77,4 +81,6 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
     public boolean isReverse(String appLang) {
         return !appLang.equals(PrefUtils.ENGLISH_LANG);
     }
+
+
 }

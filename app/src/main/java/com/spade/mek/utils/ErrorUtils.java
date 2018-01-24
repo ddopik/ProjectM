@@ -1,6 +1,10 @@
 package com.spade.mek.utils;
 
+import android.content.Context;
+
 import com.androidnetworking.error.ANError;
+import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +34,12 @@ public class ErrorUtils {
                 e.printStackTrace();
             }
         } else {
-            error = anError.getMessage();
+            if (error.hashCode() == 0) { // todo in case unKnown or no NetWork connection
+                error = MekApplication.mApplication.getResources().getString(R.string.no_internet);
+            } else {
+                error = anError.getMessage();
+            }
+
         }
         return error;
     }

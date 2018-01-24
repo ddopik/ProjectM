@@ -142,6 +142,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
 
     @Override
     public void showLatestCauses(List<Products> latestCausesList) {
+
         this.latestCausesList.clear();
         this.latestCausesList.addAll(latestCausesList);
         latestCausesAdapter.notifyDataSetChanged();

@@ -1,6 +1,7 @@
 package com.spade.mek.ui.products.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.spade.mek.R;
+import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
 import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
@@ -18,6 +20,9 @@ import java.util.List;
  */
 
 public class ImagesPagerAdapter extends PagerAdapter {
+
+
+    //todo-->[New_task] ImagesPagerAdapter youtube pageListener
     private Context mContext;
     private int defaultImageResId;
     private List<String> imagesList;
@@ -41,6 +46,16 @@ public class ImagesPagerAdapter extends PagerAdapter {
 //        itemImage.setDefaultImageResId(defaultImageResId);
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);
+
+        itemImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, YouTubeNewsActivity.class);
+                intent.putExtra("video_id", "TxNRQfUnDJA");
+                mContext.startActivity(intent);
+            }
+        });
+
 
         container.addView(itemView);
         return itemView;

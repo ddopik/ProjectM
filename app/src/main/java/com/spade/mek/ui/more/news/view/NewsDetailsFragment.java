@@ -68,6 +68,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         newsDetailsView = inflater.inflate(R.layout.fragment_news_details, container, false);
         initViews();
         overrideFonts(getContext(), newsDetailsView);
+
         return newsDetailsView;
     }
 
@@ -107,6 +108,8 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         shareImage.setOnClickListener(v -> newsDetailsPresenter.shareItem(itemUrl));
         newsDetailsPresenter.getNewsDetails(appLang, itemId);
         getRelatedNews(appLang);
+
+
     }
 
     private void getRelatedNews(String appLang) {
