@@ -39,7 +39,7 @@ public class ImagesPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.image_item, container,
                 false);
-        ImageView itemImage = (ImageView) itemView.findViewById(R.id.item_image_view);
+        ImageView itemImage = itemView.findViewById(R.id.item_image_view);
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
         GlideApp.with(mContext).load(imageUrl).centerCrop().
                 placeholder(defaultDrawable).error(defaultDrawable).into(itemImage);
@@ -47,13 +47,10 @@ public class ImagesPagerAdapter extends PagerAdapter {
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);
 
-        itemImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, YouTubeNewsActivity.class);
-                intent.putExtra("video_id", "TxNRQfUnDJA");
-                mContext.startActivity(intent);
-            }
+        itemImage.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, YouTubeNewsActivity.class);
+            intent.putExtra("video_id", "TxNRQfUnDJA");
+            mContext.startActivity(intent);
         });
 
 
