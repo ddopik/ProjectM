@@ -19,7 +19,6 @@ import com.spade.mek.ui.cart.presenter.UserOrderPresenterImpl;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.ui.splash.SplashActivity;
-import com.spade.mek.utils.NetWorkUtil;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.sociallogin.FacebookLoginManager;
 

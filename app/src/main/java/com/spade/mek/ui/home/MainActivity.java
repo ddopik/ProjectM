@@ -55,9 +55,13 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         HomeFragment.HomeActions, HomeFragment.CartAction,
         ProductsFragment.CartAction, CausesFragment.CartAction, FilterCategoriesAdapter.OnFilterCategoryClicked {
 
+
     private AHBottomNavigation ahBottomNavigation;
     private static final int HOME_POSITION = 0;
     private static final int CAUSES_POSITION = 1;
+
+
+
     private static final int PRODUCTS_POSITION = 2;
     private static final int SEARCH_POSITION = 3;
     private static final int MORE_POSITION = 4;
@@ -335,6 +339,11 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         ahBottomNavigation.setCurrentItem(CAUSES_POSITION, true);
     }
 
+    @Override
+    public void onCheckAllHomeNewsClicked() {
+        // TODO: 1/29/18 A_M [new Task] what to do here
+//        ahBottomNavigation.setCurrentItem(NEWS_POSITION, true);
+    }
     @Override
     public void onItemInserted() {
         updateCounter();

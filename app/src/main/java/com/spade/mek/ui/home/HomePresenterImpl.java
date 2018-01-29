@@ -101,6 +101,30 @@ public class HomePresenterImpl implements HomePresenter {
                 });
     }
 
+    // TODO: 1/29/18 A_M [new Task]
+    @Override
+    public void getHomeNews(String appLang) {
+        mHomeView.showHomeNewsLoading();
+        ApiHelper.getHomeNews(appLang)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(allNewsResponse -> {
+                    if (allNewsResponse != null && allNewsResponse.getNewsData() != null) {
+                        mHomeView.showHomeNews(allNewsResponse.getNewsData().getNewsList());
+                    } else {
+                        mHomeView.hideHomeNews();
+                    }
+                    mHomeView.hideHomeNewsLoading();
+                }, throwable -> {
+                    mHomeView.hideHomeNewsLoading();
+                    mHomeView.hideHomeNews();
+                    if (throwable != null) {
+                        ANError anError = (ANError) throwable;
+                        mHomeView.onError(ErrorUtils.getErrors(anError));
+                    }
+                });
+    }
+
     @Override
     public boolean isReverse(String appLang) {
         return !appLang.equals(PrefUtils.ENGLISH_LANG);

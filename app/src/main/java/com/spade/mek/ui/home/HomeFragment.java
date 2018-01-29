@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -21,7 +22,11 @@ import com.spade.mek.ui.cart.view.AddProductToCartDialog;
 import com.spade.mek.ui.home.adapters.LatestCausesAdapter;
 import com.spade.mek.ui.home.adapters.LatestProductsAdapter;
 import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
+
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.ui.more.news.model.News;
+import com.spade.mek.ui.more.news.view.NewsAdapter;
+import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
@@ -34,22 +39,28 @@ import java.util.List;
  */
 
 public class HomeFragment extends BaseFragment implements HomeView, LatestProductsAdapter.OnProductClicked,
-        LatestCausesAdapter.OnCauseClicked, UrgentCasesPagerAdapter.OnCaseClicked,
+        LatestCausesAdapter.OnCauseClicked, UrgentCasesPagerAdapter.OnCaseClicked,NewsAdapter.OnNewsClicked,
         AddProductToCartDialog.AddToCart,
         AddCauseToCartDialog.AddToCart {
     private HomePresenter homePresenter;
+
+
+
     private View homeView;
     private LatestCausesAdapter latestCausesAdapter;
     private LatestProductsAdapter latestProductsAdapter;
     private UrgentCasesPagerAdapter urgentCasesPagerAdapter;
+    private NewsAdapter homeNewsAdapter;
     private List<Products> latestCausesList;
     private List<Products> latestProductsList;
     private List<Products> urgentCaseList;
-    private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress;
+    // TODO: 1/29/18 A_M [new Task]
+    private List<com.spade.mek.ui.more.news.model.News> homeNewsList;
+    private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress, homeNewsProgress;
     private HomeActions homeActions;
     private CartAction cartAction;
     private ViewPager urgentCasesViewPager;
-    private RelativeLayout checkAllCauses, checkAllProducts;
+    private RelativeLayout checkAllCauses, checkAllProducts, checkAllHomeNews;
 
 
     @Nullable
@@ -76,16 +87,21 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         urgentCasesProgress = (ProgressBar) homeView.findViewById(R.id.urgent_cases_progress_bar);
         latestProductsProgress = (ProgressBar) homeView.findViewById(R.id.latest_products_progress_bar);
         latestCausesProgress = (ProgressBar) homeView.findViewById(R.id.latest_causes_progress_bar);
+        homeNewsProgress = (ProgressBar) homeView.findViewById(R.id.home_news_progress_bar);
 
         checkAllProducts = (RelativeLayout) homeView.findViewById(R.id.check_products_layout);
         checkAllCauses = (RelativeLayout) homeView.findViewById(R.id.check_causes_layout);
+        checkAllHomeNews = (RelativeLayout) homeView.findViewById(R.id.home_news_layout);
+
 
         checkAllProducts.setOnClickListener(v -> homeActions.onCheckAllProductsClicked());
         checkAllCauses.setOnClickListener(v -> homeActions.onCheckAllCausesClicked());
+        checkAllHomeNews.setOnClickListener(v -> homeActions.onCheckAllHomeNewsClicked());
 
         urgentCasesViewPager = (ViewPager) homeView.findViewById(R.id.urgent_cases_view_pager);
         RecyclerView latestProductsRecycler = (RecyclerView) homeView.findViewById(R.id.latest_products_recycler_view);
         RecyclerView latestCausesRecycler = (RecyclerView) homeView.findViewById(R.id.latest_causes_recycler_view);
+        RecyclerView homeNewsRecycler = (RecyclerView) homeView.findViewById(R.id.home_news_recycler_view);
         ImageView productsImageView = (ImageView) homeView.findViewById(R.id.products_arrow);
         ImageView causesImageView = (ImageView) homeView.findViewById(R.id.causes_arrow);
         productsImageView.setImageResource(arrowImage);
@@ -106,14 +122,23 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestProductsAdapter.setOnProductClicked(this);
         latestProductsRecycler.setAdapter(latestProductsAdapter);
 
+        homeNewsList = new ArrayList<>();
+        homeNewsAdapter = new NewsAdapter(homeNewsList,getContext() , defaultImageResId, LinearLayout.HORIZONTAL);
+        homeNewsAdapter.setOnNewsClicked(this);
+        homeNewsRecycler.setAdapter(homeNewsAdapter);
+
         urgentCaseList = new ArrayList<>();
         urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(getContext(), urgentCaseList, defaultImageResId);
         urgentCasesPagerAdapter.setOnCaseClicked(this);
         urgentCasesViewPager.setAdapter(urgentCasesPagerAdapter);
 
+
+
         homePresenter.getLatestProducts(appLang);
         homePresenter.getUrgentCases(appLang);
         homePresenter.getLatestCauses(appLang);
+        // TODO: 1/29/18 A_M [new Task]
+        homePresenter.getHomeNews(appLang);
     }
 
     @Override
@@ -168,6 +193,21 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     }
 
     @Override
+    public void showHomeNews(List<News> homeNewsList) {
+
+        this.homeNewsList.clear();
+        this.homeNewsList.addAll(homeNewsList);
+        urgentCasesPagerAdapter.notifyDataSetChanged();
+
+        if (homeNewsList.isEmpty()) {
+            hideHomeNews();
+        } else {
+            showHomeNews();
+        }
+
+    }
+
+    @Override
     public void showUrgentCasesLoading() {
         urgentCasesProgress.setVisibility(View.VISIBLE);
     }
@@ -180,6 +220,11 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     @Override
     public void showLatestCausesLoading() {
         latestCausesProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showHomeNewsLoading() {
+        homeNewsProgress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -197,6 +242,10 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestCausesProgress.setVisibility(View.GONE);
     }
 
+    public void hideHomeNewsLoading() {
+        homeNewsProgress.setVisibility(View.GONE);
+    }
+
     @Override
     public void hideLatestProducts() {
         checkAllProducts.setVisibility(View.GONE);
@@ -207,10 +256,17 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         checkAllCauses.setVisibility(View.GONE);
     }
 
+    // TODO: 1/29/18 A_M [new Task]
+    @Override
+    public void hideHomeNews() {
+        checkAllHomeNews.setVisibility(View.GONE);
+    }
+
     @Override
     public void hideUrgentCases() {
         urgentCasesViewPager.setVisibility(View.GONE);
     }
+
 
     @Override
     public void showLatestProducts() {
@@ -222,10 +278,18 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         checkAllCauses.setVisibility(View.VISIBLE);
     }
 
+    // TODO: 1/29/18 A_M [new Task]
+    @Override
+    public void showHomeNews() {
+        checkAllHomeNews.setVisibility(View.VISIBLE);
+    }
+
+
     @Override
     public void showUrgentCases() {
         urgentCasesViewPager.setVisibility(View.VISIBLE);
     }
+
 
     public void setHomeActions(HomeActions homeActions) {
         this.homeActions = homeActions;
@@ -302,7 +366,13 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
-
+    // TODO: 1/29/18 A_M [new Task]
+    @Override
+    public void onNewsClicked(int newsId) {
+        Intent intent = NewsDetailsActivity.getLaunchIntent(getContext());
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, newsId);
+        startActivity(intent);
+    }
     public void setCartAction(CartAction cartAction) {
         this.cartAction = cartAction;
     }
@@ -330,6 +400,8 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         void onCheckAllProductsClicked();
 
         void onCheckAllCausesClicked();
+
+        void onCheckAllHomeNewsClicked();
 
     }
 }
