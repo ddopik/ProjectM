@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.utils.PrefUtils;
 
 /**
@@ -44,4 +46,16 @@ public abstract class BaseFragment extends Fragment {
             }
         }
     }
+
+    //todo A_M [New_task]
+    public static void sendTrackEvent(String category, String action, String userID) {
+
+        if (userID.equals("-1"))
+            return;
+        MekApplication.getDefaultTracker().send(new HitBuilders.EventBuilder()
+                .setCategory(category)
+                .setAction(action)
+                .build());
+    }
+
 }

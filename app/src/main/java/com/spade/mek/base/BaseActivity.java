@@ -116,7 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
         intent.putExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, quantity);
         startActivity(intent);
         //todo A_M [New_task]
-        MekApplication.sendTrackEvent(ConstUtil.CATEGORY_QUICK_DONATION,ConstUtil.ACTION_QUICK_DONATION,PrefUtils.getUserId(this));
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_QUICK_DONATION,ConstUtil.ACTION_QUICK_DONATION,PrefUtils.getUserId(this));
     }
 
     protected abstract void addFragment();

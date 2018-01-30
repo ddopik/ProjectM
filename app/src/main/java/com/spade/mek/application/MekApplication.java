@@ -95,16 +95,6 @@ public class MekApplication extends Application {
         }
         return sTracker;
     }
-    //todo A_M [New_task]
-    public static void sendTrackEvent(String category, String action, String userID) {
-
-        if (userID.equals("-1"))
-            return;
-        getDefaultTracker().send(new HitBuilders.EventBuilder()
-                .setCategory(category)
-                .setAction(action)
-                .build());
-    }
 
     private class NotificationReceivingHandler implements OneSignal.NotificationReceivedHandler {
         @Override
