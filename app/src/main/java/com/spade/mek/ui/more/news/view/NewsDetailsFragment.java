@@ -32,13 +32,15 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+
+
 /**
  * Created by Ayman Abouzeid on 6/20/17.
  */
 
-public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView, NewsAdapter.OnNewsClicked {
+public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView, NewsAdapter.OnNewsClicked, ImagesPagerAdapter.OnImageClicked {
     public static final String ITEM_ID = "ITEM_ID";
-
+    public static final String YOUTUBE_CODE = "VEDIO_YOUTYBE_ID";
 
     private View newsDetailsView;
     private TextView newsTitle, newsCategory, newsDetails,
@@ -55,6 +57,8 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
 
     private int itemId;
     private String itemUrl = "";
+    //todo A_M [New_task]
+    private String itemYouTubeUrl = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,6 +100,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         progressBar = (ProgressBar) newsDetailsView.findViewById(R.id.progress_bar);
 
         imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
+        imagesPagerAdapter.setOnImageClicked(this);
         imagesViewPager.setAdapter(imagesPagerAdapter);
 
         newsAdapter = new NewsAdapter(newsList, getContext(), ImageUtils.getDefaultImage(appLang), LinearLayout.HORIZONTAL);
@@ -167,9 +172,11 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         } else {
             shareImage.setVisibility(View.VISIBLE);
         }
+
         newsTitle.setText(news.getTitle());
         newsDetails.setText(news.getBody());
         imagesList.add(news.getImage());
+        itemYouTubeUrl = (!news.getYoutubeUrl().isEmpty()) ? itemYouTubeUrl = news.getYoutubeUrl() : "";
         imagesPagerAdapter.notifyDataSetChanged();
     }
 
@@ -204,6 +211,16 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         intent.putExtra(ProductDetailsFragment.ITEM_ID, newsId);
         startActivity(intent);
         getActivity().finish();
+    }
+
+    //todo A_M [New_task]
+    @Override
+    public void onImageClicked() {
+        if (itemYouTubeUrl.equals(""))
+            return;
+        Intent intent = new Intent(getActivity(), YouTubeNewsActivity.class);
+        intent.putExtra(YOUTUBE_CODE, itemYouTubeUrl);
+        startActivity(intent);
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.spade.mek.ui.login.UserModel;
 import com.spade.mek.ui.more.contact_us.model.ContactUsDataResponse;
 import com.spade.mek.ui.more.donation_channels.model.BanksResponse;
 import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
+import com.spade.mek.ui.more.news.model.AllHomeNewsResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
 import com.spade.mek.ui.more.news.model.NewsDetailsResponse;
 import com.spade.mek.ui.more.news.model.RelatedNewsResponse;
@@ -122,11 +123,11 @@ public class ApiHelper {
     }
 
     // TODO: 1/29/18 A_M [new Task]
-    public static Observable<AllNewsResponse> getHomeNews(String lang) {
+    public static Observable<AllHomeNewsResponse> getHomeNews(String lang) {
         return Rx2AndroidNetworking.get(HOME_NEWS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .build()
-                .getObjectObservable(AllNewsResponse.class);
+                .getObjectObservable(AllHomeNewsResponse.class);
     }
 
     public static Observable<StoresResponse> getStores(String appLang) {

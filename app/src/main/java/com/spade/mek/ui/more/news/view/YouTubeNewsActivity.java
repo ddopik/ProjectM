@@ -10,6 +10,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.spade.mek.R;
+import static com.spade.mek.ui.more.news.view.NewsDetailsFragment.YOUTUBE_CODE;
 
 /**
  * Created by ddopik on 1/24/2018.
@@ -19,7 +20,7 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
     //todo-->[New_task] new youTubeActivity
     public static final String API_KEY = "AIzaSyB3uJ-dzR0RBzDfq6bxBwRYyJihjBxYjAw";
     //http://youtu.be/<VIDEO_ID>
-    public static final String VIDEO_ID = "TxNRQfUnDJA";
+    private String VIDEO_ID = "TxNRQfUnDJA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
         /** add listeners to YouTubePlayer instance **/
         player.setPlayerStateChangeListener(playerStateChangeListener);
         player.setPlaybackEventListener(playbackEventListener);
-
+        VIDEO_ID = getIntent().getExtras().getString(YOUTUBE_CODE);
         /** Start buffering **/
         if (!wasRestored) {
             player.cueVideo(VIDEO_ID);
@@ -105,6 +106,6 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig );
+        super.onConfigurationChanged(newConfig);
     }
 }

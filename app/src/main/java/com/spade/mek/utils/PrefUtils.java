@@ -17,6 +17,7 @@ public class PrefUtils {
     private static final String IS_LANGUAGE_SELECTED = "IS_LANGUAGE_SELECTED";
     private static final String IS_TOKEN_SAVED = "IS_TOKEN_SAVED";
 
+
     private static final String APP_LANG = "APP_LANG";
     public static final String ARABIC_LANG = "ar";
     public static final String ENGLISH_LANG = "en";

@@ -55,7 +55,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     private List<Products> latestProductsList;
     private List<Products> urgentCaseList;
     // TODO: 1/29/18 A_M [new Task]
-    private List<com.spade.mek.ui.more.news.model.News> homeNewsList;
+    private List<News> homeNewsList;
     private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress, homeNewsProgress;
     private HomeActions homeActions;
     private CartAction cartAction;
@@ -108,9 +108,12 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         causesImageView.setImageResource(arrowImage);
         RecyclerView.LayoutManager latestProductsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager latestCausesLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager latestNewsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
         latestProductsRecycler.setLayoutManager(latestProductsLayoutManager);
         latestCausesRecycler.setLayoutManager(latestCausesLayoutManager);
+        //todo A_M [New_task]
+        homeNewsRecycler.setLayoutManager(latestNewsLayoutManager);
 
         latestCausesList = new ArrayList<>();
         latestCausesAdapter = new LatestCausesAdapter(getContext(), latestCausesList, defaultImageResId);
@@ -121,7 +124,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestProductsAdapter = new LatestProductsAdapter(getContext(), latestProductsList, defaultImageResId);
         latestProductsAdapter.setOnProductClicked(this);
         latestProductsRecycler.setAdapter(latestProductsAdapter);
-
+        //todo A_M [New_task]
         homeNewsList = new ArrayList<>();
         homeNewsAdapter = new NewsAdapter(homeNewsList,getContext() , defaultImageResId, LinearLayout.HORIZONTAL);
         homeNewsAdapter.setOnNewsClicked(this);
@@ -197,7 +200,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
 
         this.homeNewsList.clear();
         this.homeNewsList.addAll(homeNewsList);
-        urgentCasesPagerAdapter.notifyDataSetChanged();
+        homeNewsAdapter.notifyDataSetChanged();
 
         if (homeNewsList.isEmpty()) {
             hideHomeNews();

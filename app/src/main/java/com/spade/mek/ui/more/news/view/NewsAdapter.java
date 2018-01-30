@@ -69,14 +69,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         FontUtils.overrideFonts(mContext, holder.itemView);
     }
 
-    public void setOnNewsClicked(OnNewsClicked onNewsClicked) {
-        this.onNewsClicked = onNewsClicked;
-    }
 
     public interface OnNewsClicked {
         void onNewsClicked(int newsId);
 
         void onShareClicked(String url);
+    }
+
+    public void setOnNewsClicked(OnNewsClicked onNewsClicked) {
+        this.onNewsClicked = onNewsClicked;
     }
 
     @Override

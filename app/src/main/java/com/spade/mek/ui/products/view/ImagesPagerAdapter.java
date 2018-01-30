@@ -26,6 +26,7 @@ public class ImagesPagerAdapter extends PagerAdapter {
     private Context mContext;
     private int defaultImageResId;
     private List<String> imagesList;
+    private OnImageClicked onImageClicked;
 
     public ImagesPagerAdapter(Context context, List<String> imagesList, int defaultImageResId) {
         mContext = context;
@@ -47,15 +48,20 @@ public class ImagesPagerAdapter extends PagerAdapter {
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);
 
-        itemImage.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, YouTubeNewsActivity.class);
-            intent.putExtra("video_id", "TxNRQfUnDJA");
-            mContext.startActivity(intent);
-        });
+        itemImage.setOnClickListener(v -> onImageClicked.onImageClicked());
 
 
         container.addView(itemView);
         return itemView;
+    }
+
+
+    public interface OnImageClicked {
+        void onImageClicked();
+    }
+
+    public void setOnImageClicked(OnImageClicked onImageClicked) {
+        this.onImageClicked = onImageClicked;
     }
 
     @Override

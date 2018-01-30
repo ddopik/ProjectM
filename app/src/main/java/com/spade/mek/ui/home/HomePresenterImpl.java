@@ -8,6 +8,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.ui.more.news.model.AllHomeNewsResponse;
 import com.spade.mek.utils.ErrorUtils;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.ShareManager;
@@ -108,9 +109,9 @@ public class HomePresenterImpl implements HomePresenter {
         ApiHelper.getHomeNews(appLang)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(allNewsResponse -> {
-                    if (allNewsResponse != null && allNewsResponse.getNewsData() != null) {
-                        mHomeView.showHomeNews(allNewsResponse.getNewsData().getNewsList());
+                .subscribe(AllHomeNewsResponse -> {
+                    if (AllHomeNewsResponse != null && AllHomeNewsResponse.getNewsList() != null) {
+                        mHomeView.showHomeNews(AllHomeNewsResponse.getNewsList());
                     } else {
                         mHomeView.hideHomeNews();
                     }
