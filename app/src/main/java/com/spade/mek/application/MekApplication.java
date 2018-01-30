@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.androidnetworking.AndroidNetworking;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationOpenResult;
@@ -44,7 +45,7 @@ public class MekApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mApplication=this;
+        mApplication = this;
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
@@ -93,6 +94,16 @@ public class MekApplication extends Application {
             sTracker = sAnalytics.newTracker("UA-104912436-1");
         }
         return sTracker;
+    }
+    //todo A_M [New_task]
+    public static void sendTrackEvent(String category, String action, String userID) {
+
+        if (userID.equals("-1"))
+            return;
+        getDefaultTracker().send(new HitBuilders.EventBuilder()
+                .setCategory(category)
+                .setAction(action)
+                .build());
     }
 
     private class NotificationReceivingHandler implements OneSignal.NotificationReceivedHandler {

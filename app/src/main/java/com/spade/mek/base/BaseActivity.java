@@ -15,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
 import com.spade.mek.ui.cart.view.CartActivity;
 import com.spade.mek.ui.cart.view.QuickDonationDialog;
 import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.PrefUtils;
 
 /**
@@ -113,6 +115,8 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
         intent.putExtra(UserDataFragment.EXTRA_DONATE_TYPE, UserDataFragment.EXTRA_DONATE_ZAKAT);
         intent.putExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, quantity);
         startActivity(intent);
+        //todo A_M [New_task]
+        MekApplication.sendTrackEvent(ConstUtil.CATEGORY_QUICK_DONATION,ConstUtil.ACTION_QUICK_DONATION,PrefUtils.getUserId(this));
     }
 
     protected abstract void addFragment();

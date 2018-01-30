@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.androidnetworking.error.ANError;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.network.ApiHelper;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
@@ -41,12 +44,14 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
 
     private static final String FACEBOOK_TYPE = "Facebook";
     private static final String GOOGLE_TYPE = "Google";
+
     private LoginView mLoginView;
     private LoginDialogView loginDialogView;
     private GoogleLoginManager mGoogleLoginManager;
     private FacebookLoginManager mFacebookLoginManager;
     private Context mContext;
     private RealmDbHelper realmDbHelper;
+
 
     public LoginPresenterImpl(LoginView loginView, Context context) {
         setView(loginView);
@@ -70,6 +75,7 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
     @Override
     public void loginWithFacebook(Fragment loginFragment) {
         mFacebookLoginManager.loginWithFacebook(loginFragment);
+
     }
 
     @Override
@@ -276,4 +282,6 @@ public class LoginPresenterImpl implements LoginPresenter, GoogleLoginCallBack, 
         else if (loginDialogView != null) loginDialogView.onError(R.string.something_wrong);
 
     }
+
+
 }
