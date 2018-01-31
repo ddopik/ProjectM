@@ -12,7 +12,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.products.Products;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
 import com.spade.mek.utils.PrefUtils;
@@ -112,6 +114,7 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
 
     public void setOnCauseClicked(OnCauseClicked onCauseClicked) {
         this.onCauseClicked = onCauseClicked;
+
     }
 
     public interface OnCauseClicked {
@@ -133,14 +136,14 @@ public class LatestCausesAdapter extends RecyclerView.Adapter<LatestCausesAdapte
 
         public LatestCausesViewHolder(View itemView) {
             super(itemView);
-            causeTargetTextView = (TextView) itemView.findViewById(R.id.cause_target);
-            causeCurrentAmount = (TextView) itemView.findViewById(R.id.cause_current_state);
-            causeTitle = (TextView) itemView.findViewById(R.id.cause_title);
-            causeImage = (ImageView) itemView.findViewById(R.id.cause_image);
-            shareImageView = (ImageView) itemView.findViewById(R.id.share_image_view);
-            donateImage = (ImageView) itemView.findViewById(R.id.donate_image_view);
-            causeSeekBar = (SeekBar) itemView.findViewById(R.id.cause_target_progress_bar);
-            isUrgentImageView = (ImageView) itemView.findViewById(R.id.is_urgent_image_view);
+            causeTargetTextView = itemView.findViewById(R.id.cause_target);
+            causeCurrentAmount = itemView.findViewById(R.id.cause_current_state);
+            causeTitle = itemView.findViewById(R.id.cause_title);
+            causeImage = itemView.findViewById(R.id.cause_image);
+            shareImageView = itemView.findViewById(R.id.share_image_view);
+            donateImage = itemView.findViewById(R.id.donate_image_view);
+            causeSeekBar = itemView.findViewById(R.id.cause_target_progress_bar);
+            isUrgentImageView = itemView.findViewById(R.id.is_urgent_image_view);
 
         }
     }

@@ -20,6 +20,7 @@ import com.spade.mek.ui.cart.presenter.CartPresenter;
 import com.spade.mek.ui.cart.presenter.CartPresenterImpl;
 import com.spade.mek.ui.login.view.LoginDialogFragment;
 import com.spade.mek.ui.register.RegisterActivity;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
@@ -32,12 +33,12 @@ import io.realm.Realm;
 
 public class CartFragment extends BaseFragment implements CartView, CartRealmAdapter.CartActions, LoginDialogFragment.LoginDialogActions {
 
+    private static final String NO_MONEY = "00";
     private View cartView;
     private TextView totalItems, totalCost;
     private TextView totalEmptyItems, totalEmptyCost;
     private CartPresenter cartPresenter;
     private RelativeLayout cartLayout, cartEmptyLayout;
-    private static final String NO_MONEY = "00";
     private ProgressBar progressBar;
     private CartRealmAdapter cartAdapter;
     private RecyclerView cartRecyclerView;
@@ -79,10 +80,12 @@ public class CartFragment extends BaseFragment implements CartView, CartRealmAda
     }
 
     private void checkIfLoggedIn() {
+
         int loginProvider = PrefUtils.getLoginProvider(getContext());
         if (loginProvider == LoginProviders.NONE.getLoginProviderCode()) {
             showLoginDialog();
         } else {
+            BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_CHECK_OUT, PrefUtils.getUserId(getActivity()));
             navigateToUserDataActivity();
         }
     }

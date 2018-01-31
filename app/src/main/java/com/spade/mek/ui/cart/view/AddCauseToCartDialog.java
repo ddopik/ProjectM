@@ -15,22 +15,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.presenter.AddToCartPresenter;
 import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.FontUtils;
+import com.spade.mek.utils.PrefUtils;
 
 /**
  * Created by Ayman Abouzeid on 6/22/17.
  */
 
 public class AddCauseToCartDialog extends DialogFragment {
+    //    private TextView totalCost;
+    public AddToCart addToCart;
     private String title;
     private double quantityAmount = 0;
     private EditText quantityEditText;
-    //    private TextView totalCost;
-    public AddToCart addToCart;
     private AddToCartPresenter addToCartPresenter;
     private Products product;
 
@@ -42,6 +44,7 @@ public class AddCauseToCartDialog extends DialogFragment {
             title = product.getProductTitle();
         }
         initPresenter();
+
     }
 
     private void initPresenter() {
@@ -55,22 +58,23 @@ public class AddCauseToCartDialog extends DialogFragment {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         init(dialogView);
         FontUtils.overrideFonts(getContext(), dialogView);
+        sendDonateEvent();
         return dialogView;
     }
 
 
     private void init(View view) {
-        quantityEditText = (EditText) view.findViewById(R.id.quantityEditText);
+        quantityEditText = view.findViewById(R.id.quantityEditText);
 //        totalCost = (TextView) view.findViewById(R.id.total_price);
 
-        ImageView increaseImage = (ImageView) view.findViewById(R.id.arrow_up);
-        ImageView decreaseImage = (ImageView) view.findViewById(R.id.arrow_down);
+        ImageView increaseImage = view.findViewById(R.id.arrow_up);
+        ImageView decreaseImage = view.findViewById(R.id.arrow_down);
 
-        TextView itemTitle = (TextView) view.findViewById(R.id.item_title);
-        TextView currencyTitle = (TextView) view.findViewById(R.id.currency_title);
+        TextView itemTitle = view.findViewById(R.id.item_title);
+        TextView currencyTitle = view.findViewById(R.id.currency_title);
         currencyTitle.setVisibility(View.VISIBLE);
 
-        Button addToCartButton = (Button) view.findViewById(R.id.add_to_cart_btn);
+        Button addToCartButton = view.findViewById(R.id.add_to_cart_btn);
         itemTitle.setText(title);
 
         quantityEditText.addTextChangedListener(new TextWatcher() {
@@ -133,6 +137,14 @@ public class AddCauseToCartDialog extends DialogFragment {
         this.addToCart = addToCart;
     }
 
+    //todo A_M [New_task]
+    public void sendDonateEvent() {
+        Bundle bundle = getArguments();
+        if (!bundle.getString("category_event", "").equals("") && !bundle.getString("category_action", "").equals("")) {
+            BaseFragment.sendTrackEvent(bundle.getString("category_event"), bundle.getString("category_action"), PrefUtils.getUserId(getActivity()));
+        }
+
+    }
     public interface AddToCart {
         void onItemInserted();
     }

@@ -3,7 +3,7 @@ package com.spade.mek.utils;
 /**
  * Created by abdalla-maged on 1/30/18.
  */
-
+//todo A_M [New_task]
 public class ConstUtil {
 
     public static final String CATEGORY_USER="USER";
@@ -19,6 +19,7 @@ public class ConstUtil {
     public static final String ACTION_SIGN_IN_FORM ="Sign In Form";
     public static final String ACTION_REGISTER_FORM ="Register Form";
     public static final String ACTION_QUICK_DONATION ="Quick Donation";
+    public static final String ACTION_DONATE_BUTTON = "Donate Button";
     public static final String ACTION_CHECK_OUT ="CheckOut";
     public static final String ACTION_PROCEED ="Proceed";
     public static final String ACTION_CASH_ON_DELIVERY ="Cash on Delivery";

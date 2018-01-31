@@ -27,6 +27,7 @@ import com.spade.mek.ui.cart.presenter.UserOrderPresenter;
 import com.spade.mek.ui.cart.presenter.UserOrderPresenterImpl;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
 import com.spade.mek.utils.Validator;
@@ -44,10 +45,9 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     public static final int EXTRA_PAY_FOR_PRODUCTS = 800;
 
     public static final int EXTRA_DONATE_ZAKAT = 900;
-    private static final int PAYMENT_REQUEST_CODE = 1001;
     public static final int ONLINE_PAYMENT_TYPE = 0;
     public static final int CASH_ON_DELIVERY = 1;
-
+    private static final int PAYMENT_REQUEST_CODE = 1001;
     private EditText firstNameEditText, lastNameEditText,
             phoneNumberEditText, emailAddressEditText, addressEditText;
     private String firstNameString, lastNameString, phoneNumberString,
@@ -90,24 +90,26 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
     @Override
     protected void initViews() {
-        firstNameEditText = (EditText) fragmentView.findViewById(R.id.first_name_edit_text);
-        lastNameEditText = (EditText) fragmentView.findViewById(R.id.last_name_edit_text);
-        phoneNumberEditText = (EditText) fragmentView.findViewById(R.id.phone_number_edit_text);
-        emailAddressEditText = (EditText) fragmentView.findViewById(R.id.email_address_edit_text);
-        addressEditText = (EditText) fragmentView.findViewById(R.id.address_edit_text);
-        onlinePayment = (TextView) fragmentView.findViewById(R.id.online_payment);
-        cashOnDelivery = (TextView) fragmentView.findViewById(R.id.cash_on_delivery);
+        firstNameEditText = fragmentView.findViewById(R.id.first_name_edit_text);
+        lastNameEditText = fragmentView.findViewById(R.id.last_name_edit_text);
+        phoneNumberEditText = fragmentView.findViewById(R.id.phone_number_edit_text);
+        emailAddressEditText = fragmentView.findViewById(R.id.email_address_edit_text);
+        addressEditText = fragmentView.findViewById(R.id.address_edit_text);
+        onlinePayment = fragmentView.findViewById(R.id.online_payment);
+        cashOnDelivery = fragmentView.findViewById(R.id.cash_on_delivery);
 //        donationEditText = (EditText) fragmentView.findViewById(R.id.type_of_donation_edit_text);
-        TextView chooseAnotherChannel = (TextView) fragmentView.findViewById(R.id.choose_another_channel);
+        TextView chooseAnotherChannel = fragmentView.findViewById(R.id.choose_another_channel);
         chooseAnotherChannel.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         chooseAnotherChannel.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
-        Button proceedBtn = (Button) fragmentView.findViewById(R.id.proceed_btn);
-        AppCompatSpinner donationTypesSpinner = (AppCompatSpinner) fragmentView.findViewById(R.id.donation_types_spinner);
+        Button proceedBtn = fragmentView.findViewById(R.id.proceed_btn);
+        AppCompatSpinner donationTypesSpinner = fragmentView.findViewById(R.id.donation_types_spinner);
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(getContext(), R.layout.type_of_donation_item, getResources().getStringArray(R.array.type_of_donations));
         donationTypesSpinner.setAdapter(spinnerAdapter);
         proceedBtn.setOnClickListener(v -> {
             if (checkIfDataIsValid()) {
                 proceed();
+                //todo A_M [New_task]
+                BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_PROCEED, PrefUtils.getUserId(getActivity()));
             }
         });
         donationTypesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -278,6 +280,8 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
         cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.orange));
         cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightGrey));
+        //todo A_M [New_task]
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_CASH_ON_DELIVERY, PrefUtils.getUserId(getActivity()));
 
     }
 
@@ -287,6 +291,8 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         onlinePayment.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightGrey));
         cashOnDelivery.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         cashOnDelivery.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
+        //todo A_M [New_task]
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_ON_LINE_PAYMENT, PrefUtils.getUserId(getActivity()));
     }
 
 //    private void finishPayment(int status) {

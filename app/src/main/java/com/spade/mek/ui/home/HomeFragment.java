@@ -28,6 +28,7 @@ import com.spade.mek.ui.more.news.model.News;
 import com.spade.mek.ui.more.news.view.NewsAdapter;
 import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -39,11 +40,10 @@ import java.util.List;
  */
 
 public class HomeFragment extends BaseFragment implements HomeView, LatestProductsAdapter.OnProductClicked,
-        LatestCausesAdapter.OnCauseClicked, UrgentCasesPagerAdapter.OnCaseClicked,NewsAdapter.OnNewsClicked,
+        LatestCausesAdapter.OnCauseClicked, UrgentCasesPagerAdapter.OnCaseClicked, NewsAdapter.OnNewsClicked,
         AddProductToCartDialog.AddToCart,
         AddCauseToCartDialog.AddToCart {
     private HomePresenter homePresenter;
-
 
 
     private View homeView;
@@ -84,26 +84,26 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         int defaultImageResId = ImageUtils.getDefaultImage(appLang);
         int arrowImage = ImageUtils.getArrow(appLang);
 
-        urgentCasesProgress = (ProgressBar) homeView.findViewById(R.id.urgent_cases_progress_bar);
-        latestProductsProgress = (ProgressBar) homeView.findViewById(R.id.latest_products_progress_bar);
-        latestCausesProgress = (ProgressBar) homeView.findViewById(R.id.latest_causes_progress_bar);
-        homeNewsProgress = (ProgressBar) homeView.findViewById(R.id.home_news_progress_bar);
+        urgentCasesProgress = homeView.findViewById(R.id.urgent_cases_progress_bar);
+        latestProductsProgress = homeView.findViewById(R.id.latest_products_progress_bar);
+        latestCausesProgress = homeView.findViewById(R.id.latest_causes_progress_bar);
+        homeNewsProgress = homeView.findViewById(R.id.home_news_progress_bar);
 
-        checkAllProducts = (RelativeLayout) homeView.findViewById(R.id.check_products_layout);
-        checkAllCauses = (RelativeLayout) homeView.findViewById(R.id.check_causes_layout);
-        checkAllHomeNews = (RelativeLayout) homeView.findViewById(R.id.home_news_layout);
+        checkAllProducts = homeView.findViewById(R.id.check_products_layout);
+        checkAllCauses = homeView.findViewById(R.id.check_causes_layout);
+        checkAllHomeNews = homeView.findViewById(R.id.home_news_layout);
 
 
         checkAllProducts.setOnClickListener(v -> homeActions.onCheckAllProductsClicked());
         checkAllCauses.setOnClickListener(v -> homeActions.onCheckAllCausesClicked());
         checkAllHomeNews.setOnClickListener(v -> homeActions.onCheckAllHomeNewsClicked());
 
-        urgentCasesViewPager = (ViewPager) homeView.findViewById(R.id.urgent_cases_view_pager);
-        RecyclerView latestProductsRecycler = (RecyclerView) homeView.findViewById(R.id.latest_products_recycler_view);
-        RecyclerView latestCausesRecycler = (RecyclerView) homeView.findViewById(R.id.latest_causes_recycler_view);
-        RecyclerView homeNewsRecycler = (RecyclerView) homeView.findViewById(R.id.home_news_recycler_view);
-        ImageView productsImageView = (ImageView) homeView.findViewById(R.id.products_arrow);
-        ImageView causesImageView = (ImageView) homeView.findViewById(R.id.causes_arrow);
+        urgentCasesViewPager = homeView.findViewById(R.id.urgent_cases_view_pager);
+        RecyclerView latestProductsRecycler = homeView.findViewById(R.id.latest_products_recycler_view);
+        RecyclerView latestCausesRecycler = homeView.findViewById(R.id.latest_causes_recycler_view);
+        RecyclerView homeNewsRecycler = homeView.findViewById(R.id.home_news_recycler_view);
+        ImageView productsImageView = homeView.findViewById(R.id.products_arrow);
+        ImageView causesImageView = homeView.findViewById(R.id.causes_arrow);
         productsImageView.setImageResource(arrowImage);
         causesImageView.setImageResource(arrowImage);
         RecyclerView.LayoutManager latestProductsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -126,7 +126,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestProductsRecycler.setAdapter(latestProductsAdapter);
         //todo A_M [New_task]
         homeNewsList = new ArrayList<>();
-        homeNewsAdapter = new NewsAdapter(homeNewsList,getContext() , defaultImageResId, LinearLayout.HORIZONTAL);
+        homeNewsAdapter = new NewsAdapter(homeNewsList, getContext(), defaultImageResId, LinearLayout.HORIZONTAL);
         homeNewsAdapter.setOnNewsClicked(this);
         homeNewsRecycler.setAdapter(homeNewsAdapter);
 
@@ -134,7 +134,6 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         urgentCasesPagerAdapter = new UrgentCasesPagerAdapter(getContext(), urgentCaseList, defaultImageResId);
         urgentCasesPagerAdapter.setOnCaseClicked(this);
         urgentCasesViewPager.setAdapter(urgentCasesPagerAdapter);
-
 
 
         homePresenter.getLatestProducts(appLang);
@@ -315,16 +314,21 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     @Override
     public void onDonateLatestCauseClicked(Products latestCause) {
         showDialogFragment(latestCause);
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_ADD_TO_CART, PrefUtils.getUserId(getActivity()));
     }
 
     @Override
     public void onActionClicked(Products product) {
         showDialogFragment(product);
+        //todo A_M [New_task]
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_ADD_TO_CART, PrefUtils.getUserId(getActivity()));
     }
 
     @Override
     public void onAddToCartClicked(Products product) {
         showDialogFragment(product);
+        //todo A_M [New_task]
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_DONATION, ConstUtil.ACTION_ADD_TO_CART, PrefUtils.getUserId(getActivity()));
     }
 
     private void showDialogFragment(Products item) {
@@ -369,6 +373,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, ProductDetailsFragment.EXTRA_NORMAL_PRODUCT);
         startActivity(intent);
     }
+
     // TODO: 1/29/18 A_M [new Task]
     @Override
     public void onNewsClicked(int newsId) {
@@ -376,6 +381,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         intent.putExtra(ProductDetailsFragment.ITEM_ID, newsId);
         startActivity(intent);
     }
+
     public void setCartAction(CartAction cartAction) {
         this.cartAction = cartAction;
     }

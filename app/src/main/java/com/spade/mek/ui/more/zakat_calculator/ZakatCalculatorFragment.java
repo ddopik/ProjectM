@@ -18,9 +18,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.application.MekApplication;
+import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.FontUtils;
+import com.spade.mek.utils.PrefUtils;
 
 import java.text.DecimalFormat;
 
@@ -30,11 +33,10 @@ import java.text.DecimalFormat;
 
 public class ZakatCalculatorFragment extends Fragment {
 
+    private static final int DIVIDED_BY_NUMBER = 40;
     private EditText moneyAmountEditText, sharesValueEditText, gainedProfitEditText,
             bondsValueEditText, gramPriceEditText, goldWeightEditText, rentValueEditText;
-
     private double goldZakat = 0, moneyZakat = 0, assetsZakat = 0, rentZakat = 0;
-    private static final int DIVIDED_BY_NUMBER = 40;
     private TextView zakatValue;
     private double totalZakat;
 
@@ -57,15 +59,15 @@ public class ZakatCalculatorFragment extends Fragment {
     }
 
     private void init(View view) {
-        Button donateNowBtn = (Button) view.findViewById(R.id.donate_now_btn);
-        moneyAmountEditText = (EditText) view.findViewById(R.id.money_amount_edit_text);
-        sharesValueEditText = (EditText) view.findViewById(R.id.shares_value_edit_text);
-        gainedProfitEditText = (EditText) view.findViewById(R.id.gained_profit_edit_text);
-        bondsValueEditText = (EditText) view.findViewById(R.id.bonds_value_edit_text);
-        gramPriceEditText = (EditText) view.findViewById(R.id.gram_price_edit_text);
-        goldWeightEditText = (EditText) view.findViewById(R.id.gold_weight_edit_text);
-        rentValueEditText = (EditText) view.findViewById(R.id.rent_value_edit_text);
-        zakatValue = (TextView) view.findViewById(R.id.zakat_mount_text_view);
+        Button donateNowBtn = view.findViewById(R.id.donate_now_btn);
+        moneyAmountEditText = view.findViewById(R.id.money_amount_edit_text);
+        sharesValueEditText = view.findViewById(R.id.shares_value_edit_text);
+        gainedProfitEditText = view.findViewById(R.id.gained_profit_edit_text);
+        bondsValueEditText = view.findViewById(R.id.bonds_value_edit_text);
+        gramPriceEditText = view.findViewById(R.id.gram_price_edit_text);
+        goldWeightEditText = view.findViewById(R.id.gold_weight_edit_text);
+        rentValueEditText = view.findViewById(R.id.rent_value_edit_text);
+        zakatValue = view.findViewById(R.id.zakat_mount_text_view);
 
 
         moneyAmountEditText.addTextChangedListener(new TextWatcher() {
@@ -185,6 +187,8 @@ public class ZakatCalculatorFragment extends Fragment {
         donateNowBtn.setOnClickListener(v -> {
             if (totalZakat > 0) {
                 donateZakat();
+                //todo A_M [New_task]
+                BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_ZAKAT, ConstUtil.ACTION_DONNATE_YOUR_ZAKAT, PrefUtils.getUserId(getActivity()));
             } else {
                 Toast.makeText(getContext(), getString(R.string.invalid_amount), Toast.LENGTH_LONG).show();
             }

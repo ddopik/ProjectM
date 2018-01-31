@@ -31,6 +31,7 @@ import com.spade.mek.ui.more.regular_products.view.ViewSubscriptionDialog;
 import com.spade.mek.ui.products.presenter.ProductDetailsPresenter;
 import com.spade.mek.ui.products.presenter.ProductDetailsPresenterImpl;
 import com.spade.mek.ui.register.RegisterActivity;
+import com.spade.mek.utils.ConstUtil;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.LoginProviders;
 import com.spade.mek.utils.PrefUtils;
@@ -197,6 +198,9 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
     private void showDialogFragment() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(EXTRA_ITEM, item);
+        //todo A_M [New_task]
+        bundle.putString("category_event", ConstUtil.CATEGORY_QUICK_DONATION);
+        bundle.putString("category_action", ConstUtil.ACTION_DONATE_BUTTON);
 
         if (item.getProductType().equals(UrgentCasesPagerAdapter.PRODUCT_TYPE)) {
             AddProductToCartDialog addProductToCartDialog = new AddProductToCartDialog();
