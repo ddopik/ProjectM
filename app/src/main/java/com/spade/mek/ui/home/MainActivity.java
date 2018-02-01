@@ -36,6 +36,7 @@ import com.spade.mek.ui.home.adapters.UrgentCasesPagerAdapter;
 import com.spade.mek.ui.home.search.SearchActivity;
 import com.spade.mek.ui.home.urgent_cases.FilterCategoriesAdapter;
 import com.spade.mek.ui.more.MoreFragment;
+import com.spade.mek.ui.more.news.view.NewsActivity;
 import com.spade.mek.ui.more.news.view.NewsDetailsActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.ui.products.view.ProductsFragment;
@@ -56,15 +57,12 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         ProductsFragment.CartAction, CausesFragment.CartAction, FilterCategoriesAdapter.OnFilterCategoryClicked {
 
 
-    private AHBottomNavigation ahBottomNavigation;
     private static final int HOME_POSITION = 0;
     private static final int CAUSES_POSITION = 1;
-
-
-
     private static final int PRODUCTS_POSITION = 2;
     private static final int SEARCH_POSITION = 3;
     private static final int MORE_POSITION = 4;
+    private AHBottomNavigation ahBottomNavigation;
     private LinearLayout filterViewLayout;
     private TextView selectedFiltersText;
     private List<FilterCategory> filterCategories;
@@ -74,6 +72,10 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     private ImageView overlayImage;
     private ArrayList<String> selectedFiltersIds;
     private FloatingActionButton filterButton;
+
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,6 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     protected void addFragment() {
 
     }
-
 
     @Override
     protected void addFragment(String title, Fragment fragment) {
@@ -224,7 +225,6 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
         addFragment(getString(R.string.title_products), productsFragment);
     }
 
-
     private void openMoreFragment() {
         filterButton.setVisibility(View.GONE);
         MoreFragment moreFragment = new MoreFragment();
@@ -241,10 +241,6 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     private void openSearchActivity() {
         startActivity(SearchActivity.getLaunchIntent(this));
-    }
-
-    public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, MainActivity.class);
     }
 
     private void filter(ArrayList<String> filterIds) {
@@ -342,7 +338,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
     @Override
     public void onCheckAllHomeNewsClicked() {
         // TODO: 1/29/18 A_M [new Task] what to do here
-//        ahBottomNavigation.setCurrentItem(NEWS_POSITION, true);
+        startActivity(NewsActivity.getLaunchIntent(this));
     }
     @Override
     public void onItemInserted() {

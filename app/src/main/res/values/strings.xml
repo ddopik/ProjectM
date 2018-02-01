@@ -45,7 +45,7 @@
     <string name="address">Address</string>
     <string name="address_hint">Check the map for the nearest store or choose other stores from here</string>
     <string name="type_of_donation">Type of Donation</string>
-    <string name="cash_on_deleivery">Cash on Delivery</string>
+    <string name="cash_on_deleivery">Request a collection</string>
     <string name="misr_collector">Misr ElKheir collector will pass by you</string>
     <string name="enter_first_name">Please Enter Your First Name</string>
     <string name="enter_last_name">Please Enter Your Last Name</string>

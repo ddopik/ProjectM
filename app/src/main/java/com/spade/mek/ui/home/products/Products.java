@@ -14,66 +14,82 @@ import java.util.List;
 
 public class Products implements Parcelable {
 
+    public final static Parcelable.Creator<Products> CREATOR = new Creator<Products>() {
+        @SuppressWarnings({"unchecked"})
+        public Products createFromParcel(Parcel in) {
+            Products instance = new Products();
+            instance.productId = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.productTarget = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.causeTarget = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.causeDone = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.productDone = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.productUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productImage = ((String) in.readValue((String.class.getClassLoader())));
+            in.readList(instance.getProductImageList(), String.class.getClassLoader());
+            instance.isFeatured = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.isUrgent = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.productType = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productTitle = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productDescription = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productHashTag = ((String) in.readValue((String.class.getClassLoader())));
+            instance.productPrice = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.createdAt = ((Long) in.readValue((Long.class.getClassLoader())));
+            instance.isSubscribed = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.isRegularProduct = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+            instance.productQuantity = ((String) in.readValue((Integer.class.getClassLoader())));
+            instance.causePrice = ((String) in.readValue((Double.class.getClassLoader())));
+            instance.subscriptionData = ((SubscriptionData) in.readValue((SubscriptionData.class.getClassLoader())));
+//            in.readList(instance.productCategoryList, (ProductCategory.class.getClassLoader()));
+            return instance;
+        }
+
+        public Products[] newArray(int size) {
+            return (new Products[size]);
+        }
+
+    };
     @SerializedName("id")
     private int productId;
-
     @SerializedName("product_target")
     private int productTarget;
-
     @SerializedName("cause_target")
     private double causeTarget;
-
     @SerializedName("cause_done")
     private double causeDone;
-
     @SerializedName("product_done")
     private int productDone;
-
     @SerializedName("url")
     private String productUrl;
-
     @SerializedName("image")
     private String productImage;
-
+    @SerializedName("images")
+    private List<String> productImageList;
     @SerializedName("is_featured")
     private boolean isFeatured;
-
     @SerializedName("is_urgent")
     private boolean isUrgent;
-
     @SerializedName("product_type")
     private String productType;
-
     @SerializedName("title")
     private String productTitle;
-
     @SerializedName("description")
     private String productDescription;
-
     @SerializedName("hashtag")
     private String productHashTag;
-
     @SerializedName("product_price")
     private double productPrice;
-
     @SerializedName("created_at")
     private long createdAt;
-
     @SerializedName("is_subscribe")
     private boolean isSubscribed;
-
     @SerializedName("is_regular")
     private boolean isRegularProduct;
-
     @SerializedName("quantity")
     private String productQuantity;
-
     @SerializedName("price")
     private String causePrice;
-
     @SerializedName("subscription_user")
     private SubscriptionData subscriptionData;
-
     @SerializedName("categories")
     private List<ProductCategory> productCategoryList;
 
@@ -85,7 +101,6 @@ public class Products implements Parcelable {
         this.productId = productId;
     }
 
-
     public int getProductDone() {
         return productDone;
     }
@@ -94,7 +109,6 @@ public class Products implements Parcelable {
         this.productDone = productDone;
     }
 
-
     public String getProductUrl() {
         return productUrl;
     }
@@ -102,7 +116,6 @@ public class Products implements Parcelable {
     public void setProductUrl(String productUrl) {
         this.productUrl = productUrl;
     }
-
 
     public String getProductType() {
         return productType;
@@ -248,40 +261,13 @@ public class Products implements Parcelable {
         this.causePrice = causePrice;
     }
 
-    public final static Parcelable.Creator<Products> CREATOR = new Creator<Products>() {
-        @SuppressWarnings({"unchecked"})
-        public Products createFromParcel(Parcel in) {
-            Products instance = new Products();
-            instance.productId = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.productTarget = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.causeTarget = ((Double) in.readValue((Double.class.getClassLoader())));
-            instance.causeDone = ((Double) in.readValue((Double.class.getClassLoader())));
-            instance.productDone = ((Integer) in.readValue((Integer.class.getClassLoader())));
-            instance.productUrl = ((String) in.readValue((String.class.getClassLoader())));
-            instance.productImage = ((String) in.readValue((String.class.getClassLoader())));
-            instance.isFeatured = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.isUrgent = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.productType = ((String) in.readValue((String.class.getClassLoader())));
-            instance.productTitle = ((String) in.readValue((String.class.getClassLoader())));
-            instance.productDescription = ((String) in.readValue((String.class.getClassLoader())));
-            instance.productHashTag = ((String) in.readValue((String.class.getClassLoader())));
-            instance.productPrice = ((Double) in.readValue((Double.class.getClassLoader())));
-            instance.createdAt = ((Long) in.readValue((Long.class.getClassLoader())));
-            instance.isSubscribed = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.isRegularProduct = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
-            instance.productQuantity = ((String) in.readValue((Integer.class.getClassLoader())));
-            instance.causePrice = ((String) in.readValue((Double.class.getClassLoader())));
-            instance.subscriptionData = ((SubscriptionData) in.readValue((SubscriptionData.class.getClassLoader())));
-//            in.readList(instance.productCategoryList, (ProductCategory.class.getClassLoader()));
-            return instance;
-        }
+    public List<String> getProductImageList() {
+        return productImageList;
+    }
 
-        public Products[] newArray(int size) {
-            return (new Products[size]);
-        }
-
-    };
-
+    public void setProductImageList(List<String> productImageList) {
+        this.productImageList = productImageList;
+    }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(productId);
@@ -291,6 +277,7 @@ public class Products implements Parcelable {
         dest.writeValue(productDone);
         dest.writeValue(productUrl);
         dest.writeValue(productImage);
+        dest.writeList(productImageList);
         dest.writeValue(isFeatured);
         dest.writeValue(isUrgent);
         dest.writeValue(productType);

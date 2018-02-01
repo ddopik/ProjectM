@@ -350,7 +350,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         productTitle.setText(products.getProductTitle());
         productDetails.setText(products.getProductDescription());
         productHashTag.setText(products.getProductHashTag());
-        imagesList.add(products.getProductImage());
+        imagesList.addAll(products.getProductImageList());
         imagesPagerAdapter.notifyDataSetChanged();
     }
 

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.spade.mek.R;
 import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
+import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
 import com.spade.mek.utils.GlideApp;
 
 import java.util.List;
@@ -48,16 +49,18 @@ public class ImagesPagerAdapter extends PagerAdapter {
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);
 
-        itemImage.setOnClickListener(v -> onImageClicked.onImageClicked());
+        //todo A_M [New_task]
+        if (position == getCount() - 1) // i case this image is A youtube video
+        {
+            if (onImageClicked != null) {
+                itemImage.setOnClickListener(v -> onImageClicked.onImageClicked());
+            }
+
+        }
 
 
         container.addView(itemView);
         return itemView;
-    }
-
-
-    public interface OnImageClicked {
-        void onImageClicked();
     }
 
     public void setOnImageClicked(OnImageClicked onImageClicked) {
@@ -77,5 +80,9 @@ public class ImagesPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+
+    public interface OnImageClicked {
+        void onImageClicked();
     }
 }
