@@ -126,7 +126,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestProductsRecycler.setAdapter(latestProductsAdapter);
         //todo A_M [New_task]
         homeNewsList = new ArrayList<>();
-        homeNewsAdapter = new NewsAdapter(homeNewsList, getContext(), defaultImageResId, LinearLayout.HORIZONTAL);
+        homeNewsAdapter = new NewsAdapter(homeNewsList, getContext(), defaultImageResId, LinearLayout.VERTICAL);
         homeNewsAdapter.setOnNewsClicked(this);
         homeNewsRecycler.setAdapter(homeNewsAdapter);
 
