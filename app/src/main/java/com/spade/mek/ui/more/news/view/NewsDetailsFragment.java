@@ -62,6 +62,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     //todo A_M [New_task]
     private String itemYouTubeUrl = "";
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,6 +236,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     public void addYoutubeImageToAdapter(News news) {
         if (!news.getYoutubeUrl().isEmpty()) {
             itemYouTubeUrl = news.getYoutubeUrl();
+            //todo A_M [New_task][2]
             imagesList.add(news.getImage());
         }
         itemYouTubeUrl = (!news.getYoutubeUrl().isEmpty()) ? itemYouTubeUrl = news.getYoutubeUrl() : "";

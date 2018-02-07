@@ -2,6 +2,8 @@ package com.spade.mek.ui.products.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -9,10 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.spade.mek.R;
 import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
 import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
 import com.spade.mek.utils.GlideApp;
+import com.spade.mek.utils.ImageUtils;
 
 import java.util.List;
 
@@ -41,17 +48,22 @@ public class ImagesPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.image_item, container,
                 false);
+        ImageView play_btn = itemView.findViewById(R.id.item_image_play_btn);
         ImageView itemImage = itemView.findViewById(R.id.item_image_view);
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
-        GlideApp.with(mContext).load(imageUrl).centerCrop().
-                placeholder(defaultDrawable).error(defaultDrawable).into(itemImage);
+        GlideApp.with(mContext).load(imageUrl)
+                .placeholder(defaultDrawable)
+                .error(defaultDrawable)
+                .into(itemImage);
 //        itemImage.setDefaultImageResId(defaultImageResId);
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);
 
         //todo A_M [New_task]
-        if (position == getCount() - 1) // i case this image is A youtube video
+        if (position == getCount() - 1) //add youtube listener i case this image is A youtube video
         {
+//            VectorDrawableCompat defaultDrawable2 = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
+            play_btn.setImageResource(R.drawable.youtube_play_btn);
             if (onImageClicked != null) {
                 itemImage.setOnClickListener(v -> onImageClicked.onImageClicked());
             }
@@ -85,4 +97,6 @@ public class ImagesPagerAdapter extends PagerAdapter {
     public interface OnImageClicked {
         void onImageClicked();
     }
+
+
 }

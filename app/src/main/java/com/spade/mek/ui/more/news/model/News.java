@@ -11,6 +11,17 @@ import java.util.List;
 
 public class News implements Parcelable {
 
+    public static final Creator<News> CREATOR = new Creator<News>() {
+        @Override
+        public News createFromParcel(Parcel in) {
+            return new News(in);
+        }
+
+        @Override
+        public News[] newArray(int size) {
+            return new News[size];
+        }
+    };
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -20,6 +31,11 @@ public class News implements Parcelable {
     @SerializedName("image")
     @Expose
     private String image;
+    //todo A_M [New_task][1]
+//    @SerializedName("youtubeImgUrl")
+//    @Expose
+//    private String youTubeImgUrl;
+
     //todo A_M [New_task]
     @SerializedName("youtube_url")
     @Expose
@@ -42,26 +58,24 @@ public class News implements Parcelable {
     @SerializedName("categories")
     @Expose
     private List<NewsCategory> categories = null;
-
     protected News(Parcel in) {
         url = in.readString();
         image = in.readString();
         title = in.readString();
         shortDescription = in.readString();
         body = in.readString();
+
+        //todo A_M [New_task][1]
+//        youTubeImgUrl = in.readString();
     }
 
-    public static final Creator<News> CREATOR = new Creator<News>() {
-        @Override
-        public News createFromParcel(Parcel in) {
-            return new News(in);
-        }
-
-        @Override
-        public News[] newArray(int size) {
-            return new News[size];
-        }
-    };
+//    public String getYouTubeImgUrl() {
+//        return youTubeImgUrl;
+//    }
+//
+//    public void setYouTubeImgUrl(String youTubeImgUrl) {
+//        this.youTubeImgUrl = youTubeImgUrl;
+//    }
 
     public Integer getId() {
         return id;
@@ -145,6 +159,8 @@ public class News implements Parcelable {
         dest.writeValue(shortDescription);
         dest.writeValue(body);
         dest.writeList(categories);
+        //todo A_M [New_task][1]
+//        dest.writeList(youTubeImgUrl);
     }
 
     public int describeContents() {
