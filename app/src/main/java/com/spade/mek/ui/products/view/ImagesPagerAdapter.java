@@ -30,7 +30,6 @@ import java.util.List;
 public class ImagesPagerAdapter extends PagerAdapter {
 
 
-    //todo-->[New_task] ImagesPagerAdapter youtube pageListener
     private Context mContext;
     private int defaultImageResId;
     private List<String> imagesList;

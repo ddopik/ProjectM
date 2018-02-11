@@ -181,6 +181,7 @@
     <string name="forget_password">Forget password</string>
     <string name="quick_donation">Quick donation</string>
     <string name="title_activity_maps">الخريطة</string>
+    <string name="about_us">About us</string>
 
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>

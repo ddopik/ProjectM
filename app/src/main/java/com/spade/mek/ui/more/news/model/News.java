@@ -32,9 +32,9 @@ public class News implements Parcelable {
     @Expose
     private String image;
     //todo A_M [New_task][1]
-//    @SerializedName("youtubeImgUrl")
-//    @Expose
-//    private String youTubeImgUrl;
+    @SerializedName("youtube_image")
+    @Expose
+    private String youTubeImgUrl;
 
     //todo A_M [New_task]
     @SerializedName("youtube_url")
@@ -65,17 +65,17 @@ public class News implements Parcelable {
         shortDescription = in.readString();
         body = in.readString();
 
-        //todo A_M [New_task][1]
-//        youTubeImgUrl = in.readString();
+        //   todo A_M [New_task][1]
+        youTubeImgUrl = in.readString();
     }
 
-//    public String getYouTubeImgUrl() {
-//        return youTubeImgUrl;
-//    }
-//
-//    public void setYouTubeImgUrl(String youTubeImgUrl) {
-//        this.youTubeImgUrl = youTubeImgUrl;
-//    }
+    public String getYouTubeImgUrl() {
+        return youTubeImgUrl;
+    }
+
+    public void setYouTubeImgUrl(String youTubeImgUrl) {
+        this.youTubeImgUrl = youTubeImgUrl;
+    }
 
     public Integer getId() {
         return id;
@@ -160,7 +160,7 @@ public class News implements Parcelable {
         dest.writeValue(body);
         dest.writeList(categories);
         //todo A_M [New_task][1]
-//        dest.writeList(youTubeImgUrl);
+        dest.writeValue(youTubeImgUrl);
     }
 
     public int describeContents() {

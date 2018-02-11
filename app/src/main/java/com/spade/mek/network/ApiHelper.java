@@ -15,6 +15,7 @@ import com.spade.mek.ui.home.search.model.NewsSearchResponse;
 import com.spade.mek.ui.home.search.model.SearchResponse;
 import com.spade.mek.ui.home.urgent_cases.UrgentCasesResponse;
 import com.spade.mek.ui.login.UserModel;
+import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
 import com.spade.mek.ui.more.contact_us.model.ContactUsDataResponse;
 import com.spade.mek.ui.more.donation_channels.model.BanksResponse;
 import com.spade.mek.ui.more.donation_channels.model.StoresResponse;
@@ -67,6 +68,7 @@ public class ApiHelper {
     private static final String CREATE_ORDER_URL = BASE_POST_URL + "/order/create";
     private static final String SEND_MESSAGE_URL = BASE_POST_URL + "/contact/store";
     private static final String CONTACT_US_INFO_URL = BASE_URL + "/contact/info";
+    private static final String ABOUT_US_DATA_URL = BASE_URL + "/contact/about_us";
     private static final String CATEGORIES_URL = BASE_URL + "/categories";
     private static final String FILTER_CAUSES_URL = BASE_URL + "/categories/causes";
     private static final String FILTER_PRODUCTS_URL = BASE_URL + "/categories/products";
@@ -244,6 +246,13 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .build()
                 .getObjectObservable(ContactUsDataResponse.class);
+    }
+
+    public static Observable<AboutUsDataResponse> getAboutUsData(String appLang) {
+        return Rx2AndroidNetworking.get(ABOUT_US_DATA_URL)
+                .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .build()
+                .getObjectObservable(AboutUsDataResponse.class);
     }
 
     public static Observable<FilterCategoriesResponse> getFilterCategories(String appLang) {

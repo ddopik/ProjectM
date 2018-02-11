@@ -237,7 +237,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         if (!news.getYoutubeUrl().isEmpty()) {
             itemYouTubeUrl = news.getYoutubeUrl();
             //todo A_M [New_task][2]
-            imagesList.add(news.getImage());
+            imagesList.add(news.getYouTubeImgUrl());
         }
         itemYouTubeUrl = (!news.getYoutubeUrl().isEmpty()) ? itemYouTubeUrl = news.getYoutubeUrl() : "";
     }

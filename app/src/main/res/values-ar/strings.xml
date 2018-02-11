@@ -275,6 +275,7 @@
     </plurals>
 
     <string name="title_activity_maps">الخريطة</string>
+    <string name="about_us">من نحن </string>
     <string name="home_screen">Home</string>
     <string name="products_screen">Products_Listing</string>
     <string name="products_inner_screen">Products_Inner</string>
