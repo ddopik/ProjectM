@@ -32,6 +32,10 @@ public class SplashActivity extends AppCompatActivity {
     private static final long DELAY_MILLIS = 1000;
     private ProgressBar progressBar;
 
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, SplashActivity.class);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private void navigate() {
         int loginProvider = PrefUtils.getLoginProvider(this);
-        if (loginProvider == LoginProviders.NONE.getLoginProviderCode()) {
+        if (PrefUtils.isFirstLaunch(this)) {
+
+        } else if (loginProvider == LoginProviders.NONE.getLoginProviderCode()) {
             startActivity(LoginActivity.getLaunchIntent(this));
         } else {
             startActivity(MainActivity.getLaunchIntent(this));
@@ -108,9 +114,5 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             counterToNavigate();
         }
-    }
-
-    public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, SplashActivity.class);
     }
 }

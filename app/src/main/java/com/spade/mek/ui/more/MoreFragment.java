@@ -18,6 +18,7 @@ import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.login.view.LoginActivity;
 import com.spade.mek.ui.login.view.LoginDialogFragment;
+import com.spade.mek.ui.more.about.view.AboutUsActivity;
 import com.spade.mek.ui.more.contact_us.view.ContactUsActivity;
 import com.spade.mek.ui.more.donation_channels.view.DonationChannelsActivity;
 import com.spade.mek.ui.more.news.view.NewsActivity;
@@ -70,6 +71,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         RelativeLayout contactUsLayout = moreView.findViewById(R.id.contact_us_layout);
         RelativeLayout zakatCalculatorLayout = moreView.findViewById(R.id.zakat_calculator_layout);
         RelativeLayout regularDonationsLayout = moreView.findViewById(R.id.regular_donation_layout);
+        RelativeLayout AboutLayout = moreView.findViewById(R.id.about_layout);
 //        RelativeLayout volunteeringLayout =   moreView.findViewById(R.id.volunteering_layout);
 
         ImageView arrowImage = moreView.findViewById(R.id.arrow_image);
@@ -79,6 +81,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         ImageView arrowImage4 = moreView.findViewById(R.id.arrow_image_4);
         ImageView arrowImage5 = moreView.findViewById(R.id.arrow_image_5);
         ImageView arrowImage6 = moreView.findViewById(R.id.arrow_image_6);
+        ImageView arrowImage7 = moreView.findViewById(R.id.arrow_image_7);
 
         if (appLang.equals(PrefUtils.ARABIC_LANG)) {
             arrowImage.setImageResource(R.drawable.rotated_triangle_image);
@@ -88,6 +91,8 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
             arrowImage4.setImageResource(R.drawable.rotated_triangle_image);
             arrowImage5.setImageResource(R.drawable.rotated_triangle_image);
             arrowImage6.setImageResource(R.drawable.rotated_triangle_image);
+            arrowImage7.setImageResource(R.drawable.rotated_triangle_image);
+
         }
 
         AppCompatSpinner languageSpinner = moreView.findViewById(R.id.language_spinner);
@@ -111,6 +116,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         regularDonationsLayout.setOnClickListener(v -> startActivity(RegularProductsActivity.getLaunchIntent(getContext())));
 //        volunteeringLayout.setOnClickListener(v -> startActivity(VolunteeringActivity.getLaunchIntent(getContext())));
         profileLayout.setOnClickListener(v -> startActivity(ProfileActivity.getLaunchIntent(getContext())));
+        AboutLayout.setOnClickListener(v -> startActivity(AboutUsActivity.getLaunchIntent(getContext())));
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG)) {
             languageSpinner.setSelection(0);
         } else {

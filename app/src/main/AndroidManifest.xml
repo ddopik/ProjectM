@@ -113,6 +113,9 @@
             android:name=".ui.more.contact_us.view.ContactUsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.more.about.view.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.more.contact_us.view.SendMessageActivity"
             android:screenOrientation="portrait" />
         <activity

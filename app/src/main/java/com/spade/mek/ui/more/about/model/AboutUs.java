@@ -9,5 +9,13 @@ import java.util.List;
 public class AboutUs {
 
 
-    List<AboutUsItem> aboutUsItemList;
+    List<AboutUsProjectItem> aboutUsProjectItemList;
+
+    public List<AboutUsProjectItem> getAboutUsProjectItemList() {
+        return aboutUsProjectItemList;
+    }
+
+    public void setAboutUsProjectItemList(List<AboutUsProjectItem> aboutUsProjectItemList) {
+        this.aboutUsProjectItemList = aboutUsProjectItemList;
+    }
 }

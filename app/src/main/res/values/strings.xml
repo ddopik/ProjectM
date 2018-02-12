@@ -182,6 +182,12 @@
     <string name="quick_donation">Quick donation</string>
     <string name="title_activity_maps">الخريطة</string>
     <string name="about_us">About us</string>
+    <string name="misr_elkhir_about_tab">Misr El-kheir</string>
+    <string name="project_program_about_tab">Project/Programs</string>
+    <string name="language_page_welcome_text">Welcome to \n Misr El-kheir Foundation</string>
+    <string name="choose_language">Choose your language</string>
+    <string name="arabic_spel">العربيه</string>
+
 
     <string-array name="type_of_donations">
         <item>Type Of Donation</item>

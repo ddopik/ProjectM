@@ -248,7 +248,7 @@ public class ApiHelper {
                 .getObjectObservable(ContactUsDataResponse.class);
     }
 
-    public static Observable<AboutUsDataResponse> getAboutUsData(String appLang) {
+    public static Observable<AboutUsDataResponse> getProjectsAboutUsData(String appLang) {
         return Rx2AndroidNetworking.get(ABOUT_US_DATA_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .build()

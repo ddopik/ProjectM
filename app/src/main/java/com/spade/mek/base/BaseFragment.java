@@ -19,6 +19,18 @@ import com.spade.mek.utils.PrefUtils;
 
 public abstract class BaseFragment extends Fragment {
 
+    //todo A_M [New_task]
+    //  track of google analytics
+    public static void sendTrackEvent(String category, String action, String userID) {
+
+        if (userID.equals("-1"))
+            return;
+        MekApplication.getDefaultTracker().send(new HitBuilders.EventBuilder()
+                .setCategory(category)
+                .setAction(action)
+                .build());
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +57,6 @@ public abstract class BaseFragment extends Fragment {
             } catch (Exception e) {
             }
         }
-    }
-
-    //todo A_M [New_task]
-    public static void sendTrackEvent(String category, String action, String userID) {
-
-        if (userID.equals("-1"))
-            return;
-        MekApplication.getDefaultTracker().send(new HitBuilders.EventBuilder()
-                .setCategory(category)
-                .setAction(action)
-                .build());
     }
 
 }

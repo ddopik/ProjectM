@@ -6,6 +6,7 @@
     <dimen name="view_pager_height">180dp</dimen>
     <dimen name="dp48">48dp</dimen>
     <dimen name="dp32">32dp</dimen>
+    <dimen name="dpq12">32dp</dimen>
     <dimen name="dp8">8dp</dimen>
     <dimen name="dp4">4dp</dimen>
     <dimen name="cart_padding">10dp</dimen>
