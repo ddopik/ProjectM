@@ -45,6 +45,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     private double zakatAmount;
     private int checkOutType;
     private int donationWay;
+    private int donationRegion;
 
     public UserOrderPresenterImpl(Context mContext) {
         this.mContext = mContext;
@@ -62,22 +63,24 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
     @Override
-    public void makeOrder(String typeOfDonation, int paymentType, int donationWay) {
+    public void makeOrder(String typeOfDonation, int paymentType, int donationWay, int donationRegion) {
         userDataView.showLoading();
         this.paymentType = paymentType;
         this.checkOutType = UserDataFragment.EXTRA_PAY_FOR_PRODUCTS;
         this.donationWay = donationWay;
+        this.donationRegion = donationRegion;
         order = new Order();
         order.setTypeOfDonation(typeOfDonation);
         new GetUserAsyncTask().execute();
     }
 
     @Override
-    public void donateZakat(double moneyAmount, String typeOfDonation, int paymentType, int donationWay) {
+    public void donateZakat(double moneyAmount, String typeOfDonation, int paymentType, int donationWay, int donationRegion) {
         this.zakatAmount = moneyAmount;
         this.checkOutType = UserDataFragment.EXTRA_DONATE_ZAKAT;
         this.paymentType = paymentType;
         this.donationWay = donationWay;
+        this.donationRegion = donationRegion;
         order = new Order();
         order.setTypeOfDonation(typeOfDonation);
         new GetUserAsyncTask().execute();
@@ -225,7 +228,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
             order.setAddress(user.getUserAddress());
             order.setEmailAddress(user.getUserEmail());
             order.setPhoneNumber(user.getUserPhone());
-
+            order.setDonationRegion(String.valueOf(donationRegion));
             return null;
         }
 
@@ -262,6 +265,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 requestJsonObject.put("type_of_donation", order.getTypeOfDonation());
                 requestJsonObject.put("type_of_donation_flag", donationWay);
                 requestJsonObject.put("address", order.getAddress());
+                requestJsonObject.put("donation_region", order.getDonationRegion());
                 requestJsonObject.put("amount", getOrderTotalCost(PrefUtils.getUserId(mContext)));
                 requestJsonObject.put("products", jsonElements);
             } catch (JSONException e) {
@@ -292,7 +296,9 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
                 requestJsonObject.put("type_of_donation_flag", donationWay);
                 requestJsonObject.put("address", order.getAddress());
                 requestJsonObject.put("amount", String.valueOf(zakatAmount));
+                requestJsonObject.put("donation_region", order.getDonationRegion());
                 requestJsonObject.put("products", jsonElements);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

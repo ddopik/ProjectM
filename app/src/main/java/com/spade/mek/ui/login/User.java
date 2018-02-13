@@ -23,7 +23,9 @@ public class User extends RealmObject {
     private String userAddress;
     private String userPhoto;
     private String userPhone;
+
     private RealmList<CartItem> cartItemList;
+
 
     public String getUserId() {
         return userId;

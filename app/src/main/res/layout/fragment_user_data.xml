@@ -51,6 +51,38 @@
                 android:layout_marginStart="@dimen/dp4"
                 android:background="@color/blue" />
 
+            <RadioGroup
+                android:id="@+id/donate_state_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:checkedButton="@+id/radio_donate_on_board"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_donate_on_board"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/orange"
+                    android:defaultFocusHighlightEnabled="true"
+                    android:text="@string/donate_on_board"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/radio_donate_out_board"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/orange"
+                    android:text="@string/donate_out_board"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold" />
+
+            </RadioGroup>
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

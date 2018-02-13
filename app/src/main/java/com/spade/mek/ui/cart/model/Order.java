@@ -13,7 +13,16 @@ public class Order {
     private String address;
     private String phoneNumber;
     private String typeOfDonation;
+    private String donationRegion;
     private List<OrderItems> orderItems;
+
+    public String getDonationRegion() {
+        return donationRegion;
+    }
+
+    public void setDonationRegion(String donationRegion) {
+        this.donationRegion = donationRegion;
+    }
 
     public String getEmailAddress() {
         return emailAddress;

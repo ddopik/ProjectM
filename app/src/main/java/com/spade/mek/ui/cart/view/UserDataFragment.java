@@ -17,7 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.SpinnerAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,8 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     public static final int EXTRA_DONATE_ZAKAT = 900;
     public static final int ONLINE_PAYMENT_TYPE = 0;
     public static final int CASH_ON_DELIVERY = 1;
+    public static final int DONATE_REGION_ON_BOARD = 0;
+    public static final int DONATE_REGION_OUT_BOARD = 1;
     private static final int PAYMENT_REQUEST_CODE = 1001;
     private EditText firstNameEditText, lastNameEditText,
             phoneNumberEditText, emailAddressEditText, addressEditText;
@@ -58,10 +62,13 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
     private UserOrderPresenter userOrderPresenter;
 
     private TextView onlinePayment, cashOnDelivery;
+    private RadioGroup donate_state_group;
     private double totalCost;
     private int donationTypePosition = 0;
     private int paymentType;
     private int donationType;
+    //default region donation
+    private int donationRegion = -1;
 //    private double zakatAmount;
 
     @Override
@@ -103,6 +110,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         chooseAnotherChannel.setOnClickListener(v -> startActivity(DonationChannelsActivity.getLaunchIntent(getContext())));
         Button proceedBtn = fragmentView.findViewById(R.id.proceed_btn);
         AppCompatSpinner donationTypesSpinner = fragmentView.findViewById(R.id.donation_types_spinner);
+        donate_state_group = fragmentView.findViewById(R.id.donate_state_group);
         SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(getContext(), R.layout.type_of_donation_item, getResources().getStringArray(R.array.type_of_donations));
         donationTypesSpinner.setAdapter(spinnerAdapter);
         proceedBtn.setOnClickListener(v -> {
@@ -127,6 +135,16 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
 
             }
         });
+
+        donate_state_group.setOnCheckedChangeListener((radioGroup, radio_id) -> {
+            if (radio_id == R.id.radio_donate_on_board) {
+                donationRegion = DONATE_REGION_ON_BOARD;
+            } else if (radio_id == R.id.radio_donate_out_board) {
+                donationRegion = DONATE_REGION_OUT_BOARD;
+            }
+        });
+
+
         if (PrefUtils.getLoginProvider(getContext()) == LoginProviders.NONE.getLoginProviderCode()) {
             onlinePayment.setVisibility(View.GONE);
         }
@@ -167,6 +185,7 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         emailAddressString = emailAddressEditText.getText().toString();
         phoneNumberString = phoneNumberEditText.getText().toString();
         addressString = addressEditText.getText().toString();
+        donationRegion = (donationRegion == -1) ? DONATE_REGION_ON_BOARD : donationRegion;
 
         if (firstNameString.isEmpty()) {
             firstNameEditText.setError(getString(R.string.enter_first_name));
@@ -206,10 +225,10 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         userOrderPresenter.updateUserData(firstNameString, lastNameString, phoneNumberString,
                 emailAddressString, addressString, PrefUtils.getUserId(getContext()));
         if (donationType == EXTRA_DONATE_ZAKAT) {
-            userOrderPresenter.donateZakat(totalCost, donationTypeString, paymentType, UserOrderPresenterImpl.DONATE_WITHOUT_PRODUCTS);
+            userOrderPresenter.donateZakat(totalCost, donationTypeString, paymentType, UserOrderPresenterImpl.DONATE_WITHOUT_PRODUCTS, donationRegion);
         } else {
             totalCost = userOrderPresenter.getOrderTotalCost(PrefUtils.getUserId(getContext()));
-            userOrderPresenter.makeOrder(donationTypeString, paymentType, UserOrderPresenterImpl.DONATE_FOR_PRODUCTS);
+            userOrderPresenter.makeOrder(donationTypeString, paymentType, UserOrderPresenterImpl.DONATE_FOR_PRODUCTS, donationRegion);
         }
     }
 

@@ -287,4 +287,6 @@
     <string name="contact_us_screen">Contact_Us</string>
     <string name="news_screen">News</string>
     <string name="zakat_calculator_screen">Zakat_Calculator</string>
+    <string name="donate_on_board">مصر</string>
+    <string name="donate_out_board">خارج</string>
 </resources>

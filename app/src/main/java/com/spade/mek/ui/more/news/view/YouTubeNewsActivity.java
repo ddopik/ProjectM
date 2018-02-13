@@ -10,6 +10,10 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.spade.mek.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.spade.mek.ui.more.news.view.NewsDetailsFragment.YOUTUBE_CODE;
 
 /**
@@ -20,39 +24,7 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
     //todo-->[New_task] new youTubeActivity
     public static final String API_KEY = "AIzaSyB3uJ-dzR0RBzDfq6bxBwRYyJihjBxYjAw";
     //http://youtu.be/<VIDEO_ID>
-    private String VIDEO_ID = "TxNRQfUnDJA";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        /** attaching layout xml **/
-        setContentView(R.layout.you_tube_news_activity);
-
-        /** Initializing YouTube player view **/
-        YouTubePlayerView youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player);
-        youTubePlayerView.initialize(API_KEY, this);
-    }
-
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult result) {
-        Toast.makeText(this, "Failured to Initialize!", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
-        /** add listeners to YouTubePlayer instance **/
-        player.setPlayerStateChangeListener(playerStateChangeListener);
-        player.setPlaybackEventListener(playbackEventListener);
-        VIDEO_ID = getIntent().getExtras().getString(YOUTUBE_CODE);
-        /** Start buffering **/
-        if (!wasRestored) {
-            player.cueVideo(VIDEO_ID);
-            player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-            player.setFullscreen(true);
-            player.play();
-        }
-    }
-
+    private String VIDEO_ID;
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
 
         @Override
@@ -76,7 +48,6 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
         }
 
     };
-
     private YouTubePlayer.PlayerStateChangeListener playerStateChangeListener = new YouTubePlayer.PlayerStateChangeListener() {
 
         @Override
@@ -103,6 +74,55 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
         public void onVideoStarted() {
         }
     };
+
+    public static String getYoutubeVideoId(String youtubeUrl) {
+        String video_id = "";
+        if (youtubeUrl != null && youtubeUrl.trim().length() > 0 && youtubeUrl.startsWith("http")) {
+
+            String expression = "^.*((youtu.be" + "\\/)" + "|(v\\/)|(\\/u\\/w\\/)|(embed\\/)|(watch\\?))\\??v?=?([^#\\&\\?]*).*"; // var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+            CharSequence input = youtubeUrl;
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(input);
+            if (matcher.matches()) {
+                String groupIndex1 = matcher.group(7);
+                if (groupIndex1 != null && groupIndex1.length() == 11)
+                    video_id = groupIndex1;
+            }
+        }
+        return video_id;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /** attaching layout xml **/
+        setContentView(R.layout.you_tube_news_activity);
+
+        /** Initializing YouTube player view **/
+        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player);
+        youTubePlayerView.initialize(API_KEY, this);
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult result) {
+        Toast.makeText(this, "Failured to Initialize!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
+        /** add listeners to YouTubePlayer instance **/
+        player.setPlayerStateChangeListener(playerStateChangeListener);
+        player.setPlaybackEventListener(playbackEventListener);
+        VIDEO_ID = getIntent().getExtras().getString(YOUTUBE_CODE);
+
+        /** Start buffering **/
+        if (!wasRestored) {
+            player.cueVideo(getYoutubeVideoId(VIDEO_ID));
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+            player.setFullscreen(true);
+            player.play();
+        }
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

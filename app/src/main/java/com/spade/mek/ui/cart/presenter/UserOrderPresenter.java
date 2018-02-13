@@ -9,9 +9,9 @@ import com.spade.mek.ui.login.User;
  */
 
 public interface UserOrderPresenter extends BasePresenter<UserDataView> {
-    void makeOrder(String typeOfDonation, int type, int donationWay);
+    void makeOrder(String typeOfDonation, int type, int donationWay, int donationRegion);
 
-    void donateZakat(double moneyAmount, String typeOfDonation, int type, int donationWay);
+    void donateZakat(double moneyAmount, String typeOfDonation, int type, int donationWay, int donationRegion);
 
     double getOrderTotalCost(String userId);
 

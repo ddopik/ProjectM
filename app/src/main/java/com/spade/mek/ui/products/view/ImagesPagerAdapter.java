@@ -21,6 +21,7 @@ import com.spade.mek.ui.more.news.view.YouTubeNewsActivity;
 import com.spade.mek.utils.GlideApp;
 import com.spade.mek.utils.ImageUtils;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -50,10 +51,12 @@ public class ImagesPagerAdapter extends PagerAdapter {
         ImageView play_btn = itemView.findViewById(R.id.item_image_play_btn);
         ImageView itemImage = itemView.findViewById(R.id.item_image_view);
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
+
         GlideApp.with(mContext).load(imageUrl)
                 .placeholder(defaultDrawable)
                 .error(defaultDrawable)
                 .into(itemImage);
+
 //        itemImage.setDefaultImageResId(defaultImageResId);
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);

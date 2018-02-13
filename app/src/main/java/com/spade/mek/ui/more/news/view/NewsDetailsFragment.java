@@ -178,8 +178,8 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
 
         newsTitle.setText(news.getTitle());
         newsDetails.setText(news.getBody());
-        imagesList.add(news.getImage());
-//        itemYouTubeUrl = (!news.getYoutubeUrl().isEmpty()) ? itemYouTubeUrl = news.getYoutubeUrl() : "";
+        List<String> d = news.getImages();
+        imagesList.addAll(news.getImages());
         addYoutubeImageToAdapter(news);
         imagesPagerAdapter.notifyDataSetChanged();
     }
@@ -236,8 +236,12 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     public void addYoutubeImageToAdapter(News news) {
         if (!news.getYoutubeUrl().isEmpty()) {
             itemYouTubeUrl = news.getYoutubeUrl();
-            //todo A_M [New_task][2]
-            imagesList.add(news.getYouTubeImgUrl());
+            if (!news.getYouTubeImgUrl().startsWith("http://")) {
+                imagesList.add("http://" + news.getYouTubeImgUrl());
+            } else {
+                imagesList.add(news.getYouTubeImgUrl());
+            }
+
         }
         itemYouTubeUrl = (!news.getYoutubeUrl().isEmpty()) ? itemYouTubeUrl = news.getYoutubeUrl() : "";
     }
