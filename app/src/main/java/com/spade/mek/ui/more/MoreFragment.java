@@ -117,6 +117,7 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
 //        volunteeringLayout.setOnClickListener(v -> startActivity(VolunteeringActivity.getLaunchIntent(getContext())));
         profileLayout.setOnClickListener(v -> startActivity(ProfileActivity.getLaunchIntent(getContext())));
         AboutLayout.setOnClickListener(v -> startActivity(AboutUsActivity.getLaunchIntent(getContext())));
+
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ENGLISH_LANG)) {
             languageSpinner.setSelection(0);
         } else {

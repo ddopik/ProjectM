@@ -160,6 +160,9 @@
         <activity
             android:name=".ui.login.view.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MainLanguage.MainLanguageActivity"
+            android:screenOrientation="portrait" />
 
         <!--
             The API key for Google Maps-based APIs is defined as a string resource.

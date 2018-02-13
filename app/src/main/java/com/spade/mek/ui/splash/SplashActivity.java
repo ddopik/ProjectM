@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
+import com.spade.mek.ui.MainLanguage.MainLanguageActivity;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.view.LoginActivity;
 import com.spade.mek.ui.more.MorePresenterImpl;
@@ -60,6 +61,8 @@ public class SplashActivity extends AppCompatActivity {
     private void navigate() {
         int loginProvider = PrefUtils.getLoginProvider(this);
         if (PrefUtils.isFirstLaunch(this)) {
+            PrefUtils.setIsFirstLaunch(this, false);
+            startActivity(MainLanguageActivity.getLaunchIntent(this));
 
         } else if (loginProvider == LoginProviders.NONE.getLoginProviderCode()) {
             startActivity(LoginActivity.getLaunchIntent(this));

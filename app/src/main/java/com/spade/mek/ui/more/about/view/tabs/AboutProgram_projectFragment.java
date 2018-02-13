@@ -39,7 +39,7 @@ public class AboutProgram_projectFragment extends BaseFragment implements AboutP
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mainView = inflater.inflate(R.layout.about_program_or_project_Fragment, container, false);
+        mainView = inflater.inflate(R.layout.about_program_or_project_fragment, container, false);
         initViews();
         return mainView;
     }

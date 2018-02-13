@@ -56,8 +56,9 @@
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_title" />
 
+
         <Button
-            android:id="@+id/arabic_btn"
+            android:id="@+id/eng_btn"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -67,7 +68,7 @@
             android:textSize="@dimen/material_text_subhead" />
 
         <Button
-            android:id="@+id/eng_btn"
+            android:id="@+id/arabic_btn"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -75,6 +76,7 @@
             android:text="@string/arabic_spel"
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_subhead" />
+
 
     </LinearLayout>
 
