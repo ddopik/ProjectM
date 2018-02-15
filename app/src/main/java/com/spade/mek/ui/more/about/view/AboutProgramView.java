@@ -1,4 +1,4 @@
-package com.spade.mek.ui.more.about.view.tabs;
+package com.spade.mek.ui.more.about.view;
 
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
@@ -10,7 +10,7 @@ import java.util.List;
  * Created by abdalla-maged on 2/12/18.
  */
 
-public interface AboutProgram_projectFragmentView extends BaseView {
+public interface AboutProgramView extends BaseView {
 
 
     void showProjectAndPrograms(AboutUsDataResponse aboutUsDataResponse);

@@ -68,7 +68,7 @@ public class ApiHelper {
     private static final String CREATE_ORDER_URL = BASE_POST_URL + "/order/create";
     private static final String SEND_MESSAGE_URL = BASE_POST_URL + "/contact/store";
     private static final String CONTACT_US_INFO_URL = BASE_URL + "/contact/info";
-    private static final String ABOUT_US_DATA_URL = BASE_URL + "/contact/about_us";
+    private static final String ABOUT_US_DATA_URL = BASE_URL + "/about/us";
     private static final String CATEGORIES_URL = BASE_URL + "/categories";
     private static final String FILTER_CAUSES_URL = BASE_URL + "/categories/causes";
     private static final String FILTER_PRODUCTS_URL = BASE_URL + "/categories/products";
@@ -251,6 +251,7 @@ public class ApiHelper {
     public static Observable<AboutUsDataResponse> getProjectsAboutUsData(String appLang) {
         return Rx2AndroidNetworking.get(ABOUT_US_DATA_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AboutUsDataResponse.class);
     }

@@ -12,8 +12,6 @@ import android.view.View;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseActivity;
-import com.spade.mek.ui.more.about.view.tabs.AboutMisrFragment;
-import com.spade.mek.ui.more.about.view.tabs.AboutProgram_projectFragment;
 import com.spade.mek.ui.more.volunteering.view.PagingAdapter;
 
 /**
@@ -71,13 +69,13 @@ public class AboutUsActivity extends BaseActivity {
     }
 
     private AboutMisrFragment getAboutMisrFragment() {
-        AboutMisrFragment aboutMisrFragment = new AboutMisrFragment();
-        return aboutMisrFragment;
+        AboutMisrFragment aboutMisrFragmentFragment = new AboutMisrFragment();
+        return aboutMisrFragmentFragment;
     }
 
-    private AboutProgram_projectFragment getAboutProgram_projectFragment() {
-        AboutProgram_projectFragment aboutProgram_projectFragment = new AboutProgram_projectFragment();
-        return aboutProgram_projectFragment;
+    private AboutProgramFragment getAboutProgram_projectFragment() {
+        AboutProgramFragment aboutProgram_Fragment = new AboutProgramFragment();
+        return aboutProgram_Fragment;
 
     }
 

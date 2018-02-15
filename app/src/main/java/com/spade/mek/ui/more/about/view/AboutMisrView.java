@@ -1,4 +1,4 @@
-package com.spade.mek.ui.more.about.view.tabs;
+package com.spade.mek.ui.more.about.view;
 
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
@@ -7,9 +7,9 @@ import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
  * Created by abdalla-maged on 2/12/18.
  */
 
-public interface AboutMisrFragmentView extends BaseView {
+public interface AboutMisrView extends BaseView {
 
-    void showAboutMisr(AboutUsDataResponse aboutUsDataResponse);
+    void showAboutMisr(String aboutUsDataResponse);
 
     void hideAboutMisr();
 

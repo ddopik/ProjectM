@@ -1,6 +1,9 @@
 package com.spade.mek.ui.more.about.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by abdalla-maged on 2/11/18.
@@ -8,25 +11,29 @@ import com.google.gson.annotations.SerializedName;
 
 public class AboutUsDataResponse {
 
-    @SerializedName("success")
-    private boolean isSuccess;
 
+    @SerializedName("success")
+    @Expose
+    private boolean success;
     @SerializedName("data")
-    private AboutUs aboutUs;
+    @Expose
+    private List<AboutUs> data = null;
 
     public boolean isSuccess() {
-        return isSuccess;
+        return success;
     }
 
     public void setSuccess(boolean success) {
-        isSuccess = success;
+        this.success = success;
     }
 
-    public AboutUs getAboutUs() {
-        return aboutUs;
+    public List<AboutUs> getData() {
+        return data;
     }
 
-    public void setAboutUs(AboutUs news) {
-        this.aboutUs = news;
+    public void setData(List<AboutUs> data) {
+        this.data = data;
     }
+
+
 }

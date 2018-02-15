@@ -1,5 +1,8 @@
 package com.spade.mek.ui.more.about.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -9,13 +12,39 @@ import java.util.List;
 public class AboutUs {
 
 
-    List<AboutUsProjectItem> aboutUsProjectItemList;
+    @SerializedName("id")
+    @Expose
+    private int id;
+    @SerializedName("text")
+    @Expose
+    private String text;
+    @SerializedName("project")
+    @Expose
+    private List<AboutUsProjects> aboutUsProjects = null;
 
-    public List<AboutUsProjectItem> getAboutUsProjectItemList() {
-        return aboutUsProjectItemList;
+    public int getId() {
+        return id;
     }
 
-    public void setAboutUsProjectItemList(List<AboutUsProjectItem> aboutUsProjectItemList) {
-        this.aboutUsProjectItemList = aboutUsProjectItemList;
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public List<AboutUsProjects> getProjectProjects() {
+        return aboutUsProjects;
+    }
+
+    public void setAboutUsProjects(List<AboutUsProjects> project) {
+        this.aboutUsProjects = project;
+    }
+
 }
+

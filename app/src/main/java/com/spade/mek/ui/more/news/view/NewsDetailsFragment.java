@@ -178,7 +178,6 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
 
         newsTitle.setText(news.getTitle());
         newsDetails.setText(news.getBody());
-        List<String> d = news.getImages();
         imagesList.addAll(news.getImages());
         addYoutubeImageToAdapter(news);
         imagesPagerAdapter.notifyDataSetChanged();

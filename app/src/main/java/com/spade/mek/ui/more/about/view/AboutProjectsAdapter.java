@@ -1,4 +1,4 @@
-package com.spade.mek.ui.more.about.view.tabs;
+package com.spade.mek.ui.more.about.view;
 
 import android.content.Context;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spade.mek.R;
-import com.spade.mek.ui.more.about.model.AboutUsProjectItem;
+import com.spade.mek.ui.more.about.model.AboutUsProjects;
 import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;
 
@@ -21,15 +21,15 @@ import java.util.List;
  * Created by abdalla-maged on 2/11/18.
  */
 
-public class AboutUsProjectsAdapter extends RecyclerView.Adapter<AboutUsProjectsAdapter.AboutUsProjectsAdapterViewHolder> {
+public class AboutProjectsAdapter extends RecyclerView.Adapter<AboutProjectsAdapter.AboutUsProjectsAdapterViewHolder> {
 
 
-    private List<AboutUsProjectItem> aboutUsList;
+    private List<AboutUsProjects> aboutUsList;
     private Context mContext;
     private int defaultDrawableResId;
     private int type;
 
-    public AboutUsProjectsAdapter(Context context, List<AboutUsProjectItem> aboutUsProjectItems, int defaultDrawableResId, int type) {
+    public AboutProjectsAdapter(Context context, List<AboutUsProjects> aboutUsProjectItems, int defaultDrawableResId, int type) {
         this.mContext = context;
         this.aboutUsList = aboutUsProjectItems;
         this.defaultDrawableResId = defaultDrawableResId;
@@ -50,14 +50,14 @@ public class AboutUsProjectsAdapter extends RecyclerView.Adapter<AboutUsProjects
 
     @Override
     public void onBindViewHolder(AboutUsProjectsAdapterViewHolder holder, int position) {
-        AboutUsProjectItem aboutUsProjectItem = aboutUsList.get(position);
-        holder.aboutUsTitle.setText(aboutUsProjectItem.getAboutProjectTitle());
+        AboutUsProjects aboutUsProjectItem = aboutUsList.get(position);
+        holder.aboutUsTitle.setText(aboutUsProjectItem.getTitle());
 
-        holder.aboutUsDescription.setText(aboutUsProjectItem.getAboutProjectDescriptionl());
+        holder.aboutUsDescription.setText(aboutUsProjectItem.getDescription());
         VectorDrawableCompat defaultDrawable = VectorDrawableCompat.create(mContext.getResources(), defaultDrawableResId, null);
 
         GlideApp.with(mContext)
-                .load(aboutUsProjectItem.getAboutProjectIcon())
+                .load(aboutUsProjectItem.getIcon())
                 .placeholder(defaultDrawable)
                 .centerCrop()
                 .into(holder.aboutUsIcon);
@@ -79,7 +79,7 @@ public class AboutUsProjectsAdapter extends RecyclerView.Adapter<AboutUsProjects
 
         public AboutUsProjectsAdapterViewHolder(View aboutUsViewItem) {
             super(aboutUsViewItem);
-            aboutUsIcon = aboutUsViewItem.findViewById(R.id.about_project_title);
+            aboutUsIcon = aboutUsViewItem.findViewById(R.id.about_project_icon);
             aboutUsTitle = aboutUsViewItem.findViewById(R.id.about_project_title);
             aboutUsDescription = aboutUsViewItem.findViewById(R.id.about_project_description);
 

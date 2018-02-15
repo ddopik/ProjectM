@@ -23,8 +23,8 @@ import static com.spade.mek.ui.more.news.view.NewsDetailsFragment.YOUTUBE_CODE;
 public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     //todo-->[New_task] new youTubeActivity
     public static final String API_KEY = "AIzaSyB3uJ-dzR0RBzDfq6bxBwRYyJihjBxYjAw";
-    //http://youtu.be/<VIDEO_ID>
-    private String VIDEO_ID;
+    //http://youtu.be/<youTubeImageUrl>
+    private String youTubeImageUrl;
     private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
 
         @Override
@@ -113,11 +113,11 @@ public class YouTubeNewsActivity extends YouTubeBaseActivity implements YouTubeP
         /** add listeners to YouTubePlayer instance **/
         player.setPlayerStateChangeListener(playerStateChangeListener);
         player.setPlaybackEventListener(playbackEventListener);
-        VIDEO_ID = getIntent().getExtras().getString(YOUTUBE_CODE);
+        youTubeImageUrl = getIntent().getExtras().getString(YOUTUBE_CODE);
 
         /** Start buffering **/
         if (!wasRestored) {
-            player.cueVideo(getYoutubeVideoId(VIDEO_ID));
+            player.cueVideo(getYoutubeVideoId(youTubeImageUrl));
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
             player.setFullscreen(true);
             player.play();

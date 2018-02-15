@@ -1,8 +1,8 @@
-package com.spade.mek.ui.more.about.view.tabs;
+package com.spade.mek.ui.more.about.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,25 +14,21 @@ import android.widget.Toast;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 
-import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
-import com.spade.mek.ui.more.about.presenter.AboutMisrFragmentPresenter;
-import com.spade.mek.ui.more.about.presenter.AboutMisrFragmentPresenterImpl;
+import com.spade.mek.ui.more.about.presenter.AboutMisrPresenter;
+import com.spade.mek.ui.more.about.presenter.AboutMisrPresenterImpl;
 import com.spade.mek.utils.PrefUtils;
-
-import java.util.zip.Inflater;
 
 /**
  * Created by abdalla-maged on 2/12/18.
  */
 
 
-public class AboutMisrFragment extends BaseFragment implements AboutMisrFragmentView {
+public class AboutMisrFragment extends BaseFragment implements AboutMisrView {
 
-    private AboutMisrFragmentPresenter aboutMisrFragmentPresenter;
+    private AboutMisrPresenter aboutMisrPresenter;
     private View mainView;
     private ProgressBar progressBar;
     private TextView misMainDialog;
-    private RecyclerView misrRecyclerView;
 
 
     @Override
@@ -46,18 +42,17 @@ public class AboutMisrFragment extends BaseFragment implements AboutMisrFragment
 
     @Override
     protected void initPresenter() {
-        aboutMisrFragmentPresenter = new AboutMisrFragmentPresenterImpl(this);
+        aboutMisrPresenter = new AboutMisrPresenterImpl(this);
 
     }
 
     @Override
     protected void initViews() {
         String appLang = PrefUtils.getAppLang(getContext());
-        misrRecyclerView = mainView.findViewById(R.id.misr_el_kheir_about_us_recycler_view);
         misMainDialog = mainView.findViewById(R.id.misr_el_kheir_main_dialog);
         progressBar = mainView.findViewById(R.id.progress_bar);
-
-//        aboutMisrFragmentPresenter.getAllAboutUsMisrData(appLang);//todo --> presenter call start
+        misMainDialog = mainView.findViewById(R.id.misr_el_kheir_main_dialog);
+        aboutMisrPresenter.getAllAboutUsMisrData(appLang);
     }
 
     @Override
@@ -71,9 +66,15 @@ public class AboutMisrFragment extends BaseFragment implements AboutMisrFragment
     }
 
     @Override
-    public void showAboutMisr(AboutUsDataResponse aboutUsDataResponse) {
-        /// -->implemented by it's presenter to update UI Data based on how the shape of data
-        //and view structure...
+    public void showAboutMisr(String aboutUsDataResponse) {
+
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            misMainDialog.setText(Html.fromHtml(aboutUsDataResponse, Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            misMainDialog.setText(Html.fromHtml(aboutUsDataResponse));
+        }
+
     }
 
     @Override

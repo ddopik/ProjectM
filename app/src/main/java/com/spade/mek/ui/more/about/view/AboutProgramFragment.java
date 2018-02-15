@@ -1,4 +1,4 @@
-package com.spade.mek.ui.more.about.view.tabs;
+package com.spade.mek.ui.more.about.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,9 +15,9 @@ import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
-import com.spade.mek.ui.more.about.model.AboutUsProjectItem;
-import com.spade.mek.ui.more.about.presenter.AboutProgram_projectFragPresenter;
-import com.spade.mek.ui.more.about.presenter.AboutProgram_projectFragPresenterImpl;
+import com.spade.mek.ui.more.about.model.AboutUsProjects;
+import com.spade.mek.ui.more.about.presenter.AboutProgramPresenter;
+import com.spade.mek.ui.more.about.presenter.AboutProgramPresenterImpl;
 import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
@@ -28,18 +28,18 @@ import java.util.List;
  * Created by abdalla-maged on 2/12/18.
  */
 
-public class AboutProgram_projectFragment extends BaseFragment implements AboutProgram_projectFragmentView, BaseView {
+public class AboutProgramFragment extends BaseFragment implements AboutProgramView, BaseView {
 
     private View mainView;
-    private AboutProgram_projectFragPresenter aboutProgram_projectFragPresenter;
-    private AboutUsProjectsAdapter aboutUsProjectsAdapter;
+    private AboutProgramPresenter aboutProgram_Presenter;
+    private AboutProjectsAdapter aboutProjectsAdapter;
     private ProgressBar progressBar;
-    private List<AboutUsProjectItem> aboutUsProjectItems;
+    private List<AboutUsProjects> aboutUsProjectItems;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mainView = inflater.inflate(R.layout.about_program_or_project_fragment, container, false);
+        mainView = inflater.inflate(R.layout.about_project_fragment, container, false);
         initViews();
         return mainView;
     }
@@ -47,7 +47,7 @@ public class AboutProgram_projectFragment extends BaseFragment implements AboutP
 
     @Override
     protected void initPresenter() {
-        aboutProgram_projectFragPresenter = new AboutProgram_projectFragPresenterImpl(this);
+        aboutProgram_Presenter = new AboutProgramPresenterImpl(this);
     }
 
 
@@ -59,21 +59,21 @@ public class AboutProgram_projectFragment extends BaseFragment implements AboutP
         RecyclerView AboutItemsRecyclerView = mainView.findViewById(R.id.programs_projects_about_us_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
-        aboutUsProjectItems = new ArrayList<AboutUsProjectItem>();
+        aboutUsProjectItems = new ArrayList<AboutUsProjects>();
 
-        aboutUsProjectsAdapter = new AboutUsProjectsAdapter(getContext(), aboutUsProjectItems, ImageUtils.getDefaultImage(appLang), LinearLayout.VERTICAL);
+        aboutProjectsAdapter = new AboutProjectsAdapter(getContext(), aboutUsProjectItems, ImageUtils.getDefaultImage(appLang), LinearLayout.VERTICAL);
         AboutItemsRecyclerView.setLayoutManager(layoutManager);
-        AboutItemsRecyclerView.setAdapter(aboutUsProjectsAdapter);
+        AboutItemsRecyclerView.setAdapter(aboutProjectsAdapter);
 
-        aboutProgram_projectFragPresenter.getAllProjectAndPrograms(appLang); // todo ---> presenter call
+        aboutProgram_Presenter.getAllProjectAndPrograms(appLang);
     }
 
     @Override
     public void showProjectAndPrograms(AboutUsDataResponse aboutUsDataResponse) {
 
-        if (aboutUsDataResponse.getAboutUs().getAboutUsProjectItemList() != null) {
-            aboutUsProjectItems.addAll(aboutUsDataResponse.getAboutUs().getAboutUsProjectItemList());
-            aboutUsProjectsAdapter.notifyDataSetChanged();
+        if (aboutUsDataResponse.getData().size() != 0) {
+            aboutUsProjectItems.addAll(aboutUsDataResponse.getData().get(0).getProjectProjects());
+            aboutProjectsAdapter.notifyDataSetChanged();
         }
 
     }
