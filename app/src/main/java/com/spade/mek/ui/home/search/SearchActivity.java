@@ -23,6 +23,10 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
 
     private SearchFragment searchFragment;
 
+    public static Intent getLaunchIntent(Context context) {
+        return new Intent(context, SearchActivity.class);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +40,12 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
         addFragment();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.search_menu, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+
         searchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -74,12 +78,6 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, searchFragment, SearchActivity.class.getSimpleName()).
                 commit();
     }
-
-
-    public static Intent getLaunchIntent(Context context) {
-        return new Intent(context, SearchActivity.class);
-    }
-
 
     @Override
     public void onItemInserted() {

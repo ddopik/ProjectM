@@ -56,7 +56,6 @@ public class ImagesPagerAdapter extends PagerAdapter {
                 .placeholder(defaultDrawable)
                 .error(defaultDrawable)
                 .into(itemImage);
-
 //        itemImage.setDefaultImageResId(defaultImageResId);
 //        itemImage.setErrorImageResId(defaultImageResId);
 //        itemImage.setImageUrl(imageUrl);
@@ -65,8 +64,9 @@ public class ImagesPagerAdapter extends PagerAdapter {
         if (position == getCount() - 1) //add youtube listener i case this image is A youtube video
         {
 //            VectorDrawableCompat defaultDrawable2 = VectorDrawableCompat.create(mContext.getResources(), defaultImageResId, null);
-            play_btn.setImageResource(R.drawable.youtube_play_btn);
+
             if (onImageClicked != null) {
+                play_btn.setImageResource(R.drawable.youtube_play_btn);
                 itemImage.setOnClickListener(v -> onImageClicked.onImageClicked());
             }
 

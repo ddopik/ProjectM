@@ -387,12 +387,14 @@
 
         <Button
             android:id="@+id/log_button"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp32"
             android:layout_marginTop="@dimen/dp32"
             android:background="@drawable/orange_bordered_button_bg"
             android:text="@string/login"
+            android:textAlignment="center"
             android:textColor="@color/orange" />
     </LinearLayout>
 </ScrollView>

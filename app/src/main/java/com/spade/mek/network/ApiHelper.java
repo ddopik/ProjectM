@@ -106,6 +106,7 @@ public class ApiHelper {
     public static Observable<LatestProductsResponse> getLatestProducts(String lang) {
         return Rx2AndroidNetworking.get(LATEST_PRODUCTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(LatestProductsResponse.class);
     }
@@ -113,6 +114,7 @@ public class ApiHelper {
     public static Observable<LatestCausesResponse> getLatestCauses(String lang) {
         return Rx2AndroidNetworking.get(LATEST_CAUSES_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(LatestCausesResponse.class);
     }
@@ -120,6 +122,7 @@ public class ApiHelper {
     public static Observable<UrgentCasesResponse> getUrgentCases(String lang) {
         return Rx2AndroidNetworking.get(URGENT_CASES_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(UrgentCasesResponse.class);
     }
@@ -128,6 +131,7 @@ public class ApiHelper {
     public static Observable<AllHomeNewsResponse> getHomeNews(String lang) {
         return Rx2AndroidNetworking.get(HOME_NEWS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllHomeNewsResponse.class);
     }
@@ -135,6 +139,7 @@ public class ApiHelper {
     public static Observable<StoresResponse> getStores(String appLang) {
         return Rx2AndroidNetworking.get(STORES_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(StoresResponse.class);
     }
@@ -142,6 +147,7 @@ public class ApiHelper {
     public static Observable<BanksResponse> getBanks(String appLang) {
         return Rx2AndroidNetworking.get(BANKS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(BanksResponse.class);
     }
@@ -151,6 +157,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(ALL_PRODUCTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllProductsResponse.class);
     }
@@ -159,6 +166,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(REGULAR_PRODUCTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllProductsResponse.class);
     }
@@ -168,6 +176,7 @@ public class ApiHelper {
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addQueryParameter(USER_ID_PARAMETER, userId)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(ProfileRegularProductsResponse.class);
     }
@@ -176,6 +185,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(ALL_CAUSES_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllCausesResponse.class);
     }
@@ -188,6 +198,7 @@ public class ApiHelper {
         return getRequestBuilder
                 .addPathParameter(ID_PATH_PARAMETER, String.valueOf(itemId))
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(ProductDetailsResponse.class);
     }
@@ -196,6 +207,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(NEWS_DETAILS_URL)
                 .addPathParameter(ID_PATH_PARAMETER, String.valueOf(itemId))
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(NewsDetailsResponse.class);
     }
@@ -204,6 +216,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(ALL_NEWS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .addPathParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllNewsResponse.class);
     }
@@ -212,6 +225,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(CURRENT_EVENTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(EventsResponse.class);
     }
@@ -220,6 +234,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(PREVIOUS_EVENTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(EventsResponse.class);
     }
@@ -228,6 +243,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(UP_COMING_EVENTS_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .addQueryParameter(PAGE_NUMBER, String.valueOf(pageNumber))
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(EventsResponse.class);
     }
@@ -235,6 +251,7 @@ public class ApiHelper {
     public static Observable<RelatedNewsResponse> getRelatedNews(String appLang, int newsId) {
         return Rx2AndroidNetworking.get(RELATED_NEWS_URL)
                 .addPathParameter(ID_PATH_PARAMETER, String.valueOf(newsId))
+                .getResponseOnlyFromNetwork()
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .build()
                 .getObjectObservable(RelatedNewsResponse.class);
@@ -244,6 +261,7 @@ public class ApiHelper {
     public static Observable<ContactUsDataResponse> getContactInfo(String appLang) {
         return Rx2AndroidNetworking.get(CONTACT_US_INFO_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(ContactUsDataResponse.class);
     }
@@ -252,6 +270,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.get(ABOUT_US_DATA_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .getResponseOnlyFromNetwork()
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AboutUsDataResponse.class);
     }
@@ -259,6 +278,7 @@ public class ApiHelper {
     public static Observable<FilterCategoriesResponse> getFilterCategories(String appLang) {
         return Rx2AndroidNetworking.get(CATEGORIES_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(FilterCategoriesResponse.class);
     }
@@ -267,6 +287,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.post(FILTER_PRODUCTS_URL)
                 .addJSONObjectBody(filterIds)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllProductsResponse.class);
     }
@@ -275,6 +296,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.post(FILTER_CAUSES_URL)
                 .addJSONObjectBody(filterIds)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(AllCausesResponse.class);
     }
@@ -283,6 +305,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.post(CART_DATA_URL)
                 .addPathParameter(LANG_PATH_PARAMETER, lang)
                 .addJSONObjectBody(jsonRequest)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(LatestProductsResponse.class);
     }
@@ -291,6 +314,7 @@ public class ApiHelper {
         AndroidNetworking.post(SEND_MESSAGE_URL)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -315,6 +339,7 @@ public class ApiHelper {
         AndroidNetworking.post(CREATE_ORDER_URL)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -367,6 +392,7 @@ public class ApiHelper {
                 .addJSONObjectBody(requestJson)
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -394,6 +420,7 @@ public class ApiHelper {
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .addPathParameter(ID_PATH_PARAMETER, productId)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -420,6 +447,7 @@ public class ApiHelper {
         AndroidNetworking.post(SUBMIT_VOLUNTEER)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -446,6 +474,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.post(REGISTER_USER_URL)
                 .addJSONObjectBody(registerObject)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(RegistrationResponse.class);
     }
@@ -454,6 +483,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.post(LOGIN_USER_URL)
                 .addJSONObjectBody(loginObject)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(RegistrationResponse.class);
     }
@@ -463,6 +493,7 @@ public class ApiHelper {
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .addJSONObjectBody(requestJson)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(PaymentResponse.class);
     }
@@ -472,6 +503,7 @@ public class ApiHelper {
                 .addHeaders(AUTH_TOKEN, BEARER + " " + userToken)
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(PaymentHistoryResponse.class);
     }
@@ -480,6 +512,7 @@ public class ApiHelper {
         return Rx2AndroidNetworking.post(SOCIAL_LOGIN_USER_URL)
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.HIGH)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(RegistrationResponse.class);
     }
@@ -489,6 +522,7 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .addBodyParameter(TYPE, itemType)
                 .addBodyParameter(SEARCH, searchKeyword)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(SearchResponse.class);
     }
@@ -498,6 +532,7 @@ public class ApiHelper {
                 .addPathParameter(LANG_PATH_PARAMETER, appLang)
                 .addBodyParameter(TYPE, itemType)
                 .addBodyParameter(SEARCH, searchKeyword)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(NewsSearchResponse.class);
     }
@@ -510,6 +545,7 @@ public class ApiHelper {
                 .addBodyParameter("phone", userModel.getUserPhone())
                 .addBodyParameter("address", userModel.getUserAddress())
                 .addBodyParameter("notification_token", notificationToken)
+                .getResponseOnlyFromNetwork()
                 .build()
                 .getObjectObservable(RegistrationResponse.class);
     }

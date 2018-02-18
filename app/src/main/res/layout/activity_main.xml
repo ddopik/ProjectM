@@ -109,8 +109,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/dp8"
-            android:paddingTop="@dimen/dp8"
+            android:padding="@dimen/dp8"
             android:textColor="@color/orange" />
 
         <FrameLayout

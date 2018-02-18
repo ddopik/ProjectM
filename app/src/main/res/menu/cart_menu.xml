@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/quick_donation"
-        android:icon="@drawable/ic_quick_donation"
         android:title="@string/quick_donation"
+        app:actionLayout="@layout/donate_now_layout"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cart_item"

@@ -62,7 +62,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/white"
-                android:textSize="@dimen/material_text_title"
+                android:textSize="@dimen/material_text_subhead"
                 tools:text="Ramadan Meals " />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:gravity="start"
                 android:maxLines="1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/material_text_subhead"
+                android:textSize="@dimen/material_text_body1"
                 tools:text="Ramadan Meals\nRamadan Meals \nRamadan Meals" />
         </LinearLayout>
     </RelativeLayout>
