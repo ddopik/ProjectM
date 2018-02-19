@@ -1,7 +1,9 @@
 package com.spade.mek.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.support.multidex.MultiDex;
 
 import com.androidnetworking.AndroidNetworking;
 import com.crashlytics.android.Crashlytics;
@@ -37,10 +39,17 @@ import io.realm.RealmConfiguration;
 
 public class MekApplication extends Application {
 
-    private static GoogleAnalytics sAnalytics;
-    private static Tracker sTracker;
     public static final String TYPE_NOTIFICATION = "TYPE_NOTIFICATION";
     public static Application mApplication;
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
+
+    synchronized public static Tracker getDefaultTracker() {
+        if (sTracker == null) {
+            sTracker = sAnalytics.newTracker("UA-104912436-1");
+        }
+        return sTracker;
+    }
 
     @Override
     public void onCreate() {
@@ -89,11 +98,13 @@ public class MekApplication extends Application {
         }
     }
 
-    synchronized public static Tracker getDefaultTracker() {
-        if (sTracker == null) {
-            sTracker = sAnalytics.newTracker("UA-104912436-1");
-        }
-        return sTracker;
+    private void startMainActivity(String type, int id) {
+        Intent intent = MainActivity.getLaunchIntent(this);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
+        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, type);
+        intent.setType(TYPE_NOTIFICATION);
+        startActivity(intent);
     }
 
     private class NotificationReceivingHandler implements OneSignal.NotificationReceivedHandler {
@@ -136,14 +147,5 @@ public class MekApplication extends Application {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void startMainActivity(String type, int id) {
-        Intent intent = MainActivity.getLaunchIntent(this);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(ProductDetailsFragment.ITEM_ID, id);
-        intent.putExtra(ProductDetailsFragment.EXTRA_PRODUCT_TYPE, type);
-        intent.setType(TYPE_NOTIFICATION);
-        startActivity(intent);
     }
 }

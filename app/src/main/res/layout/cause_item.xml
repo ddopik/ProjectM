@@ -7,6 +7,7 @@
     android:layout_marginEnd="@dimen/activity_horizontal_margin"
     android:layout_marginStart="@dimen/activity_horizontal_margin"
     android:layout_marginTop="@dimen/dp8"
+
     android:orientation="vertical">
 
     <FrameLayout
@@ -45,10 +46,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="@dimen/dp12"
             android:maxLines="2"
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_subhead"
+            android:textStyle=""
             tools:text="Ramadan Meals" />
 
         <ImageView

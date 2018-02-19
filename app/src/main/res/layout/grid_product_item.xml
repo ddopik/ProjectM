@@ -6,7 +6,7 @@
     android:layout_marginBottom="@dimen/dp4"
     android:layout_marginEnd="@dimen/dp4"
     android:layout_marginStart="@dimen/dp4"
-    android:layout_marginTop="@dimen/dp8"
+
     android:orientation="vertical">
 
     <FrameLayout
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/dp12"
         android:layout_toLeftOf="@id/share_image_view"
         android:layout_toStartOf="@id/share_image_view">
 
@@ -68,13 +68,14 @@
             android:layout_above="@+id/product_price"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="@dimen/dp8"
-            android:layout_marginStart="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginStart="@dimen/dp12"
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="2"
             android:textColor="@color/white"
-            android:textSize="@dimen/material_text_subhead" />
+            android:textSize="@dimen/material_text_subhead"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/product_price"
@@ -83,8 +84,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="@dimen/dp8"
-            android:layout_marginStart="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginStart="@dimen/dp12"
             android:textColor="@color/orange"
             android:textSize="@dimen/material_text_caption" />
     </RelativeLayout>

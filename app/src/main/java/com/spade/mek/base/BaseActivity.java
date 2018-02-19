@@ -48,12 +48,13 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.cart_menu, menu);
         badgeView = menu.findItem(R.id.cart_item).getActionView();
-        MenuItem quickDonation = menu.findItem(R.id.quick_donation);
+        View donateNowView = menu.findItem(R.id.quick_donation).getActionView();
         numberTextView = badgeView.findViewById(R.id.items_count);
+
         badgeView.setOnClickListener(v -> startActivity(CartActivity.getLaunchIntent(this)));
-        quickDonation.setOnMenuItemClickListener(menuItem -> {
+
+        donateNowView.setOnClickListener(menuItem -> {
             openQuickDonationDialog();
-            return true;
         });
         updateCounter();
         return true;
