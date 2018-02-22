@@ -51,7 +51,7 @@ public class AboutMisrFragment extends BaseFragment implements AboutMisrView {
         String appLang = PrefUtils.getAppLang(getContext());
         misMainDialog = mainView.findViewById(R.id.misr_el_kheir_main_dialog);
         progressBar = mainView.findViewById(R.id.progress_bar);
-        misMainDialog = mainView.findViewById(R.id.misr_el_kheir_main_dialog);
+
         aboutMisrPresenter.getAllAboutUsMisrData(appLang);
     }
 

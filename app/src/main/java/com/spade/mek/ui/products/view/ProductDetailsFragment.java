@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -113,7 +114,6 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         ViewPager imagesViewPager = productDetailsView.findViewById(R.id.product_images_view_pager);
         donateNowBtn = productDetailsView.findViewById(R.id.donate_now_btn);
         String appLang = PrefUtils.getAppLang(getContext());
-
         productTitle = productDetailsView.findViewById(R.id.item_title);
         productCategory = productDetailsView.findViewById(R.id.item_category);
         productDetails = productDetailsView.findViewById(R.id.item_details);
@@ -129,9 +129,10 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         causeSeekBar = productDetailsView.findViewById(R.id.cause_target_progress_bar);
         urgentLabel = productDetailsView.findViewById(R.id.urgent_case_label);
         causeProgressLayout = productDetailsView.findViewById(R.id.cause_progress_layout);
+
         ImageView urgentImageView = productDetailsView.findViewById(R.id.urgent_case_item);
         if (PrefUtils.getAppLang(getContext()).equals(PrefUtils.ARABIC_LANG)) {
-            urgentImageView.setImageResource(R.drawable.rotated_small_urgent_image);
+            urgentImageView.setImageResource(R.drawable.rotated_large_urgent_image);
         }
         imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
         imagesViewPager.setAdapter(imagesPagerAdapter);
@@ -320,6 +321,7 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         productDetailsPresenter.sendAnalytics(itemType);
         donateNowBtn.setVisibility(View.VISIBLE);
         item = products;
+
         if (products.isUrgent()) {
             urgentLabel.setVisibility(View.VISIBLE);
         } else {
@@ -347,6 +349,8 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         } else {
             shareImage.setVisibility(View.VISIBLE);
         }
+
+
         productTitle.setText(products.getProductTitle());
         productDetails.setText(products.getProductDescription());
         productHashTag.setText(products.getProductHashTag());

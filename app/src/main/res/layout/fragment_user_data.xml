@@ -55,7 +55,7 @@
                 android:id="@+id/donate_state_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:checkedButton="@+id/radio_donate_on_board"
                 android:orientation="horizontal">
 
@@ -105,7 +105,7 @@
                     android:layout_weight="1"
                     android:background="@color/lightGrey"
                     android:gravity="center"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:padding="@dimen/activity_vertical_margin"
                     android:text="@string/cash_on_deleivery"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/material_text_subhead"
@@ -118,7 +118,7 @@
                     android:layout_weight="1"
                     android:background="@color/orange"
                     android:gravity="center"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:padding="@dimen/activity_vertical_margin"
                     android:text="@string/online_payment"
                     android:textColor="@color/white"
                     android:textSize="@dimen/material_text_subhead"

@@ -3,13 +3,16 @@ package com.spade.mek.ui.cart.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -19,6 +22,7 @@ import com.spade.mek.ui.cart.presenter.AddToCartPresenterImpl;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.FontUtils;
+import com.spade.mek.utils.ImageUtils;
 import com.spade.mek.utils.PrefUtils;
 
 /**
@@ -34,6 +38,7 @@ public class AddProductToCartDialog extends DialogFragment {
     private TextView totalCost;
     private AddToCartPresenter addToCartPresenter;
     private Products product;
+    private View dialogView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,19 +59,19 @@ public class AddProductToCartDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View dialogView = inflater.inflate(R.layout.dialog_product, container, false);
+        dialogView = inflater.inflate(R.layout.dialog_product, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         init(dialogView);
         FontUtils.overrideFonts(getContext(), dialogView);
         sendDonateEvent();
         return dialogView;
     }
-
     private void init(View view) {
         quantityEditText = view.findViewById(R.id.quantityEditText);
         totalCost = view.findViewById(R.id.total_price);
+        totalCost.setVisibility(View.VISIBLE);
         quantityEditText.setEnabled(false);
-
+        quantityEditText.setHint("");
         ImageView increaseImage = view.findViewById(R.id.arrow_up);
         ImageView decreaseImage = view.findViewById(R.id.arrow_down);
 

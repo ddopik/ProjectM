@@ -34,8 +34,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_medium"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_medium"
                         app:srcCompat="@drawable/ic_call" />
 
                     <TextView
@@ -55,8 +55,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_small"
                         android:text="@string/call"
                         android:textColor="@color/orange"
                         android:textSize="@dimen/material_text_subhead"
@@ -78,8 +78,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_medium"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_medium"
                         app:srcCompat="@drawable/ic_mail" />
 
                     <TextView
@@ -109,8 +109,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_medium"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_medium"
                         app:srcCompat="@drawable/ic_website" />
 
                     <TextView
@@ -140,8 +140,8 @@
                         android:id="@+id/facebook_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_small"
                         android:layout_weight="1"
                         android:visibility="gone"
                         app:srcCompat="@drawable/ic_facebook" />
@@ -150,8 +150,8 @@
                         android:id="@+id/twitter_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_small"
                         android:layout_weight="1"
                         android:visibility="gone"
                         app:srcCompat="@drawable/ic_twitter" />
@@ -160,8 +160,8 @@
                         android:id="@+id/instagram_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_small"
                         android:layout_weight="1"
                         android:visibility="gone"
                         app:srcCompat="@drawable/ic_instagram" />
@@ -178,35 +178,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
                     android:paddingStart="@dimen/activity_horizontal_margin">
 
                     <ImageView
                         android:id="@+id/address_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_alignBottom="@+id/address_text"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         app:srcCompat="@drawable/ic_location" />
 
                     <TextView
                         android:id="@+id/address_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/address_image"
-                        android:layout_toRightOf="@id/address_image"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:layout_marginStart="@dimen/dp4"
+                        android:layout_toEndOf="@+id/address_image"
+                        android:layout_toRightOf="@+id/address_image"
                         android:text="@string/address"
                         android:textColor="@color/blue" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/dp8"
-                        android:layout_marginStart="@dimen/dp8"
-                        android:layout_toEndOf="@id/address_text"
-                        android:layout_toRightOf="@id/address_text"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toEndOf="@+id/address_text"
+                        android:layout_toRightOf="@+id/address_text"
                         android:gravity="center"
                         android:text="@string/address_hint"
                         android:textColor="@color/grey"
@@ -219,10 +221,10 @@
                     android:id="@+id/address_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin">
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin_small"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin_small">
 
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/areas_spinner"
@@ -251,17 +253,17 @@
             <RelativeLayout
                 android:id="@+id/map_layout"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@id/info_layout"
-                android:layout_marginTop="@dimen/dp8">
+                android:layout_height="250dp"
+                android:layout_below="@id/info_layout">
 
                 <fragment
                     android:id="@+id/map"
                     class="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="-100dp"
-                    android:layout_marginTop="-100dp" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true" />
 
                 <ImageView
                     android:id="@+id/transparent_image"

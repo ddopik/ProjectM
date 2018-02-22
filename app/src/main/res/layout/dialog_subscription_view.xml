@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="@dimen/dp4"
-            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
             android:text="@string/receive_reminder"
             android:textColor="@color/grey" />
 

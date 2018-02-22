@@ -3,21 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:paddingBottom="@dimen/dp8">
 
         <ImageView
             android:id="@+id/way_payment_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
             app:srcCompat="@drawable/ic_egyptian_banks_orange" />
 
         <TextView
@@ -42,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="@dimen/activity_horizontal_margin"
+        android:padding="@dimen/activity_vertical_margin_small"
         android:text="admddjdndn"
         android:textColor="@color/grey" />
 
@@ -51,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:padding="@dimen/activity_horizontal_margin"
+        android:padding="@dimen/activity_vertical_margin_small"
         android:text="dkjsdcnsdncsndknsd"
         android:textColor="@color/blue" />
 </LinearLayout>

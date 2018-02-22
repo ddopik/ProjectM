@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/activity_horizontal_margin">
+                    android:layout_margin="@dimen/activity_horizontal_margin_small">
 
                     <ImageView
                         android:id="@+id/share_image_view"
@@ -105,8 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dp8"
-                        android:layout_marginRight="@dimen/dp8"
+                        android:layout_marginBottom="@dimen/dp8"
                         android:layout_toLeftOf="@id/share_image_view"
                         android:layout_toStartOf="@id/share_image_view"
                         android:maxLines="1"
@@ -114,81 +113,86 @@
                 </RelativeLayout>
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/item_title"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_below="@id/images_layout"
-                android:layout_marginBottom="@dimen/dp4"
-                android:layout_marginLeft="@dimen/dp4"
-                android:layout_marginRight="@dimen/dp4"
-                android:layout_marginTop="@dimen/dp12"
-                android:layout_toLeftOf="@+id/item_price"
-                android:layout_toStartOf="@+id/item_price"
-                android:ellipsize="end"
-                android:gravity="start"
-                android:maxLines="3"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/material_text_title"
-                android:textStyle="bold"
-                tools:text="Ramdan Boxes fdkjlrfvjne sfrfwvrverrf" />
+                android:padding="@dimen/main_container_padding">
 
-            <TextView
-                android:id="@+id/item_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/item_title"
-                android:layout_alignBottom="@+id/item_title"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dp4"
-                android:gravity="center"
-                android:textColor="@color/orange"
-                android:textSize="@dimen/material_text_subhead"
-                android:textStyle="bold"
-                tools:text="500" />
+                <TextView
+                    android:id="@+id/item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/dp4"
+                    android:layout_marginLeft="@dimen/dp4"
+                    android:layout_marginRight="@dimen/dp4"
+                    android:layout_marginTop="@dimen/dp12"
+                    android:layout_toLeftOf="@+id/item_price"
+                    android:layout_toStartOf="@+id/item_price"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="3"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/material_text_title_medium"
+                    android:textStyle="bold"
+                    tools:text="Ramdan Boxes fdkjlrfvjne sfrfwvrverrf" />
 
-            <TextView
-                android:id="@+id/item_publish_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_title"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:gravity="start"
-                android:maxLines="1"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/material_text_body1"
-                android:visibility="gone"
-                tools:text="Zakat" />
+                <TextView
+                    android:id="@+id/item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/item_title"
+                    android:layout_alignBottom="@+id/item_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp4"
+                    android:gravity="center"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/material_text_subhead"
+                    android:textStyle="bold"
+                    tools:text="500" />
 
-            <TextView
-                android:id="@+id/item_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_publish_date"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:gravity="start"
-                android:maxLines="1"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/material_text_body1"
-                tools:text="Zakat" />
+                <TextView
+                    android:id="@+id/item_publish_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_title"
+                    android:layout_margin="@dimen/activity_horizontal_margin_small"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/material_text_body1"
+                    android:visibility="gone"
+                    tools:text="Zakat" />
 
-            <TextView
-                android:id="@+id/item_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_category"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:gravity="start"
-                android:textColor="@color/darkGrey"
-                android:textSize="@dimen/material_text_subhead"
-                tools:text="Zakat" />
+                <TextView
+                    android:id="@+id/item_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_publish_date"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin_small"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin_small"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/material_text_body1"
+                    tools:text="Zakat" />
 
+                <TextView
+                    android:id="@+id/item_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_category"
+                    android:layout_margin="@dimen/activity_horizontal_margin_small"
+                    android:gravity="start"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="@dimen/material_text_subhead"
+                    tools:text="Zakat" />
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 
@@ -203,14 +207,16 @@
             android:id="@+id/cause_progress_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:paddingBottom="@dimen/dp8"
-            android:visibility="gone">
+            android:visibility="invisible">
 
             <SeekBar
                 android:id="@+id/cause_target_progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin_small"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:progressDrawable="@drawable/seekbar_colors"
                 android:thumb="@drawable/progress_thumb" />
 
@@ -240,17 +246,6 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/remaining_amount_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/lightGrey"
-            android:gravity="center"
-            android:padding="@dimen/dp8"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/material_text_title"
-            android:textStyle="bold"
-            android:visibility="gone" />
 
         <TextView
             android:id="@+id/subscribe_text"
@@ -258,9 +253,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp8"
             android:gravity="center"
-            android:padding="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/activity_horizontal_margin_small"
             android:textColor="@color/orange"
             android:textSize="@dimen/material_text_subhead" />
+
+
+        <TextView
+            android:id="@+id/remaining_amount_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@color/lightGrey"
+            android:gravity="center"
+            android:padding="@dimen/dp8"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/material_text_title"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
 
         <Button
             android:id="@+id/donate_now_btn"
@@ -268,7 +278,7 @@
             android:layout_height="wrap_content"
             android:background="@color/blue"
             android:gravity="center"
-            android:padding="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/activity_horizontal_margin_small"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/material_text_title"

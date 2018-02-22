@@ -7,10 +7,11 @@
     <color name="black">#000</color>
     <color name="facebookColor">#3A5896</color>
     <color name="googleColor">#DB4A38</color>
-    <color name="orange">#E7891E</color>
+    <color name="orange">#d8801e</color>
     <color name="blue">#03386D</color>
     <color name="opacity_blue">#5503386d</color>
     <color name="lightGrey">#f4f4f4</color>
+    <color name="lightGrey_2">#3ecacfd1</color>
     <color name="popupsBackground">#231F20</color>
     <color name="grey">#7e7e7e</color>
     <color name="darkGrey">#3f3f3f</color>

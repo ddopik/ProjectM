@@ -35,9 +35,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/dp4"
-            android:layout_marginRight="@dimen/dp4"
-            android:layout_marginTop="@dimen/dp12"
+            android:layout_margin="@dimen/dp8"
             android:layout_weight="1">
 
 
@@ -45,6 +43,9 @@
                 android:id="@+id/check_products_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
+                android:layout_marginTop="@dimen/dp8"
                 android:visibility="gone">
 
                 <TextView
@@ -65,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/dp8">
+                    android:layout_margin="@dimen/dp8">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -96,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/check_products_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin_small"
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
@@ -104,16 +105,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/check_products_layout"
-                android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                android:layout_marginTop="@dimen/activity_horizontal_margin_small" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_margin="@dimen/dp8"
             android:layout_weight="1">
 
 
@@ -121,8 +119,8 @@
                 android:id="@+id/check_causes_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:visibility="visible">
 
                 <TextView
@@ -142,9 +140,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="@dimen/dp8">
+                    android:layout_margin="@dimen/dp8">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -173,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/check_causes_layout"
-                android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                android:layout_marginTop="@dimen/activity_horizontal_margin_small" />
 
             <ProgressBar
                 android:id="@+id/latest_causes_progress_bar"
@@ -181,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/check_causes_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin_small"
                 android:visibility="gone" />
         </RelativeLayout>
 
@@ -191,10 +189,7 @@
             android:id="@+id/home_news_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_margin="@dimen/dp8"
             android:layout_weight="1">
 
 
@@ -202,8 +197,8 @@
                 android:id="@+id/home_news_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:visibility="visible">
 
                 <TextView
@@ -224,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/dp8">
+                    android:layout_margin="@dimen/dp8">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -253,7 +248,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/home_news_layout"
-                android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                android:layout_marginTop="@dimen/activity_horizontal_margin_small" />
 
             <ProgressBar
                 android:id="@+id/home_news_progress_bar"
@@ -261,7 +256,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/home_news_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin_small"
                 android:visibility="gone" />
         </RelativeLayout>
 

@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.spade.mek.R;
@@ -117,7 +118,7 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
         intent.putExtra(UserDataFragment.EXTRA_ZAKAT_AMOUNT, quantity);
         startActivity(intent);
         //todo A_M [New_task]
-        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_QUICK_DONATION,ConstUtil.ACTION_QUICK_DONATION,PrefUtils.getUserId(this));
+        BaseFragment.sendTrackEvent(ConstUtil.CATEGORY_QUICK_DONATION, ConstUtil.ACTION_QUICK_DONATION, PrefUtils.getUserId(this));
     }
 
     protected abstract void addFragment();

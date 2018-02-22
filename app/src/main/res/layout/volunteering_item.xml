@@ -32,9 +32,9 @@
                 android:background="@drawable/volunteering_date_background"
                 android:maxLines="1"
                 android:paddingBottom="@dimen/dp8"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_vertical_margin"
                 android:paddingLeft="@dimen/dp4"
-                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"
                 android:paddingStart="@dimen/dp4"
                 android:paddingTop="@dimen/dp8"
                 android:textColor="@color/blue"
@@ -44,8 +44,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin">
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_vertical_margin">
 
             <TextView
                 android:id="@+id/event_title"
@@ -88,8 +88,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/event_description"
                 android:layout_marginBottom="@dimen/dp8"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginTop="@dimen/dp8"
                 android:background="@drawable/orange_bordered_button_bg"
                 android:gravity="center"

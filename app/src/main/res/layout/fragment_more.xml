@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin">
+        android:paddingEnd="@dimen/activity_horizontal_margin_small"
+        android:paddingStart="@dimen/activity_horizontal_margin_small">
 
         <RelativeLayout
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey"
             android:visibility="gone">
 
@@ -44,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image"
                 android:layout_toRightOf="@id/arrow_image"
                 android:text="@string/profile"
@@ -60,15 +60,13 @@
             android:id="@+id/about_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey">
 
             <ImageView
                 android:id="@+id/about_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_about_large" />
 
             <ImageView
@@ -76,16 +74,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/about_image_view"
-                android:layout_toRightOf="@id/about_image_view"
+                android:layout_toEndOf="@+id/about_image_view"
+                android:layout_toRightOf="@+id/about_image_view"
                 android:src="@drawable/ic_orange_triangle" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_7"
                 android:layout_toRightOf="@id/arrow_image_7"
                 android:text="@string/about_us"
@@ -100,15 +98,13 @@
             android:id="@+id/donation_channels_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey">
 
             <ImageView
                 android:id="@+id/donation_channels_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_donation_channels_large" />
 
             <ImageView
@@ -124,8 +120,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_1"
                 android:layout_toRightOf="@id/arrow_image_1"
                 android:text="@string/donation_channels"
@@ -140,15 +136,13 @@
             android:id="@+id/contact_us_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey">
 
             <ImageView
                 android:id="@+id/contact_us_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_contact_us" />
 
             <ImageView
@@ -164,8 +158,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_2"
                 android:layout_toRightOf="@id/arrow_image_2"
                 android:text="@string/contact_us"
@@ -179,15 +173,13 @@
             android:id="@+id/news_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey">
 
             <ImageView
                 android:id="@+id/news_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_news" />
 
             <ImageView
@@ -203,8 +195,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_3"
                 android:layout_toRightOf="@id/arrow_image_3"
                 android:text="@string/news"
@@ -218,15 +210,13 @@
             android:id="@+id/zakat_calculator_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey">
 
             <ImageView
                 android:id="@+id/news_image_view1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_zakah_calculator" />
 
             <ImageView
@@ -242,8 +232,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_4"
                 android:layout_toRightOf="@id/arrow_image_4"
                 android:text="@string/calculator"
@@ -256,15 +246,13 @@
             android:id="@+id/regular_donation_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:background="@color/lightGrey">
 
             <ImageView
                 android:id="@+id/regular_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_regular_donations" />
 
             <ImageView
@@ -280,8 +268,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_5"
                 android:layout_toRightOf="@id/arrow_image_5"
                 android:text="@string/regular_donations"
@@ -295,8 +283,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                android:layout_marginRight="@dimen/activity_horizontal_margin_small"
                 android:text="@string/coming_soon"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/material_text_caption"
@@ -307,7 +295,7 @@
             android:id="@+id/volunteering_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin_medium"
             android:alpha="0.78"
             android:background="@color/lightGrey">
 
@@ -315,8 +303,6 @@
                 android:id="@+id/volunteering_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="@dimen/activity_vertical_margin"
                 app:srcCompat="@drawable/ic_volunteering" />
 
             <ImageView
@@ -332,8 +318,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+                android:layout_marginStart="@dimen/activity_horizontal_margin_small"
                 android:layout_toEndOf="@id/arrow_image_6"
                 android:layout_toRightOf="@id/arrow_image_6"
                 android:text="@string/volunteering"
@@ -347,8 +333,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                android:layout_marginRight="@dimen/activity_horizontal_margin_small"
                 android:text="@string/coming_soon"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/material_text_caption"
@@ -390,11 +376,11 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp32"
-            android:layout_marginTop="@dimen/dp32"
+            android:layout_margin="@dimen/dp12"
             android:background="@drawable/orange_bordered_button_bg"
             android:text="@string/login"
             android:textAlignment="center"
             android:textColor="@color/orange" />
     </LinearLayout>
+    ```
 </ScrollView>

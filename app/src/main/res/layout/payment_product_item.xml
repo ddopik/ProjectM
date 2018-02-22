@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin_small"
+        android:paddingStart="@dimen/activity_horizontal_margin_small"
         android:textColor="@color/blue" />
 
     <LinearLayout
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin">
+        android:paddingEnd="@dimen/activity_horizontal_margin_small"
+        android:paddingStart="@dimen/activity_horizontal_margin_small">
 
         <TextView
             android:id="@+id/product_type"
@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="start"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin_small"
+            android:paddingRight="@dimen/activity_horizontal_margin_small"
             android:textColor="@color/grey"
             android:textSize="@dimen/material_text_caption" />
 
@@ -42,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin_small"
+            android:paddingRight="@dimen/activity_horizontal_margin_small"
             android:textColor="@color/orange" />
     </LinearLayout>
 </LinearLayout>
