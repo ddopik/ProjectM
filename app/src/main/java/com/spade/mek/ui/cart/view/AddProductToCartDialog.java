@@ -80,6 +80,7 @@ public class AddProductToCartDialog extends DialogFragment {
 
         Button addToCartButton = view.findViewById(R.id.add_to_cart_btn);
         itemTitle.setText(title);
+        itemPrice.setVisibility(View.VISIBLE);
         itemPrice.setText(String.format(getString(R.string.egp), String.valueOf(price)));
 
         increaseImage.setOnClickListener(v -> {

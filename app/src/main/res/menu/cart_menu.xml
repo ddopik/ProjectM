@@ -7,6 +7,8 @@
         android:title="@string/quick_donation"
         app:actionLayout="@layout/donate_now_layout"
         app:showAsAction="ifRoom" />
+
+
     <item
         android:id="@+id/cart_item"
         android:icon="@drawable/ic_cart"

@@ -104,8 +104,11 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         RecyclerView homeNewsRecycler = homeView.findViewById(R.id.home_news_recycler_view);
         ImageView productsImageView = homeView.findViewById(R.id.products_arrow);
         ImageView causesImageView = homeView.findViewById(R.id.causes_arrow);
+        ImageView newsArrowImage = homeView.findViewById(R.id.check_all_home_news_arrow);
+
         productsImageView.setImageResource(arrowImage);
         causesImageView.setImageResource(arrowImage);
+        newsArrowImage.setImageResource(arrowImage);
         RecyclerView.LayoutManager latestProductsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager latestCausesLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager latestNewsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);

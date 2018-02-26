@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -66,13 +67,19 @@ public class AddCauseToCartDialog extends DialogFragment {
     private void init(View view) {
         quantityEditText = view.findViewById(R.id.quantityEditText);
 //        totalCost = (TextView) view.findViewById(R.id.total_price);
+        quantityEditText.requestFocus();
+        if (quantityEditText.requestFocus()) {
 
+            getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
         ImageView increaseImage = view.findViewById(R.id.arrow_up);
         ImageView decreaseImage = view.findViewById(R.id.arrow_down);
 
         TextView itemTitle = view.findViewById(R.id.item_title);
         TextView currencyTitle = view.findViewById(R.id.currency_title);
+        TextView item_hint = view.findViewById(R.id.item_hint);
         currencyTitle.setVisibility(View.VISIBLE);
+        item_hint.setVisibility(View.VISIBLE);
 
         Button addToCartButton = view.findViewById(R.id.add_to_cart_btn);
         itemTitle.setText(title);

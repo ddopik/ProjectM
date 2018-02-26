@@ -9,7 +9,7 @@
     <dimen name="activity_vertical_margin_medium">8dp</dimen>
     <dimen name="activity_vertical_margin_small">4dp</dimen>
     <dimen name="main_container_padding">5dp</dimen>
-    <dimen name="product_dialog_custom_width">200dp</dimen>
+    <dimen name="product_dialog_custom_width">225dp</dimen>
     <dimen name="bottomNavigationHeight">56dp</dimen>
     <dimen name="view_pager_height">180dp</dimen>
     <dimen name="dp48">48dp</dimen>

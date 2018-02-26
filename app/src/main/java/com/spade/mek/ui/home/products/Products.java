@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.spade.mek.ui.more.regular_products.model.SubscriptionData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,7 +64,7 @@ public class Products implements Parcelable {
     @SerializedName("image")
     private String productImage;
     @SerializedName("images")
-    private List<String> productImageList;
+    private List<String> productImageList = new ArrayList<>();
     @SerializedName("is_featured")
     private boolean isFeatured;
     @SerializedName("is_urgent")
