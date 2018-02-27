@@ -30,7 +30,7 @@
     <string name="cart">تبرعاتي</string>
     <string name="custom_amount">المبلغ</string>
     <string name="add_to_cart">أضف لتبرعاتك</string>
-    <string name="add_money_description">الذي تود أن تتبرع به \n أضف المبلغ</string>
+    <string name="add_money_description">أضف المبلغ \n الذي تود أن تتبرع به </string>
     <string name="egp_text">جنيه مصري</string>
     <string name="title_product">المنتج</string>
     <string name="title_cause">شارك في الخير</string>

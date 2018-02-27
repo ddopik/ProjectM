@@ -55,7 +55,7 @@
                 android:layout_marginTop="@dimen/dp8"
                 android:text="Product"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/material_text_subhead" />
+                android:textSize="@dimen/material_text_caption" />
 
             <!--<LinearLayout-->
             <!--android:id="@+id/"-->

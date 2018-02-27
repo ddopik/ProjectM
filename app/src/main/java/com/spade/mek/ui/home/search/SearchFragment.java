@@ -1,6 +1,8 @@
 package com.spade.mek.ui.home.search;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
@@ -32,6 +35,7 @@ public class SearchFragment extends BaseFragment implements ProductsSearchFragme
     private PagingAdapter pagingAdapter;
     private ViewPager viewPager;
     private String searchKeyword;
+    private TabLayout tabLayout;
 
     @Nullable
     @Override
@@ -69,7 +73,7 @@ public class SearchFragment extends BaseFragment implements ProductsSearchFragme
     @Override
     protected void initViews() {
         viewPager = (ViewPager) view.findViewById(R.id.fragments_viewpager);
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
@@ -92,6 +96,9 @@ public class SearchFragment extends BaseFragment implements ProductsSearchFragme
         });
     }
 
+
+
+
     private void setupViewPager(ViewPager viewPager) {
         pagingAdapter = new PagingAdapter(getChildFragmentManager());
         pagingAdapter.addFragment(getProductsFragment(), getString(R.string.title_products));
@@ -99,6 +106,25 @@ public class SearchFragment extends BaseFragment implements ProductsSearchFragme
         pagingAdapter.addFragment(getNewsFragment(), getString(R.string.news));
         viewPager.setAdapter(pagingAdapter);
         viewPager.setOffscreenPageLimit(3);
+        changeTabsFont();
+    }
+
+    private void changeTabsFont() {
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/bahij_semi_bold.ttf");
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(font);
+                    ((TextView) tabViewChild).setTextSize(15);
+
+                }
+            }
+        }
     }
 
     private ProductsSearchFragment getProductsFragment() {

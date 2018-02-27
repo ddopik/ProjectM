@@ -189,6 +189,9 @@
                         android:layout_alignBottom="@+id/address_text"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_medium"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_medium"
+                        android:layout_gravity="center_horizontal|center_vertical"
                         app:srcCompat="@drawable/ic_location" />
 
                     <TextView
@@ -196,10 +199,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="@dimen/dp4"
-                        android:layout_marginStart="@dimen/dp4"
                         android:layout_toEndOf="@+id/address_image"
                         android:layout_toRightOf="@+id/address_image"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin_small"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_small"
+                        android:layout_gravity="center_horizontal|center_vertical"
                         android:text="@string/address"
                         android:textColor="@color/blue" />
 
@@ -210,6 +214,8 @@
                         android:layout_toEndOf="@+id/address_text"
                         android:layout_toRightOf="@+id/address_text"
                         android:gravity="center"
+                        android:paddingTop="2dp"
+                        android:layout_gravity="center_vertical|clip_horizontal"
                         android:text="@string/address_hint"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/material_text_caption" />
@@ -238,8 +244,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
+                        android:layout_toLeftOf="@id/areas_spinner"
+                        android:layout_toStartOf="@id/areas_spinner"
                         android:layout_centerVertical="true"
                         android:padding="@dimen/dp8"
+                        android:layout_gravity="center_vertical"
                         app:srcCompat="@drawable/ic_arrow_down" />
 
                     <View

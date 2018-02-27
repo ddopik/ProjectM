@@ -37,17 +37,19 @@
 
         <ImageView
             android:id="@+id/ic_urgent_label"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
             app:srcCompat="@drawable/ic_label" />
 
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:gravity="center_vertical|end"
-            android:paddingEnd="@dimen/dp8"
-            android:paddingRight="@dimen/dp8"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp8"
+            android:gravity="center"
             android:text="@string/urgent_case"
             android:textColor="@color/white" />
 
@@ -77,6 +79,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/dp12"
+        android:layout_marginEnd="@dimen/dp12"
         android:layout_marginRight="@dimen/dp12"
         app:srcCompat="@drawable/ic_share" />
 
