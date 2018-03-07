@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp4"
             android:progressDrawable="@drawable/seekbar_colors"
-            android:thumb="@drawable/progress_thumb" />
+            android:thumb="@null" />
 
         <TextView
             android:id="@+id/cause_target"
