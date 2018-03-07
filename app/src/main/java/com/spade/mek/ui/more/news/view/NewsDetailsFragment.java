@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.spade.mek.R;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.news.model.News;
@@ -33,17 +32,16 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import static com.spade.mek.ui.more.news.view.YouTubeNewsActivity.API_KEY;
-
 
 /**
  * Created by Ayman Abouzeid on 6/20/17.
  */
 
-public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView, NewsAdapter.OnNewsClicked, ImagesPagerAdapter.OnImageClicked {
+public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView, NewsAdapter.OnNewsClicked {
     public static final String ITEM_ID = "ITEM_ID";
     public static final String YOUTUBE_CODE = "VEDIO_YOUTYBE_ID";
 
+    private ImagesPagerAdapter.OnImageClicked onImageClicked;
     private View newsDetailsView;
     private TextView newsTitle, newsCategory, newsDetails,
             newsCreatedAt, relatedNewsTextView;
@@ -102,9 +100,6 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         shareImage = newsDetailsView.findViewById(R.id.share_image_view);
         progressBar = newsDetailsView.findViewById(R.id.progress_bar);
 
-        imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
-        imagesPagerAdapter.setOnImageClicked(this);
-        imagesViewPager.setAdapter(imagesPagerAdapter);
 
         newsAdapter = new NewsAdapter(newsList, getContext(), ImageUtils.getDefaultImage(appLang), LinearLayout.HORIZONTAL);
         newsAdapter.setOnNewsClicked(this);
@@ -117,6 +112,24 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         newsDetailsPresenter.getNewsDetails(appLang, itemId);
         getRelatedNews(appLang);
 
+
+        onImageClicked = new ImagesPagerAdapter.OnImageClicked() {
+            @Override
+            public void onImageClicked() {
+                if (itemYouTubeUrl.equals(""))
+                    return;
+//        Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(), API_KEY, itemYouTubeUrl);
+//        intent.putExtra(YOUTUBE_CODE, itemYouTubeUrl);
+//        startActivity(intent);
+                Intent intent = new Intent(getActivity(), YouTubeNewsActivity.class);
+                intent.putExtra(YOUTUBE_CODE, itemYouTubeUrl);
+                startActivity(intent);
+            }
+        };
+
+
+        imagesPagerAdapter = new ImagesPagerAdapter(getContext(), imagesList, ImageUtils.getDefaultImage(appLang));
+        imagesViewPager.setAdapter(imagesPagerAdapter);
 
     }
 
@@ -180,6 +193,11 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         newsDetails.setText(news.getBody());
         imagesList.addAll(news.getImages());
         addYoutubeImageToAdapter(news);
+
+        if (itemYouTubeUrl != null && !itemYouTubeUrl.isEmpty()) {
+            imagesPagerAdapter.setOnImageClicked(onImageClicked);
+        }
+
         imagesPagerAdapter.notifyDataSetChanged();
     }
 
@@ -217,23 +235,22 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     }
 
     //todo A_M [New_task]
-    @Override // youTube of SingleNews
-    public void onImageClicked() {
-        if (itemYouTubeUrl.equals(""))
-            return;
-//        Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(), API_KEY, itemYouTubeUrl);
+//    @Override // youTube of SingleNews
+//    public void onImageClicked() {
+//        if (itemYouTubeUrl.equals(""))
+//            return;
+////        Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(), API_KEY, itemYouTubeUrl);
+////        intent.putExtra(YOUTUBE_CODE, itemYouTubeUrl);
+////        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), YouTubeNewsActivity.class);
 //        intent.putExtra(YOUTUBE_CODE, itemYouTubeUrl);
 //        startActivity(intent);
-
-        Intent intent = new Intent(getActivity(), YouTubeNewsActivity.class);
-        intent.putExtra(YOUTUBE_CODE, itemYouTubeUrl);
-        startActivity(intent);
-    }
+//    }
 
     //todo A_M [New_task]
     ///append youTube Image to ImageAdapter { ---[Tale] }
     public void addYoutubeImageToAdapter(News news) {
-        if (!news.getYoutubeUrl().isEmpty()) {
+        if (news.getYoutubeUrl() != null && !news.getYoutubeUrl().isEmpty()) {
             itemYouTubeUrl = news.getYoutubeUrl();
             if (!news.getYouTubeImgUrl().startsWith("http://")) {
                 imagesList.add("http://" + news.getYouTubeImgUrl());
@@ -241,8 +258,9 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
                 imagesList.add(news.getYouTubeImgUrl());
             }
 
+        } else {
+            itemYouTubeUrl = "";
         }
-        itemYouTubeUrl = (!news.getYoutubeUrl().isEmpty()) ? itemYouTubeUrl = news.getYoutubeUrl() : "";
     }
 
     @Override
