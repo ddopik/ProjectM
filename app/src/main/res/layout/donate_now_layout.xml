@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/donate_now_rounded_btn"
-    android:gravity="center"
-    android:padding="@dimen/dp8"
-    android:text="@string/donate_now"
-    android:textColor="@color/white"
-    android:textSize="@dimen/material_text_caption" />
+
+    android:orientation="vertical"
+    tools:background="@color/colorPrimary">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_horizontal_margin_medium"
+        android:background="@drawable/donate_trila" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/donate_now_badge"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+</LinearLayout>

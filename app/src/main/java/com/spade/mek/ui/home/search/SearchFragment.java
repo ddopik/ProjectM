@@ -73,7 +73,7 @@ public class SearchFragment extends BaseFragment implements ProductsSearchFragme
     @Override
     protected void initViews() {
         viewPager = (ViewPager) view.findViewById(R.id.fragments_viewpager);
-         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);

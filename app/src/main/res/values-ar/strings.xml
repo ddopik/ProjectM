@@ -288,7 +288,8 @@
     <string name="news_screen">News</string>
     <string name="zakat_calculator_screen">Zakat_Calculator</string>
     <string name="donate_on_board">مصر</string>
-    <string name="donate_out_board">خارج</string>
+    <string name="donate_out_board">خارج مصر</string>
     <string name="misr_elkhir_about_tab">مصر الخير</string>
     <string name="project_program_about_tab">المشاريع/البرامج</string>
+    <string name="donate_now_badge">تبرع</string>
 </resources>

@@ -49,14 +49,15 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
         menuInflater.inflate(R.menu.cart_menu, menu);
         badgeView = menu.findItem(R.id.cart_item).getActionView();
         badgeViewDonate = menu.findItem(R.id.quick_donation).getActionView();
-        View donateNowView = menu.findItem(R.id.quick_donation).getActionView();
+
+
         numberTextView = badgeView.findViewById(R.id.items_count);
 
         badgeView.setOnClickListener(v -> startActivity(CartActivity.getLaunchIntent(this)));
 
-//        donateNowView.setOnClickListener(menuItem ->  {
-//            openQuickDonationDialog();
-//        });
+        badgeViewDonate.setOnClickListener(menuItem ->  {
+            openQuickDonationDialog();
+        });
         updateCounter();
         return true;
     }
@@ -70,9 +71,9 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
                 return true;
             case R.id.cart_item:
                 return true;
-            case R.id.quick_donation:
-                openQuickDonationDialog();
-                return true;
+//            case R.id.quick_donation:
+//                openQuickDonationDialog();
+//                return true;
 
         }
         return super.onOptionsItemSelected(item);

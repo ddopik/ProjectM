@@ -2,14 +2,20 @@ package com.spade.mek.ui.home.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.spade.mek.R;
 
@@ -82,4 +88,5 @@ public class SearchActivity extends AppCompatActivity implements SearchFragment.
     @Override
     public void onItemInserted() {
     }
+
 }

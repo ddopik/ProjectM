@@ -96,7 +96,7 @@
                         android:orientation="horizontal"
                         android:layout_gravity="bottom|end"
                         android:gravity="center_vertical"
-                        android:layout_margin="@dimen/activity_horizontal_margin_small">
+                        android:layout_margin="@dimen/activity_horizontal_margin_medium">
 
                         <TextView
                             android:id="@+id/item_hash_tag"

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spade.mek.R;
+import com.spade.mek.network.ApiHelper;
 import com.spade.mek.ui.more.about.model.AboutUsProjects;
 import com.spade.mek.utils.FontUtils;
 import com.spade.mek.utils.GlideApp;

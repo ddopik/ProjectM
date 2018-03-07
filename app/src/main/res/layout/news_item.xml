@@ -36,9 +36,12 @@
             android:id="@+id/share_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_alignBottom="@+id/linearLayout"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/dp12"
+            android:layout_marginEnd="@dimen/dp12"
+            android:layout_marginRight="@dimen/dp12"
             app:srcCompat="@drawable/ic_share" />
 
         <LinearLayout
@@ -50,7 +53,8 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin_small"
             android:layout_toLeftOf="@id/share_image_view"
             android:layout_toStartOf="@id/share_image_view"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/linearLayout">
 
             <TextView
                 android:id="@+id/news_title"
