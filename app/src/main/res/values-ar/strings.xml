@@ -292,4 +292,8 @@
     <string name="misr_elkhir_about_tab">مصر الخير</string>
     <string name="project_program_about_tab">المشاريع/البرامج</string>
     <string name="donate_now_badge">تبرع</string>
+    <string name="choose_language">اختر اللغة</string>
+    <string name="arabic_spel">العربية</string>
+
+
 </resources>
