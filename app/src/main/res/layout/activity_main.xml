@@ -62,7 +62,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_filter_half_cycle" />
+                    app:srcCompat="@drawable/ic_filter_half_cycle" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_filter_half_cycle" />
+                    app:srcCompat="@drawable/ic_filter_half_cycle" />
 
                 <TextView
                     android:id="@+id/tew"

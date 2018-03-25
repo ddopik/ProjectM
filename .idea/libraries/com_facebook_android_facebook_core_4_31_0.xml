@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.facebook.android:facebook-core-4.31.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-core-4.31.0.aar/89a70e320b08382b43f5ed1faefd3eef/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-core-4.31.0.aar/89a70e320b08382b43f5ed1faefd3eef/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-core-4.31.0.aar/d218a7c80b272cc9b09953244b3e5aea/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-core-4.31.0.aar/d218a7c80b272cc9b09953244b3e5aea/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

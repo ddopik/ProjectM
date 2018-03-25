@@ -65,6 +65,12 @@ public class MekApplication extends Application {
         initOneSignal();
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
     private void initGoogleAnalytics() {
         sAnalytics = GoogleAnalytics.getInstance(this);
     }

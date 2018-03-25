@@ -132,7 +132,7 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         if (addressString.isEmpty()) {
             userModel.setUserAddress("");
         } else {
-            userModel.getUserAddress();
+            userModel.setUserAddress(addressString);
         }
         registerPresenter.register(userModel);
     }
