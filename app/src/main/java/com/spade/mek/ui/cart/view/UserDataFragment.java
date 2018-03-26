@@ -125,9 +125,9 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 donationTypePosition = position;
                 if (position == 1)
-                    donationTypeString = getString(R.string.zakat);
+                    donationTypeString = getString(R.string.zakat_order);
                 if (position == 2)
-                    donationTypeString = getString(R.string.sadaqah);
+                    donationTypeString = getString(R.string.sadaqah_order);
             }
 
             @Override

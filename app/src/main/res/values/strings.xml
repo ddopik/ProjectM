@@ -129,7 +129,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <string name="zakat">Zakat</string>
+    <string name="zakat_order" translatable="false">Zakat</string>
+
     <string name="sadaqah">Sadaqa</string>
+    <string name="sadaqah_order" translatable="false">Sadaqa</string>
     <string name="invalid_amount">Please enter a valid amount</string>
     <string name="password_mismatch">Password and confirm password mismatch</string>
     <string name="subscribe">Subscribe</string>

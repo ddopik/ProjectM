@@ -50,6 +50,7 @@ public class ApiHelper {
     private static final String BASE_URL = "https://app.misrelkheir.org/api/v1/{lang}";
     private static final String BASE_POST_URL = "https://app.misrelkheir.org/api/v1";
 
+
     //    private static final String BASE_URL = "http://mekapi.spade.studio/api/v1/{lang}";
     private static final String LATEST_PRODUCTS_URL = BASE_URL + "/products/latest";
     private static final String LATEST_CAUSES_URL = BASE_URL + "/causes/latest";
@@ -73,6 +74,7 @@ public class ApiHelper {
     private static final String FILTER_CAUSES_URL = BASE_URL + "/categories/causes";
     private static final String FILTER_PRODUCTS_URL = BASE_URL + "/categories/products";
     private static final String ONLINE_PAYMENT_CHECKOUT_URL = BASE_POST_URL + "/payment";
+    private static final String ONLINE_PAYMENT_CHECKOUT_URL_TEMP = "https://app.misrelkheir.org/api/v1/ar" + "/payment";
     private static final String REGISTER_USER_URL = BASE_POST_URL + "/register";
     private static final String LOGIN_USER_URL = BASE_POST_URL + "/login";
     private static final String SOCIAL_LOGIN_USER_URL = BASE_POST_URL + "/login/social";
