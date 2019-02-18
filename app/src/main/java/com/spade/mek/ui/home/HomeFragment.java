@@ -115,8 +115,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
 
         latestProductsRecycler.setLayoutManager(latestProductsLayoutManager);
         latestCausesRecycler.setLayoutManager(latestCausesLayoutManager);
-        //todo A_M [New_task]
-        homeNewsRecycler.setLayoutManager(latestNewsLayoutManager);
+         homeNewsRecycler.setLayoutManager(latestNewsLayoutManager);
 
         latestCausesList = new ArrayList<>();
         latestCausesAdapter = new LatestCausesAdapter(getContext(), latestCausesList, defaultImageResId);
@@ -127,8 +126,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         latestProductsAdapter = new LatestProductsAdapter(getContext(), latestProductsList, defaultImageResId);
         latestProductsAdapter.setOnProductClicked(this);
         latestProductsRecycler.setAdapter(latestProductsAdapter);
-        //todo A_M [New_task]
-        homeNewsList = new ArrayList<>();
+         homeNewsList = new ArrayList<>();
         homeNewsAdapter = new NewsAdapter(homeNewsList, getContext(), defaultImageResId, LinearLayout.VERTICAL);
         homeNewsAdapter.setOnNewsClicked(this);
         homeNewsRecycler.setAdapter(homeNewsAdapter);

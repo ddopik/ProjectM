@@ -250,8 +250,8 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     //todo A_M [New_task]
     ///append youTube Image to ImageAdapter { ---[Tale] }
     public void addYoutubeImageToAdapter(News news) {
-        if (news.getYoutubeUrl() != null && !news.getYoutubeUrl().isEmpty()) {
-            itemYouTubeUrl = news.getYoutubeUrl();
+        if (news.youtubeUrl != null && news.youtubeUrl.length>0) {
+            itemYouTubeUrl = news.youtubeUrl[0];
             if (!news.getYouTubeImgUrl().startsWith("http://")) {
                 imagesList.add("http://" + news.getYouTubeImgUrl());
             } else {

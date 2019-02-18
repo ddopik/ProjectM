@@ -58,6 +58,7 @@ public class MekApplication extends Application {
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
+        MultiDex.install(this);
         initGoogleAnalytics();
         initFacebookEvents();
         initAndroidNetworking();

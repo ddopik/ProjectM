@@ -1,5 +1,6 @@
 package com.spade.mek.ui.more.news.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -40,6 +41,7 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
     }
 
 
+    @SuppressLint("CheckResult")
     @Override
     public void getNewsDetails(String appLang, int newsId) {
         newsDetailsView.showLoading();
@@ -59,7 +61,7 @@ public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
                     }
                 });
     }
-
+    @SuppressLint("CheckResult")
     @Override
     public void getRelatedNews(String appLang, int newsId) {
         ApiHelper.getRelatedNews(appLang, newsId)

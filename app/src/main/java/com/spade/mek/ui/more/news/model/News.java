@@ -41,7 +41,7 @@ public class News implements Parcelable {
     //todo A_M [New_task]
     @SerializedName("youtube_url")
     @Expose
-    private String youtubeUrl;
+    public String[] youtubeUrl;
     @SerializedName("is_featured")
     @Expose
     private Boolean isFeatured;
@@ -181,11 +181,11 @@ public class News implements Parcelable {
         return 0;
     }
 
-    public String getYoutubeUrl() {
+    public String[] getYoutubeUrl() {
         return youtubeUrl;
     }
 
-    public void setYoutubeUrl(String youtubeUrl) {
+    public void setYoutubeUrl(String[] youtubeUrl) {
         this.youtubeUrl = youtubeUrl;
     }
 }

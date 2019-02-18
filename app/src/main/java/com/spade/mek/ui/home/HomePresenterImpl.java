@@ -1,5 +1,6 @@
 package com.spade.mek.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.androidnetworking.error.ANError;
@@ -32,7 +33,7 @@ public class HomePresenterImpl implements HomePresenter {
         homeTracker.setScreenName(mContext.getString(R.string.home_screen));
         homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
-
+    @SuppressLint("CheckResult")
     @Override
     public void getLatestProducts(String appLang) {
         mHomeView.showLatestProductsLoading();
@@ -56,6 +57,7 @@ public class HomePresenterImpl implements HomePresenter {
                 });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getLatestCauses(String appLang) {
         mHomeView.showLatestCausesLoading();
@@ -79,6 +81,7 @@ public class HomePresenterImpl implements HomePresenter {
                 });
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getUrgentCases(String appLang) {
         mHomeView.showUrgentCasesLoading();
@@ -102,8 +105,8 @@ public class HomePresenterImpl implements HomePresenter {
                 });
     }
 
-    // TODO: 1/29/18 A_M [new Task]
-    @Override
+     @SuppressLint("CheckResult")
+     @Override
     public void getHomeNews(String appLang) {
         mHomeView.showHomeNewsLoading();
         ApiHelper.getHomeNews(appLang)

@@ -59,7 +59,6 @@ public class ApiHelper {
     private static final String REGULAR_PRODUCTS_URL = BASE_URL + "/products/regular";
     private static final String ALL_CAUSES_URL = BASE_URL + "/causes";
     private static final String ALL_NEWS_URL = BASE_URL + "/news";
-    // TODO: 1/29/18 A_M [new Task]
     private static final String HOME_NEWS_URL = BASE_URL + "/news/latest/list";
     private static final String RELATED_NEWS_URL = BASE_URL + "/news/{id}/related";
     private static final String PRODUCT_DETAILS_URL = BASE_URL + "/product/{id}";
