@@ -7,8 +7,8 @@
     <string name="title_home">الرئيسية</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_products">منتجات</string>
-    <string name="title_causes">شارك في الخير</string>
+    <string name="title_products">اوجه التبرع</string>
+    <string name="title_causes">شارك في حملات التبرع</string>
     <string name="title_more">المزيد</string>
     <string name="login_with">الدخول عن طريق</string>
     <string name="facebook">Facebook</string>
@@ -16,14 +16,14 @@
     <string name="welcome_statement">أهلاً بك \nفي تطبيق مؤسسة مصر الخير</string>
     <string name="continue_as_guest">ادخل بدون تسجيل</string>
     <string name="something_wrong">حدث خطأ ما</string>
-    <string name="latest_products">أحدث المنتجات</string>
-    <string name="latest_causes">أحدث مشاركات الخير</string>
+    <string name="latest_products">أحدث اوجه التبرع</string>
+    <string name="latest_causes">أحدث حملات التبرع</string>
     <string name="check_all">المزيد</string>
     <string name="egp">%s جنيه مصري</string>
     <string name="urgent_case">حالة عاجلة</string>
     <string name="donate_now">تبرع الآن</string>
-    <string name="all_products">جميع المنتجات</string>
-    <string name="all_causes">جميع مشاركات الخير</string>
+    <string name="all_products">جميع اوجه التبرع</string>
+    <string name="all_causes">جميع حملات التبرع</string>
     <string name="item_to_go">من المنتج %s متبقي</string>
     <string name="egp_to_go">متبقي %s جنيه مصرى</string>
     <string name="published_at">نشر في %s</string>
@@ -33,7 +33,7 @@
     <string name="add_money_description">أضف المبلغ \n الذي تود أن تتبرع به </string>
     <string name="egp_text">جنيه مصري</string>
     <string name="title_product">المنتج</string>
-    <string name="title_cause">شارك في الخير</string>
+    <string name="title_cause">شارك في حملات التبرع</string>
     <string name="proceed">تابع عملية التبرع</string>
     <string name="check_out">ادفع تبرعك</string>
     <string name="total_items">%s إجمالي التبرعات</string>
@@ -146,7 +146,7 @@
     <string name="unsubscribe">إلغاء الاشتراك</string>
     <string name="view_subscribtion">عرض الاشتراك</string>
     <string name="regular_donations">خيرك دايم</string>
-    <string name="regular_products_description">يمكنك الاختيار من بين المنتجات \n التالية للتبرع
+    <string name="regular_products_description">يمكنك الاختيار من بين اوجه التبرع \n التالية للتبرع
     بانتظام
 </string>
     <!--<string name="subscribe_details">It is a long established fact that reader will \n be si</string>-->
@@ -160,7 +160,7 @@
     <string name="donate_with">تبرع ب</string>
     <string name="receive_reminder">هيوصلك تنبيه كل</string>
     <string name="month_reminder">%s شهور</string>
-    <string name="products_number" formatted="false">%s منتجات | %s جنيه مصري</string>
+    <string name="products_number" formatted="false">%s اوجه التبرع | %s جنيه مصري</string>
     <string name="regular_confirm_message">%s هيوصلك تنبيه عشان تقدر تتبرع بـ</string>
     <string name="notification_confirmation" formatted="false">%s عشان تقدر تتبرع بيها كل %s تم إضافة
 </string>
@@ -279,8 +279,8 @@
     <string name="home_screen">Home</string>
     <string name="products_screen">Products_Listing</string>
     <string name="products_inner_screen">Products_Inner</string>
-    <string name="causes_screen">Causes_Listing</string>
-    <string name="causes_inner_screen">Causes_Inner</string>
+    <string name="causes_screen">Campaigns_Listing</string>
+    <string name="causes_inner_screen">Campaigns_Inner</string>
     <string name="donation_channels_screen">Donation_Channels</string>
     <string name="banks_screen">Banks</string>
     <string name="stores_screen">Stores</string>
