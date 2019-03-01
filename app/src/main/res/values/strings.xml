@@ -205,6 +205,7 @@
     <string name="products_search">Products search</string>
     <string name="news_search_screen">News search screen</string>
     <string name="server_login">Server Login</string>
+    <string name="network_error">Network error</string>
 
 
     <string-array name="type_of_donations">

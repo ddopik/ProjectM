@@ -8,6 +8,7 @@ import android.util.Log;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
+import com.spade.mek.application.MekApplication;
 
 /**
  * Created by ddopik on 1/23/2018.
@@ -47,6 +48,8 @@ public class NetWorkUtil {
 //        AndroidNetworking.removeConnectionQualityChangeListener();
     }
     public static   boolean isInternetAvailable(Context app) {
+
+
         boolean connected = false;
         ConnectivityManager connectivityManager = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -62,5 +65,11 @@ public class NetWorkUtil {
         return connected;
     }
 
+     static boolean isNetworkConnected() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) MekApplication.mApplication.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
 }

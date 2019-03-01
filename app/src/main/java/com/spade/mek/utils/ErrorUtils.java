@@ -1,6 +1,8 @@
 package com.spade.mek.utils;
 
+import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
 import com.spade.mek.R;
@@ -18,7 +20,7 @@ public class ErrorUtils {
 
 
     public static String getErrors(ANError anError) {
-        String error = "";
+        String error = MekApplication.mApplication.getResources().getString(R.string.network_error);
         if (anError.getErrorBody() != null) {
             try {
                 JSONObject jsonObject = new JSONObject(anError.getErrorBody());
@@ -33,15 +35,12 @@ public class ErrorUtils {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else {
-            if (error.hashCode() == 0) { // todo in case unKnown or no NetWork connection
-                error = MekApplication.mApplication.getResources().getString(R.string.no_internet);
-            } else {
-                error = anError.getMessage();
-            }
-
         }
+        if (!NetWorkUtil.isNetworkConnected()){
+            SingleToast.INSTANCE.show(MekApplication.mApplication,MekApplication.mApplication.getResources().getString(R.string.no_internet),Toast.LENGTH_SHORT);
+         }
         return error;
     }
+
 }
 

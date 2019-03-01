@@ -1,5 +1,7 @@
 package com.spade.mek.ui.more.about.presenter;
 
+import android.annotation.SuppressLint;
+
 import com.androidnetworking.error.ANError;
 import com.spade.mek.R;
 import com.spade.mek.network.ApiHelper;
@@ -22,6 +24,7 @@ public class AboutMisrPresenterImpl implements AboutMisrPresenter {
         this.aboutMisrView = aboutMisrFragmentFragmentView;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getAllAboutUsMisrData(String appLang) {
         aboutMisrView.showAboutMisrLoading();
