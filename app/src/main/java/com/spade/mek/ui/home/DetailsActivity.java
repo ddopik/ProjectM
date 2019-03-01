@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseActivity;
 import com.spade.mek.ui.products.view.ProductDetailsFragment;
 import com.spade.mek.utils.NavigationManager;
@@ -25,6 +28,10 @@ public class DetailsActivity extends BaseActivity implements ProductDetailsFragm
         setContentView(R.layout.activity_base);
         setTitle(getIntent().getStringExtra(SCREEN_TITLE));
         addFragment();
+
+        Tracker homeTracker = MekApplication.getDefaultTracker();
+        homeTracker.setScreenName(getIntent().getStringExtra(SCREEN_TITLE));
+        homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

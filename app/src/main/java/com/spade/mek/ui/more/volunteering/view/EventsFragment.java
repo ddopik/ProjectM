@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.volunteering.model.Event;
 import com.spade.mek.ui.more.volunteering.presenter.EventsPresenter;
@@ -45,6 +48,21 @@ public class EventsFragment extends BaseFragment implements EventsView, EventsAd
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         eventsType = getArguments().getInt(EXTRA_TYPE);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        switch (eventsType) {
+            case EXTRA_CURRENT_EVENTS:
+                tracker.setScreenName(getResources().getString(R.string.current_events));
+                break;
+            case EXTRA_PREVIOUS_EVENTS:
+                tracker.setScreenName(getResources().getString(R.string.previous_events));
+
+                break;
+            case EXTRA_UP_COMING_EVENTS:
+                tracker.setScreenName(getResources().getString(R.string.upcoming_events));
+                break;
+        }
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -58,6 +76,8 @@ public class EventsFragment extends BaseFragment implements EventsView, EventsAd
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         eventView = inflater.inflate(R.layout.fragment_event, container, false);
         initViews();
+
+
         return eventView;
     }
 

@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
@@ -47,6 +50,9 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         fragmentView = inflater.inflate(R.layout.fragment_register, container, false);
         initViews();
         overrideFonts(getContext(), fragmentView);
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.register));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return fragmentView;
     }
 

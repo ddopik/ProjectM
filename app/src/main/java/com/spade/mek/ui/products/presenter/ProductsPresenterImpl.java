@@ -30,9 +30,7 @@ public class ProductsPresenterImpl implements ProductsPresenter {
 
     public ProductsPresenterImpl(Context context) {
         this.mContext = context;
-        Tracker productsTracker = MekApplication.getDefaultTracker();
-        productsTracker.setScreenName(mContext.getString(R.string.products_screen));
-        productsTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override

@@ -15,7 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.news.model.News;
 import com.spade.mek.ui.more.news.model.NewsCategory;
@@ -199,6 +202,11 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         }
 
         imagesPagerAdapter.notifyDataSetChanged();
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(news.getTitle());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

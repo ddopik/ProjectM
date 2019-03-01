@@ -14,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SpinnerAdapter;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.login.view.LoginActivity;
 import com.spade.mek.ui.login.view.LoginDialogFragment;
@@ -47,6 +50,10 @@ public class MoreFragment extends BaseFragment implements MoreView, LoginDialogF
         moreView = inflater.inflate(R.layout.fragment_more, container, false);
         initViews();
         overrideFonts(getContext(), moreView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.more_screen));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return moreView;
     }
 

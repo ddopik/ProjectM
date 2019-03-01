@@ -7,7 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseActivity;
 
 /**
@@ -25,6 +28,12 @@ public class SubmitVolunteeringActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         setTitle(getString(R.string.volunteering));
+
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getString(R.string.volunteering));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         addFragment();
     }
 

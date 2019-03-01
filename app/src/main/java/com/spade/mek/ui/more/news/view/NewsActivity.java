@@ -7,7 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseActivity;
 
 /**
@@ -26,6 +29,11 @@ public class NewsActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         setTitle(getString(R.string.news));
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getString(R.string.news));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         addFragment();
     }
 

@@ -49,9 +49,7 @@ public class ContactUsPresenterImpl implements ContactUsPresenter,
 
     public ContactUsPresenterImpl(Context context) {
         this.context = context;
-        Tracker contactUsTracker = MekApplication.getDefaultTracker();
-        contactUsTracker.setScreenName(context.getString(R.string.contact_us_screen));
-        contactUsTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override

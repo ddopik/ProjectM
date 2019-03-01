@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.login.UserModel;
@@ -40,6 +43,10 @@ public class EditProfileFragment extends BaseFragment implements EditProfileView
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mEditProfileView = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         initViews();
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.edit_profile));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mEditProfileView;
     }
 

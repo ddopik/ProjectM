@@ -193,6 +193,18 @@
     <string name="donate_on_board">Egypt</string>
     <string name="donate_out_board">Abroad</string>
     <string name="donate_now_badge">Donate</string>
+    <string name="regular_products">Reqular products</string>
+    <string name="volunteering_screen">volunteering screen</string>
+    <string name="volunteering_events">volunteering events</string>
+    <string name="about_misr">About misr</string>
+    <string name="about_programs">About programs</string>
+    <string name="more_screen">more screen</string>
+    <string name="profile_payment_history">Profile payment history</string>
+    <string name="profile_regular_products">Profile Regular Products</string>
+    <string name="causes_search_screen">Causes Search</string>
+    <string name="products_search">Products search</string>
+    <string name="news_search_screen">News search screen</string>
+    <string name="server_login">Server Login</string>
 
 
     <string-array name="type_of_donations">

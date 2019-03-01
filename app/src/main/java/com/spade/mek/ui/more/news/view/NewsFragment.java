@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.search.model.NewsSearchResponse;
 import com.spade.mek.ui.more.news.model.AllNewsResponse;
@@ -47,6 +50,12 @@ public class NewsFragment extends BaseFragment implements NewsView, NewsAdapter.
         newsView = inflater.inflate(R.layout.fragment_news, container, false);
         initViews();
         overrideFonts(getContext(), newsView);
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.news_screen));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         return newsView;
     }
 

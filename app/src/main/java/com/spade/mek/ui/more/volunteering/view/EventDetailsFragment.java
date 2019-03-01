@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.volunteering.model.Event;
 import com.spade.mek.utils.GlideApp;
@@ -81,6 +84,11 @@ public class EventDetailsFragment extends BaseFragment {
                 , null);
         GlideApp.with(getContext()).load(event.getEventImage()).
                 placeholder(defaultDrawable).error(defaultDrawable).centerCrop().into(eventImageView);
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(event.getEventTitle());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private String getDate(long timeStamp) {

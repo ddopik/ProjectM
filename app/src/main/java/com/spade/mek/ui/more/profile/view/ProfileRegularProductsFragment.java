@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.login.view.LoginDialogFragment;
@@ -52,6 +55,12 @@ public class ProfileRegularProductsFragment extends BaseFragment
         mRegularProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
         overrideFonts(getContext(), mRegularProductsView);
+
+
+
+        Tracker productsTracker = MekApplication.getDefaultTracker();
+        productsTracker.setScreenName(getString(R.string.profile_regular_products));
+        productsTracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mRegularProductsView;
     }
 

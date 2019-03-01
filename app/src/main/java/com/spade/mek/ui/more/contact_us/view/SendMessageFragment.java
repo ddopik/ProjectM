@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.login.User;
 import com.spade.mek.ui.more.contact_us.presenter.SendMessagePresenter;
@@ -41,6 +44,9 @@ public class SendMessageFragment extends BaseFragment implements SendMessageView
         fragmentView = inflater.inflate(R.layout.fragment_send_messsage, container, false);
         initViews();
         overrideFonts(getContext(), fragmentView);
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.send_message));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return fragmentView;
     }
 

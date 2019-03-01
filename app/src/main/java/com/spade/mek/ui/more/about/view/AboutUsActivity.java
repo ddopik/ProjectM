@@ -10,7 +10,10 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseActivity;
 import com.spade.mek.ui.more.volunteering.view.PagingAdapter;
 
@@ -38,6 +41,10 @@ public class AboutUsActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         overrideFonts(this, aboutUsView);
         setTitle(getString(R.string.about_us));
+
+        Tracker homeTracker = MekApplication.getDefaultTracker();
+        homeTracker.setScreenName(getString(R.string.about_us));
+        homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
     }
 

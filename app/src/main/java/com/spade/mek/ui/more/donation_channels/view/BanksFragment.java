@@ -47,9 +47,7 @@ public class BanksFragment extends BaseFragment implements DonationBanksView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Tracker banksTracker = MekApplication.getDefaultTracker();
-        banksTracker.setScreenName(getString(R.string.banks_screen));
-        banksTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Nullable
@@ -58,6 +56,10 @@ public class BanksFragment extends BaseFragment implements DonationBanksView {
         banksView = inflater.inflate(R.layout.fragment_bank, container, false);
         initViews();
         overrideFonts(getContext(), banksView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.banks_screen));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return banksView;
     }
 

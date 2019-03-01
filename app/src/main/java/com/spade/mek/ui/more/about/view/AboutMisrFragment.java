@@ -11,7 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 
 import com.spade.mek.ui.more.about.presenter.AboutMisrPresenter;
@@ -36,6 +39,11 @@ public class AboutMisrFragment extends BaseFragment implements AboutMisrView {
         super.onCreate(savedInstanceState);
         mainView = inflater.inflate(R.layout.about_misr_fragment_layout, container, false);
         initViews();
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.about_misr));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mainView;
 
     }

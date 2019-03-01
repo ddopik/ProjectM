@@ -13,7 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.UserDataActivity;
 import com.spade.mek.ui.cart.view.UserDataFragment;
@@ -53,6 +56,10 @@ public class ServerLoginFragment extends BaseFragment implements LoginView {
         fragmentView = inflater.inflate(R.layout.fragment_server_login, container, false);
         initViews();
         overrideFonts(getContext(), fragmentView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.server_login));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return fragmentView;
     }
 

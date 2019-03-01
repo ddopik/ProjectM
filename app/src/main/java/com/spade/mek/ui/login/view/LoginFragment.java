@@ -12,7 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.MainActivity;
 import com.spade.mek.ui.login.presenter.LoginPresenter;
@@ -37,6 +40,10 @@ public class LoginFragment extends BaseFragment implements LoginView {
         mView = inflater.inflate(R.layout.fragment_login, container, false);
         initViews();
         overrideFonts(getContext(), mView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.login));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mView;
     }
 

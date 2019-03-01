@@ -12,7 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.DetailsActivity;
 import com.spade.mek.ui.home.products.Products;
@@ -48,6 +51,11 @@ public class RegularProductsFragment extends BaseFragment implements RegularProd
         mRegularProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
         overrideFonts(getContext(), mRegularProductsView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.regular_products));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         return mRegularProductsView;
     }
 

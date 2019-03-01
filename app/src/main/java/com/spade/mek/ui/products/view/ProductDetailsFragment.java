@@ -18,7 +18,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
 import com.spade.mek.ui.cart.view.AddProductToCartDialog;
@@ -152,6 +155,8 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         subscribeTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         subscribeTextView.setOnClickListener(v -> checkSubscription());
+
+
     }
 
 
@@ -356,6 +361,12 @@ public class ProductDetailsFragment extends BaseFragment implements ProductDetai
         productHashTag.setText(products.getProductHashTag());
         imagesList.addAll(products.getProductImageList());
         imagesPagerAdapter.notifyDataSetChanged();
+
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(products.getProductTitle());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     public void setCartAction(CartAction cartAction) {

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
@@ -41,6 +42,8 @@ public abstract class BaseActivity extends AppCompatActivity implements QuickDon
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         realmDbHelper = new RealmDbImpl();
+
+
     }
 
     @Override

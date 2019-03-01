@@ -13,7 +13,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.realm.RealmDbHelper;
 import com.spade.mek.realm.RealmDbImpl;
@@ -35,6 +38,10 @@ public class ProfileFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_paging, container, false);
         initViews();
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.profile));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return view;
     }
 

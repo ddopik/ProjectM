@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 
 import static com.spade.mek.ui.register.RegisterActivity.EXTRA_TYPE;
@@ -26,6 +29,11 @@ public class VolunteeringFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_paging, container, false);
         initViews();
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.volunteering_screen));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return view;
     }
 

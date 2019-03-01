@@ -26,9 +26,7 @@ public class NewsPresenterImpl implements NewsPresenter {
 
     public NewsPresenterImpl(Context mContext) {
         this.mContext = mContext;
-        Tracker newsTracker = MekApplication.getDefaultTracker();
-        newsTracker.setScreenName(mContext.getString(R.string.news_screen));
-        newsTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override

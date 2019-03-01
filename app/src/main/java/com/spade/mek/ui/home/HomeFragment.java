@@ -15,7 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
 import com.spade.mek.ui.cart.view.AddProductToCartDialog;
@@ -54,8 +57,7 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
     private List<Products> latestCausesList;
     private List<Products> latestProductsList;
     private List<Products> urgentCaseList;
-    // TODO: 1/29/18 A_M [new Task]
-    private List<News> homeNewsList;
+     private List<News> homeNewsList;
     private ProgressBar latestProductsProgress, latestCausesProgress, urgentCasesProgress, homeNewsProgress;
     private HomeActions homeActions;
     private CartAction cartAction;
@@ -69,6 +71,10 @@ public class HomeFragment extends BaseFragment implements HomeView, LatestProduc
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         initViews();
         overrideFonts(getContext(), homeView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.home_screen));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return homeView;
     }
 

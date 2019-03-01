@@ -29,9 +29,6 @@ public class HomePresenterImpl implements HomePresenter {
     public HomePresenterImpl(HomeView homeView, Context context) {
         setView(homeView);
         mContext = context;
-        Tracker homeTracker = MekApplication.getDefaultTracker();
-        homeTracker.setScreenName(mContext.getString(R.string.home_screen));
-        homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
     @SuppressLint("CheckResult")
     @Override

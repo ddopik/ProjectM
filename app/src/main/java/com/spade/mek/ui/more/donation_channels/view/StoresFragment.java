@@ -17,7 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.donation_channels.model.Area;
 import com.spade.mek.ui.more.donation_channels.model.City;
@@ -53,6 +56,10 @@ public class StoresFragment extends BaseFragment implements DonationStoresView, 
         storesView = inflater.inflate(R.layout.fragment_stores, container, false);
         initViews();
         overrideFonts(getContext(), storesView);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getActivity().getResources().getString(R.string.stores));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return storesView;
     }
 

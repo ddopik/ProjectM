@@ -11,7 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.base.BaseView;
 import com.spade.mek.ui.more.about.model.AboutUsDataResponse;
@@ -41,6 +44,11 @@ public class AboutProgramFragment extends BaseFragment implements AboutProgramVi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.about_project_fragment, container, false);
         initViews();
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.about_programs));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mainView;
     }
 

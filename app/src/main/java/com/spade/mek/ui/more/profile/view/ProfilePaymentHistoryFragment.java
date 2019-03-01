@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.profile.model.Payment;
 import com.spade.mek.ui.more.profile.presenter.PaymentHistoryPresenterImpl;
@@ -37,6 +40,12 @@ public class ProfilePaymentHistoryFragment extends BaseFragment implements Profi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         paymentView = inflater.inflate(R.layout.fragment_profile_payment_history, container, false);
         initViews();
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.profile_payment_history));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         return paymentView;
     }
 

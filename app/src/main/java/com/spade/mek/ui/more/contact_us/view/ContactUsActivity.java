@@ -7,7 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseActivity;
 
 /**
@@ -26,6 +29,10 @@ public class ContactUsActivity extends BaseActivity {
 
         setTitle(getString(R.string.contact_us));
         addFragment();
+        Tracker homeTracker = MekApplication.getDefaultTracker();
+        homeTracker.setScreenName(getString(R.string.contact_us));
+        homeTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override

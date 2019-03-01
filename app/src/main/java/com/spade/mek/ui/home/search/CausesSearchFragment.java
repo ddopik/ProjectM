@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseSearchFragment;
 import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
 import com.spade.mek.ui.cart.view.AddProductToCartDialog;
@@ -55,6 +58,11 @@ public class CausesSearchFragment extends BaseSearchFragment implements CausesVi
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
         overrideFonts(getContext(), mProductsView);
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.causes_search_screen));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mProductsView;
     }
 

@@ -17,7 +17,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.more.volunteering.view.PagingAdapter;
 
@@ -41,6 +44,10 @@ public class SearchFragment extends BaseFragment implements ProductsSearchFragme
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_paging, container, false);
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(getResources().getString(R.string.search));
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
         initViews();
         return view;
     }

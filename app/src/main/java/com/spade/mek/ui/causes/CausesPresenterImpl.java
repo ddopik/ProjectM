@@ -29,9 +29,7 @@ public class CausesPresenterImpl implements CausesPresenter {
 
     public CausesPresenterImpl(Context context) {
         this.mContext = context;
-        Tracker causesTracker = MekApplication.getDefaultTracker();
-        causesTracker.setScreenName(mContext.getString(R.string.causes_screen));
-        causesTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override

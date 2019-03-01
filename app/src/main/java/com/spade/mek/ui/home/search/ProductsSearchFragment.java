@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseSearchFragment;
 import com.spade.mek.ui.cart.view.AddCauseToCartDialog;
 import com.spade.mek.ui.cart.view.AddProductToCartDialog;
@@ -54,6 +57,9 @@ public class ProductsSearchFragment extends BaseSearchFragment implements Produc
         mProductsView = inflater.inflate(R.layout.fragment_products, container, false);
         initViews();
         overrideFonts(getContext(), mProductsView);
+        Tracker productsTracker = MekApplication.getDefaultTracker();
+        productsTracker.setScreenName( getString(R.string.products_search));
+        productsTracker.send(new HitBuilders.ScreenViewBuilder().build());
         return mProductsView;
     }
 

@@ -14,7 +14,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.spade.mek.R;
+import com.spade.mek.application.MekApplication;
 import com.spade.mek.base.BaseFragment;
 import com.spade.mek.ui.home.products.Products;
 import com.spade.mek.ui.more.regular_products.presenter.SubscribePresenter;
@@ -93,6 +96,11 @@ public class SubscribeFragment extends BaseFragment implements SubscribeView, Co
 
         submitButton.setOnClickListener(v -> subscribePresenter.subscribeToProduct(product, totalCost, quantity, duration));
         setQuantityAndCost();
+
+
+        Tracker tracker = MekApplication.getDefaultTracker();
+        tracker.setScreenName(product.getProductTitle());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void setQuantityAndCost() {
