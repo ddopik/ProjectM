@@ -1,5 +1,6 @@
 package com.spade.mek.ui.cart.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -141,6 +142,7 @@ public class UserOrderPresenterImpl implements UserOrderPresenter {
     }
 
 
+    @SuppressLint("CheckResult")
     private void checkoutOrder(JSONObject requestJson) {
         if (paymentType == UserDataFragment.ONLINE_PAYMENT_TYPE) {
             userDataView.showLoading();

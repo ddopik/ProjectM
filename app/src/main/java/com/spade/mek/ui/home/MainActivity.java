@@ -170,7 +170,7 @@ public class MainActivity extends BaseActivity implements AHBottomNavigation.OnT
 
     private List<AHBottomNavigationItem> getNavigationItems() {
         AHBottomNavigationItem homeItem = new AHBottomNavigationItem(getString(R.string.title_home), R.drawable.ic_home);
-        AHBottomNavigationItem causesItem = new AHBottomNavigationItem(getString(R.string.title_causes), R.drawable.ic_causes);
+        AHBottomNavigationItem causesItem = new AHBottomNavigationItem(getString(R.string.title_causes_nav_bar), R.drawable.ic_causes);
         AHBottomNavigationItem productsItem = new AHBottomNavigationItem(getString(R.string.title_products), R.drawable.ic_products);
         AHBottomNavigationItem searchItem = new AHBottomNavigationItem(getString(R.string.search), R.drawable.ic_search_white);
         AHBottomNavigationItem moreItem = new AHBottomNavigationItem(getString(R.string.title_more), R.drawable.ic_more);

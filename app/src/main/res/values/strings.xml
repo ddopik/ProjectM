@@ -9,6 +9,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_products">products </string>
     <string name="title_causes">Campaigns</string>
+    <string name="title_causes_nav_bar">Campaigns</string>
     <string name="title_more">More</string>
     <string name="login_with">Login with</string>
     <string name="facebook">Facebook</string>
@@ -153,8 +154,11 @@
     <string name="receive_reminder">You receive a reminder every</string>
     <string name="month_reminder">%s Months</string>
     <string name="products_number" formatted="false">%s products  | %sEGP</string>
-    <string name="regular_confirm_message">%s products  has been successfully added to your profile as a regular donation product</string>
-    <string name="notification_confirmation" formatted="false">A notification will be sent to you each %s months to remind you to donate for the %s</string>
+    <string name="regular_confirm_message"> products  has been successfully added to your profile as a regular donation product</string>
+    <!--<string name="notification_confirmation" formatted="false">A notification will be sent to you each %s months to remind you to donate for the %s</string>-->
+    <string name="notification_confirmation" formatted="false">A notification will be sent to you each months to remind you to donate for the </string>
+    <!--<string name="notification_confirmation_cont" formatted="false"></string>-->
+
     <string name="apply">Apply</string>
     <string name="current_events">Current Events</string>
     <string name="previous_events">Past Events</string>

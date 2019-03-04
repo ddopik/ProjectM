@@ -50,8 +50,18 @@ public class ConfirmSubscriptionDialog extends DialogFragment {
         TextView confirmMessageFirst = (TextView) view.findViewById(R.id.confirmation_message_first);
         TextView confirmMessageSecond = (TextView) view.findViewById(R.id.confirmation_message_second);
 
-        confirmMessageFirst.setText(String.format(getString(R.string.regular_confirm_message), title));
-        confirmMessageSecond.setText(String.format(getString(R.string.notification_confirmation), duration, title));
+
+//                confirmMessageFirst.setText(String.format(getString(R.string.regular_confirm_message), title));
+//        confirmMessageSecond.setText(String.format(getString(R.string.notification_confirmation), duration, title));
+
+
+        String confirmMessageFirstText=title+" "+getString(R.string.regular_confirm_message);
+        String confirmMessageSecoundText=getString(R.string.notification_confirmation)+" "+title;
+
+        confirmMessageFirst.setText(confirmMessageFirstText);
+        confirmMessageSecond.setText(confirmMessageSecoundText);
+
+
     }
 
     @Override
