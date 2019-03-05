@@ -55,7 +55,7 @@ public class ConfirmSubscriptionDialog extends DialogFragment {
 //        confirmMessageSecond.setText(String.format(getString(R.string.notification_confirmation), duration, title));
 
 
-        String confirmMessageFirstText=title+" "+getString(R.string.regular_confirm_message);
+        String confirmMessageFirstText=getString(R.string.regular_confirm_message)+" "+title;
         String confirmMessageSecoundText=getString(R.string.notification_confirmation)+" "+title;
 
         confirmMessageFirst.setText(confirmMessageFirstText);

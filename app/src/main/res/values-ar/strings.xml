@@ -162,9 +162,8 @@
     <string name="receive_reminder">هيوصلك تنبيه كل</string>
     <string name="month_reminder">%s شهور</string>
     <string name="products_number" formatted="false">%s اوجه التبرع | %s جنيه مصري</string>
-    <string name="regular_confirm_message">%s هيوصلك تنبيه عشان تقدر تتبرع بـ</string>
-    <string name="notification_confirmation" formatted="false">%s عشان تقدر تتبرع بيها كل %s تم إضافة
-</string>
+    <string name="regular_confirm_message"> هيوصلك تنبيه عشان تقدر تتبرع بـ</string>
+    <string name="notification_confirmation" formatted="false">سيتم إرسال إشعار إليك كل شهر لتذكيرك بالتبرع لصالح</string>
     <string name="apply">تطوع الآن</string>
     <string name="current_events">حملات حالية</string>
     <string name="previous_events">حملات سابقة</string>
