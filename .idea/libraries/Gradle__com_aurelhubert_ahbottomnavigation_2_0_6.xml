@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.aurelhubert:ahbottomnavigation-2.0.6">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.0.6.aar/2f6b29960bda4378a315566a3308a1f6/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.0.6.aar/ffe0167d166ca839a1c5b6ca2c102436/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.0.6.aar/2f6b29960bda4378a315566a3308a1f6/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.0.6.aar/2f6b29960bda4378a315566a3308a1f6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.0.6.aar/ffe0167d166ca839a1c5b6ca2c102436/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ahbottomnavigation-2.0.6.aar/ffe0167d166ca839a1c5b6ca2c102436/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
