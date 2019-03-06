@@ -1,6 +1,7 @@
 package com.spade.mek.ui.more.donation_channels.presenter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.IntentSender;
@@ -72,6 +73,7 @@ public class DonationStoresPresenterImpl implements DonationStoresPresenter, Act
 
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getDonationStores(String appLang) {
         donationStoresView.showLoading();
@@ -98,9 +100,11 @@ public class DonationStoresPresenterImpl implements DonationStoresPresenter, Act
                 });
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void sortStoresAscending(List<Store> storeList, Location userLocation) {
         this.userLocation = userLocation;
+
         new SortStoresTask().execute(storeList);
     }
 
